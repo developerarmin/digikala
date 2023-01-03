@@ -4,6 +4,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import dagger.hilt.android.scopes.ActivityScoped
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.ui.component.SearchBar
 import kotlinx.coroutines.delay
 
 @Composable
@@ -29,17 +31,13 @@ fun CategoryScreen(navController: NavHostController) {
 @Composable
 fun Category() {
     if (!isSystemInDarkTheme()) {
-        Box(
+        Column(
             modifier = Modifier
-                .background(Color.DarkGray)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+                .background(Color.White)
+                .fillMaxSize()
         ) {
-            Text(
-                text = "CategoryScreen",
-                color = Color.White,
-                fontSize = 18.sp
-            )
+
+            SearchBar()
         }
     } else {
         Box(
