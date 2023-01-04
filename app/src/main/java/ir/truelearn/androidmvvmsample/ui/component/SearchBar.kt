@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -42,33 +43,35 @@ fun SearchBar() {
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(end = 20.dp),
+                    .padding(start = 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.Start
             ) {
-                Image(
-                    modifier = Modifier
-                        .width(80.dp)
-                        .padding(end = 5.dp),
-                    painter = painterResource(id = R.drawable.digi_red_persian),
-                    contentDescription = ""
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(end = 20.dp),
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colors.unSelectedBottomBar,
-                    style = MaterialTheme.typography.h2,
-                    fontWeight = FontWeight.SemiBold,
-                    text = "جستجو در"
-                )
-
                 Icon(
                     modifier = Modifier
                         .height(24.dp),
                     painter = painterResource(id = R.drawable.search),
                     contentDescription = ""
                 )
+                Text(
+                    modifier = Modifier
+                        .padding(start = 20.dp),
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colors.unSelectedBottomBar,
+                    style = MaterialTheme.typography.h2,
+                    fontWeight = FontWeight.SemiBold,
+                    text = stringResource(R.string.search_in)
+                )
+                Image(
+                    modifier = Modifier
+                        .width(80.dp)
+                        .padding(start = 5.dp),
+                    painter = painterResource(id = R.drawable.digi_red_persian),
+                    contentDescription = ""
+                )
+
+
+
 
             }
 

@@ -29,16 +29,10 @@ fun BottomNavigationBar(
 ) {
     val items = listOf(
         BottomNavItem(
-            name = stringResource(id = R.string.my_digikala),
-            route = Screen.Profile.route,
-            selectedIcon = painterResource(id = R.drawable.user_fill),
-            deSelectedIcon = painterResource(id = R.drawable.user_outline)
-        ),
-        BottomNavItem(
-            name = stringResource(R.string.basket),
-            route = Screen.Basket.route,
-            selectedIcon = painterResource(id = R.drawable.cart_fill),
-            deSelectedIcon = painterResource(id = R.drawable.cart_outline)
+            name = stringResource(R.string.home),
+            route = Screen.Home.route,
+            selectedIcon = painterResource(id = R.drawable.home_fill),
+            deSelectedIcon = painterResource(id = R.drawable.home_outline)
         ),
         BottomNavItem(
             name = stringResource(R.string.category),
@@ -47,10 +41,16 @@ fun BottomNavigationBar(
             deSelectedIcon = painterResource(id = R.drawable.category_outline)
         ),
         BottomNavItem(
-            name = stringResource(R.string.home),
-            route = Screen.Home.route,
-            selectedIcon = painterResource(id = R.drawable.home_fill),
-            deSelectedIcon = painterResource(id = R.drawable.home_outline)
+            name = stringResource(R.string.basket),
+            route = Screen.Basket.route,
+            selectedIcon = painterResource(id = R.drawable.cart_fill),
+            deSelectedIcon = painterResource(id = R.drawable.cart_outline)
+        ),
+        BottomNavItem(
+            name = stringResource(id = R.string.my_digikala),
+            route = Screen.Profile.route,
+            selectedIcon = painterResource(id = R.drawable.user_fill),
+            deSelectedIcon = painterResource(id = R.drawable.user_outline)
         ),
 
         )
