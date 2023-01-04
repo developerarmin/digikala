@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">android mvvm sample</string>
+
+    <string name="basket">cart</string>
+    <string name="home">home</string>
+    <string name="category">categories</string>
+    <string name="my_digikala">my Digikala</string>
+</resources>
