@@ -22,3 +22,7 @@ val Colors.unSelectedBottomBar: Color
 val Colors.splashBg: Color
     @Composable
     get() = Color(0xFFed1b34)
+
+val Colors.searchBarBg: Color
+    @Composable
+    get() = if (isLight) Color(0xFFF1F0EE) else Color(0xFF303235)

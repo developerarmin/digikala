@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import dagger.hilt.android.scopes.ActivityScoped
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.splashBg
 import kotlinx.coroutines.delay
 
@@ -77,8 +78,7 @@ fun Splash() {
                     .padding(20.dp),
                 contentAlignment = Alignment.BottomCenter
             ) {
-
-
+                Loading3Dots()
             }
         }
     } else {
