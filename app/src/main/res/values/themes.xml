@@ -3,5 +3,10 @@
 
     <style name="Theme.AndroidMvvmSample" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/white</item>
+
+    </style>
+    <style name="LauncherTheme" parent="@style/Theme.AndroidMvvmSample">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/red_custom</item>
     </style>
 </resources>
