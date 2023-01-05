@@ -6,5 +6,6 @@
     <string name="category">دسته‌بندی‌ها</string>
     <string name="my_digikala">دیجی‌کالای من</string>
     <string name="search_in">جستجو در</string>
+    <string name="price_unit" translatable="false">تومان</string>
 
 </resources>

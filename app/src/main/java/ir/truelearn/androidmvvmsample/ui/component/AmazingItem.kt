@@ -14,9 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
@@ -61,7 +65,9 @@ fun AmazingItem() {
                 Image(
                     painterResource(id = R.drawable.place_holder),
                     contentDescription = "product image",
-                    modifier = Modifier.fillMaxWidth().height(130.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(130.dp)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -105,7 +111,7 @@ fun AmazingItem() {
                 ) {
                     Column() {
                         Text(
-                            text = currentPrice,
+                            text ="$currentPrice ${stringResource(id = R.string.price_unit)}",
                             style = MaterialTheme.typography.body2,
                             fontWeight = FontWeight.SemiBold,
                         )
