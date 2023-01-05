@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.ui.screens
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -15,6 +16,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,6 +31,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.ui.component.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.component.SearchBar
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
@@ -52,6 +55,7 @@ fun Home() {
         ) {
 
             SearchBar()
+            Amazing()
             val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
             SwipeRefresh(state = swipeRefreshState, onRefresh = { /*TODO*/ }) {
                 Column(
@@ -73,17 +77,30 @@ fun Home() {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = "HomeScreen",
-                color = Color.White,
-                fontSize = 18.sp
-            )
+//            Text(
+//                text = "HomeScreen",
+//                color = Color.White,
+//                fontSize = 18.sp
+//            )
+//            Amazing()
 
         }
     }
 
 }
 
+@Composable
+private fun Amazing(){
+    Column(modifier=Modifier.fillMaxSize()) {
+        Spacer(modifier = Modifier.weight(1f))
+        LazyRow(modifier = Modifier.background(colorResource(id = R.color.red_custom))) {
+            items(20) {
+                AmazingItem()
+            }
+        }
+        Spacer(modifier = Modifier.weight(1f))
+    }
+}
 @Composable
 @Preview
 fun HomeScreenLightPreview() {
