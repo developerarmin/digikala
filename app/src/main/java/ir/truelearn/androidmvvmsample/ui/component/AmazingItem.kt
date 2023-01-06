@@ -29,7 +29,7 @@ import ir.truelearn.androidmvvmsample.R
 fun AmazingItem() {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
     val productTitle =
-        "دوربین فیلمبرداری ورزشی اینستا 360 مدل one Rss And for you very good this is just for test"
+        "دوربین فیلمبرداری ورزشی اینستا 360 مدل one Rss"
     val status = "موجود در انبار دیجی کالا"
     val previousPrice = "100,000"
     val discount = 43
