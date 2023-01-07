@@ -19,6 +19,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.darkText
+import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
+import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 
 @Composable
 fun CategoryItem() {
@@ -28,17 +31,17 @@ fun CategoryItem() {
 
     Card(
         modifier = Modifier
-            .width(140.dp)
-            .background(colorResource(id = R.color.white))
-            .padding(top = 16.dp, bottom = 16.dp, start = 5.dp, end = 5.dp),
+            .width(120.dp)
+            .background(Color.White)
+            .padding(vertical = 16.dp, horizontal = 5.dp),
         shape = RoundedCornerShape(6.dp),
-        elevation = 2.dp
+        elevation = 1.dp
     ) {
         Column(
             modifier = Modifier
-                .background(colorResource(id = R.color.gray_category))
+                .background(MaterialTheme.colors.grayCategory)
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 12.dp),
+                .padding(vertical = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
@@ -47,7 +50,7 @@ fun CategoryItem() {
                 contentDescription = "product image",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(110.dp)
+                    .height(90.dp)
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -57,9 +60,9 @@ fun CategoryItem() {
                     .fillMaxWidth(),
                 text = productTitle,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.SemiBold,
-                color = Color.Black,
+                color = MaterialTheme.colors.darkText,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -72,7 +75,7 @@ fun CategoryItem() {
                 textAlign = TextAlign.Center,
                 color = Color.Gray,
                 fontWeight = FontWeight.SemiBold,
-                fontSize = 14.sp
+                style = MaterialTheme.typography.h6
             )
 
 

@@ -24,6 +24,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.DigikalaDarkRed
+import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
+import ir.truelearn.androidmvvmsample.ui.theme.darkText
+import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 
 @Composable
 fun AmazingItem() {
@@ -38,7 +42,7 @@ fun AmazingItem() {
     Card(
         modifier = Modifier
             .width(170.dp)
-            .padding(top = 16.dp, bottom = 16.dp, start = 4.dp, end = 4.dp),
+            .padding(vertical = 16.dp, horizontal = 4.dp),
         shape = RoundedCornerShape(6.dp),
         elevation = 4.dp
     ) {
@@ -46,19 +50,22 @@ fun AmazingItem() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp, bottom = 8.dp)
+                .padding(vertical = 8.dp)
         ) {
 
             //title && image
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 4.dp, end = 4.dp)
+                    .padding(vertical = 4.dp)
             ) {
                 Text(
+                    modifier = Modifier
+                        .padding(start = 8.dp),
                     text = categoryTitle,
-                    style = MaterialTheme.typography.body2,
-                    color = colorResource(id = R.color.red_amazing),
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.DigikalaLightRed,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 //image
@@ -75,15 +82,16 @@ fun AmazingItem() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 8.dp, end = 8.dp)
+                    .padding(vertical = 8.dp)
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
                     text = productTitle,
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.SemiBold,
-                    color = Color.Black,
+                    color = MaterialTheme.colors.darkText,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -97,21 +105,45 @@ fun AmazingItem() {
                 ) {
                     Text(
                         text = status,
-                        style = MaterialTheme.typography.body2,
-                        color = Color.Gray,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h6,
+                        color = MaterialTheme.colors.semiDarkText,
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
-//price
+                //price
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.Top
                 ) {
+
+                    Box(
+                        modifier = Modifier
+                            .width(40.dp)
+                            .height(24.dp)
+                            .background(
+                                color = MaterialTheme.colors.DigikalaDarkRed,
+                                shape = CircleShape
+                            )
+                            .wrapContentWidth(Alignment.CenterHorizontally)
+                            .wrapContentHeight(Alignment.CenterVertically),
+
+                        ) {
+                        Text(
+                            text = "${discount}%",
+                            color = Color.White,
+                            style = MaterialTheme.typography.h6,
+                            fontWeight = FontWeight.Bold,
+
+                            )
+                    }
+
                     Column() {
                         Text(
-                            text ="$currentPrice ${stringResource(id = R.string.price_unit)}",
+                            text = "$currentPrice ${stringResource(id = R.string.price_unit)}",
                             style = MaterialTheme.typography.body2,
                             fontWeight = FontWeight.SemiBold,
                         )
@@ -123,26 +155,7 @@ fun AmazingItem() {
                         )
                     }
 
-                    Box(
-                        modifier = Modifier
-                            .width(32.dp)
-                            .height(24.dp)
-                            .background(
-                                color = colorResource(id = R.color.red_dark),
-                                shape = CircleShape
-                            )
-                            .wrapContentWidth(Alignment.CenterHorizontally)
-                            .wrapContentHeight(Alignment.CenterVertically),
 
-                        ) {
-                        Text(
-                            text = "${discount}%",
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold
-                            ,
-                            fontSize = 10.sp
-                        )
-                    }
                 }
             }
 

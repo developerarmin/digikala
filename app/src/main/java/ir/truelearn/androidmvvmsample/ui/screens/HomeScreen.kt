@@ -33,6 +33,7 @@ import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.component.SearchBar
+import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
 import kotlinx.coroutines.GlobalScope
@@ -55,7 +56,7 @@ fun Home() {
         ) {
 
             SearchBar()
-            Amazing()
+
             val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
             SwipeRefresh(state = swipeRefreshState, onRefresh = { /*TODO*/ }) {
                 Column(
@@ -64,6 +65,8 @@ fun Home() {
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                 ) {
+
+                    Amazing()
 
                 }
             }
@@ -77,12 +80,7 @@ fun Home() {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-//            Text(
-//                text = "HomeScreen",
-//                color = Color.White,
-//                fontSize = 18.sp
-//            )
-//            Amazing()
+
 
         }
     }
@@ -92,13 +90,13 @@ fun Home() {
 @Composable
 private fun Amazing(){
     Column(modifier=Modifier.fillMaxSize()) {
-        Spacer(modifier = Modifier.weight(1f))
-        LazyRow(modifier = Modifier.background(colorResource(id = R.color.red_custom))) {
+        //Spacer(modifier = Modifier.weight(1f))
+        LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
             items(20) {
                 AmazingItem()
             }
         }
-        Spacer(modifier = Modifier.weight(1f))
+
     }
 }
 @Composable
