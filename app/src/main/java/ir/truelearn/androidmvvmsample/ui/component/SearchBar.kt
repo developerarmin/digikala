@@ -13,15 +13,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
+import java.util.Locale
 
 @Composable
 fun SearchBar() {
@@ -66,7 +67,7 @@ fun SearchBar() {
                     modifier = Modifier
                         .width(80.dp)
                         .padding(start = 5.dp),
-                    painter = painterResource(id = R.drawable.digi_red_persian),
+                    painter = changeDigikalaLogo(),
                     contentDescription = ""
                 )
 
@@ -78,5 +79,13 @@ fun SearchBar() {
         }
     }
 
+}
 
+@Composable
+private fun changeDigikalaLogo() : Painter {
+    return if (Locale.getDefault().language == "en"){
+        painterResource(id = R.drawable.digi_red_english )
+    } else {
+        painterResource(id = R.drawable.digi_red_persian)
+    }
 }

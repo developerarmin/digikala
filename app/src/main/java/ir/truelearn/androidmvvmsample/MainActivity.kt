@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -54,6 +55,10 @@ class MainActivity : ComponentActivity() {
 
             }
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleHelper.setLocale(it,App.myLanguage) })
     }
 
 

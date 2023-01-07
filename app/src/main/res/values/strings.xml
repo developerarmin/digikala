@@ -8,4 +8,14 @@
     <string name="search_in">جستجو در</string>
     <string name="price_unit" translatable="false"> تومان </string>
 
+    <!-- these strings for test -->
+    <string name="profile_screen">صفحه پروفایل</string>
+    <string name="change_language">تغییر زبان</string>
+    <string name="change_language_choice">لطفا زبان مورد نظر را انتخاب کنید</string>
+    <string name="english">انگلیسی</string>
+    <string name="persian">فارسی</string>
+
+
+
+
 </resources>
