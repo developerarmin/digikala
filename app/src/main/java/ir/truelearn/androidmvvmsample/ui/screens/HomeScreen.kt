@@ -34,6 +34,7 @@ import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.component.ProposalCards
 import ir.truelearn.androidmvvmsample.ui.component.SearchBar
+import ir.truelearn.androidmvvmsample.ui.component.ShowMoreItem
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
@@ -69,15 +70,7 @@ fun Home() {
 
                     Amazing()
 
-                    // url proposal card list...
-                    val urlList = listOf<String>(
-                        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4f58b192407ed83e4271555cf8f4213409229189_1672864993.jpg?x-oss-process=image/quality,q_95",
-                        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4355945a3ff60f3dbe6a6d31fdb86bba0281aaa6_1668268672.jpg?x-oss-process=image/quality,q_95",
-                        "https://dkstatics-public.digikala.com/digikala-adservice-banners/e2023fd29340b5a4e0569a13651d2a9af34ff87d_1672834922.jpg?x-oss-process=image/quality,q_95",
-                        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4244d085416507f88a92e433ded27e05690e5f6b_1672865205.jpg?x-oss-process=image/quality,q_95"
-                    )
-                    ProposalCards(urlList)
-
+                    ProposalCards()
                 }
             }
 
@@ -96,7 +89,16 @@ fun Home() {
     }
 
 }
-
+@Composable
+fun ProposalCards(){
+    val urlList = listOf(
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4f58b192407ed83e4271555cf8f4213409229189_1672864993.jpg?x-oss-process=image/quality,q_95",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4355945a3ff60f3dbe6a6d31fdb86bba0281aaa6_1668268672.jpg?x-oss-process=image/quality,q_95",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/e2023fd29340b5a4e0569a13651d2a9af34ff87d_1672834922.jpg?x-oss-process=image/quality,q_95",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4244d085416507f88a92e433ded27e05690e5f6b_1672865205.jpg?x-oss-process=image/quality,q_95"
+    )
+    ProposalCards(urlList)
+}
 @Composable
 private fun Amazing() {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -104,6 +106,9 @@ private fun Amazing() {
         LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
             items(20) {
                 AmazingItem()
+            }
+            item {
+                ShowMoreItem()
             }
         }
 
