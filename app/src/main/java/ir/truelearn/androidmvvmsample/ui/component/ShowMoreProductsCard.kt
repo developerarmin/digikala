@@ -24,16 +24,16 @@ import javax.sql.RowSet
 fun ShowMoreItem() {
     Card(
         modifier = Modifier
-            .size(170.dp, 358.dp)
-            .padding(vertical = 16.dp, horizontal = 4.dp),
-        shape = RoundedCornerShape(6.dp),
-        elevation = 4.dp,
+            .size(186.dp, 358.dp)
+            .padding(vertical = 16.dp)
+            .padding(end = 16.dp, start = 4.dp),
+        shape = RoundedCornerShape(7.dp),
         contentColor = Color.White
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(top = 24.dp)
+            modifier = Modifier.padding(top = 24.dp).fillMaxWidth().padding(30.dp)
         ) {
             Icon(
                 painter = painterResource(id = ir.truelearn.androidmvvmsample.R.drawable.show_more),
@@ -41,7 +41,7 @@ fun ShowMoreItem() {
                 tint = MaterialTheme.colors.DigikalaLightRed,
                 modifier = Modifier.size(40.dp,40.dp)
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -17,18 +17,23 @@ fun ProposalCards(urlProposalList: List<String>){
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .height(292.dp)
+            .padding(vertical = 8.dp),
+        verticalArrangement = Arrangement.SpaceAround
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
         ) {
             ProposalCardItem(imgLink = urlProposalList[0])
             ProposalCardItem(imgLink = urlProposalList[1])
         }
         Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+
         ) {
             ProposalCardItem(imgLink = urlProposalList[2])
             ProposalCardItem(imgLink = urlProposalList[3])
@@ -41,7 +46,7 @@ fun ProposalCardItem(imgLink: String) {
         shape = RoundedCornerShape(14.dp),
         modifier = Modifier
             .size(175.dp, 130.dp)
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .padding(horizontal = 4.dp, vertical = 4.dp),
     ) {
         Image(
             painter = rememberAsyncImagePainter(imgLink),
