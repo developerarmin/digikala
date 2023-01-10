@@ -40,7 +40,7 @@ val Colors.digikalaRed: Color
 
 val Colors.DigikalaLightRed: Color
     @Composable
-    get() = Color(0xFFe71b44)
+    get() = Color(0xffef4e5d)
 
 val Colors.DigikalaDarkRed: Color
     @Composable
