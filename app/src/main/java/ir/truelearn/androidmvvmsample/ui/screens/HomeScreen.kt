@@ -31,10 +31,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
-import ir.truelearn.androidmvvmsample.ui.component.AmazingItem
-import ir.truelearn.androidmvvmsample.ui.component.ProposalCards
-import ir.truelearn.androidmvvmsample.ui.component.SearchBar
-import ir.truelearn.androidmvvmsample.ui.component.ShowMoreItem
+import ir.truelearn.androidmvvmsample.ui.component.*
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
@@ -68,6 +65,8 @@ fun Home() {
                         .verticalScroll(rememberScrollState())
                 ) {
 
+                    OfferItems()
+
                     Amazing()
 
                     ProposalCards()
@@ -89,8 +88,67 @@ fun Home() {
     }
 
 }
+
 @Composable
-fun ProposalCards(){
+fun OfferItems() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 10.dp, horizontal = 12.dp)
+    ) {
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 6.dp)
+        ) {
+            RoundedIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "دیجی کالا جت"
+            )
+            RoundedIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "حراج استایل"
+            )
+            RoundedIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "خرید اقساطی"
+            )
+            RoundedIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "دیجی کالا مهر"
+            )
+        }
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
+        ) {
+            CircularIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "پیشنهاد روز زن"
+            )
+            CircularIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "کارت هدیه"
+            )
+            CircularIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "حراج طلا"
+            )
+            CircularIconBox(
+                image = painterResource(id = R.drawable.digi_logo),
+                title = "بیشتر"
+            )
+        }
+    }
+}
+
+@Composable
+fun ProposalCards() {
     val urlList = listOf(
         "https://dkstatics-public.digikala.com/digikala-adservice-banners/4f58b192407ed83e4271555cf8f4213409229189_1672864993.jpg?x-oss-process=image/quality,q_95",
         "https://dkstatics-public.digikala.com/digikala-adservice-banners/4355945a3ff60f3dbe6a6d31fdb86bba0281aaa6_1668268672.jpg?x-oss-process=image/quality,q_95",
@@ -99,6 +157,7 @@ fun ProposalCards(){
     )
     ProposalCards(urlList)
 }
+
 @Composable
 private fun Amazing() {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -114,6 +173,7 @@ private fun Amazing() {
 
     }
 }
+
 @Composable
 @Preview
 fun HomeScreenLightPreview() {
