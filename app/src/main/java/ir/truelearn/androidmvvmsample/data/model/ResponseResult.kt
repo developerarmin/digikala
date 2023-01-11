@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.data.remote
+package ir.truelearn.androidmvvmsample.data.model
 
 data class ResponseResult<T>(
     val message: String,
