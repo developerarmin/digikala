@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.App
 import ir.truelearn.androidmvvmsample.LocaleHelper
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.roundedShape
 import ir.truelearn.androidmvvmsample.ui.theme.splashBg
 import java.util.*
 
@@ -51,7 +53,7 @@ fun ChangeLanguage(){
                 }
             },
             border = BorderStroke(1.dp, MaterialTheme.colors.splashBg),
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(8.dp).clip(MaterialTheme.roundedShape.small)
         ) {
             Icon(
                 imageVector = Icons.Default.FavoriteBorder,
