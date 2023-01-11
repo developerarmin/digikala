@@ -86,6 +86,9 @@ dependencies {
 
     //system ui controller
     implementation 'com.google.accompanist:accompanist-systemuicontroller:0.28.0'
+
+    //coil - load image from url
+    implementation "io.coil-kt:coil-compose:2.0.0-rc01"
 }
 
 // Allow references to generated code

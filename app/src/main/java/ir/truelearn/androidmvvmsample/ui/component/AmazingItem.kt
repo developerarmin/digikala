@@ -43,8 +43,7 @@ fun AmazingItem() {
         modifier = Modifier
             .width(170.dp)
             .padding(vertical = 16.dp, horizontal = 4.dp),
-        shape = RoundedCornerShape(6.dp),
-        elevation = 4.dp
+        shape = RoundedCornerShape(7.dp),
     ) {
         //root
         Column(
