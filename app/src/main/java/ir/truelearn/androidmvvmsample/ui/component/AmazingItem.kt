@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -23,20 +25,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaDarkRed
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 
 @Composable
-fun AmazingItem() {
+fun AmazingItem(item: AmazingItem) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
-    val productTitle =
-        "دوربین فیلمبرداری ورزشی اینستا 360 مدل one Rss"
-    val status = "موجود در انبار دیجی کالا"
     val previousPrice = "100,000"
-    val discount = 43
     val currentPrice = "33,000"
 
     Card(
@@ -69,12 +69,19 @@ fun AmazingItem() {
                 Spacer(modifier = Modifier.height(10.dp))
                 //image
                 Image(
-                    painterResource(id = R.drawable.place_holder),
-                    contentDescription = "product image",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(130.dp)
+                    painter = rememberAsyncImagePainter(item.image),
+                    contentDescription = "amazing item image",
+                    modifier = Modifier.fillMaxWidth()
+                        .height(130.dp),
+                    contentScale = ContentScale.FillBounds
                 )
+//                Image(
+//                    painterResource(id = R.drawable.place_holder),
+//                    contentDescription = "product image",
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(130.dp)
+//                )
             }
             Spacer(modifier = Modifier.height(10.dp))
             //info
@@ -85,9 +92,10 @@ fun AmazingItem() {
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
+                        .height(48.dp)
                         .padding(horizontal = 8.dp),
-                    text = productTitle,
+                    text = item.name,
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colors.darkText,
@@ -103,7 +111,7 @@ fun AmazingItem() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = status,
+                        text = item.seller,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.h6,
                         color = MaterialTheme.colors.semiDarkText,
@@ -132,7 +140,7 @@ fun AmazingItem() {
 
                         ) {
                         Text(
-                            text = "${discount}%",
+                            text = "${item.discountPercent}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
