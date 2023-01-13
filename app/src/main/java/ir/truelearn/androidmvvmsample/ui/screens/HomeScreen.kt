@@ -209,7 +209,11 @@ private fun Amazing(
                 Loading3Dots()
             }
         } else {
+
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
+                item {
+                    AmazingOfferCard()
+                }
                 items(list) { item ->
                     AmazingItem(item)
                 }
