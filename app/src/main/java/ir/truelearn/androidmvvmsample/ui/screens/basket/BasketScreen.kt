@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens
+package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 

@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens
+package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.*
@@ -160,24 +160,20 @@ private fun Amazing(
     var loading by remember {
         mutableStateOf(false)
     }
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(true) {
         viewModel.getAmazingItems()
-        viewModel.amazingItems.collectLatest {
-            when (it) {
+        viewModel.amazingItems.collectLatest { response ->
+            when (response) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
-                        list = it.data!!
-                        loading = false
-                    }
+                    list = response.data!!
+                    loading = false
                 }
                 is NetworkResult.Error -> {
+                    loading = false
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-
-                    withContext(Dispatchers.Main) {
-                        loading = true
-                    }
+                    loading = true
                 }
             }
         }
@@ -219,7 +215,7 @@ private fun Amazing(
 @Composable
 private fun CategoryList() {
 
-    val categoryTitle= "خرید بر اساس دسته بندی"
+    val categoryTitle = "خرید بر اساس دسته بندی"
 
     Column(
         modifier = Modifier

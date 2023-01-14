@@ -1,45 +1,42 @@
-package ir.truelearn.androidmvvmsample.ui.screens
+package ir.truelearn.androidmvvmsample.ui.screens.category
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import dagger.hilt.android.scopes.ActivityScoped
-import ir.truelearn.androidmvvmsample.navigation.Screen
-import kotlinx.coroutines.delay
+import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.home.SearchBar
 
 @Composable
-fun TestScreen(navController: NavHostController) {
+fun CategoryScreen(navController: NavHostController) {
 
-    Test()
+    Category()
 
 }
 
 @Composable
-fun Test() {
+fun Category() {
     if (!isSystemInDarkTheme()) {
-        Box(
+        Column(
             modifier = Modifier
-                .background(Color.Blue)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+                .background(Color.White)
+                .fillMaxSize()
         ) {
-            Text(
-                text = "TestScreen",
-                color = Color.White,
-                fontSize = 18.sp
-            )
+
+            SearchBar()
+            CategoryItems()
         }
     } else {
         Box(
@@ -49,7 +46,7 @@ fun Test() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "TestScreen",
+                text = "CategoryScreen",
                 color = Color.White,
                 fontSize = 18.sp
             )
@@ -58,14 +55,25 @@ fun Test() {
 
 }
 
+
+@Composable
+private fun CategoryItems(){
+    Column(modifier=Modifier.fillMaxSize()) {
+        LazyRow(modifier = Modifier.background(colorResource(id = R.color.white))) {
+            items(20) {
+                CategoryItem()
+            }
+        }
+    }
+}
 @Composable
 @Preview
-fun TestScreenLightPreview() {
-    Test()
+fun CategoryScreenLightPreview() {
+    Category()
 }
 
 @Composable
 @Preview(uiMode = UI_MODE_NIGHT_YES)
-fun TestScreenDarkPreview() {
-    Test()
+fun CategoryScreenDarkPreview() {
+    Category()
 }

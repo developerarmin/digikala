@@ -1,11 +1,9 @@
 package ir.truelearn.androidmvvmsample
 
-import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import android.view.View
 import java.util.Locale
 
 object LocaleHelper {
@@ -29,7 +27,7 @@ object LocaleHelper {
         return context.createConfigurationContext(configuration)
     }
 
-    private fun updateResourcesLegacy(context: Context,language: String) : Context? {
+    private fun updateResourcesLegacy(context: Context,language: String) : Context {
         val locale  = Locale(language)
         Locale.setDefault(locale)
         val resources = context.resources

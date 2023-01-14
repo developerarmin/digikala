@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.component
+package ir.truelearn.androidmvvmsample.ui.screens.category
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.component
+package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -7,6 +7,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.materialIcon
 import androidx.compose.runtime.Composable
@@ -80,7 +81,7 @@ fun AmazingOfferCard() {
             )
 
             Icon(
-                imageVector = Icons.Filled.KeyboardArrowRight,
+                imageVector = Icons.Filled.KeyboardArrowLeft,
                 contentDescription = "",
                 tint = Color.White,
             )

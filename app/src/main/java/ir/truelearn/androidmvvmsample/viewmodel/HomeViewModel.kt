@@ -14,13 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+
     val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
 
     suspend fun getAmazingItems() {
-        viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                amazingItems.value = repository.getAmazingItems()
-            }
+        viewModelScope.launch(Dispatchers.Main) {
+            amazingItems.emit(repository.getAmazingItems())
         }
     }
 }
