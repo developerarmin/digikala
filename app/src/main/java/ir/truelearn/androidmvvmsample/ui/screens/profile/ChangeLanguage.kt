@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui
+package ir.truelearn.androidmvvmsample.ui.screens.profile
 
 import android.app.Activity
 import android.content.Context
