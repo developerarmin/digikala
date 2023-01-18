@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             val amazingResult = async { repository.getAmazingItems() }
             val sliderResult = async { repository.getSlider() }
 
