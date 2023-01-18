@@ -30,7 +30,7 @@ object NetworkModule {
             val request = chain.request().newBuilder()
                 .addHeader("x-api-key", API_KEY)
                 //todo refactor set lang header
-                //.addHeader("lang", App.myLanguage)
+                .addHeader("lang", "fa")
             chain.proceed(request.build())
         }
         .build()

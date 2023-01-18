@@ -21,19 +21,13 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch {
-            val amazingResult = async {repository.getAmazingItems()}
+            val amazingResult = async { repository.getAmazingItems() }
             val sliderResult = async { repository.getSlider() }
 
-            //Use results amazing and slider and ... here
-            processData(amazingResult.await(), sliderResult.await())
+            amazingItems.emit(amazingResult.await())
+            slider.emit(sliderResult.await())
+
         }
     }
 
-    private fun processData(
-        amazingResult: NetworkResult<List<AmazingItem>>,
-        sliderResult: NetworkResult<List<Slider>>
-    ) {
-        amazingItems.value = amazingResult
-        slider.value = sliderResult
-    }
 }

@@ -21,7 +21,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import javax.sql.RowSet
 
 @Composable
-fun ShowMoreItem() {
+fun AmazingShowMoreItem() {
     Card(
         modifier = Modifier
             .size(180.dp, 370.dp)
