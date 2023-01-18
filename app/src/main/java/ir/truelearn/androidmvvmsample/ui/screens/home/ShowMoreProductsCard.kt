@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.component
+package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,7 +24,7 @@ import javax.sql.RowSet
 fun ShowMoreItem() {
     Card(
         modifier = Modifier
-            .size(186.dp, 358.dp)
+            .size(180.dp, 370.dp)
             .padding(vertical = 16.dp)
             .padding(end = 16.dp, start = 4.dp),
         shape = RoundedCornerShape(7.dp),

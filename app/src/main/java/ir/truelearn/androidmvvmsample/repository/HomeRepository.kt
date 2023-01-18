@@ -5,6 +5,10 @@ import ir.truelearn.androidmvvmsample.data.model.Slider
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseApiResponse() {
