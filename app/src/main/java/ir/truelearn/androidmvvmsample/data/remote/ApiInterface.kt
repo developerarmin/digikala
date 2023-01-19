@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
 import ir.truelearn.androidmvvmsample.data.model.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.Banners
 import ir.truelearn.androidmvvmsample.data.model.ResponseResult
 import ir.truelearn.androidmvvmsample.data.model.Slider
 import retrofit2.Response
@@ -12,4 +13,7 @@ interface ApiInterface {
 
     @GET("getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>
+
+    @GET("get4Banners")
+    suspend fun getProposalBanners(): Response<ResponseResult<List<Banners>>>
 }
