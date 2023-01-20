@@ -26,15 +26,15 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun AmazingOfferCard() {
+fun SuperMarketOfferCard() {
 
-    val amazingOfferTittle = "پیشنهاد \nشگفت \n انگیز"
+    val superMarketOfferTittle = "شگفت\n انگیز\n سوپر مارکتی"
     val seeAll = "مشاهده همه"
 
 
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colors.DigikalaLightRed)
+            .background(MaterialTheme.colors.DigikalaLightGreen)
             .width(160.dp)
             .height(370.dp)
             .padding(
@@ -50,20 +50,20 @@ fun AmazingOfferCard() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(130.dp),
-            text = amazingOfferTittle,
+            text = superMarketOfferTittle,
             textAlign = TextAlign.Center,
-            fontSize = 28.sp,
+            fontSize = 24.sp,
             style = MaterialTheme.typography.h1,
             color = Color.White,
             fontWeight = FontWeight.Bold,
         )
 
         Image(
-            painterResource(id = R.drawable.box),
+            painterResource(id = R.drawable.fresh),
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(140.dp)
+                .height(160.dp)
         )
 
         Row(

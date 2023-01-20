@@ -25,7 +25,7 @@ fun CategoryListSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(810.dp)
+            .height(700.dp)
             .padding(MaterialTheme.spacing.small),
     ) {
         Text(

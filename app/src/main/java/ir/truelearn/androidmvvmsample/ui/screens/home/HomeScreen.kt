@@ -63,6 +63,7 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
                         .background(Color.White)
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
+                        .padding(bottom = 60.dp)
                 ) {
 
                     LaunchedEffect(true) {
@@ -76,6 +77,8 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
                     ProposalCardSection()
 
                     CategoryListSection()
+
+                    SuperMarketOfferSection()
                 }
             }
 

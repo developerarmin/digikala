@@ -49,3 +49,6 @@ val Colors.DigikalaDarkRed: Color
 val Colors.grayCategory: Color
     @Composable
     get() = Color(0xFFF1F0EE)
+val Colors.DigikalaLightGreen: Color
+    @Composable
+    get() = Color(0xff86bf3c)

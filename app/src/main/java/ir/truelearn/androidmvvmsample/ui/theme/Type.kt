@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 
 val fonts = FontFamily(
-    Font(R.font.yekan_bakh)
+    Font(R.font.iranyekanmedium)
 )
 
 val Typography.myStyle: TextStyle
