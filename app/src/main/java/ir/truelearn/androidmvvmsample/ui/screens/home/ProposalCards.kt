@@ -10,46 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ir.truelearn.androidmvvmsample.data.model.Banners
 
 @Composable
-fun ProposalCards(urlProposalList: List<String>){
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(292.dp)
-            .padding(vertical = 8.dp),
-        verticalArrangement = Arrangement.SpaceAround
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            ProposalCardItem(imgLink = urlProposalList[0])
-            ProposalCardItem(imgLink = urlProposalList[1])
-        }
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-
-        ) {
-            ProposalCardItem(imgLink = urlProposalList[2])
-            ProposalCardItem(imgLink = urlProposalList[3])
-        }
-    }
-}
-@Composable
-fun ProposalCardItem(imgLink: String) {
+fun ProposalCardItem(imgLink: Banners) {
     Card(
         shape = RoundedCornerShape(14.dp),
         modifier = Modifier
-            .size(175.dp, 130.dp)
-            .padding(horizontal = 4.dp, vertical = 4.dp),
+            .size(175.dp, 140.dp)
+            .padding(horizontal = 8.dp, vertical = 8.dp),
     ) {
         Image(
-            painter = rememberAsyncImagePainter(imgLink),
+            painter = rememberAsyncImagePainter(imgLink.image),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds

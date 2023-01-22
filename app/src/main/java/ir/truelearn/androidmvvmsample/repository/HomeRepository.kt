@@ -1,7 +1,9 @@
 package ir.truelearn.androidmvvmsample.repository
 
 import ir.truelearn.androidmvvmsample.data.model.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.Banners
 import ir.truelearn.androidmvvmsample.data.model.Slider
+import ir.truelearn.androidmvvmsample.data.model.SuperMarketItem
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -20,5 +22,13 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getSlider()
+        }
+    suspend fun getProposalBanners(): NetworkResult<List<Banners>> =
+        safeApiCall {
+            api.getProposalBanners()
+        }
+    suspend fun getSuperMarketItems(): NetworkResult<List<SuperMarketItem>> =
+        safeApiCall {
+            api.getSuperMarketItems()
         }
 }

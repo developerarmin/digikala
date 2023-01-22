@@ -1,14 +1,66 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
-import androidx.compose.runtime.Composable
+import android.util.Log
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.data.model.Banners
+import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
 
 @Composable
-fun ProposalCardSection() {
-    val urlList = listOf(
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4f58b192407ed83e4271555cf8f4213409229189_1672864993.jpg?x-oss-process=image/quality,q_95",
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4355945a3ff60f3dbe6a6d31fdb86bba0281aaa6_1668268672.jpg?x-oss-process=image/quality,q_95",
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/e2023fd29340b5a4e0569a13651d2a9af34ff87d_1672834922.jpg?x-oss-process=image/quality,q_95",
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/4244d085416507f88a92e433ded27e05690e5f6b_1672865205.jpg?x-oss-process=image/quality,q_95"
-    )
-    ProposalCards(urlProposalList = urlList)
+fun ProposalCardSection(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+
+    var listProposal by remember {
+        mutableStateOf<List<Banners>>(emptyList())
+    }
+
+    var loading by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(key1 = true) {
+        viewModel.banners.collectLatest { result ->
+            when (result) {
+                is NetworkResult.Success -> {
+                    withContext(Dispatchers.Main) {
+                        listProposal = result.data!!
+                        loading = false
+                    }
+                }
+                is NetworkResult.Error -> {
+                    loading = false
+                    Log.d("3636", "InitBanner error:${result.message} ")
+                    // show error message
+                }
+                is NetworkResult.Loading -> {
+
+                    withContext(Dispatchers.Main) {
+                        loading = true
+                    }
+                }
+            }
+        }
+    }
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier.fillMaxWidth().height(290.dp).padding(8.dp)
+    ){
+        items(listProposal){ item->
+            ProposalCardItem(item)
+        }
+
+    }
+
 }
