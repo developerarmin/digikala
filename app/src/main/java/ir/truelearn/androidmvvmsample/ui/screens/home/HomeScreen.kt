@@ -79,6 +79,7 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
                     CategoryListSection()
 
                     SuperMarketOfferSection()
+                    BestSellerOfferSection()
                 }
             }
 

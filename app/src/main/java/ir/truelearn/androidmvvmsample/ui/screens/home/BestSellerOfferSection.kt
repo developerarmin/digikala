@@ -1,0 +1,111 @@
+package ir.truelearn.androidmvvmsample.ui.screens.home
+
+import android.util.Log
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.BestSellerItem
+import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
+import ir.truelearn.androidmvvmsample.ui.theme.darkText
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
+import java.text.NumberFormat
+import java.util.Locale
+
+@Composable
+fun BestSellerOfferSection(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    var list by remember {
+        mutableStateOf<List<BestSellerItem>>(emptyList())
+    }
+    var loading by remember {
+        mutableStateOf(false)
+    }
+    LaunchedEffect(key1 = true) {
+
+        viewModel.bestSellerItems.collectLatest { result ->
+            when (result) {
+                is NetworkResult.Success -> {
+                    withContext(Dispatchers.Main) {
+                        list = result.data!!
+                        loading = false
+                    }
+                }
+                is NetworkResult.Error -> {
+                    loading = false
+                    Log.d("2121", "InitBestSellerItems error:${result.message} ")
+                    // show error message
+                }
+                is NetworkResult.Loading -> {
+
+                    withContext(Dispatchers.Main) {
+                        loading = true
+                    }
+                }
+            }
+        }
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(MaterialTheme.spacing.small)
+//            .background(MaterialTheme.colors.DigikalaLightRed)
+    ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(),
+            text = stringResource(id = R.string.best_selling_products),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.h1,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colors.darkText,
+        )
+        if (loading) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Loading3Dots()
+            }
+        } else {
+
+            LazyHorizontalGrid(
+                rows = GridCells.Fixed(3),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier
+                    .padding(top = MaterialTheme.spacing.medium)
+                    .height(200.dp)
+            ) {
+                //todo set number format if persian then display ١٢٣٤٥٦٧٨٩ else 12345678
+                var number = 0
+                items(list) { item ->
+                    number += 1
+                    BestSellerItem(number, name = item.name, url = item.image)
+
+                }
+            }
+
+        }
+    }
+
+}

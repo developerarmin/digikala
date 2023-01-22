@@ -7,6 +7,8 @@ import retrofit2.http.GET
 interface ApiInterface {
     @GET("getAmazingProducts")
     suspend fun getAmazingItems(): Response<ResponseResult<List<AmazingItem>>>
+    @GET("getBestsellerProducts")
+    suspend fun getBestSellerItems(): Response<ResponseResult<List<BestSellerItem>>>
     @GET("getSuperMarketAmazingProducts")
     suspend fun getSuperMarketItems(): Response<ResponseResult<List<AmazingItem>>>
 
