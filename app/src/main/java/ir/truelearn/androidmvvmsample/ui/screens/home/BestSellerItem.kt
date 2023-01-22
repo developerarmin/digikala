@@ -70,7 +70,7 @@ fun BestSellerItem(number:String,name:String,url:String) {
                     .weight(.6f)
                     .fillMaxHeight()
                     .padding(vertical = MaterialTheme.spacing.small),
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
 
                 Text(
@@ -80,7 +80,7 @@ fun BestSellerItem(number:String,name:String,url:String) {
                     color = MaterialTheme.colors.darkText,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-
+                    modifier = Modifier.padding(top = MaterialTheme.spacing.small)
 
                 )
             }
