@@ -23,6 +23,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
@@ -36,14 +37,15 @@ import ir.truelearn.androidmvvmsample.ui.theme.*
 
 
 @Composable
-fun BestSellerItem(number:Int,name:String,url:String) {
+fun BestSellerItem(number:String,name:String,url:String) {
     Column(
         modifier = Modifier
-            .width(300.dp)
+            .width(320.dp)
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(bottom = MaterialTheme.spacing.extraSmall),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -52,22 +54,23 @@ fun BestSellerItem(number:Int,name:String,url:String) {
                 painter = rememberAsyncImagePainter(url),
                 contentDescription = "best seller image",
                 modifier = Modifier
-                    .weight(.25f)
+                    .weight(.3f)
                     .fillMaxHeight()
             )
             Text(
-                text = number.toString(),
-                style = MaterialTheme.typography.h2,
+                text = number,
+                style = MaterialTheme.typography.extraBoldNumber,
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
                 color = MaterialTheme.colors.DarkCyan,
-                modifier = Modifier.padding(horizontal = 6.dp)
+                modifier = Modifier.weight(.1f)
             )
             Column(
                 modifier = Modifier
-                    .weight(.75f)
+                    .weight(.6f)
                     .fillMaxHeight()
                     .padding(vertical = MaterialTheme.spacing.small),
-                verticalArrangement = Arrangement.Top
+                verticalArrangement = Arrangement.Center
             ) {
 
                 Text(
@@ -77,7 +80,7 @@ fun BestSellerItem(number:Int,name:String,url:String) {
                     color = MaterialTheme.colors.darkText,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(.75f)
+
 
                 )
             }

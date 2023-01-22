@@ -21,12 +21,12 @@ import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
-import java.text.NumberFormat
-import java.util.Locale
+
 
 @Composable
 fun BestSellerOfferSection(
@@ -73,7 +73,7 @@ fun BestSellerOfferSection(
                 .fillMaxWidth(),
             text = stringResource(id = R.string.best_selling_products),
             textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.h1,
+            style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.darkText,
         )
@@ -94,13 +94,16 @@ fun BestSellerOfferSection(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier
                     .padding(top = MaterialTheme.spacing.medium)
-                    .height(200.dp)
+                    .height(250.dp)
             ) {
-                //todo set number format if persian then display ١٢٣٤٥٦٧٨٩ else 12345678
                 var number = 0
                 items(list) { item ->
                     number += 1
-                    BestSellerItem(number, name = item.name, url = item.image)
+                    BestSellerItem(
+                        numberWithLocate(number.toString()),
+                        name = item.name,
+                        url = item.image
+                    )
 
                 }
             }

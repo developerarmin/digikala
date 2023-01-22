@@ -11,14 +11,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 
-val fonts = FontFamily(
+val font_medium = FontFamily(
     Font(R.font.iranyekanmedium)
 )
+val font_bold = FontFamily(
+    Font(R.font.iranyekanbold)
+)
+val font_standard = FontFamily(
+    Font(R.font.iranyekan)
+)
 
-val Typography.myStyle: TextStyle
+val Typography.extraBoldNumber: TextStyle
     @Composable
     get() = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_bold,
         fontWeight = FontWeight.Bold,
         fontSize = 26.sp
     )
@@ -26,43 +32,43 @@ val Typography.myStyle: TextStyle
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_medium,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
     body2 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Light,
         fontSize = 14.sp
     ),
 
     h1 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp
     ),
     h2 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp
     ),
     h3 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp
     ),
     h4 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 15.sp
     ),
     h5 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     ),
     h6 = TextStyle(
-        fontFamily = fonts,
+        fontFamily = font_standard,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp
     ),

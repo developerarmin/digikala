@@ -7,7 +7,7 @@
     <string name="my_digikala">دیجی‌کالای من</string>
     <string name="search_in">جستجو در</string>
     <string name="price_unit" translatable="false"> تومان </string>
-    <string name="best_selling_products">پرفروش ترین کالاها</string>
+    <string name="best_selling_products">پرفروش‌ترین کالاها</string>
 
     <!-- these strings for test -->
     <string name="profile_screen">صفحه پروفایل</string>
