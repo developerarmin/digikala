@@ -1,9 +1,8 @@
 package ir.truelearn.androidmvvmsample.repository
 
-import ir.truelearn.androidmvvmsample.data.model.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.Banners
-import ir.truelearn.androidmvvmsample.data.model.BestSellerItem
-import ir.truelearn.androidmvvmsample.data.model.Slider
+import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
+import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -15,18 +14,22 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         safeApiCall {
             api.getAmazingItems()
         }
+
     suspend fun getBestSellerItems(): NetworkResult<List<BestSellerItem>> =
         safeApiCall {
             api.getBestSellerItems()
         }
+
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getSlider()
         }
-    suspend fun getProposalBanners(): NetworkResult<List<Banners>> =
+
+    suspend fun getProposalBanners(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getProposalBanners()
         }
+
     suspend fun getSuperMarketItems(): NetworkResult<List<AmazingItem>> =
         safeApiCall {
             api.getSuperMarketItems()

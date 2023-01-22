@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -19,15 +18,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.category.Sub
+import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 
 @Composable
-fun CategoryItem() {
-
-    val productTitle = "گوشی موبایل"
-    val amount = "  +۲۰۰۰ کالا"
+fun SubCategoryItem(item: Sub) {
 
     Card(
         modifier = Modifier
@@ -58,7 +56,7 @@ fun CategoryItem() {
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = productTitle,
+                text = item.name,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.SemiBold,
@@ -71,7 +69,7 @@ fun CategoryItem() {
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = amount,
+                text = item.count.toString(),
                 textAlign = TextAlign.Center,
                 color = Color.Gray,
                 fontWeight = FontWeight.SemiBold,

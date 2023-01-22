@@ -3,10 +3,9 @@ package ir.truelearn.androidmvvmsample.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.Banners
-import ir.truelearn.androidmvvmsample.data.model.BestSellerItem
-import ir.truelearn.androidmvvmsample.data.model.Slider
+import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
+import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.HomeRepository
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +22,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val superMarketItems =
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
-    val banners = MutableStateFlow<NetworkResult<List<Banners>>>(NetworkResult.Loading())
+    val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch(Dispatchers.Main) {

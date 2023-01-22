@@ -5,15 +5,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import ir.truelearn.androidmvvmsample.data.model.Banners
+import ir.truelearn.androidmvvmsample.data.model.home.Slider
 
 @Composable
-fun ProposalCardItem(imgLink: Banners) {
+fun ProposalCardItem(imgLink: Slider) {
     Card(
         shape = RoundedCornerShape(14.dp),
         modifier = Modifier

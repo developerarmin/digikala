@@ -9,7 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.Banners
+import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ fun ProposalCardSection(
 ) {
 
     var listProposal by remember {
-        mutableStateOf<List<Banners>>(emptyList())
+        mutableStateOf<List<Slider>>(emptyList())
     }
 
     var loading by remember {

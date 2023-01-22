@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.data.model
+package ir.truelearn.androidmvvmsample.data.model.home
 
 data class Slider(
     val _id: String,
