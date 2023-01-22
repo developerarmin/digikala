@@ -3,14 +3,9 @@ package ir.truelearn.androidmvvmsample.repository
 import ir.truelearn.androidmvvmsample.data.model.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.Banners
 import ir.truelearn.androidmvvmsample.data.model.Slider
-import ir.truelearn.androidmvvmsample.data.model.SuperMarketItem
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseApiResponse() {
@@ -27,7 +22,7 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         safeApiCall {
             api.getProposalBanners()
         }
-    suspend fun getSuperMarketItems(): NetworkResult<List<SuperMarketItem>> =
+    suspend fun getSuperMarketItems(): NetworkResult<List<AmazingItem>> =
         safeApiCall {
             api.getSuperMarketItems()
         }

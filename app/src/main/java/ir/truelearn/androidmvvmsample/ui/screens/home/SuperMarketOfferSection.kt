@@ -15,11 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.SuperMarketItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightGreen
-import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +28,7 @@ fun SuperMarketOfferSection(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     var list by remember {
-        mutableStateOf<List<SuperMarketItem>>(emptyList())
+        mutableStateOf<List<AmazingItem>>(emptyList())
     }
     var loading by remember {
         mutableStateOf(false)
@@ -81,7 +79,7 @@ fun SuperMarketOfferSection(
                     SuperMarketOfferCard()
                 }
                 items(list) { item ->
-                    SuperMarketItem(item)
+                    AmazingItem(item)
                 }
                 item {
                     AmazingShowMoreItem()

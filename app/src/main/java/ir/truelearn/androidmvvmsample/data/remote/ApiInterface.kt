@@ -8,7 +8,7 @@ interface ApiInterface {
     @GET("getAmazingProducts")
     suspend fun getAmazingItems(): Response<ResponseResult<List<AmazingItem>>>
     @GET("getSuperMarketAmazingProducts")
-    suspend fun getSuperMarketItems(): Response<ResponseResult<List<SuperMarketItem>>>
+    suspend fun getSuperMarketItems(): Response<ResponseResult<List<AmazingItem>>>
 
     @GET("getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>
