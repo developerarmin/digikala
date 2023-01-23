@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -96,10 +97,9 @@ fun BestSellerOfferSection(
                     .height(250.dp)
             ) {
                 var number = 0
-                items(list) { item ->
-                    number += 1
+                itemsIndexed(list) {index, item ->
                     BestSellerItem(
-                        numberWithLocate(number.toString()),
+                        numberWithLocate((index+1).toString()),
                         name = item.name,
                         url = item.image
                     )
