@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
+import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.HomeRepository
@@ -19,6 +20,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val bestSellerItems =
         MutableStateFlow<NetworkResult<List<BestSellerItem>>>(NetworkResult.Loading())
+    val mostVisitedItems =
+        MutableStateFlow<NetworkResult<List<MostVisitedItem>>>(NetworkResult.Loading())
     val superMarketItems =
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
@@ -28,6 +31,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         viewModelScope.launch(Dispatchers.Main) {
             val amazingResult = async { repository.getAmazingItems() }
             val bestSellerResult = async { repository.getBestSellerItems() }
+            val mostVisitedResult = async { repository.getMostVisitedItems() }
             val sliderResult = async { repository.getSlider() }
             val bannerResult = async { repository.getProposalBanners() }
             val superMarketResult = async { repository.getSuperMarketItems() }
@@ -35,6 +39,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
             amazingItems.emit(amazingResult.await())
             bestSellerItems.emit(bestSellerResult.await())
+            mostVisitedItems.emit(mostVisitedResult.await())
             slider.emit(sliderResult.await())
             banners.emit(bannerResult.await())
             superMarketItems.emit(superMarketResult.await())

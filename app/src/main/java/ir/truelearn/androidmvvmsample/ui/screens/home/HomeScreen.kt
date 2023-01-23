@@ -39,7 +39,7 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
             SwipeRefresh(state = swipeRefreshState, onRefresh = {
                 refreshScope.launch {
                     viewModel.getAllDataFromServer()
-                    Log.e("3636" , "call again!")
+                    Log.e("3636", "call again!")
                 }
             }) {
                 Column(
@@ -65,6 +65,7 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
                     SuperMarketOfferSection()
 
                     BestSellerOfferSection()
+                    MostVisitedOfferSection()
                 }
             }
 
