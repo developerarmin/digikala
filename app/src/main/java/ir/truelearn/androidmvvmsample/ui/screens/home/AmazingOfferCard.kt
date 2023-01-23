@@ -1,24 +1,20 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.materialIcon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
-import ir.truelearn.androidmvvmsample.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,15 +22,13 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun AmazingOfferCard() {
+fun AmazingOfferCard(title:String,imageId :Int) {
 
-    val amazingOfferTittle = "پیشنهاد \nشگفت \n انگیز"
     val seeAll = "مشاهده همه"
 
 
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colors.DigikalaLightRed)
             .width(160.dp)
             .height(370.dp)
             .padding(
@@ -50,7 +44,7 @@ fun AmazingOfferCard() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(130.dp),
-            text = amazingOfferTittle,
+            text = title,
             textAlign = TextAlign.Center,
             fontSize = 28.sp,
             style = MaterialTheme.typography.h1,
@@ -59,7 +53,7 @@ fun AmazingOfferCard() {
         )
 
         Image(
-            painterResource(id = R.drawable.box),
+            painterResource(id = imageId),
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()

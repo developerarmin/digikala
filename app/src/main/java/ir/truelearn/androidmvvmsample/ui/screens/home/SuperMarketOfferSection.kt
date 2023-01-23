@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
@@ -76,7 +77,7 @@ fun SuperMarketOfferSection(
         } else {
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightGreen)) {
                 item {
-                    SuperMarketOfferCard()
+                    AmazingOfferCard("شگفت\n انگیز\n سوپر مارکتی", R.drawable.fresh)
                 }
                 items(list) { item ->
                     AmazingItem(item)
