@@ -8,6 +8,7 @@
     <string name="search_in">جستجو در</string>
     <string name="price_unit" translatable="false"> تومان </string>
     <string name="best_selling_products">پرفروش‌ترین کالاها</string>
+    <string name="most_visited_products">پربازدیدترین محصولات</string>
 
     <!-- these strings for test -->
     <string name="profile_screen">صفحه پروفایل</string>

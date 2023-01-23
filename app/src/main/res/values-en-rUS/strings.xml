@@ -8,6 +8,7 @@
     <string name="my_digikala">my Digikala</string>
     <string name="search_in">search in</string>
     <string name="best_selling_products">best selling products</string>
+    <string name="most_visited_products">most visited products</string>
 
     <!-- these strings for test -->
     <string name="profile_screen">Profile screen</string>
