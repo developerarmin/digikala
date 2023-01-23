@@ -60,9 +60,11 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
 
                     ProposalCardSection()
 
+                    SuperMarketOfferSection()
+
                     CategoryListSection()
 
-                    SuperMarketOfferSection()
+
 
                     BestSellerOfferSection()
                     MostVisitedOfferSection()

@@ -89,7 +89,7 @@ fun AmazingItem(item: AmazingItem) {
                         .height(48.dp)
                         .padding(horizontal = 8.dp),
                     text = item.name,
-                    style = MaterialTheme.typography.body2,
+                    style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colors.darkText,
                     maxLines = 2,
