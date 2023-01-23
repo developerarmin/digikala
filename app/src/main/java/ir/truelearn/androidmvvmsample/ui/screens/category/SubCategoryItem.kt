@@ -12,17 +12,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.category.Sub
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
 
 @Composable
 fun SubCategoryItem(item: Sub) {
@@ -32,8 +36,7 @@ fun SubCategoryItem(item: Sub) {
             .width(120.dp)
             .background(Color.White)
             .padding(vertical = 16.dp, horizontal = 5.dp),
-        shape = RoundedCornerShape(6.dp),
-        elevation = 1.dp
+        shape = RoundedCornerShape(6.dp)
     ) {
         Column(
             modifier = Modifier
@@ -44,7 +47,7 @@ fun SubCategoryItem(item: Sub) {
 
         ) {
             Image(
-                painterResource(id = R.drawable.place_holder),
+                painter = rememberAsyncImagePainter(item.image),
                 contentDescription = "product image",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -69,10 +72,10 @@ fun SubCategoryItem(item: Sub) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = item.count.toString(),
+                text = "+${numberWithLocate(item.count.toString())} ${stringResource(id = R.string.commodity)}",
                 textAlign = TextAlign.Center,
                 color = Color.Gray,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Normal,
                 style = MaterialTheme.typography.h6
             )
 

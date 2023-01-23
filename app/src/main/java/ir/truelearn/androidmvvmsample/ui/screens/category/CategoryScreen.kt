@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,6 +28,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.home.SearchBar
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.CategoryViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
@@ -61,6 +63,11 @@ fun Category(viewModel: CategoryViewModel = hiltViewModel()) {
                     modifier = Modifier
                         .background(Color.White)
                         .fillMaxSize()
+                        .padding(
+                            start = MaterialTheme.spacing.small,
+                            end = MaterialTheme.spacing.small,
+                            bottom = MaterialTheme.spacing.bottomAppBar
+                        )
                         .verticalScroll(rememberScrollState())
                 ) {
                     LaunchedEffect(true) {

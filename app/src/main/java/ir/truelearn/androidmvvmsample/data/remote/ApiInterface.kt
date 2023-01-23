@@ -15,6 +15,7 @@ interface ApiInterface {
 
     @GET("getBestsellerProducts")
     suspend fun getBestSellerItems(): Response<ResponseResult<List<BestSellerItem>>>
+
     @GET("getMostVisitedProducts")
     suspend fun getMostVisitedItems(): Response<ResponseResult<List<MostVisitedItem>>>
 
