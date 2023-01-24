@@ -71,7 +71,7 @@ fun Splash() {
                     .padding(20.dp),
                 contentAlignment = Alignment.BottomCenter
             ) {
-                Loading3Dots()
+                Loading3Dots(isDark = false)
             }
         }
     } else {

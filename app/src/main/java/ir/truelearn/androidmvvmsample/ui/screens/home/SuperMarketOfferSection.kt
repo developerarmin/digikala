@@ -72,7 +72,7 @@ fun SuperMarketOfferSection(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Loading3Dots()
+                Loading3Dots(isDark = false)
             }
         } else {
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightGreen)) {

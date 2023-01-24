@@ -9,10 +9,20 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import ir.truelearn.androidmvvmsample.R
 
 @Composable
-fun Loading3Dots() {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading3dots))
-    LottieAnimation(
-        composition,
-        iterations = LottieConstants.IterateForever
-    )
+fun Loading3Dots(isDark: Boolean) {
+    if (isDark) {
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading3dotsdark))
+        LottieAnimation(
+            composition,
+            iterations = LottieConstants.IterateForever
+        )
+    } else {
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading3dots))
+        LottieAnimation(
+            composition,
+            iterations = LottieConstants.IterateForever
+        )
+    }
+
 }
+

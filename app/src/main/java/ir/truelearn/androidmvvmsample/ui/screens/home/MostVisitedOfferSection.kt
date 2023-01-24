@@ -84,7 +84,7 @@ fun MostVisitedOfferSection(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Loading3Dots()
+                Loading3Dots(isDark = false)
             }
         } else {
 

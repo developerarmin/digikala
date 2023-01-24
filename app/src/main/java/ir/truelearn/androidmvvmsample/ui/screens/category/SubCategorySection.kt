@@ -105,15 +105,14 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
         if (loading) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(20.dp),
+                    .fillMaxWidth()
+                    .height(500.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Loading3Dots()
+                Loading3Dots(isDark = true)
             }
         } else {
-
 
             CategoryItem(
                 title = stringResource(id = R.string.industrial_tools_and_equipment),
