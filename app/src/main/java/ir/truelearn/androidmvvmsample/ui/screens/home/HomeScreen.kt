@@ -64,10 +64,11 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
 
                     CategoryListSection()
 
-
-
                     BestSellerOfferSection()
+
                     MostVisitedOfferSection()
+
+                    MostDiscountedSection()
                 }
             }
 

@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
+import ir.truelearn.androidmvvmsample.data.model.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
 import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem
@@ -38,5 +39,10 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
     suspend fun getSuperMarketItems(): NetworkResult<List<AmazingItem>> =
         safeApiCall {
             api.getSuperMarketItems()
+        }
+
+    suspend fun getMostDiscountedItems(): NetworkResult<List<MostDiscountedItem>> =
+        safeApiCall {
+            api.getMostDiscountedItems()
         }
 }

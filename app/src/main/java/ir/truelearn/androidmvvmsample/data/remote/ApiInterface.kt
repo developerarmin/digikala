@@ -30,4 +30,7 @@ interface ApiInterface {
 
     @GET("getSubCategories")
     suspend fun getSubCategories(): Response<ResponseResult<SubCategory>>
+
+    @GET("getMostDiscountedProducts")
+    suspend fun getMostDiscountedItems() : Response<ResponseResult<List<MostDiscountedItem>>>
 }

@@ -7,28 +7,13 @@
     <string name="category">categories</string>
     <string name="my_digikala">my Digikala</string>
     <string name="search_in">search in</string>
-    <string name="best_selling_products">best selling products</string>
-    <string name="most_visited_products">most visited products</string>
+    <string name="most_discounted_products">most discounted products</string>
 
+    <!-- these strings for test -->
     <string name="profile_screen">Profile screen</string>
     <string name="change_language">Change language</string>
     <string name="change_language_choice">Choose a language please.</string>
     <string name="english">English</string>
     <string name="persian">Persian</string>
-    <string name="commodity">commodity</string>
-    <string name="see_all">see all</string>
-
-    <string name="industrial_tools_and_equipment">ابزار و تجهیزات صنعتی</string>
-    <string name="digital_goods">digital goods</string>
-    <string name="mobile">mobile</string>
-    <string name="supermarket_product">supermarket product</string>
-    <string name="fashion_and_clothing">fashion and clothing</string>
-    <string name="native_and_local_products">native and local products</string>
-    <string name="toys_children_and_babies">toys, children and babies</string>
-    <string name="beauty_and_health">beauty and health</string>
-    <string name="home_and_kitchen">home and kitchen</string>
-    <string name="books_and_stationery">books and stationery</string>
-    <string name="sports_and_travel">sports and travel</string>
-
 
 </resources>
