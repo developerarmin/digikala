@@ -8,7 +8,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.BasketScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
-import ir.truelearn.androidmvvmsample.ui.screens.profile.splash.SplashScreen
+import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {

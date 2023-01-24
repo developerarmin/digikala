@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.profile.splash
+package ir.truelearn.androidmvvmsample.ui.screens.splash
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image

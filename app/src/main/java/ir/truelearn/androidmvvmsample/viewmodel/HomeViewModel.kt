@@ -3,7 +3,7 @@ package ir.truelearn.androidmvvmsample.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
 import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem

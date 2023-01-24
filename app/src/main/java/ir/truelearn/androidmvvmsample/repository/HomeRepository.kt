@@ -1,6 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
-import ir.truelearn.androidmvvmsample.data.model.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
 import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem

@@ -2,12 +2,8 @@ package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -15,9 +11,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -27,10 +20,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
-import java.lang.reflect.Modifier
 
 @Composable
 fun MostDiscountedCard(discountedItem: MostDiscountedItem) {

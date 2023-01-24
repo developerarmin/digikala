@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText

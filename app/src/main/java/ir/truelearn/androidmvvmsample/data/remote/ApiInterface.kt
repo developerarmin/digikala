@@ -2,10 +2,7 @@ package ir.truelearn.androidmvvmsample.data.remote
 
 import ir.truelearn.androidmvvmsample.data.model.*
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
-import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
-import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem
-import ir.truelearn.androidmvvmsample.data.model.home.Slider
+import ir.truelearn.androidmvvmsample.data.model.home.*
 import retrofit2.Response
 import retrofit2.http.GET
 
