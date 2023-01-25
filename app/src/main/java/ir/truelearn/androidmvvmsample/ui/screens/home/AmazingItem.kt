@@ -25,12 +25,13 @@ import ir.truelearn.androidmvvmsample.ui.theme.DigikalaDarkRed
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
+import ir.truelearn.androidmvvmsample.util.Constants
 
 @Composable
 fun AmazingItem(item: AmazingItem) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
-    val previousPrice = "100,000"
-    val currentPrice = "33,000"
+    val previousPrice =item.price.toString()
+    val currentPrice = Constants.applyDiscount(item.price,item.discountPercent)
 
     Card(
         modifier = Modifier

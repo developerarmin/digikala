@@ -3,8 +3,12 @@ package ir.truelearn.androidmvvmsample.util
 object Constants {
     const val BASE_URL = "https://dig-za0p.onrender.com/api/v1/"
     const val API_KEY = "EB43556E671B925B9C98E74643BCA"
+    fun applyDiscount(price: Int, discountPercent: Int): Int {
+        val discountAmount = (price * discountPercent) / 100
+        return price - discountAmount
+    }
 
-    fun numberWithLocate(englishStr: String):String {
+    fun numberWithLocate(englishStr: String): String {
         var result = ""
         var fa = '۰'
         for (ch in englishStr) {
