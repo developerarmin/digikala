@@ -25,12 +25,15 @@ import ir.truelearn.androidmvvmsample.ui.theme.DigikalaDarkRed
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
+import ir.truelearn.androidmvvmsample.util.Constants
+import ir.truelearn.androidmvvmsample.util.Constants.initPriceFormat
+import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
 
 @Composable
 fun AmazingItem(item: AmazingItem) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
-    val previousPrice = "100,000"
-    val currentPrice = "33,000"
+    val previousPrice = item.price.toString()
+    val currentPrice = Constants.applyDiscount(item.price, item.discountPercent)
 
     Card(
         modifier = Modifier
@@ -64,17 +67,11 @@ fun AmazingItem(item: AmazingItem) {
                 Image(
                     painter = rememberAsyncImagePainter(item.image),
                     contentDescription = "amazing item image",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .height(130.dp),
                     contentScale = ContentScale.FillBounds
                 )
-//                Image(
-//                    painterResource(id = R.drawable.place_holder),
-//                    contentDescription = "product image",
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .height(130.dp)
-//                )
             }
             Spacer(modifier = Modifier.height(10.dp))
             //info
@@ -133,7 +130,7 @@ fun AmazingItem(item: AmazingItem) {
 
                         ) {
                         Text(
-                            text = "${item.discountPercent}%",
+                            text = "${Constants.numberWithLocate(item.discountPercent.toString())}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -143,12 +140,16 @@ fun AmazingItem(item: AmazingItem) {
 
                     Column() {
                         Text(
-                            text = "$currentPrice ${stringResource(id = R.string.price_unit)}",
+                            text = "${initPriceFormat(numberWithLocate(currentPrice.toString()))} ${
+                                stringResource(
+                                    id = R.string.price_unit
+                                )
+                            }",
                             style = MaterialTheme.typography.body2,
                             fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            text = previousPrice,
+                            text = initPriceFormat(numberWithLocate(previousPrice)),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough,
