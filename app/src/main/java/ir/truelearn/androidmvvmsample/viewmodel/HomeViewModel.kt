@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
-import ir.truelearn.androidmvvmsample.data.model.home.MostVisitedItem
+import ir.truelearn.androidmvvmsample.data.model.home.BestItem
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.HomeRepository
@@ -20,9 +19,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
     val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val bestSellerItems =
-        MutableStateFlow<NetworkResult<List<BestSellerItem>>>(NetworkResult.Loading())
+        MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
     val mostVisitedItems =
-        MutableStateFlow<NetworkResult<List<MostVisitedItem>>>(NetworkResult.Loading())
+        MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
     val superMarketItems =
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())

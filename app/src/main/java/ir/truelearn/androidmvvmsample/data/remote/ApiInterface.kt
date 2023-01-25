@@ -11,10 +11,10 @@ interface ApiInterface {
     suspend fun getAmazingItems(): Response<ResponseResult<List<AmazingItem>>>
 
     @GET("getBestsellerProducts")
-    suspend fun getBestSellerItems(): Response<ResponseResult<List<BestSellerItem>>>
+    suspend fun getBestSellerItems(): Response<ResponseResult<List<BestItem>>>
 
     @GET("getMostVisitedProducts")
-    suspend fun getMostVisitedItems(): Response<ResponseResult<List<MostVisitedItem>>>
+    suspend fun getMostVisitedItems(): Response<ResponseResult<List<BestItem>>>
 
     @GET("getSuperMarketAmazingProducts")
     suspend fun getSuperMarketItems(): Response<ResponseResult<List<AmazingItem>>>

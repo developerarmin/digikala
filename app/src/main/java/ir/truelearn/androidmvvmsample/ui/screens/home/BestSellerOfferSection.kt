@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.home.BestSellerItem
+import ir.truelearn.androidmvvmsample.data.model.home.BestItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
@@ -34,7 +33,7 @@ fun BestSellerOfferSection(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     var list by remember {
-        mutableStateOf<List<BestSellerItem>>(emptyList())
+        mutableStateOf<List<BestItem>>(emptyList())
     }
     var loading by remember {
         mutableStateOf(false)
@@ -98,7 +97,7 @@ fun BestSellerOfferSection(
             ) {
                 var number = 0
                 itemsIndexed(list) {index, item ->
-                    BestSellerItem(
+                    BestSellerCard(
                         numberWithLocate((index+1).toString()),
                         name = item.name,
                         url = item.image
