@@ -26,6 +26,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 import ir.truelearn.androidmvvmsample.util.Constants
+import ir.truelearn.androidmvvmsample.util.Constants.initPriceFormat
+import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
 
 @Composable
 fun AmazingItem(item: AmazingItem) {
@@ -138,7 +140,7 @@ fun AmazingItem(item: AmazingItem) {
 
                     Column() {
                         Text(
-                            text = "${Constants.numberWithLocate(currentPrice.toString())} ${
+                            text = "${initPriceFormat(numberWithLocate(currentPrice.toString()))} ${
                                 stringResource(
                                     id = R.string.price_unit
                                 )
@@ -147,7 +149,7 @@ fun AmazingItem(item: AmazingItem) {
                             fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            text = Constants.numberWithLocate(previousPrice),
+                            text = initPriceFormat(numberWithLocate(previousPrice)),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough,

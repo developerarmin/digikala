@@ -1,5 +1,7 @@
 package ir.truelearn.androidmvvmsample.util
 
+import java.text.DecimalFormat
+
 object Constants {
     const val BASE_URL = "https://dig-za0p.onrender.com/api/v1/"
     const val API_KEY = "EB43556E671B925B9C98E74643BCA"
@@ -28,5 +30,9 @@ object Constants {
             result = "${result}$fa"
         }
         return result
+    }
+    fun initPriceFormat(price: String): String {
+        val priceFormat = DecimalFormat("###,###")
+        return priceFormat.format(Integer.valueOf(price))
     }
 }
