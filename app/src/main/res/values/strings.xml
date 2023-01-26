@@ -33,7 +33,7 @@
 
 
     <string name="loginTxt">برای ورود یا ثبت نام در دیجی کالا شماره موبایل یا پست الکترونیک خود را وارد نمایید</string>
-    <string name="Terms_and_rules">شرایط و قوانین</string>
+    <string name="Terms_and_rules">با ورود و یا ثبت نام در دیجی کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی کالا و قوانین حریم خصوصی آن را می پذیرید.</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

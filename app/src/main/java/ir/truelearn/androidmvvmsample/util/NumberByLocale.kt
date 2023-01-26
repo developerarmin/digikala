@@ -1,6 +1,6 @@
 package ir.truelearn.androidmvvmsample.util
 
-class NumberSeparator(private val englishStr: String) {
+class NumberByLocale(private val englishStr: String) {
 
     operator fun invoke(): String {
         var result = ""

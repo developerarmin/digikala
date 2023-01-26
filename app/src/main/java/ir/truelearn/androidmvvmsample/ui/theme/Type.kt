@@ -8,6 +8,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 
@@ -28,6 +29,14 @@ val Typography.extraBoldNumber: TextStyle
         fontWeight = FontWeight.Bold,
         fontSize = 26.sp
     )
+
+val Typography.underlinedText : TextStyle
+@Composable
+get() = TextStyle(
+    fontFamily = font_standard,
+    fontWeight = FontWeight.Medium,
+    textDecoration = TextDecoration.Underline
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -72,6 +81,4 @@ val Typography = Typography(
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp
     ),
-
-
-    )
+)
