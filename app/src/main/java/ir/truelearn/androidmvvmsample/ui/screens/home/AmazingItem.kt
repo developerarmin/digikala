@@ -26,14 +26,16 @@ import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 import ir.truelearn.androidmvvmsample.util.Constants
-import ir.truelearn.androidmvvmsample.util.Constants.initPriceFormat
-import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.applyDiscount
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
+
 
 @Composable
 fun AmazingItem(item: AmazingItem) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
     val previousPrice = item.price.toString()
-    val currentPrice = Constants.applyDiscount(item.price, item.discountPercent)
+    val currentPrice = applyDiscount(item.price, item.discountPercent)
 
     Card(
         modifier = Modifier
@@ -130,7 +132,7 @@ fun AmazingItem(item: AmazingItem) {
 
                         ) {
                         Text(
-                            text = "${Constants.numberWithLocate(item.discountPercent.toString())}%",
+                            text = "${digitByLocate(item.discountPercent.toString())}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -140,7 +142,7 @@ fun AmazingItem(item: AmazingItem) {
 
                     Column() {
                         Text(
-                            text = "${initPriceFormat(numberWithLocate(currentPrice.toString()))} ${
+                            text = "${digitBySeparator(digitByLocate(currentPrice.toString()))} ${
                                 stringResource(
                                     id = R.string.price_unit
                                 )
@@ -149,7 +151,7 @@ fun AmazingItem(item: AmazingItem) {
                             fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            text = initPriceFormat(numberWithLocate(previousPrice)),
+                            text = digitBySeparator(digitByLocate(previousPrice)),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough,
