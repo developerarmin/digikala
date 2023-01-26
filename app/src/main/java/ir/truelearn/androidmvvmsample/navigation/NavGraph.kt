@@ -32,6 +32,5 @@ fun SetupNavGraph(navController: NavHostController) {
             CategoryScreen(navController = navController)
         }
 
-
     }
 }

@@ -22,6 +22,8 @@ import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.util.Constants.applyDiscount
+import ir.truelearn.androidmvvmsample.util.Constants.initPriceFormat
 import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
 
 @Composable
@@ -112,8 +114,10 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                             .wrapContentHeight(Alignment.CenterVertically),
 
                         ) {
+                        val discountedPercent = numberWithLocate(discountedItem.discountPercent.toString())
                         Text(
-                            text = "${discountedItem.discountPercent}%",
+
+                            text = "${discountedPercent}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -122,15 +126,15 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     }
 
                     Column() {
-                        val discountedItemPrice = numberWithLocate((discountedItem.price).toString())
-                        val previousDiscountedPrice = numberWithLocate(previousPrice)
+                        val discountedItemPrice = numberWithLocate((applyDiscount(discountedItem.price,discountedItem.discountPercent)).toString())
+                        val previousDiscountedItemPrice = numberWithLocate(discountedItem.price.toString())
                         Text(
-                            text = "$discountedItemPrice ${stringResource(id = R.string.price_unit)}",
+                            text = "${initPriceFormat(discountedItemPrice)} ${stringResource(id = R.string.price_unit)}",
                             style = MaterialTheme.typography.body2,
                             fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            text = previousDiscountedPrice,
+                            text = initPriceFormat(previousDiscountedItemPrice),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough,
