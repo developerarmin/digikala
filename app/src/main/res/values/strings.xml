@@ -31,13 +31,28 @@
     <string name="books_and_stationery">کتاب و لوازم تحریر</string>
     <string name="sports_and_travel">ورزش و سفر</string>
 
+    <string name="category_title">خرید بر اساس دسته بندی</string>
+
+    <string name="digikala_jet">دیجی کالا جت</string>
+    <string name="digi_style">حراج استایل</string>
+    <string name="digi_pay">دیجی پی</string>
+    <string name="pindo">پیندو</string>
+    <string name="gift_card">کارت هدیه</string>
+    <string name="digi_plus">دیجی پلاس</string>
+    <string name="more">بیشتر</string>
 
     <string name="loginTxt">برای ورود یا ثبت نام در دیجی کالا شماره موبایل یا پست الکترونیک خود را وارد نمایید</string>
-    <string name="terms_and_rules_full">با ورود و یا ثبت نام در دیجی کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی کالا و قوانین حریم خصوصی آن را می پذیرید.</string>
-    <string name="terms_and_rules">شرایط و قوانین</string>
-    <string name="privacy_and_rules">قوانین حریم خصوصی</string>
-    <string name="digikala_entry">ورود به دیجی کالا</string>
-    <string name="phone_and_email">شماره موبایل یا پست الکترونیک</string>
+    <string name="Terms_and_rules">با ورود و یا ثبت نام در دیجی کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی کالا و قوانین حریم خصوصی آن را می پذیرید.</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    
 
 
 </resources>

@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.BestItem
@@ -27,6 +28,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val mostDiscountedItems = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
+    val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch(Dispatchers.Main) {
@@ -37,6 +39,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             val bannerResult = async { repository.getProposalBanners() }
             val superMarketResult = async { repository.getSuperMarketItems() }
             val mostDiscountedResult = async { repository.getMostDiscountedItems() }
+            val categoryResult = async { repository.getCategories() }
 
 
             amazingItems.emit(amazingResult.await())
@@ -46,7 +49,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             banners.emit(bannerResult.await())
             superMarketItems.emit(superMarketResult.await())
             mostDiscountedItems.emit(mostDiscountedResult.await())
-
+            categories.emit(categoryResult.await())
 
         }
     }

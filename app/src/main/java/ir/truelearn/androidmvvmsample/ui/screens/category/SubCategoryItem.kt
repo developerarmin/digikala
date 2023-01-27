@@ -26,7 +26,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 
 @Composable
 fun SubCategoryItem(item: Sub) {
@@ -72,7 +73,7 @@ fun SubCategoryItem(item: Sub) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "+${numberWithLocate(item.count.toString())} ${stringResource(id = R.string.commodity)}",
+                text = "+${digitByLocate(item.count.toString())} ${stringResource(id = R.string.commodity)}",
                 textAlign = TextAlign.Center,
                 color = Color.Gray,
                 fontWeight = FontWeight.Normal,

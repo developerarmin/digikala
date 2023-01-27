@@ -1,8 +1,10 @@
 package ir.truelearn.androidmvvmsample.util
 
-class NumberByLocale(private val englishStr: String) {
+import java.text.DecimalFormat
 
-    operator fun invoke(): String {
+object DigitHelper {
+
+    fun digitByLocate(englishStr: String): String {
         var result = ""
         var fa = '۰'
         for (ch in englishStr) {
@@ -24,5 +26,13 @@ class NumberByLocale(private val englishStr: String) {
         return result
     }
 
-}
+    fun digitBySeparator(price: String): String {
+        val priceFormat = DecimalFormat("###,###")
+        return priceFormat.format(Integer.valueOf(price))
+    }
 
+    fun applyDiscount(price: Int, discountPercent: Int): Int {
+        val discountAmount = (price * discountPercent) / 100
+        return price - discountAmount
+    }
+}

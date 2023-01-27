@@ -21,10 +21,9 @@ import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
-import ir.truelearn.androidmvvmsample.util.DiscountCalculator
-import ir.truelearn.androidmvvmsample.util.NumberByLocale
-import ir.truelearn.androidmvvmsample.util.NumberBySeparator
+import ir.truelearn.androidmvvmsample.util.DigitHelper.applyDiscount
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
 fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
@@ -32,8 +31,7 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
     Card(
         modifier = Modifier
             .width(170.dp)
-            .padding(bottom = MaterialTheme.spacing.miniDp)
-        ,
+            .padding(bottom = MaterialTheme.spacing.miniDp),
         shape = MaterialTheme.roundedShape.default,
         elevation = 1.dp
     ) {
@@ -82,14 +80,14 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = MaterialTheme.spacing.small)
-                    ,
+                        .padding(start = MaterialTheme.spacing.small),
 //                    horizontalArrangement = Arrangement.Center,
 //                    verticalAlignment = Alignment.CenterVertically
                 ) {
 
                     //inStock icon
-                    Icon(painter = painterResource(id = R.drawable.in_stock),
+                    Icon(
+                        painter = painterResource(id = R.drawable.in_stock),
                         contentDescription = "in stock",
                         tint = MaterialTheme.colors.DigikalaInStock,
                         modifier = Modifier
@@ -129,7 +127,8 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                             .wrapContentHeight(Alignment.CenterVertically),
 
                         ) {
-                        val discountedPercent = numberWithLocate(discountedItem.discountPercent.toString())
+                        val discountedPercent =
+                            digitByLocate(discountedItem.discountPercent.toString())
                         Text(
 
                             text = "${discountedPercent}%",
@@ -142,10 +141,12 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
 
                     Column {
 
-                        val discountedPriceResult = DiscountCalculator(discountedItem.price,discountedItem.discountPercent).invoke()
-                        val discountedLocaleResult = NumberByLocale(discountedPriceResult.toString()).invoke()
-                        val discountedSeparatedResult = NumberBySeparator(discountedLocaleResult).invoke()
-                        val previousDiscountedItemPrice = NumberBySeparator(NumberByLocale(discountedItem.price.toString()).invoke()).invoke()
+                        val discountedPriceResult =
+                            applyDiscount(discountedItem.price, discountedItem.discountPercent)
+                        val discountedLocaleResult = digitByLocate(discountedPriceResult.toString())
+                        val discountedSeparatedResult = digitBySeparator(discountedLocaleResult)
+                        val previousDiscountedItemPrice =
+                            digitBySeparator(digitByLocate(discountedItem.price.toString()))
                         Text(
                             text = "$discountedSeparatedResult ${stringResource(id = R.string.price_unit)}",
                             style = MaterialTheme.typography.body2,
@@ -165,7 +166,6 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     }
                 }
             }
-
 
 
         }

@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
+import android.content.Context
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log
 import androidx.compose.foundation.*
@@ -11,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -19,12 +21,13 @@ import kotlinx.coroutines.*
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    Home()
+    Home(navController=navController)
 }
 
 
 @Composable
-fun Home(viewModel: HomeViewModel = hiltViewModel()) {
+fun Home(navController: NavHostController,
+         viewModel: HomeViewModel = hiltViewModel()) {
     if (!isSystemInDarkTheme()) {
         Column(
             modifier = Modifier
@@ -54,7 +57,7 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
                         viewModel.getAllDataFromServer()
                     }
 
-                    ShowcaseSection()
+                    ShowcaseSection(navController)
 
                     AmazingOfferSection()
 
@@ -90,11 +93,11 @@ fun Home(viewModel: HomeViewModel = hiltViewModel()) {
 @Composable
 @Preview
 fun HomeScreenLightPreview() {
-    Home()
+//    Home()
 }
 
 @Composable
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 fun HomeScreenDarkPreview() {
-    Home()
+//    Home()
 }

@@ -21,7 +21,8 @@ import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.util.Constants.numberWithLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -98,7 +99,7 @@ fun BestSellerOfferSection(
                 var number = 0
                 itemsIndexed(list) {index, item ->
                     BestSellerCard(
-                        numberWithLocate((index+1).toString()),
+                        digitByLocate((index + 1).toString()),
                         name = item.name,
                         url = item.image
                     )
