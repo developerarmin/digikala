@@ -65,3 +65,7 @@ val Colors.DigikalaLightGreen: Color
 val Colors.amber: Color
     @Composable
     get() = Color(0xffFFBF00)
+
+val Colors.DigikalaInStock : Color
+   @Composable
+   get() = Color(0xFF1C9CB5)

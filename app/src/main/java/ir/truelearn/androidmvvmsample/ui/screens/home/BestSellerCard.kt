@@ -16,7 +16,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.*
 
 
 @Composable
-fun BestSellerItem(number:String,name:String,url:String) {
+fun BestSellerCard(number:String, name:String, url:String) {
     Column(
         modifier = Modifier
             .width(320.dp)

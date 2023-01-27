@@ -1,6 +1,6 @@
 package ir.truelearn.androidmvvmsample.data.model.home
 
-data class BestSellerItem(
+data class BestItem(
     val _id: String,
     val discountPercent: Int,
     val image: String,
