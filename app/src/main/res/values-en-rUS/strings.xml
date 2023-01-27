@@ -16,4 +16,11 @@
     <string name="english">English</string>
     <string name="persian">Persian</string>
 
+    <string name="digikala_jet">Digikala Jet</string>
+    <string name="digi_style">Digi Style</string>
+    <string name="digi_pay">Digi Pay</string>
+    <string name="pindo">Pindo</string>
+    <string name="gift_card">Gift Card</string>
+    <string name="digi_plus">Digi Plus </string>
+    <string name="more">More</string>
 </resources>

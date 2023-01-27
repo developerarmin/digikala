@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -18,24 +19,29 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import kotlin.math.round
 
 
 @Composable
 fun RoundedIconBox(
     title: String,
-    image: Painter
+    image: Painter,
+    bgColor: Color =Color.Transparent,
+    onClick:()-> Unit
 ) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .width(80.dp)
+            .clickable {
+                onClick()
+            }
     ) {
 
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(18.dp))
+                .background(bgColor)
         ) {
             Image(
                 painter = image,
