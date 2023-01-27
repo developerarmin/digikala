@@ -57,6 +57,8 @@ fun Home(navController: NavHostController,
                         viewModel.getAllDataFromServer()
                     }
 
+                    TopSlider()
+
                     ShowcaseSection(navController)
 
                     AmazingOfferSection()
