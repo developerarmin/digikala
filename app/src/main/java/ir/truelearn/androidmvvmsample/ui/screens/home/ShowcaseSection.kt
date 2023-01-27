@@ -5,6 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
@@ -32,28 +33,28 @@ fun ShowcaseSection(navController: NavController) {
         ) {
             RoundedIconBox(
                 image = painterResource(id = R.drawable.digijet),
-                title = "دیجی کالا جت",
+                title = stringResource(R.string.digikala_jet),
                 onClick = onBoxClick(
                     navController,
                     url ="https://www.digikalajet.com/user/address")
             )
             RoundedIconBox(
                 image = painterResource(id = R.drawable.auction),
-                title = "حراج استایل",
+                title = stringResource(R.string.digi_style),
                 onClick = onBoxClick(
                     navController,
                     url ="https://www.digistyle.com/sale-landing/?utm_source=digikala&utm_medium=circle_badge&utm_campaign=style&promo_name=style&promo_position=circle_badge")
             )
             RoundedIconBox(
                 image = painterResource(id = R.drawable.digipay),
-                title = "دیجی پی ",
+                title = stringResource(R.string.digi_pay),
                 onClick = onBoxClick(
                     navController,
                     url ="https://www.digikala.com/my-digipay/?promo_name=my-digipay&promo_position=circle_badge")
             )
             RoundedIconBox(
                 image = painterResource(id = R.drawable.pindo),
-                title = "پیندو",
+                title = stringResource(R.string.pindo),
                 bgColor = MaterialTheme.colors.amber,
                 onClick = onBoxClick(
                     navController,
@@ -78,7 +79,7 @@ fun ShowcaseSection(navController: NavController) {
             )
             CircularIconBox(
                 image = painterResource(id = R.drawable.giftcard),
-                title = "کارت هدیه",
+                title = stringResource(R.string.gift_card),
                 onClick = onBoxClick(
                     navController,
                     url ="https://www.digikala.com/landing/gift-card-landing/?promo_name=gift_landing&promo_position=circle_badge")
@@ -86,7 +87,7 @@ fun ShowcaseSection(navController: NavController) {
             )
             CircularIconBox(
                 image = painterResource(id = R.drawable.digiplus),
-                title = "دیجی پلاس",
+                title = stringResource(R.string.digi_plus),
                 onClick = onBoxClick(
                     navController,
                     url ="https://www.digikala.com/plus/landing/?promo_name=plus&promo_position=circle_badge")
@@ -94,7 +95,7 @@ fun ShowcaseSection(navController: NavController) {
             )
             CircularIconBox(
                 image = painterResource(id = R.drawable.more),
-                title = "بیشتر",
+                title = stringResource(R.string.more),
                 bgColor = MaterialTheme.colors.grayCategory,
                 onClick = onMoreClick()
             )
