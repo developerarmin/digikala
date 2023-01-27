@@ -27,7 +27,6 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
 fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
-
     Card(
         modifier = Modifier
             .width(170.dp)
