@@ -9,6 +9,8 @@
     <string name="search_in">search in</string>
     <string name="most_discounted_products">most discounted products</string>
 
+    <string name="category_title">Shop by category</string>
+
     <!-- these strings for test -->
     <string name="profile_screen">Profile screen</string>
     <string name="change_language">Change language</string>

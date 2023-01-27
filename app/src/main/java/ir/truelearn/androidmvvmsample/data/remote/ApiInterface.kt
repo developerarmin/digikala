@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
 import ir.truelearn.androidmvvmsample.data.model.*
+import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
 import retrofit2.Response
@@ -30,4 +31,7 @@ interface ApiInterface {
 
     @GET("getMostDiscountedProducts")
     suspend fun getMostDiscountedItems() : Response<ResponseResult<List<MostDiscountedItem>>>
+
+    @GET("getCategories")
+    suspend fun getCategories() : Response<ResponseResult<List<MainCategory>>>
 }
