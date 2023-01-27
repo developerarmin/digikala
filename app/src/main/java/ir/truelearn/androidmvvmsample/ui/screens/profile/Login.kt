@@ -35,7 +35,6 @@ import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
 fun Login(){
-
         if (!isSystemInDarkTheme()){
             Row(modifier = Modifier
                 .fillMaxWidth(),
