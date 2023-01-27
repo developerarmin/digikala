@@ -1,7 +1,9 @@
 package ir.truelearn.androidmvvmsample.ui.screens.profile
 
 import android.content.res.Configuration
+import android.widget.ArrayAdapter
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,106 +36,116 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun Login(){
-        if (!isSystemInDarkTheme()){
-            Row(modifier = Modifier
-                .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween) {
-                IconButton(onClick = {}) {
-                    Icon(
-                        Icons.Filled.Close , contentDescription = "Close",
-                        modifier = Modifier
-                            .padding(
-                                start = MaterialTheme.spacing.small,
-                                top = MaterialTheme.spacing.small
-                            ),
-                        tint = MaterialTheme.colors.selectedBottomBar
-                    )
-                }
+fun Login() {
+    if (!isSystemInDarkTheme()) {
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
 
                 IconButton(onClick = { }) {
-                    Icon(painter = painterResource(
-                        id = R.drawable.digi_settings )
-                        , contentDescription = "",
+                    Icon(
+                        painter = painterResource(
+                            id = R.drawable.digi_settings
+                        ), contentDescription = "",
                         modifier = Modifier
                             .padding(
-                                top = MaterialTheme.spacing.small,
-                                end = MaterialTheme.spacing.small
+                                vertical = MaterialTheme.spacing.small,
+                                horizontal = MaterialTheme.spacing.small
                             ),
                         tint = MaterialTheme.colors.selectedBottomBar
                     )
                 }
-            }
-            Column(
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                Image(painter = painterResource(id = R.drawable.digi_smile),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .padding(MaterialTheme.spacing.superLarge)
-                        .size(200.dp))
-            }
 
-            Column(modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center){
-
-                Text(
-                    modifier = Modifier.padding(
-                        start = MaterialTheme.spacing.semiLarge,
-                        end = MaterialTheme.spacing.semiLarge,
-                        top = MaterialTheme.spacing.superLarge
-                    ),
-                    text = stringResource(id = R.string.loginTxt),
-                    fontSize = 15.sp,
-                    textAlign = TextAlign.End,
-                    fontFamily = font_standard,
-                    fontWeight = FontWeight.Medium,
-                    color = MaterialTheme.colors.semiDarkText
-                )
-
-                PhoneNumberEditText()
-                LoginButton()
-
-                Divider(
-                    color = MaterialTheme.colors.searchBarBg,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .width(1.dp)
-                        .padding(top = MaterialTheme.spacing.medium)
-                )
-
-                ShowDigiKalaTermsAndRulesText(
-                    fullText = stringResource(id = R.string.terms_and_rules_full),
-                    underlinedText = listOf(
-                        stringResource(id = R.string.terms_and_rules),
-                        stringResource(id = R.string.privacy_and_rules )),
-                    textColor = MaterialTheme.colors.semiDarkText,
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                IconButton(onClick = {}) {
+                    Icon(
+                        Icons.Filled.Close, contentDescription = "Close",
+                        modifier = Modifier
+                            .padding(
+                                vertical = MaterialTheme.spacing.small,
+                                horizontal = MaterialTheme.spacing.small
+                            ),
+                        tint = MaterialTheme.colors.selectedBottomBar
+                    )
+                }
 
 
             }
+
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large + MaterialTheme.spacing.medium))
+
+            Image(
+                modifier = Modifier
+                    .size(200.dp),
+                painter = painterResource(id = R.drawable.digi_smile),
+                contentDescription = "",
+
+                )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large + MaterialTheme.spacing.medium))
+
+            Text(
+                modifier = Modifier.padding(
+                    horizontal = MaterialTheme.spacing.semiLarge
+                ),
+                style = MaterialTheme.typography.h6,
+                text = stringResource(id = R.string.loginTxt),
+                color = MaterialTheme.colors.darkText,
+                fontWeight = FontWeight.Bold
+            )
+
+            PhoneNumberEditText()
+            LoginButton()
+
+            Divider(
+                color = MaterialTheme.colors.searchBarBg,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .width(1.dp)
+                    .padding(top = MaterialTheme.spacing.medium)
+            )
+
+            ShowDigiKalaTermsAndRulesText(
+                fullText = stringResource(id = R.string.terms_and_rules_full),
+                underlinedText = listOf(
+                    stringResource(id = R.string.terms_and_rules),
+                    stringResource(id = R.string.privacy_and_rules)
+                ),
+                textColor = MaterialTheme.colors.semiDarkText,
+                fontSize = 10.sp,
+                textAlign = TextAlign.Center,
+            )
+
+
         }
+
+
+    }
 
 }
 
 @Composable
-fun PhoneNumberEditText(){
+fun PhoneNumberEditText() {
     var textState by remember {
         mutableStateOf(TextFieldValue())
     }
-    TextField(value = textState, onValueChange = {
-        textState = it
-    }, modifier = Modifier
-        .fillMaxWidth()
-        .height(92.dp)
-        .padding(start = MaterialTheme.spacing.semiLarge,
-            end = MaterialTheme.spacing.semiLarge ,
-            top = MaterialTheme.spacing.medium ,
-            bottom = MaterialTheme.spacing.semiLarge
-        ),
+    TextField(
+        value = textState, onValueChange = {
+            textState = it
+        }, modifier = Modifier
+            .fillMaxWidth()
+            .height(92.dp)
+            .padding(
+                start = MaterialTheme.spacing.semiLarge,
+                end = MaterialTheme.spacing.semiLarge,
+                top = MaterialTheme.spacing.medium,
+                bottom = MaterialTheme.spacing.semiLarge
+            ),
         shape = MaterialTheme.roundedShape.small,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.searchBarBg,
@@ -146,10 +158,10 @@ fun PhoneNumberEditText(){
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.End,
             ) {
 
-                Text(text = stringResource(id = R.string.phone_and_email),
+                Text(
+                    text = stringResource(id = R.string.phone_and_email),
                     fontFamily = font_standard,
                     fontWeight = FontWeight.Medium,
                     fontSize = 12.sp,
@@ -164,19 +176,22 @@ fun PhoneNumberEditText(){
 }
 
 @Composable
-fun LoginButton(){
-    Button(onClick = {}, colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
+fun LoginButton() {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
         modifier = Modifier
             .fillMaxWidth()
             .height(65.dp)
             .padding(
                 start = MaterialTheme.spacing.semiLarge,
-                end = MaterialTheme.spacing.semiLarge ,
+                end = MaterialTheme.spacing.semiLarge,
                 bottom = MaterialTheme.spacing.medium
             ),
         shape = MaterialTheme.roundedShape.small
     ) {
-        Text(text = stringResource(id = R.string.digikala_entry),
+        Text(
+            text = stringResource(id = R.string.digikala_entry),
             color = Color.White,
             fontFamily = font_standard,
             fontWeight = FontWeight.Medium,
@@ -187,45 +202,55 @@ fun LoginButton(){
 
 @Composable
 fun ShowDigiKalaTermsAndRulesText(
-    fullText : String ,
-    textColor : Color ,
-    underlinedText : List<String>,
+    fullText: String,
+    textColor: Color,
+    underlinedText: List<String>,
     underlinedTextFontWeight: FontWeight = FontWeight.Medium,
-    underlinedTextDecoration : TextDecoration = TextDecoration.Underline,
-    fontSize : TextUnit,
+    underlinedTextDecoration: TextDecoration = TextDecoration.Underline,
+    fontSize: TextUnit,
     textAlign: TextAlign
-){
+) {
 
-    Text(text = buildAnnotatedString {
-        append(fullText)
-        underlinedText.forEachIndexed { index, text ->
-            val startIndex = fullText.indexOf(text)
-            val endIndex = startIndex + text.length
+    Text(
+        text = buildAnnotatedString {
+            append(fullText)
+            underlinedText.forEachIndexed { index, text ->
+                val startIndex = fullText.indexOf(text)
+                val endIndex = startIndex + text.length
 
-            addStyle(
-                style = SpanStyle(
-                    fontSize = fontSize,
-                    fontWeight = underlinedTextFontWeight,
-                    textDecoration = underlinedTextDecoration
-                ), start = startIndex, end = endIndex
-            )
-            addStyle(
-                style = SpanStyle(
-                    fontSize = fontSize,
-                    fontFamily = font_standard,
-                    color = textColor,
-                ),
-                start = 0, end = fullText.length)
-        }
-    } ,  modifier = Modifier.padding(MaterialTheme.spacing.small),
-        style = TextStyle(textDirection = TextDirection.ContentOrRtl), textAlign = textAlign)
+                addStyle(
+                    style = SpanStyle(
+                        fontSize = fontSize,
+                        fontWeight = underlinedTextFontWeight,
+                        textDecoration = underlinedTextDecoration
+                    ), start = startIndex, end = endIndex
+                )
+                addStyle(
+                    style = SpanStyle(
+                        fontSize = fontSize,
+                        fontFamily = font_standard,
+                        color = textColor,
+                    ),
+                    start = 0, end = fullText.length
+                )
+            }
+        },
+        modifier = Modifier.padding(
+            horizontal = MaterialTheme.spacing.small,
+            vertical = MaterialTheme.spacing.medium
+        ),
+        style = MaterialTheme.typography.h6,
+        fontWeight = FontWeight.Bold,
+        textAlign = textAlign,
+
+        )
 
 
 }
 
 @Preview
 @Composable
-fun LoginPreview(){
+fun LoginPreview() {
     Login()
 }
 

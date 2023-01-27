@@ -25,34 +25,17 @@ fun ProfileScreen(navController: NavHostController) {
 @Composable
 fun Profile() {
     if (!isSystemInDarkTheme()) {
-        Box(
+
+        Column(
             modifier = Modifier
                 .background(Color.White)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+                .fillMaxSize()
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(id = R.string.profile_screen),
-                    fontSize = 18.sp
-                )
-                ChangeLanguage()
-            }
+            Login()
+        }
 
-        }
     } else {
-        Box(
-            modifier = Modifier
-                .background(Color.Gray)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = stringResource(id = R.string.profile_screen),
-                color = Color.White,
-                fontSize = 18.sp
-            )
-        }
+        //TODO dark theme
     }
 
 }
