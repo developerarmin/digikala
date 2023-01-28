@@ -90,3 +90,10 @@ val Typography = Typography(
         lineHeight = 26.sp
     ),
 )
+val SmallFont = Typography(
+    body1 = TextStyle(
+        fontFamily = font_standard,
+        fontSize = 11.sp,
+        lineHeight = 26.sp
+    )
+)

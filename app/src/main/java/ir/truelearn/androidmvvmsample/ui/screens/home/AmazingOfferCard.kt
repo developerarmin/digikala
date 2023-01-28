@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun AmazingOfferCard(title:String,imageId :Int) {
+fun AmazingOfferCard(amazing :Int,imageId :Int) {
 
     val seeAll = "مشاهده همه"
 
@@ -30,7 +30,7 @@ fun AmazingOfferCard(title:String,imageId :Int) {
     Column(
         modifier = Modifier
             .width(160.dp)
-            .height(370.dp)
+            .height(380.dp)
             .padding(
                 vertical = MaterialTheme.spacing.medium,
                 horizontal = MaterialTheme.spacing.extraSmall
@@ -39,26 +39,24 @@ fun AmazingOfferCard(title:String,imageId :Int) {
         verticalArrangement = Arrangement.Center
     ) {
 
-
-        Text(
+        Spacer(modifier = Modifier.height(60.dp))
+        Image(
+            painterResource(id = amazing),
+            contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(130.dp),
-            text = title,
-            textAlign = TextAlign.Center,
-            fontSize = 28.sp,
-            style = MaterialTheme.typography.h1,
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
+                .height(95.dp)
         )
+        Spacer(modifier = Modifier.height(15.dp))
 
         Image(
             painterResource(id = imageId),
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(140.dp)
+                .height(120.dp)
         )
+        Spacer(modifier = Modifier.height(40.dp))
 
         Row(
             modifier = Modifier
@@ -69,7 +67,7 @@ fun AmazingOfferCard(title:String,imageId :Int) {
             ) {
             Text(
                 text = seeAll,
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.h6,
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold,
             )

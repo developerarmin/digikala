@@ -77,7 +77,7 @@ fun SuperMarketOfferSection(
         } else {
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightGreen)) {
                 item {
-                    AmazingOfferCard("شگفت\nانگیز\n سوپرمارکتی", R.drawable.fresh)
+                    AmazingOfferCard(R.drawable.supermarketamazings, R.drawable.fresh)
                 }
                 items(list) { item ->
                     AmazingItem(item)

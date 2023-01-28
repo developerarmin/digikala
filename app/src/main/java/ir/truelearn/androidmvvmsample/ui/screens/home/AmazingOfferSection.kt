@@ -77,7 +77,7 @@ fun AmazingOfferSection(
         } else {
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
                 item {
-                    AmazingOfferCard( "پیشنهاد \nشگفت \n انگیز", R.drawable.box)
+                    AmazingOfferCard( R.drawable.amazings, R.drawable.box)
                 }
                 items(list) { item ->
                     AmazingItem(item)
