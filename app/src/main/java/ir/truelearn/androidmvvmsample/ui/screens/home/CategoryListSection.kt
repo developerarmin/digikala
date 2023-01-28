@@ -10,9 +10,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
@@ -27,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CategoryListSection(
     viewModel: HomeViewModel = hiltViewModel()
@@ -94,18 +97,28 @@ fun CategoryListSection(
             }
         } else {
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(3),
+            FlowRow(
+                horizontalArrangement = Arrangement.SpaceAround,
+                maxItemsInEachRow = 3,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight()
             ) {
-                items(list) { item ->
+                for (item in list) {
                     CircularCategoryItem(item)
                 }
 
-            }
+                /*LazyVerticalGrid(
+                    columns = GridCells.Fixed(3),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                ) {
+                    items(list) { item ->
+                        CircularCategoryItem(item)
+                    }
 
+                }*/
+            }
 
         }
 
