@@ -78,7 +78,7 @@ fun Login() {
 
             }
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large + MaterialTheme.spacing.medium))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large ))
 
             Image(
                 modifier = Modifier
@@ -87,7 +87,7 @@ fun Login() {
                 contentDescription = "",
 
                 )
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large + MaterialTheme.spacing.medium))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large ))
 
             Text(
                 modifier = Modifier.padding(
