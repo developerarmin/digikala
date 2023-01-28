@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
@@ -100,6 +101,7 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.h6,
                         color = MaterialTheme.colors.semiDarkText,
+                        fontSize = 10.sp
                     )
 
 
