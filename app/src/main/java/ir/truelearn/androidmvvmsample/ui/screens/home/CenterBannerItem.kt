@@ -21,8 +21,8 @@ fun CenterBannerItem(imageUrl:String){
         shape = RoundedCornerShape(15.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
-            .padding(MaterialTheme.spacing.small)
+            .height(170.dp)
+            .padding(MaterialTheme.spacing.medium)
     ) {
 
         Image(
