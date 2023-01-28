@@ -1,10 +1,7 @@
 package ir.truelearn.androidmvvmsample.repository
 
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
-import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
-import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.home.BestItem
-import ir.truelearn.androidmvvmsample.data.model.home.Slider
+import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -49,5 +46,10 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
     suspend fun getCategories(): NetworkResult<List<MainCategory>> =
         safeApiCall {
             api.getCategories()
+        }
+
+    suspend fun getCenterBannerItems(): NetworkResult<List<CenterBannerItem>> =
+        safeApiCall {
+            api.getCenterBanners()
         }
 }

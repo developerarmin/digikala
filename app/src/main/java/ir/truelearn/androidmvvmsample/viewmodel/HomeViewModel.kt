@@ -4,10 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
-import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
-import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
-import ir.truelearn.androidmvvmsample.data.model.home.BestItem
-import ir.truelearn.androidmvvmsample.data.model.home.Slider
+import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.HomeRepository
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +26,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val mostDiscountedItems = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
+    val centerBannerItems = MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch(Dispatchers.Main) {
@@ -40,6 +38,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             val superMarketResult = async { repository.getSuperMarketItems() }
             val mostDiscountedResult = async { repository.getMostDiscountedItems() }
             val categoryResult = async { repository.getCategories() }
+            val centerBannerResult = async { repository.getCenterBannerItems() }
+
 
 
             amazingItems.emit(amazingResult.await())
@@ -50,6 +50,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             superMarketItems.emit(superMarketResult.await())
             mostDiscountedItems.emit(mostDiscountedResult.await())
             categories.emit(categoryResult.await())
+            centerBannerItems.emit(centerBannerResult.await())
 
         }
     }
