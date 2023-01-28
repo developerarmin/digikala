@@ -14,12 +14,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
 
 @Composable
-fun ProfileScreen(navController: NavHostController) {
-    Profile()
+fun ProfileScreen(
+    navController: NavHostController,
+    loginViewModel: LoginViewModel = hiltViewModel()
+) {
+
+    when (loginViewModel.pageState) {
+        ProfilePageState.PROFILE_STATE -> {
+            Profile()
+        }
+        ProfilePageState.LOGIN_STATE -> {
+            LoginScreen()
+        }
+        ProfilePageState.SET_PASSWORD_STATE -> {
+            PasswordScreen()
+        }
+    }
+
 }
 
 @Composable
@@ -31,7 +48,8 @@ fun Profile() {
                 .background(Color.White)
                 .fillMaxSize()
         ) {
-            Login()
+            Text(text = "profile hastam!")
+
         }
 
     } else {
