@@ -34,4 +34,7 @@ interface ApiInterface {
 
     @GET("getCategories")
     suspend fun getCategories() : Response<ResponseResult<List<MainCategory>>>
+
+    @GET("getCenterBanners")
+    suspend fun getCenterBanners() : Response<ResponseResult<List<CenterBannerItem>>>
 }
