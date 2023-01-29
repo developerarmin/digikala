@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch() {
 
             launch {
                 amazingItems.emit(repository.getAmazingItems())

@@ -18,7 +18,7 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
 
 
     suspend fun getAllDataFromServer() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch() {
 
             launch {
                 subCategory.emit(repository.getSubCategories())
