@@ -46,7 +46,9 @@ fun CategoryListSection(
         viewModel.categories.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    list = result.data!!
+                    result.data?.let {
+                        list = it
+                    }
                     loading = false
 
                 }
@@ -56,7 +58,7 @@ fun CategoryListSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-                        loading = true
+                    loading = true
                 }
             }
         }

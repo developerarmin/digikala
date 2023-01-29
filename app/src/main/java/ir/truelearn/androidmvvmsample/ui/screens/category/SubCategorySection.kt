@@ -71,25 +71,27 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
         viewModel.subCategory.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                        beautyList = result.data!!.beauty
-                        bookList = result.data.book
-                        digitalList = result.data.digital
-                        fashionList = result.data.fashion
-                        homeList = result.data.home
-                        mobileList = result.data.mobile
-                        nativeList = result.data.native
-                        sportList = result.data.sport
-                        supermarketList = result.data.supermarket
-                        toolList = result.data.tool
-                        toyList = result.data.toy
-                        loading = false
+                    result.data?.let {
+                        beautyList = it.beauty
+                        bookList = it.book
+                        digitalList = it.digital
+                        fashionList = it.fashion
+                        homeList = it.home
+                        mobileList = it.mobile
+                        nativeList = it.native
+                        sportList = it.sport
+                        supermarketList = it.supermarket
+                        toolList = it.tool
+                        toyList = it.toy
+                    }
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
                     Log.d("2121", "InitSubCategory error:${result.message} ")
                 }
                 is NetworkResult.Loading -> {
-                        loading = true
+                    loading = true
                 }
             }
         }

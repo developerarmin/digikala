@@ -44,7 +44,9 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
         viewModel.slider.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    list = result.data!!
+                    result.data?.let {
+                        list = it
+                    }
                     loading = false
                 }
                 is NetworkResult.Error -> {
@@ -127,11 +129,14 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                 }
 
                 LaunchedEffect(key1 = pagerState.currentPage) {
-                    delay(3000)
-                    var newPosition = pagerState.currentPage + 1
-                    if (newPosition > viewModel.slider.value.data?.size!! - 1) newPosition = 0
-                    //pagerState.animateScrollToPage(newPosition)
-                    pagerState.scrollToPage(newPosition)
+                    viewModel.slider.value.data?.size?.let {
+                        delay(3000)
+                        var newPosition = pagerState.currentPage + 1
+                        if (newPosition > it - 1) newPosition = 0
+                        //pagerState.animateScrollToPage(newPosition)
+                        pagerState.scrollToPage(newPosition)
+                    }
+
                 }
             }
         }

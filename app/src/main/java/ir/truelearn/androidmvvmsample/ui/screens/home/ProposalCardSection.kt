@@ -36,7 +36,9 @@ fun ProposalCardSection(
             when (result) {
                 is NetworkResult.Success -> {
 
-                    listProposal = result.data!!
+                    result.data?.let {
+                        listProposal = it
+                    }
                     loading = false
 
                 }

@@ -39,8 +39,10 @@ fun AmazingOfferSection(
         viewModel.amazingItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                        list = result.data!!
-                        loading = false
+                    result.data?.let {
+                        list = it
+                    }
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -48,7 +50,7 @@ fun AmazingOfferSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-                        loading = true
+                    loading = true
                 }
             }
         }
@@ -72,7 +74,7 @@ fun AmazingOfferSection(
         } else {
             LazyRow(modifier = Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
                 item {
-                    AmazingOfferCard( R.drawable.amazings, R.drawable.box)
+                    AmazingOfferCard(R.drawable.amazings, R.drawable.box)
                 }
                 items(list) { item ->
                     AmazingItem(item)

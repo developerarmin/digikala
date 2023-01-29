@@ -39,8 +39,10 @@ fun SuperMarketOfferSection(
         viewModel.superMarketItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                        list = result.data!!
-                        loading = false
+                    result.data?.let {
+                        list = it
+                    }
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -48,7 +50,7 @@ fun SuperMarketOfferSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-                        loading = true
+                    loading = true
                 }
             }
         }

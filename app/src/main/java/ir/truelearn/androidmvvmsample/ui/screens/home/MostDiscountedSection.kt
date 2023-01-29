@@ -42,7 +42,9 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
         viewModel.mostDiscountedItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    mostDiscountedList = result.data!!
+                    result.data?.let {
+                        mostDiscountedList = it
+                    }
                     loading = false
                 }
                 is NetworkResult.Error -> {

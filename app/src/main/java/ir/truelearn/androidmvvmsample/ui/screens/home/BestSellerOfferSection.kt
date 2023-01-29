@@ -44,8 +44,10 @@ fun BestSellerOfferSection(
         viewModel.bestSellerItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                        list = result.data!!
-                        loading = false
+                    result.data?.let {
+                        list = it
+                    }
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -53,7 +55,7 @@ fun BestSellerOfferSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-                        loading = true
+                    loading = true
                 }
             }
         }
@@ -93,7 +95,7 @@ fun BestSellerOfferSection(
                     .height(250.dp)
             ) {
                 var number = 0
-                itemsIndexed(list) {index, item ->
+                itemsIndexed(list) { index, item ->
                     BestSellerCard(
                         digitByLocate((index + 1).toString()),
                         name = item.name,
