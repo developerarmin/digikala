@@ -25,8 +25,7 @@ fun AmazingShowMoreItem() {
     Card(
         modifier = Modifier
             .size(180.dp, 380.dp)
-            .padding(vertical = 16.dp)
-            .padding(end = 16.dp, start = 4.dp),
+            .padding(end = 16.dp, start = 4.dp,top=25.dp),
         shape = RoundedCornerShape(7.dp),
         contentColor = Color.White
     ) {
