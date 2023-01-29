@@ -123,7 +123,7 @@ fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
                         is NetworkResult.Success -> {
                             Log.e("3636", result.message.toString())
                             result.data?.let {
-                                if (result.data.role == "user" && result.data.token.isNotEmpty()) {
+                                if (it.role == "user" && it.token.isNotEmpty()) {
                                     viewModel.pageState = ProfilePageState.PROFILE_STATE
                                 }
                             }
