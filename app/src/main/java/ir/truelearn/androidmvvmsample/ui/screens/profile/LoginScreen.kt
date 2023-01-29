@@ -24,9 +24,14 @@ import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber
 import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
+
+    val coroutineScope = rememberCoroutineScope()
+    val scaffoldState: ScaffoldState = rememberScaffoldState()
+
     if (!isSystemInDarkTheme()) {
 
         Column(
@@ -97,7 +102,12 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                     if (isValidEmail(viewModel.inputPhoneState) || isValidPhoneNumber(viewModel.inputPhoneState)) {
                         viewModel.pageState = ProfilePageState.SET_PASSWORD_STATE
                     } else {
-                        //Todo snackBar
+                        coroutineScope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar(
+                                message = "This is your message",
+                                actionLabel = "Do something"
+                            )
+                        }
                     }
 
                 })

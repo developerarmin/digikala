@@ -10,6 +10,7 @@ import ir.truelearn.androidmvvmsample.util.Constants.API_KEY
 import ir.truelearn.androidmvvmsample.util.Constants.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Headers
@@ -19,6 +20,15 @@ import javax.inject.Singleton
 @Module()
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    internal fun interceptor(): HttpLoggingInterceptor {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return logging
+    }
+
     @Provides
     @Singleton
     fun provideOkHttp(): OkHttpClient = OkHttpClient.Builder()
@@ -32,7 +42,8 @@ object NetworkModule {
                 //todo refactor set lang header
                 .addHeader("lang", "fa")
             chain.proceed(request.build())
-        }
+        }.addInterceptor(interceptor())
+
         .build()
 
     @Provides
@@ -48,4 +59,8 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiInterface =
         retrofit.create(ApiInterface::class.java)
+
+
+
+
 }

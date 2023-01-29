@@ -40,37 +40,35 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
     var list by remember { mutableStateOf<List<Slider>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Dispatchers.Main) {
         viewModel.slider.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
-                        list = result.data!!
-                        loading = false
-                    }
+                    list = result.data!!
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
                     Log.d("2121", "InitAmazingItems error:${result.message} ")
                 }
                 is NetworkResult.Loading -> {
-                    withContext(Dispatchers.Main) {
-                        loading = true
-                    }
+                    loading = true
                 }
             }
         }
     }
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .height(250.dp)
-        //.background(MaterialTheme.colors.DigikalaLightRed)
-        .background(Color.White)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(250.dp)
+            //.background(MaterialTheme.colors.DigikalaLightRed)
+            .background(Color.White)
     ) {
         if (loading) {
-            Column(modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -81,7 +79,8 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                 Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
-                    .padding(horizontal = 5.dp, vertical = 10.dp)) {
+                    .padding(horizontal = 5.dp, vertical = 10.dp)
+            ) {
                 val pagerState = rememberPagerState()
                 var imageUrl by remember { mutableStateOf("") }
 
@@ -95,10 +94,15 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                             .fillMaxWidth(),
                     ) { page ->
                         imageUrl = viewModel.slider.value.data?.get(page)?.image.toString()
-                        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.BottomCenter
+                        ) {
                             val painter = rememberAsyncImagePainter(
                                 ImageRequest.Builder(LocalContext.current)
-                                    .data(data = imageUrl).apply(block = fun ImageRequest.Builder.() { scale(Scale.FILL) }).build()
+                                    .data(data = imageUrl)
+                                    .apply(block = fun ImageRequest.Builder.() { scale(Scale.FILL) })
+                                    .build()
                             )
                             Image(
                                 painter = painter, contentDescription = "", Modifier
@@ -122,13 +126,13 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                     }
                 }
 
-               LaunchedEffect(key1 = pagerState.currentPage) {
+                LaunchedEffect(key1 = pagerState.currentPage) {
                     delay(3000)
                     var newPosition = pagerState.currentPage + 1
-                    if (newPosition > viewModel.slider.value.data?.size!!-1) newPosition = 0
+                    if (newPosition > viewModel.slider.value.data?.size!! - 1) newPosition = 0
                     //pagerState.animateScrollToPage(newPosition)
                     pagerState.scrollToPage(newPosition)
-               }
+                }
             }
         }
     }

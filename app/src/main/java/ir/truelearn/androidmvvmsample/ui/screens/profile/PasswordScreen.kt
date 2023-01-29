@@ -16,14 +16,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPassword
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber
 import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @Composable
 fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
+    val coroutineScope = rememberCoroutineScope()
+    val scaffoldState: ScaffoldState = rememberScaffoldState()
     if (!isSystemInDarkTheme()) {
 
         Column(
@@ -92,12 +99,46 @@ fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
                         (isValidEmail(viewModel.inputPhoneState)
                                 || isValidPhoneNumber(viewModel.inputPhoneState))
                     ) {
-                        viewModel.pageState = ProfilePageState.PROFILE_STATE
+                        coroutineScope.launch {
+                            viewModel.login()
+                        }
                     } else {
-                        //Todo snackBar
+                        coroutineScope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar(
+                                message = "This is your message",
+                                actionLabel = "Do something"
+                            )
+                        }
+
                     }
                 })
 
+            var loading by remember {
+                mutableStateOf(false)
+            }
+
+            LaunchedEffect(Dispatchers.Main) {
+                viewModel.loginResponse.collectLatest { result ->
+                    when (result) {
+                        is NetworkResult.Success -> {
+                            Log.e("3636", result.message.toString())
+                            result.data?.let {
+                                if (result.data.role == "user" && result.data.token.isNotEmpty()) {
+                                    viewModel.pageState = ProfilePageState.PROFILE_STATE
+                                }
+                            }
+
+                            loading = false
+                        }
+                        is NetworkResult.Error -> {
+                            loading = false
+                        }
+                        is NetworkResult.Loading -> {
+                            loading = true
+                        }
+                    }
+                }
+            }
 
         }
 

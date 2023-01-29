@@ -37,15 +37,13 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
         mutableStateOf(false)
     }
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Dispatchers.Main) {
 
         viewModel.mostDiscountedItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
-                        mostDiscountedList = result.data!!
-                        loading = false
-                    }
+                    mostDiscountedList = result.data!!
+                    loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -53,9 +51,7 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
                 }
 
                 is NetworkResult.Loading -> {
-                    withContext(Dispatchers.Main) {
-                        loading = true
-                    }
+                    loading = true
                 }
             }
         }

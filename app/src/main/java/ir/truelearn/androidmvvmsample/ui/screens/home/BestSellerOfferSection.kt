@@ -39,15 +39,13 @@ fun BestSellerOfferSection(
     var loading by remember {
         mutableStateOf(false)
     }
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Dispatchers.Main) {
 
         viewModel.bestSellerItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
                         list = result.data!!
                         loading = false
-                    }
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -55,9 +53,7 @@ fun BestSellerOfferSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-                    withContext(Dispatchers.Main) {
                         loading = true
-                    }
                 }
             }
         }

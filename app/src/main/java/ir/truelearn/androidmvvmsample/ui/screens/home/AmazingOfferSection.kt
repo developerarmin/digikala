@@ -34,15 +34,13 @@ fun AmazingOfferSection(
     var loading by remember {
         mutableStateOf(false)
     }
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Dispatchers.Main) {
 
         viewModel.amazingItems.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
                         list = result.data!!
                         loading = false
-                    }
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -50,10 +48,7 @@ fun AmazingOfferSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-
-                    withContext(Dispatchers.Main) {
                         loading = true
-                    }
                 }
             }
         }

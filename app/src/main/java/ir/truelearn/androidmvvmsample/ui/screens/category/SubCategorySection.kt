@@ -66,12 +66,11 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
     var loading by remember {
         mutableStateOf(false)
     }
-    LaunchedEffect(true) {
+    LaunchedEffect(Dispatchers.Main) {
 
         viewModel.subCategory.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
                         beautyList = result.data!!.beauty
                         bookList = result.data.book
                         digitalList = result.data.digital
@@ -84,16 +83,13 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
                         toolList = result.data.tool
                         toyList = result.data.toy
                         loading = false
-                    }
                 }
                 is NetworkResult.Error -> {
                     loading = false
                     Log.d("2121", "InitSubCategory error:${result.message} ")
                 }
                 is NetworkResult.Loading -> {
-                    withContext(Dispatchers.Main) {
                         loading = true
-                    }
                 }
             }
         }

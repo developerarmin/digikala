@@ -31,14 +31,14 @@ fun ProposalCardSection(
         mutableStateOf(false)
     }
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Dispatchers.Main) {
         viewModel.banners.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    withContext(Dispatchers.Main) {
-                        listProposal = result.data!!
-                        loading = false
-                    }
+
+                    listProposal = result.data!!
+                    loading = false
+
                 }
                 is NetworkResult.Error -> {
                     loading = false
@@ -46,10 +46,7 @@ fun ProposalCardSection(
                     // show error message
                 }
                 is NetworkResult.Loading -> {
-
-                    withContext(Dispatchers.Main) {
-                        loading = true
-                    }
+                    loading = true
                 }
             }
         }
@@ -57,9 +54,12 @@ fun ProposalCardSection(
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxWidth().height(290.dp).padding(MaterialTheme.spacing.small)
-    ){
-        items(listProposal){ item->
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(290.dp)
+            .padding(MaterialTheme.spacing.small)
+    ) {
+        items(listProposal) { item ->
             ProposalCardItem(item)
         }
 

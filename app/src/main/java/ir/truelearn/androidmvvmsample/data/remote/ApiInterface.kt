@@ -4,8 +4,12 @@ import ir.truelearn.androidmvvmsample.data.model.*
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
+import ir.truelearn.androidmvvmsample.data.model.login.LoginRequest
+import ir.truelearn.androidmvvmsample.data.model.login.LoginResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface ApiInterface {
     @GET("getAmazingProducts")
@@ -30,11 +34,16 @@ interface ApiInterface {
     suspend fun getSubCategories(): Response<ResponseResult<SubCategory>>
 
     @GET("getMostDiscountedProducts")
-    suspend fun getMostDiscountedItems() : Response<ResponseResult<List<MostDiscountedItem>>>
+    suspend fun getMostDiscountedItems(): Response<ResponseResult<List<MostDiscountedItem>>>
 
     @GET("getCategories")
-    suspend fun getCategories() : Response<ResponseResult<List<MainCategory>>>
+    suspend fun getCategories(): Response<ResponseResult<List<MainCategory>>>
 
     @GET("getCenterBanners")
-    suspend fun getCenterBanners() : Response<ResponseResult<List<CenterBannerItem>>>
+    suspend fun getCenterBanners(): Response<ResponseResult<List<CenterBannerItem>>>
+
+    @POST("login")
+    suspend fun login(
+        @Body login: LoginRequest
+    ): Response<ResponseResult<LoginResponse>>
 }
