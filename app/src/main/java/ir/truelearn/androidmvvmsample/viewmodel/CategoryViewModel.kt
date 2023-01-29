@@ -19,9 +19,10 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch(Dispatchers.Main) {
-            val amazingResult = async { repository.getSubCategories() }
 
-            subCategory.emit(amazingResult.await())
+            launch {
+                subCategory.emit(repository.getSubCategories())
+            }
 
         }
     }

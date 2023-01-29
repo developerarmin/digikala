@@ -24,33 +24,42 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
-    val mostDiscountedItems = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
+    val mostDiscountedItems =
+        MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
-    val centerBannerItems = MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
+    val centerBannerItems =
+        MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch(Dispatchers.Main) {
-            val amazingResult = async { repository.getAmazingItems() }
-            val bestSellerResult = async { repository.getBestSellerItems() }
-            val mostVisitedResult = async { repository.getMostVisitedItems() }
-            val sliderResult = async { repository.getSlider() }
-            val bannerResult = async { repository.getProposalBanners() }
-            val superMarketResult = async { repository.getSuperMarketItems() }
-            val mostDiscountedResult = async { repository.getMostDiscountedItems() }
-            val categoryResult = async { repository.getCategories() }
-            val centerBannerResult = async { repository.getCenterBannerItems() }
 
-
-
-            amazingItems.emit(amazingResult.await())
-            bestSellerItems.emit(bestSellerResult.await())
-            mostVisitedItems.emit(mostVisitedResult.await())
-            slider.emit(sliderResult.await())
-            banners.emit(bannerResult.await())
-            superMarketItems.emit(superMarketResult.await())
-            mostDiscountedItems.emit(mostDiscountedResult.await())
-            categories.emit(categoryResult.await())
-            centerBannerItems.emit(centerBannerResult.await())
+            launch {
+                amazingItems.emit(repository.getAmazingItems())
+            }
+            launch {
+                bestSellerItems.emit(repository.getBestSellerItems())
+            }
+            launch {
+                mostVisitedItems.emit(repository.getMostVisitedItems())
+            }
+            launch {
+                slider.emit(repository.getSlider())
+            }
+            launch {
+                banners.emit(repository.getProposalBanners())
+            }
+            launch {
+                superMarketItems.emit(repository.getSuperMarketItems())
+            }
+            launch {
+                mostDiscountedItems.emit(repository.getMostDiscountedItems())
+            }
+            launch {
+                categories.emit(repository.getCategories())
+            }
+            launch {
+                centerBannerItems.emit(repository.getCenterBannerItems())
+            }
 
         }
     }

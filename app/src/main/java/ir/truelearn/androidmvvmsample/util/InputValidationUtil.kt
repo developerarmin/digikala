@@ -5,9 +5,11 @@ import androidx.core.text.isDigitsOnly
 object InputValidationUtil {
 
     fun isValidPhoneNumber(input: String): Boolean {
-        return input.isNotEmpty() && input.isNotBlank() && input.isDigitsOnly() && input.startsWith(
-            "09"
-        ) && input.length == 11
+        return input.isNotEmpty()
+                && input.isNotBlank()
+                && input.isDigitsOnly()
+                && input.startsWith("09")
+                && input.length == 11
     }
 
     fun isValidEmail(input: String): Boolean {
@@ -15,6 +17,6 @@ object InputValidationUtil {
     }
 
     fun isValidPassword(input: String): Boolean {
-        return input.isNotEmpty() && input.isNotBlank() && input.length > 6
+        return input.isNotEmpty() && input.isNotBlank() && input.length >= 6
     }
 }
