@@ -25,20 +25,23 @@ fun AmazingShowMoreItem() {
     Card(
         modifier = Modifier
             .size(180.dp, 380.dp)
-            .padding(end = 16.dp, start = 4.dp,top=25.dp),
+            .padding(end = 16.dp, start = 4.dp, top = 25.dp),
         shape = RoundedCornerShape(7.dp),
         contentColor = Color.White
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(top = 24.dp).fillMaxWidth().padding(30.dp)
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .fillMaxWidth()
+                .padding(30.dp)
         ) {
             Icon(
                 painter = painterResource(id = ir.truelearn.androidmvvmsample.R.drawable.show_more),
                 contentDescription = "",
                 tint = MaterialTheme.colors.DigikalaLightRed,
-                modifier = Modifier.size(40.dp,40.dp)
+                modifier = Modifier.size(40.dp, 40.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
