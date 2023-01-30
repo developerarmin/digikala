@@ -14,6 +14,7 @@ data class RoundedShape(
     val extraSmall : RoundedCornerShape = RoundedCornerShape(4.dp),
     val small : RoundedCornerShape = RoundedCornerShape(8. dp),
     val large : RoundedCornerShape = RoundedCornerShape(16. dp),
+    val medium : RoundedCornerShape = RoundedCornerShape(16. dp),
     val extraLarge : RoundedCornerShape = RoundedCornerShape(24. dp)
 )
 val LocalShape = compositionLocalOf { RoundedShape() }
