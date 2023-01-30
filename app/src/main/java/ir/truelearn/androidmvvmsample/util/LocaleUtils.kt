@@ -6,7 +6,7 @@ import java.util.*
 
 object LocaleUtils {
 
-    fun setLocale(c: Context, language: String) = updateResources(c, language = "fa")
+    fun setLocale(c: Context, language: String) = updateResources(c, language)
 
     private fun updateResources(context: Context, language: String) {
         context.resources.apply {

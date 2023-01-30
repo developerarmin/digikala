@@ -1,8 +1,6 @@
 package ir.truelearn.androidmvvmsample
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.LayoutDirection
 import android.util.Log
@@ -24,6 +22,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
+import ir.truelearn.androidmvvmsample.data.model.category.Sub
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.BottomNavigationBar
 import ir.truelearn.androidmvvmsample.navigation.Screen
@@ -36,6 +35,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.Purple200
 import ir.truelearn.androidmvvmsample.util.LocaleUtils
 import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
@@ -57,10 +57,23 @@ class MainActivity : ComponentActivity() {
                 ChangeStatusBarColor(navController)
 
                 AutoLoginUser()
-
+/*
                 val dataStore by viewModels<DataStoreViewModel>()
+                val viewModel by viewModels<MainViewModel>()
 
-                LocaleUtils.setLocale(LocalContext.current, "fa")
+
+                dataStore.getUserLanguage()?.let {
+                    LocaleUtils.setLocale(LocalContext.current, it)
+                    viewModel.direction = if (it == "en") {
+                        androidx.compose.ui.unit.LayoutDirection.Ltr
+                    } else {
+                        androidx.compose.ui.unit.LayoutDirection.Rtl
+                    }
+                } ?: run {
+                    LocaleUtils.setLocale(LocalContext.current, "fa")
+                    viewModel.direction = androidx.compose.ui.unit.LayoutDirection.Rtl
+                }*/
+
                 CompositionLocalProvider(LocalLayoutDirection provides androidx.compose.ui.unit.LayoutDirection.Rtl) {
                     Scaffold(
                         bottomBar = {

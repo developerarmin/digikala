@@ -9,5 +9,5 @@ object Constants {
     const val USER_ID = "USER_ID"
     const val USER_PHONE = "USER_PHONE"
     const val USER_PASSWORD = "USER_PASSWORD"
-
+    const val USER_LANGUAGE = "USER_LANGUAGE"
 }

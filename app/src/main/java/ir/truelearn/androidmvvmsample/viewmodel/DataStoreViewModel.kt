@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.datastore.DataStoreRepository
 import ir.truelearn.androidmvvmsample.util.Constants.USER_ID
+import ir.truelearn.androidmvvmsample.util.Constants.USER_LANGUAGE
 import ir.truelearn.androidmvvmsample.util.Constants.USER_PASSWORD
 import ir.truelearn.androidmvvmsample.util.Constants.USER_PHONE
 import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN
@@ -61,11 +62,11 @@ class DataStoreViewModel @Inject constructor(
 
     fun saveUserLanguage(value: String) {
         viewModelScope.launch {
-            repository.putString(USER_PASSWORD, value)
+            repository.putString(USER_LANGUAGE, value)
         }
     }
 
     fun getUserLanguage(): String? = runBlocking {
-        repository.getString(USER_PASSWORD)
+        repository.getString(USER_LANGUAGE)
     }
 }
