@@ -50,6 +50,8 @@
     <string name="digikala_login">بزن بریم!</string>
     <string name="phone_and_email">شماره موبایل یا پست الکترونیک</string>
     <string name="set_password">رمز عبور خود را وارد کنید</string>
+    <string name="login_error">فرمت شماره تلفن یا ایمیل صحیح نیست.</string>
+    <string name="password_error">اطلاعات وارد شده صحیح نیست</string>
 
     
 

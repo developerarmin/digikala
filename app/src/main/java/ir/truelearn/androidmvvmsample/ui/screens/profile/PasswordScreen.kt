@@ -1,7 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.profile
 
 import android.content.res.Configuration
-import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import ir.truelearn.androidmvvmsample.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -18,19 +19,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPassword
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber
+import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @Composable
-fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
+fun PasswordScreen(
+    viewModel: LoginViewModel = hiltViewModel(),
+    dataStore: DataStoreViewModel = hiltViewModel()
+) {
     val coroutineScope = rememberCoroutineScope()
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val context = LocalContext.current
     if (!isSystemInDarkTheme()) {
 
         Column(
@@ -103,12 +108,11 @@ fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
                             viewModel.login()
                         }
                     } else {
-                        coroutineScope.launch {
-                            scaffoldState.snackbarHostState.showSnackbar(
-                                message = "This is your message",
-                                actionLabel = "Do something"
-                            )
-                        }
+                        Toast.makeText(
+                            context,
+                            context.resources.getText(R.string.password_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                     }
                 })
@@ -121,9 +125,19 @@ fun PasswordScreen(viewModel: LoginViewModel = hiltViewModel()) {
                 viewModel.loginResponse.collectLatest { result ->
                     when (result) {
                         is NetworkResult.Success -> {
-                            Log.e("3636", result.message.toString())
+
+                            Toast.makeText(
+                                context,
+                                result.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
                             result.data?.let {
                                 if (it.role == "user" && it.token.isNotEmpty()) {
+                                    dataStore.saveUserToken(it.token)
+                                    dataStore.saveUserId(it.id)
+                                    dataStore.saveUserPhoneNumber(it.phone)
+                                    dataStore.saveUserPassword(viewModel.inputPasswordState)
                                     viewModel.pageState = ProfilePageState.PROFILE_STATE
                                 }
                             }

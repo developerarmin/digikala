@@ -1,6 +1,8 @@
 package ir.truelearn.androidmvvmsample.ui.screens.profile
 
 import android.content.res.Configuration
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -11,6 +13,7 @@ import androidx.compose.runtime.*
 import ir.truelearn.androidmvvmsample.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.ui.component.MySackBar
 
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
@@ -29,8 +33,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
 
-    val coroutineScope = rememberCoroutineScope()
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val context = LocalContext.current
 
     if (!isSystemInDarkTheme()) {
 
@@ -96,18 +99,18 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
 
             PhoneEditText()
 
+
             DigikalaButton(
                 text = stringResource(id = R.string.digikala_entry),
                 onClick = {
                     if (isValidEmail(viewModel.inputPhoneState) || isValidPhoneNumber(viewModel.inputPhoneState)) {
                         viewModel.pageState = ProfilePageState.SET_PASSWORD_STATE
                     } else {
-                        coroutineScope.launch {
-                            scaffoldState.snackbarHostState.showSnackbar(
-                                message = "This is your message",
-                                actionLabel = "Do something"
-                            )
-                        }
+                        Toast.makeText(
+                            context,
+                            context.resources.getText(R.string.login_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                 })

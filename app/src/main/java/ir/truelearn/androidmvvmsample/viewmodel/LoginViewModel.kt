@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -32,6 +33,15 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
         viewModelScope.launch() {
             val loginRequest = LoginRequest(inputPhoneState, inputPasswordState)
             loginResponse.emit(repository.login(loginRequest));
+        }
+    }
+
+    suspend fun autoLogin(phone: String, password: String) {
+        viewModelScope.launch() {
+            val loginRequest = LoginRequest(phone, password)
+            loginResponse.emit(repository.login(loginRequest));
+            Log.e("3636" , "2")
+
         }
     }
 

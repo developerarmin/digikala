@@ -3,44 +3,48 @@ package ir.truelearn.androidmvvmsample.ui.screens.profile
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN
+import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
 
 @Composable
 fun ProfileScreen(
     navController: NavHostController,
-    loginViewModel: LoginViewModel = hiltViewModel()
+    loginViewModel: LoginViewModel = hiltViewModel(),
+    dataStore: DataStoreViewModel = hiltViewModel()
 ) {
 
-    when (loginViewModel.pageState) {
-        ProfilePageState.PROFILE_STATE -> {
-            Profile()
+
+    if (dataStore.getUserToken() != null) {
+        Profile()
+    } else {
+        when (loginViewModel.pageState) {
+            ProfilePageState.PROFILE_STATE -> {
+                Profile()
+            }
+            ProfilePageState.LOGIN_STATE -> {
+                LoginScreen()
+            }
+            ProfilePageState.SET_PASSWORD_STATE -> {
+                PasswordScreen()
+            }
         }
-        ProfilePageState.LOGIN_STATE -> {
-            LoginScreen()
-        }
-        ProfilePageState.SET_PASSWORD_STATE -> {
-            PasswordScreen()
-        }
+
     }
 
 }
 
 @Composable
-fun Profile() {
+fun Profile(dataStore: DataStoreViewModel = hiltViewModel()) {
     if (!isSystemInDarkTheme()) {
 
         Column(
@@ -48,8 +52,8 @@ fun Profile() {
                 .background(Color.White)
                 .fillMaxSize()
         ) {
-            Text(text = "profile hastam!")
 
+            dataStore.getUserToken()?.let { Text(text = it) }
         }
 
     } else {
