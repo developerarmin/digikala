@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
-import android.content.Context
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log
 import androidx.compose.foundation.*
@@ -12,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -74,6 +72,9 @@ fun Home(navController: NavHostController,
                     MostVisitedOfferSection()
 
                     MostDiscountedSection()
+
+                    CenterBannerItem(1)
+
                 }
             }
 

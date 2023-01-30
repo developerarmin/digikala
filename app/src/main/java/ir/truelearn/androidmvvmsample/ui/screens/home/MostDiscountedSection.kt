@@ -62,7 +62,7 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(800.dp)
+            .height(680.dp)
     ) {
         Text(
             modifier = Modifier
