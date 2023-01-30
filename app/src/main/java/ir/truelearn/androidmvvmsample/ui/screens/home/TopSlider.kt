@@ -6,7 +6,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,11 +25,12 @@ import com.google.accompanist.pager.rememberPagerState
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
+import ir.truelearn.androidmvvmsample.ui.theme.LocalShape
+import ir.truelearn.androidmvvmsample.ui.theme.LocalSpacing
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.withContext
 
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -51,7 +51,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                 }
                 is NetworkResult.Error -> {
                     loading = false
-                    Log.d("2121", "InitAmazingItems error:${result.message} ")
+                    Log.d("5555", "TopSlider error:${result.message} ")
                 }
                 is NetworkResult.Loading -> {
                     loading = true
@@ -70,7 +70,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(20.dp),
+                    .padding(LocalSpacing.current.mediumTwo),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -81,7 +81,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                 Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
-                    .padding(horizontal = 5.dp, vertical = 10.dp)
+                    .padding(horizontal = LocalSpacing.current.extraSmall, vertical = LocalSpacing.current.small)
             ) {
                 val pagerState = rememberPagerState()
                 var imageUrl by remember { mutableStateOf("") }
@@ -90,7 +90,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                     HorizontalPager(
                         count = it,
                         state = pagerState,
-                        //contentPadding = PaddingValues(horizontal = 32.dp),
+                        contentPadding = PaddingValues(horizontal = LocalSpacing.current.semiLargeTwo),
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth(),
@@ -109,7 +109,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                             Image(
                                 painter = painter, contentDescription = "", Modifier
                                     .padding(8.dp)
-                                    .clip(RoundedCornerShape(20.dp))
+                                    .clip(LocalShape.current.medium)
                                     .fillMaxSize(), contentScale = ContentScale.FillBounds
                             )
 
@@ -117,11 +117,11 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                                 pagerState = pagerState,
                                 modifier = Modifier
                                     .align(Alignment.BottomEnd)
-                                    .padding(20.dp),
+                                    .padding(LocalSpacing.current.semiLargeTwo),
                                 activeColor = Color.Black,
                                 inactiveColor = Color.LightGray,
-                                indicatorWidth = 5.dp,
-                                indicatorHeight = 5.dp,
+                                indicatorWidth = LocalSpacing.current.extraSmall,
+                                indicatorHeight = LocalSpacing.current.extraSmall,
                                 indicatorShape = CircleShape
                             )
                         }
@@ -136,7 +136,6 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                         //pagerState.animateScrollToPage(newPosition)
                         pagerState.scrollToPage(newPosition)
                     }
-
                 }
             }
         }
