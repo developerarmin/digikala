@@ -41,8 +41,8 @@ fun CircularIconBox(
         Box(
             modifier = Modifier
                 .clip(CircleShape)
-                .width(60.dp)
-                .height(60.dp)
+                .width(52.dp)
+                .height(52.dp)
                 .background(bgColor)
         ) {
             Image(

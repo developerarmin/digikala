@@ -47,8 +47,8 @@ fun RoundedIconBox(
                 painter = image,
                 contentDescription = "",
                 modifier = Modifier
-                    .width(60.dp)
-                    .height(60.dp)
+                    .width(52.dp)
+                    .height(52.dp)
             )
         }
 

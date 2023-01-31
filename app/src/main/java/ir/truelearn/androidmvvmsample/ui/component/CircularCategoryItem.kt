@@ -23,27 +23,28 @@ fun CircularCategoryItem(item: MainCategory) {
     Column(
         modifier = Modifier
             .width(100.dp)
-            .height(150.dp)
-            .padding(MaterialTheme.spacing.small),
+            .height(160.dp),
+//            .padding(horizontal = MaterialTheme.spacing.small),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
 
         Image(
             painter = rememberAsyncImagePainter(item.image),
             contentDescription = "",
             modifier = Modifier
-                .width(95.dp)
-                .height(95.dp)
-                .padding(0.dp, MaterialTheme.spacing.small, 0.dp, 0.dp)
+                .width(100.dp)
+                .height(100.dp)
+                .padding(vertical = MaterialTheme.spacing.extraSmall)
 
         )
         Text(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(top = MaterialTheme.spacing.extraSmall),
             text = item.name,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.darkText,
             maxLines = 2,
