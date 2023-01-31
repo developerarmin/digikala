@@ -56,7 +56,7 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                             .padding(
                                 vertical = MaterialTheme.spacing.small,
                                 horizontal = MaterialTheme.spacing.small
-                            ),
+                            ).size(MaterialTheme.spacing.semiLarge),
                         tint = MaterialTheme.colors.selectedBottomBar
                     )
                 }

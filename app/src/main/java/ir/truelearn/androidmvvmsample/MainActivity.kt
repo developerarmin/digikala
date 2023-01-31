@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
 
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -40,7 +42,9 @@ class MainActivity : ComponentActivity() {
                 } else {
                     androidx.compose.ui.unit.LayoutDirection.Rtl
                 }
-
+                Surface() {
+                    
+                }
                 CompositionLocalProvider(LocalLayoutDirection provides direction) {
                     Scaffold(
                         bottomBar = {

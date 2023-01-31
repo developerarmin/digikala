@@ -20,10 +20,12 @@ fun AppConfig(
     viewModel: LoginViewModel = hiltViewModel(),
     dataStore: DataStoreViewModel = hiltViewModel()
 ) {
+
     getDataStoreVariables(dataStore)
 
     LaunchedEffect(Dispatchers.Main) {
-        viewModel.autoLogin(USER_PHONE, USER_PASSWORD)
+        if (USER_PHONE != "null" && USER_PASSWORD != "null")
+            viewModel.autoLogin(USER_PHONE, USER_PASSWORD)
         viewModel.loginResponse.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
