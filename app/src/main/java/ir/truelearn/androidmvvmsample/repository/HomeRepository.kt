@@ -52,4 +52,9 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         safeApiCall {
             api.getCenterBanners()
         }
+    suspend fun getMostFavoriteProducts(): NetworkResult<List<FavoriteProduct>> =
+        safeApiCall {
+            api.getMostFavoriteProducts()
+        }
+
 }

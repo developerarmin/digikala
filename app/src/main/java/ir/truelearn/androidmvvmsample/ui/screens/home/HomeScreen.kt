@@ -75,6 +75,8 @@ fun Home(navController: NavHostController,
 
                     CenterBannerItem(1)
 
+                    TheMostFavoriteProductSection()
+
                 }
             }
 

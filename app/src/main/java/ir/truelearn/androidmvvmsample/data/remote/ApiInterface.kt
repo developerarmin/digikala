@@ -46,4 +46,7 @@ interface ApiInterface {
     suspend fun login(
         @Body login: LoginRequest
     ): Response<ResponseResult<LoginResponse>>
+
+    @GET("getMostFavoriteProducts")
+    suspend fun getMostFavoriteProducts(): Response<ResponseResult<List<FavoriteProduct>>>
 }
