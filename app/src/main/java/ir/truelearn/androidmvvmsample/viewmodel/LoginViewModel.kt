@@ -40,8 +40,6 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
         viewModelScope.launch() {
             val loginRequest = LoginRequest(phone, password)
             loginResponse.emit(repository.login(loginRequest));
-            Log.e("3636" , "2")
-
         }
     }
 

@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN
+import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN_KEY
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPassword
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber

@@ -5,9 +5,9 @@ object Constants {
     const val API_KEY = "EB43556E671B925B9C98E74643BCA"
     const val DATASTORE_NAME = "DIGIKALA_DATA_STORE"
 
-    const val USER_TOKEN = "USER_TOKEN"
-    const val USER_ID = "USER_ID"
-    const val USER_PHONE = "USER_PHONE"
-    const val USER_PASSWORD = "USER_PASSWORD"
-    const val USER_LANGUAGE = "USER_LANGUAGE"
+    const val USER_TOKEN_KEY = "USER_TOKEN_KEY"
+    const val USER_ID_KEY = "USER_ID_KEY"
+    const val USER_PHONE_KEY = "USER_PHONE_KEY"
+    const val USER_PASSWORD_KEY = "USER_PASSWORD_KEY"
+    const val USER_LANGUAGE_KEY = "USER_LANGUAGE_KEY"
 }
