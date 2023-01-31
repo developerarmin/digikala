@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     androidx.compose.ui.unit.LayoutDirection.Rtl
                 }
                 Surface() {
-                    
+
                 }
                 CompositionLocalProvider(LocalLayoutDirection provides direction) {
                     Scaffold(

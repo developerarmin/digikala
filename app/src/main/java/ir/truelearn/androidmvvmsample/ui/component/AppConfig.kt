@@ -49,6 +49,6 @@ private fun getDataStoreVariables(dataStore: DataStoreViewModel) {
     USER_ID = dataStore.getUserId().toString()
     USER_PHONE = dataStore.getUserPhoneNumber().toString()
     USER_PASSWORD = dataStore.getUserPassword().toString()
-    USER_LANGUAGE = dataStore.getUserLanguage().toString()
+    USER_LANGUAGE = dataStore.getUserLanguage()
 
 }
