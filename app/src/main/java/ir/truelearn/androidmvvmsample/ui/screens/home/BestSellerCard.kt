@@ -39,10 +39,10 @@ fun BestSellerCard(number:String, name:String, url:String) {
             Text(
                 text = number,
                 style = MaterialTheme.typography.extraBoldNumber,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.Black,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colors.DarkCyan,
-                modifier = Modifier.weight(.1f)
+                modifier = Modifier.weight(.1f).padding(horizontal = MaterialTheme.spacing.small)
             )
             Column(
                 modifier = Modifier

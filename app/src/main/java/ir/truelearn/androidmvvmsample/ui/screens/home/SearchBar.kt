@@ -60,7 +60,7 @@ fun SearchBar() {
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colors.unSelectedBottomBar,
                     style = MaterialTheme.typography.h2,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Normal,
                     text = stringResource(R.string.search_in)
                 )
                 Image(

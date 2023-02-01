@@ -79,7 +79,7 @@ fun CategoryListSection(
                 .padding(vertical = MaterialTheme.spacing.medium),
             text = categoryTitle,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h1,
+            style = MaterialTheme.typography.h2,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.darkText,
         )

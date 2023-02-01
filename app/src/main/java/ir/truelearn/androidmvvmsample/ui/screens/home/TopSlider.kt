@@ -62,7 +62,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(250.dp)
+            .height(200.dp)
             //.background(MaterialTheme.colors.DigikalaLightRed)
             .background(Color.White)
     ) {
@@ -90,7 +90,7 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                     HorizontalPager(
                         count = it,
                         state = pagerState,
-                        contentPadding = PaddingValues(horizontal = LocalSpacing.current.semiLargeTwo),
+                        contentPadding = PaddingValues(horizontal = LocalSpacing.current.medium),
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth(),
@@ -120,8 +120,8 @@ fun TopSlider(viewModel: HomeViewModel = hiltViewModel()) {
                                     .padding(LocalSpacing.current.semiLargeTwo),
                                 activeColor = Color.Black,
                                 inactiveColor = Color.LightGray,
-                                indicatorWidth = LocalSpacing.current.extraSmall,
-                                indicatorHeight = LocalSpacing.current.extraSmall,
+                                indicatorWidth = LocalSpacing.current.small,
+                                indicatorHeight = LocalSpacing.current.small,
                                 indicatorShape = CircleShape
                             )
                         }

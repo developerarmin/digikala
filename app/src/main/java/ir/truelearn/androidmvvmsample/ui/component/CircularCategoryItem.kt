@@ -44,7 +44,7 @@ fun CircularCategoryItem(item: MainCategory) {
                 .padding(top = MaterialTheme.spacing.extraSmall),
             text = item.name,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h6,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.darkText,
             maxLines = 2,

@@ -24,7 +24,7 @@ import javax.sql.RowSet
 fun AmazingShowMoreItem() {
     Card(
         modifier = Modifier
-            .size(180.dp, 380.dp)
+            .size(180.dp, 375.dp)
             .padding(end = 16.dp, start = 4.dp, top = 25.dp),
         shape = RoundedCornerShape(7.dp),
         contentColor = Color.White
