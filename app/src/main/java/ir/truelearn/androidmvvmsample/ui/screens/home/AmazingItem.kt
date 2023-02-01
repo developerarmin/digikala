@@ -1,7 +1,9 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,9 +25,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.google.gson.Gson
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Constants
 import ir.truelearn.androidmvvmsample.util.DigitHelper.applyDiscount
@@ -34,7 +40,7 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 
 @Composable
-fun AmazingItem(item: AmazingItem) {
+fun AmazingItem(item: AmazingItem, navHostController: NavController) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
     val previousPrice = item.price.toString()
     val currentPrice = applyDiscount(item.price, item.discountPercent)
@@ -42,7 +48,10 @@ fun AmazingItem(item: AmazingItem) {
     Card(
         modifier = Modifier
             .width(170.dp)
-            .padding(vertical = 25.dp, horizontal = 4.dp),
+            .padding(vertical = 25.dp, horizontal = 4.dp)
+            .clickable {
+                navHostController.navigate(Screen.ProductDetail.withArgs(item._id))
+            },
         shape = RoundedCornerShape(7.dp),
     ) {
         //root
@@ -157,7 +166,13 @@ fun AmazingItem(item: AmazingItem) {
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                             )
-                            Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier.size(MaterialTheme.spacing.semiLarge).padding(horizontal = MaterialTheme.spacing.extraSmall) )
+                            Image(
+                                painter = painterResource(id = R.drawable.toman),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(MaterialTheme.spacing.semiLarge)
+                                    .padding(horizontal = MaterialTheme.spacing.extraSmall)
+                            )
                         }
                         Text(
                             text = digitBySeparator(digitByLocate(previousPrice)),
