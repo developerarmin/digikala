@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.data.db
+package ir.truelearn.androidmvvmsample.data.model.basket
 
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
