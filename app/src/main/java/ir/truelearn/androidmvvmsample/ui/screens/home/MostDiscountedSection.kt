@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
 
@@ -86,19 +87,30 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
                 Loading3Dots(isDark = false)
             }
         } else {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .fillMaxWidth()
-            ) {
 
-                items(mostDiscountedList) { item ->
+            FlowRow(
+                maxItemsInEachRow = 2,
+                modifier = Modifier
+                    .fillMaxWidth()
+                ,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                for (item in mostDiscountedList){
                     MostDiscountedCard(discountedItem = item)
                 }
-
-
             }
+//            LazyVerticalGrid(
+//                columns = GridCells.Fixed(2),
+//                modifier = Modifier
+//                    .wrapContentHeight()
+//                    .fillMaxWidth()
+//            ) {
+//
+//                items(mostDiscountedList) { item ->
+//                    MostDiscountedCard(discountedItem = item)
+//                }
+//
+//            }
 
         }
     }
