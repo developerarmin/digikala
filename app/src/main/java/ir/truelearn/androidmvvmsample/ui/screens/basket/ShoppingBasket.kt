@@ -65,7 +65,7 @@ fun ShoppingBasket(viewModel: HomeViewModel = hiltViewModel()) {
                     .align(Alignment.BottomCenter)
             ) {
                 if (true)
-                BuyProcessContinue("23652") {
+                BuyProcessContinue("21990") {
                     Log.e("3636", "ادامه فرایند خرید")
                 }
             }

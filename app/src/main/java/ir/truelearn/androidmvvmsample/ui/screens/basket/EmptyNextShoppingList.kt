@@ -10,10 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
 import ir.truelearn.androidmvvmsample.util.Dimention
 
@@ -32,22 +34,21 @@ fun EmptyNextShoppingList() {
                 contentDescription = "",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .height(200.dp)
+                    .height(180.dp)
                     .width(200.dp)
             )
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "لیست خرید بعدی شما خالی است!",
+                text =  stringResource(R.string.next_cart_list_is_empty),
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h5,
                 color = Color.Black,
             )
             Spacer(modifier = Modifier.height(10.dp))
-
             Text(
-                text = "شما میتوانید محصولاتی که به سبد خرید خود افزوده اید و فعلا قصد خرید آنها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آنها را به سبد خرید اضافه کرده و خرید آنها را تکمیل کنید.",
-                fontWeight = FontWeight.Bold,
+                text = stringResource(R.string.next_cart_list_is_empty_msg),
+                fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.semiDarkText,
                 modifier = Modifier

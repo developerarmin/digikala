@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,26 +14,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.amber
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Dimention
 
 @Composable
 fun LoginOrRegisterState() {
+
     Card(
         modifier = Modifier
-            .padding(vertical = 16.dp)
-            .padding(end = 16.dp, start = 4.dp)
-            .clickable { Log.e("3636", "basketLoginOrRegester") },
+            .padding( MaterialTheme.spacing.medium)
+            .clickable { Log.e("3636", "basketLoginOrRegester") }
+        ,
         shape = RoundedCornerShape(7.dp),
-        contentColor = Color.Cyan,
-        elevation = 10.dp,
+        elevation = 1.dp,
+        border = BorderStroke(width = 1.dp, color = Color.LightGray),
 
         ) {
 
@@ -55,7 +56,7 @@ fun LoginOrRegisterState() {
                 verticalArrangement = Arrangement.Top,
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.show_more),
+                    painter = painterResource(id = R.drawable.import_96_orenge),
                     contentDescription = "",
                     tint = MaterialTheme.colors.amber,
                     modifier = Modifier.size(40.dp, 40.dp)
@@ -75,12 +76,12 @@ fun LoginOrRegisterState() {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    text = "ورود یا ثیت نام",
+                    text = stringResource(R.string.login_or_regester),
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.darkText,
-                    maxLines = 1,
+                    fontFamily = font_bold,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(5.dp))
@@ -88,10 +89,10 @@ fun LoginOrRegisterState() {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    text = "برای تجربه بهتر خرید و برسی روش ارسال کالاها لطفا وارد شوید.",
+                    text = stringResource(R.string.login_or_regester_msg),
                     textAlign = TextAlign.Start,
                     color = Color.Gray,
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.h6,
                     maxLines = 2
                 )
@@ -110,7 +111,7 @@ fun LoginOrRegisterState() {
                     painter = painterResource(id = R.drawable.arrow_forward),
                     contentDescription = "",
                     tint = Color.Gray,
-                    modifier = Modifier.size(32.dp, 32.dp)
+                    modifier = Modifier.size(18.dp, 18.dp)
                 )
 
             }

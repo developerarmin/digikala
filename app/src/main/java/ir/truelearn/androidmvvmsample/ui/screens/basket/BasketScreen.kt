@@ -12,13 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
@@ -35,12 +38,14 @@ fun BasketScreen(
 fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
     if (!isSystemInDarkTheme()) {
         var selectedTabIndex by remember { mutableStateOf(0) } // 1.
-        val tabTitles = listOf("سبد خرید", "لیست خرید بعدی")
+        val tabTitles = listOf(stringResource(R.string.cart),stringResource(R.string.next_cart_list))
         var counterState = 0
 
         Column {
             TabRow(
-                backgroundColor = Color.White,
+                modifier = Modifier
+                    .padding(start = MaterialTheme.spacing.medium, end =MaterialTheme.spacing.medium),
+                        backgroundColor = Color.White,
                 contentColor = MaterialTheme.colors.digikalaRed,
                 selectedTabIndex = selectedTabIndex,
                 indicator = { line ->
@@ -49,6 +54,7 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
                             .tabIndicatorOffset(line[selectedTabIndex])
                             .height(3.dp)
                             .background(color = Color.Red)
+                    ,
                     )
                 }
 
@@ -74,7 +80,7 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
 
                                 if (counterState > 0) {
                                     Spacer(modifier = Modifier.width(10.dp))
-                                    SetBadgeToTab(
+                                    SetBadgetToTab(
                                         selectedTabIndex = selectedTabIndex,
                                         index = index,
                                         badget = counterState

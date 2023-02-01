@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
@@ -35,9 +36,9 @@ fun EmptyBasketShopping() {
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "سبد خرید شما خالی است!",
+                text =stringResource(R.string.cart_is_empty),
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.h5,
                 color = MaterialTheme.colors.semiDarkText,
             )
         }

@@ -17,7 +17,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun SetBadgeToTab(selectedTabIndex:Int,index:Int,badget: Int) {
+fun SetBadgetToTab(selectedTabIndex:Int,index:Int,badget: Int) {
     Card(
         modifier = Modifier
             .background(Color.Transparent)
