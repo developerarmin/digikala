@@ -38,14 +38,18 @@ fun BasketScreen(
 fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
     if (!isSystemInDarkTheme()) {
         var selectedTabIndex by remember { mutableStateOf(0) } // 1.
-        val tabTitles = listOf(stringResource(R.string.cart),stringResource(R.string.next_cart_list))
+        val tabTitles =
+            listOf(stringResource(R.string.cart), stringResource(R.string.next_cart_list))
         var counterState = 0
 
         Column {
             TabRow(
                 modifier = Modifier
-                    .padding(start = MaterialTheme.spacing.medium, end =MaterialTheme.spacing.medium),
-                        backgroundColor = Color.White,
+                    .padding(
+                        start = MaterialTheme.spacing.medium,
+                        end = MaterialTheme.spacing.medium
+                    ),
+                backgroundColor = Color.White,
                 contentColor = MaterialTheme.colors.digikalaRed,
                 selectedTabIndex = selectedTabIndex,
                 indicator = { line ->
@@ -53,8 +57,7 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
                         modifier = Modifier
                             .tabIndicatorOffset(line[selectedTabIndex])
                             .height(3.dp)
-                            .background(color = Color.Red)
-                    ,
+                            .background(color = Color.Red),
                     )
                 }
 

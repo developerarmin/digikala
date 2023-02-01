@@ -76,7 +76,7 @@ fun LoginOrRegisterState() {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    text = stringResource(R.string.login_or_regester),
+                    text = stringResource(R.string.login_or_register),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold,
@@ -89,7 +89,7 @@ fun LoginOrRegisterState() {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    text = stringResource(R.string.login_or_regester_msg),
+                    text = stringResource(R.string.login_or_register_msg),
                     textAlign = TextAlign.Start,
                     color = Color.Gray,
                     fontWeight = FontWeight.SemiBold,
