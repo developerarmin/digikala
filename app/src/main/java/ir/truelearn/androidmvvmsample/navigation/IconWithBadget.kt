@@ -19,7 +19,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun IconWithBadget(badget: Int, icon: Painter) {
+fun IconWithBadge(badget: Int, icon: Painter) {
     Box(
         modifier = Modifier
             .height(24.dp)

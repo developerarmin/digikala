@@ -55,7 +55,6 @@
     <string name="favoriteProduct">محبوب ترین محصولات</string>
 
 <!--basket desc-->
-<!--    stringResource(R.string.search_in)-->
     <string name="cart">سبد خرید</string>
     <string name="next_cart_list">لیست خرید بعدی</string>
     <string name="purchase_process">ادامه فرآیند خرید</string>

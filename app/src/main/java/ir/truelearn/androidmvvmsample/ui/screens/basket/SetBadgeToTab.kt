@@ -17,14 +17,14 @@ import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun SetBadgetToTab(selectedTabIndex:Int,index:Int,badget: Int) {
+fun SetBadgeToTab(selectedTabIndex:Int,index:Int,badge: Int) {
     Card(
         modifier = Modifier
             .background(Color.Transparent)
     ) {
                 if (selectedTabIndex == index) {
                         Text(
-                            text ="${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badget.toString()))} ",
+                            text ="${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badge.toString()))} ",
                             modifier = Modifier
                                 .background(color = MaterialTheme.colors.digikalaRed)
                                 .padding(top=0.dp, bottom = 0.dp, start = 5.dp, end = 1.dp),
@@ -35,7 +35,7 @@ fun SetBadgetToTab(selectedTabIndex:Int,index:Int,badget: Int) {
                         )
                 } else {
                         Text(
-                            text ="${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badget.toString()))} ",
+                            text ="${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badge.toString()))} ",
                             modifier = Modifier
                                 .background(color = Color.Gray)
                                 .padding(top=0.dp, bottom = 0.dp, start = 5.dp, end = 1.dp),

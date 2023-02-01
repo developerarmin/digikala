@@ -15,9 +15,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
-import ir.truelearn.androidmvvmsample.util.Dimention
+import ir.truelearn.androidmvvmsample.util.Dimension
 
 
 @Composable
@@ -52,7 +51,7 @@ fun EmptyNextShoppingList() {
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.semiDarkText,
                 modifier = Modifier
-                    .width(Dimention.width(80f).dp)
+                    .width(Dimension.width(80f).dp)
                 ,
                 textAlign = TextAlign.Center
             )

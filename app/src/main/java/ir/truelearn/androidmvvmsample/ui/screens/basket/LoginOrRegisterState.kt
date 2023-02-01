@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Dimention
+import ir.truelearn.androidmvvmsample.util.Dimension
 
 @Composable
 fun LoginOrRegisterState() {
@@ -51,7 +51,7 @@ fun LoginOrRegisterState() {
         ) {
             Column(
                 modifier = Modifier
-                    .width(Dimention.width(15f).dp),
+                    .width(Dimension.width(15f).dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
             ) {
@@ -68,7 +68,7 @@ fun LoginOrRegisterState() {
 
             Column(
                 modifier = Modifier
-                    .width(Dimention.width(65f).dp),
+                    .width(Dimension.width(65f).dp),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center,
             ) {
@@ -103,7 +103,7 @@ fun LoginOrRegisterState() {
             Spacer(modifier = Modifier.width(5.dp))
             Column(
                 modifier = Modifier
-                    .width(Dimention.width(15f).dp),
+                    .width(Dimension.width(15f).dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
             ) {

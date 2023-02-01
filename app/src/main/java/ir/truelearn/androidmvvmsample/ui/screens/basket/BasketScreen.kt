@@ -80,10 +80,10 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
 
                                 if (counterState > 0) {
                                     Spacer(modifier = Modifier.width(10.dp))
-                                    SetBadgetToTab(
+                                    SetBadgeToTab(
                                         selectedTabIndex = selectedTabIndex,
                                         index = index,
-                                        badget = counterState
+                                        badge = counterState
                                     )
                                 }
                             }
