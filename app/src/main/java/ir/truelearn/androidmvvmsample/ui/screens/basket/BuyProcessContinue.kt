@@ -38,27 +38,10 @@ fun BuyProcessContinue(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-//            Button(
-//                modifier = Modifier.padding(4.dp),
-//                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.DigikalaLightRed),
-//                onClick = { onClick() }
-//
-//            ) {
-//                Text(
-//                    text = "ادامه فرایند خرید",
-//                    style = MaterialTheme.typography.h6,
-//                    fontWeight = FontWeight.SemiBold,
-//                    color = Color.White,
-//                    overflow = TextOverflow.Ellipsis
-//                )
-//            }
-
             Button(
                 onClick = onClick,
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
                 modifier = Modifier
-                    //.fillMaxWidth()
-                    //.height(65.dp)
                     .padding(
                         start = MaterialTheme.spacing.semiLarge,
                         end = MaterialTheme.spacing.semiLarge,
@@ -75,9 +58,6 @@ fun BuyProcessContinue(
                     fontSize = 14.sp
                 )
             }
-
-
-
             Column(
                 modifier = Modifier
                     .padding(4.dp),
@@ -91,8 +71,6 @@ fun BuyProcessContinue(
                     style = SmallFont.body1,
                     color = MaterialTheme.colors.semiDarkText,
                 )
-
-
                 Text(
                     text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price))} ${
                         stringResource(
@@ -103,7 +81,6 @@ fun BuyProcessContinue(
                     fontWeight = FontWeight.SemiBold,
                 )
             }
-
         }
     }
 }

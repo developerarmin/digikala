@@ -26,12 +26,12 @@ fun IconWithBadget(badget: Int, icon: Painter) {
     Card(
         modifier = Modifier
             .height(24.dp)
-            .width(24.dp)
+
     ) {
         Box(
             modifier = Modifier
                 .height(24.dp)
-                .width(24.dp)
+
         )
         {
             Icon(
@@ -44,7 +44,7 @@ fun IconWithBadget(badget: Int, icon: Painter) {
         Box(
             modifier = Modifier
                 .height(24.dp)
-                .width(24.dp),
+            ,
             contentAlignment = Alignment.BottomStart
         )
         {

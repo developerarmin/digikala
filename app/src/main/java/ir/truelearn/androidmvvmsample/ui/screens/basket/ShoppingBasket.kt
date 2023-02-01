@@ -53,18 +53,15 @@ fun ShoppingBasket(viewModel: HomeViewModel = hiltViewModel()) {
 
                         if (true)
                             EmptyBasketShopping()
-
                     }
                 }
-
-
             }
 //-------------------------------------------------------------------------------------------
             Row(
                 modifier = Modifier
                     //.weight(1f, false) // in column be work and be in bottom
                     .fillMaxWidth()
-                    .padding(bottom = 60.dp)
+                    .padding(bottom = 56.dp)
                     .align(Alignment.BottomCenter)
             ) {
                 if (true)
