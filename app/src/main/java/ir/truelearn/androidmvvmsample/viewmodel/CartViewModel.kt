@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +21,8 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
+    var cartItemCounter = mutableStateOf(6)
+    var nextCartItemCounter = mutableStateOf(0)
 
     init {
 

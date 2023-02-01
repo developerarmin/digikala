@@ -12,8 +12,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
+import ir.truelearn.androidmvvmsample.ui.screens.profile.DigikalaButton
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
@@ -35,20 +37,46 @@ fun BuyProcessContinue(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(
-                modifier = Modifier.padding(4.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.DigikalaLightRed),
-                onClick = { onClick() }
 
+//            Button(
+//                modifier = Modifier.padding(4.dp),
+//                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.DigikalaLightRed),
+//                onClick = { onClick() }
+//
+//            ) {
+//                Text(
+//                    text = "ادامه فرایند خرید",
+//                    style = MaterialTheme.typography.h6,
+//                    fontWeight = FontWeight.SemiBold,
+//                    color = Color.White,
+//                    overflow = TextOverflow.Ellipsis
+//                )
+//            }
+
+            Button(
+                onClick = onClick,
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
+                modifier = Modifier
+                    //.fillMaxWidth()
+                    //.height(65.dp)
+                    .padding(
+                        start = MaterialTheme.spacing.semiLarge,
+                        end = MaterialTheme.spacing.semiLarge,
+                        bottom = MaterialTheme.spacing.medium,
+                        top = MaterialTheme.spacing.medium
+                    ),
+                shape = MaterialTheme.roundedShape.small
             ) {
                 Text(
                     text = "ادامه فرایند خرید",
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.SemiBold,
                     color = Color.White,
-                    overflow = TextOverflow.Ellipsis
+                    fontFamily = font_standard,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp
                 )
             }
+
+
 
             Column(
                 modifier = Modifier
@@ -56,13 +84,14 @@ fun BuyProcessContinue(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 Text(
                     text = "جمع سبد خرید",
-                    color = Color.Gray,
-                    style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.SemiBold,
-                    overflow = TextOverflow.Ellipsis
+                    style = SmallFont.body1,
+                    color = MaterialTheme.colors.semiDarkText,
                 )
+
 
                 Text(
                     text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price))} ${
