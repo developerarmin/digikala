@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -147,15 +149,16 @@ fun AmazingItem(item: AmazingItem) {
                     }
 
                     Column() {
+                        Row() {
+
+
                         Text(
-                            text = "${digitBySeparator(digitByLocate(currentPrice.toString()))} ${
-                                stringResource(
-                                    id = R.string.price_unit
-                                )
-                            }",
+                            text = digitBySeparator(digitByLocate(currentPrice.toString())),
                             style = MaterialTheme.typography.body2,
                             fontWeight = FontWeight.SemiBold,
                         )
+                        Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier.size(MaterialTheme.spacing.semiLarge).padding(horizontal = MaterialTheme.spacing.extraSmall) )
+                        }
                         Text(
                             text = digitBySeparator(digitByLocate(previousPrice)),
                             color = Color.LightGray,
