@@ -49,4 +49,6 @@ interface ApiInterface {
 
     @GET("getMostFavoriteProducts")
     suspend fun getMostFavoriteProducts(): Response<ResponseResult<List<FavoriteProduct>>>
+    @GET("getAllProducts")
+    suspend fun getSuggestedItems(): Response<ResponseResult<List<MostDiscountedItem>>>
 }
