@@ -30,33 +30,30 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
     Card(
         modifier = Modifier
-            .width(170.dp)
+            .fillMaxWidth(0.5f)
+//            .width(192.dp)
+            .fillMaxHeight(0.48f)
             .padding(bottom = MaterialTheme.spacing.miniDp),
         shape = MaterialTheme.roundedShape.default,
         elevation = 1.dp
     ) {
+
+        //title && image
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+//                .padding(vertical = MaterialTheme.spacing.extraSmall)
         ) {
-
-            //title && image
-            Column(
+            Image(
+                painter = rememberAsyncImagePainter(discountedItem.image),
+                contentDescription = "most discounted item image",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = MaterialTheme.spacing.extraSmall)
-            ) {
-                Image(
-                    painter = rememberAsyncImagePainter(discountedItem.image),
-                    contentDescription = "most discounted item image",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(130.dp),
-                    contentScale = ContentScale.Fit,
-                )
-            }
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+                    .height(130.dp),
+                contentScale = ContentScale.Fit,
+            )
 
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             //info
             Column(
                 modifier = Modifier
@@ -65,7 +62,6 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxSize()
                         .height(48.dp)
                         .padding(horizontal = MaterialTheme.spacing.small),
                     text = discountedItem.name,
@@ -148,11 +144,19 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                         val discountedSeparatedResult = digitBySeparator(discountedLocaleResult)
                         val previousDiscountedItemPrice =
                             digitBySeparator(digitByLocate(discountedItem.price.toString()))
-                        Text(
-                            text = "$discountedSeparatedResult ${stringResource(id = R.string.price_unit)}",
-                            style = MaterialTheme.typography.body2,
-                            fontWeight = FontWeight.SemiBold,
-                        )
+                        Row() {
+                            Text(
+                                text = discountedSeparatedResult,
+                                style = MaterialTheme.typography.body2,
+                                fontWeight = FontWeight.SemiBold,
+                            )
+
+                            Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier
+                                .size(MaterialTheme.spacing.semiLarge)
+                                .padding(horizontal = MaterialTheme.spacing.extraSmall) )
+                        }
+
+
                         Text(
                             text = previousDiscountedItemPrice,
                             color = Color.LightGray,
@@ -167,11 +171,10 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     }
                 }
             }
-
-
         }
-    }
 
+
+    }
 
 }
 

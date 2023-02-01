@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
@@ -92,9 +93,11 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
                 maxItemsInEachRow = 2,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .wrapContentHeight()
                 ,
-                horizontalArrangement = Arrangement.SpaceAround
+                horizontalArrangement = Arrangement.Center
             ) {
+
                 for (item in mostDiscountedList){
                     MostDiscountedCard(discountedItem = item)
                 }
