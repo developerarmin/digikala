@@ -152,12 +152,12 @@ fun AmazingItem(item: AmazingItem) {
                         Row() {
 
 
-                        Text(
-                            text = digitBySeparator(digitByLocate(currentPrice.toString())),
-                            style = MaterialTheme.typography.body2,
-                            fontWeight = FontWeight.SemiBold,
-                        )
-                        Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier.size(MaterialTheme.spacing.semiLarge).padding(horizontal = MaterialTheme.spacing.extraSmall) )
+                            Text(
+                                text = digitBySeparator(digitByLocate(currentPrice.toString())),
+                                style = MaterialTheme.typography.body2,
+                                fontWeight = FontWeight.SemiBold,
+                            )
+                            Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier.size(MaterialTheme.spacing.semiLarge).padding(horizontal = MaterialTheme.spacing.extraSmall) )
                         }
                         Text(
                             text = digitBySeparator(digitByLocate(previousPrice)),
