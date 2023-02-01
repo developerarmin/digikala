@@ -93,7 +93,6 @@ fun BottomNavigationBar(
                                         painter = item.selectedIcon,
                                         contentDescription = item.name
                                     )
-
                             } else {
                                 if(index==2 && cartCounter.value>0 )
                                     IconWithBadget(cartCounter.value,item.deSelectedIcon)
@@ -105,7 +104,6 @@ fun BottomNavigationBar(
                                     contentDescription = item.name
                                 )
                             }
-
                             Text(
                                 text = item.name,
                                 textAlign = TextAlign.Center,
@@ -113,7 +111,6 @@ fun BottomNavigationBar(
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier.padding(top = 5.dp)
                             )
-
                         }
                     }
                 )

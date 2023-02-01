@@ -33,8 +33,7 @@ fun EmptyBasketShopping() {
                     .height(200.dp)
                     .width(200.dp)
             )
-            Spacer(modifier = Modifier.height(10.dp))
-
+            Spacer(modifier = Modifier.height(2.dp))
             Text(
                 text = "سبد خرید شما خالی است!",
                 fontWeight = FontWeight.Bold,

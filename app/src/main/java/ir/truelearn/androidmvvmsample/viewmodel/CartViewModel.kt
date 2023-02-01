@@ -21,8 +21,8 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
-    var cartItemCounter = mutableStateOf(26)
-    var nextCartItemCounter = mutableStateOf(0)
+    var cartItemCounter = mutableStateOf(4)
+    var nextCartItemCounter = mutableStateOf(3)
 
     init {
 

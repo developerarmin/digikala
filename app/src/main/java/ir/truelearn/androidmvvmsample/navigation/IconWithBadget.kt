@@ -31,7 +31,6 @@ fun IconWithBadget(badget: Int, icon: Painter) {
         Box(
             modifier = Modifier
                 .height(24.dp)
-
         )
         {
             Icon(
@@ -48,7 +47,6 @@ fun IconWithBadget(badget: Int, icon: Painter) {
             contentAlignment = Alignment.BottomStart
         )
         {
-
             Text(
                 text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badget.toString()))} ",
                 modifier = Modifier

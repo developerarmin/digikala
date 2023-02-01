@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import ir.truelearn.androidmvvmsample.ui.screens.home.AmazingOfferSection
+import ir.truelearn.androidmvvmsample.ui.screens.home.ProposalCardSection
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
 
@@ -39,7 +41,6 @@ fun ShoppingBasket(viewModel: HomeViewModel = hiltViewModel()) {
 
                     Column(
                         modifier = Modifier
-                            // .background(Color.Cyan)
                             .fillMaxSize()
                             .verticalScroll(rememberScrollState())
                             .padding(bottom = 140.dp),
@@ -59,7 +60,6 @@ fun ShoppingBasket(viewModel: HomeViewModel = hiltViewModel()) {
 //-------------------------------------------------------------------------------------------
             Row(
                 modifier = Modifier
-                    //.weight(1f, false) // in column be work and be in bottom
                     .fillMaxWidth()
                     .padding(bottom = 56.dp)
                     .align(Alignment.BottomCenter)
