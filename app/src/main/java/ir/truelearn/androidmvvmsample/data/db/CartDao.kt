@@ -26,6 +26,7 @@ interface CartDao {
 
     @Query("select *from shopping_cart")
     fun getAllItems(): Flow<List<CartItem>>
+
     @Query("select *from shopping_cart where cartStatus=:status")
     fun getAllItems(status:CartStatus): Flow<List<CartItem>>
 }

@@ -12,7 +12,6 @@ fun NextShoppingList() {
 
     Box(
         modifier = Modifier
-//            .background(Color.Blue)
             .fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
