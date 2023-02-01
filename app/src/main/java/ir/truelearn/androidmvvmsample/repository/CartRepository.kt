@@ -6,8 +6,11 @@ import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import javax.inject.Inject
 
 class CartRepository @Inject constructor(private val cartDao: CartDao) {
+
     val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
+
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
+
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
     }

@@ -3,7 +3,7 @@ package ir.truelearn.androidmvvmsample.util
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 
-class Dimention {
+class Dimension {
     companion object {
     @Composable
     fun width(value:Float):Float{
