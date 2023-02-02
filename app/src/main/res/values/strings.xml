@@ -53,7 +53,19 @@
     <string name="login_error">فرمت شماره تلفن یا ایمیل صحیح نیست.</string>
     <string name="password_error">اطلاعات وارد شده صحیح نیست</string>
     <string name="favoriteProduct">محبوب ترین محصولات</string>
-    
+
+
+    <string name="superMarketArticle">کالاهای سوپر مارکتی</string>
+    <string name="oneArticle">1 کالا</string>
+    <string name="articleName">نان همبرگر نان آوران بسته یک عددی</string>
+    <string name="articleWarranty">گارانتی اصالت و سلامت فیزیکی کالا</string>
+    <string name="storeName">دیجی کالا</string>
+    <string name="availableInDigiKala">موجود در انبار دیجی کالا</string>
+    <string name="digiKalaSuperMarketSpeedSend">ارسال سریع سوپر مارکتی دیجی کالا</string>
+    <string name="saveToNextList">ذخیره در لیست خرید بعدی</string>
+    <string name="count">1</string>
+    <string name="increase">+</string>
+    <string name="benefit">7,990   </string>
 
 
 </resources>
