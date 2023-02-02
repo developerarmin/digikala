@@ -85,4 +85,12 @@
     <string name="login_or_register_msg">برای تجربه بهتر خرید و بررسی روش ارسال کالاها لطفا وارد شوید.</string>
 
 
+    <string name="my_orders">سفارش‌های من</string>
+    <string name="processing">در حال پردازش</string>
+    <string name="returned">مرجوع شده</string>
+    <string name="canceled">لغو شده</string>
+    <string name="delivered">تحویل شده</string>
+    <string name="unpaid">در انتظار پرداخت</string>
+
+
 </resources>
