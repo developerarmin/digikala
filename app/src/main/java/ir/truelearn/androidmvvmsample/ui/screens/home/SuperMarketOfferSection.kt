@@ -80,7 +80,7 @@ fun SuperMarketOfferSection(
                     AmazingOfferCard(R.drawable.supermarketamazings, R.drawable.fresh)
                 }
                 items(list) { item ->
-                    AmazingItem(item, navHostController = navHostController)
+                    AmazingItem(item, navHostController = navHostController,false)
                 }
                 item {
                     AmazingShowMoreItem()
