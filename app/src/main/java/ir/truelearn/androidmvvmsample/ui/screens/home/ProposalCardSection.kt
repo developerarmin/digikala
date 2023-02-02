@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProposalCardSection(
     viewModel: HomeViewModel = hiltViewModel()
@@ -53,18 +54,29 @@ fun ProposalCardSection(
             }
         }
     }
-
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+    FlowRow(maxItemsInEachRow = 2,
         modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
             .padding(MaterialTheme.spacing.small)
-    ) {
-        items(listProposal) { item ->
-            ProposalCardItem(item)
+            ) {
+        for(item in listProposal){
+            ProposalCardItem(imgLink = item)
         }
-
     }
+
+
+//    LazyVerticalGrid(
+//        columns = GridCells.Fixed(2),
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .height(290.dp)
+//            .padding(MaterialTheme.spacing.small)
+//    ) {
+//        items(listProposal) { item ->
+//            ProposalCardItem(item)
+//        }
+//
+//    }
 
 }

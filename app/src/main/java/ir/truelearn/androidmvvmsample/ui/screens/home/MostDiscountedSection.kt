@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
@@ -26,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
 
@@ -86,19 +88,32 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
                 Loading3Dots(isDark = false)
             }
         } else {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
+
+            FlowRow(
+                maxItemsInEachRow = 2,
                 modifier = Modifier
-                    .wrapContentHeight()
                     .fillMaxWidth()
+                    .wrapContentHeight()
+                ,
+                horizontalArrangement = Arrangement.Center
             ) {
 
-                items(mostDiscountedList) { item ->
+                for (item in mostDiscountedList){
                     MostDiscountedCard(discountedItem = item)
                 }
-
-
             }
+//            LazyVerticalGrid(
+//                columns = GridCells.Fixed(2),
+//                modifier = Modifier
+//                    .wrapContentHeight()
+//                    .fillMaxWidth()
+//            ) {
+//
+//                items(mostDiscountedList) { item ->
+//                    MostDiscountedCard(discountedItem = item)
+//                }
+//
+//            }
 
         }
     }
