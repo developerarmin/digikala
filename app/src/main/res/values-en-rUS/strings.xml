@@ -63,6 +63,18 @@
     <string name="club">Digi Club</string>
     <string name="contact_us">Contact us</string>
 
+    <string name="superMarketArticle">Supermarket Articles</string>
+    <string name="oneArticle">1 item</string>
+    <string name="articleName">Hamburger bun, Avaran bun, one pack</string>
+    <string name="articleWarranty">Warranty of authenticity and physical health of goods</string>
+    <string name="storeName">Digi Kala</string>
+    <string name="availableInDigiKala">Available in DigiKala warehouse</string>
+    <string name="digiKalaSuperMarketSpeedSend">DigiKala Super Market Speed ​​Send</string>
+    <string name="saveToNextList">Save to next shopping list</string>
+    <string name="count">1</string>
+    <string name="increase">+</string>
+    <string name="benefit">7,990 </string>
+
     <!--basket desc-->
     <string name="cart">Cart</string>
     <string name="next_cart_list">next cart list</string>

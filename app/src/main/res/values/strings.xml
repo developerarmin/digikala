@@ -40,7 +40,7 @@
     <string name="gift_card">کارت هدیه</string>
     <string name="digi_plus">دیجی پلاس</string>
     <string name="more">بیشتر</string>
-
+    <string name="suggestion_for_you">پیشنهاد برای شما</string>
     <string name="loginTxt">برای ورود یا ثبت نام در دیجی کالا شماره موبایل یا پست الکترونیک خود را وارد نمایید</string>
     <string name="set_password_text">لطفا یک رمز عبور برای خود تعیین کنید و یا اگر قبلا ثبت‌نام کرده‌اید، رمز عبور خود را وارد کنید.</string>
     <string name="terms_and_rules_full">با ورود و یا ثبت نام در دیجی کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی کالا و قوانین حریم خصوصی آن را می پذیرید.</string>
@@ -54,6 +54,12 @@
     <string name="password_error">اطلاعات وارد شده صحیح نیست</string>
     <string name="favoriteProduct">محبوب ترین محصولات</string>
 
+    <string name="digikala_score">امتیاز دیجی‌کالا</string>
+    <string name="digikala_wallet_active">فعال‌سازی کیف پول</string>
+    <string name="score"> امتیاز</string>
+    <string name="auth">احراز هویت</string>
+    <string name="club">دیجی ‌کلاب</string>
+    <string name="contact_us">تماس با ما</string>
 
     <string name="superMarketArticle">کالاهای سوپر مارکتی</string>
     <string name="oneArticle">1 کالا</string>
@@ -66,6 +72,17 @@
     <string name="count">1</string>
     <string name="increase">+</string>
     <string name="benefit">7,990   </string>
+
+    <!--basket desc-->
+    <string name="cart">سبد خرید</string>
+    <string name="next_cart_list">لیست خرید بعدی</string>
+    <string name="purchase_process">ادامه فرآیند خرید</string>
+    <string name="total_shopping_cart">جمع سبد خرید</string>
+    <string name="cart_is_empty">سبد خرید شما خالی است!</string>
+    <string name="next_cart_list_is_empty">لیست خرید بعدی شما خالی است!</string>
+    <string name="next_cart_list_is_empty_msg">شما می‌توانید محصولاتی که به سبد خرید خود افزوده‌اید و فعلا قصد خرید آن‌ها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آن‌ها را به سبد خرید اضافه کرده و خرید آن‌ها را تکمیل کنید.</string>
+    <string name="login_or_register">ورود یا ثبت نام</string>
+    <string name="login_or_register_msg">برای تجربه بهتر خرید و بررسی روش ارسال کالاها لطفا وارد شوید.</string>
 
 
 </resources>
