@@ -65,7 +65,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
 
                     if (currentCartItems.value.isEmpty()) {
                         EmptyBasketShopping()
-//                            SuggestListSection()
+                            SuggestListSection()
                     } else {
                         //cart list
                         Column(
