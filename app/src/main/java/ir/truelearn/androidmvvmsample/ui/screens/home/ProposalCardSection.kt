@@ -12,12 +12,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.component.CircularCategoryItem
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProposalCardSection(
     viewModel: HomeViewModel = hiltViewModel()
@@ -53,8 +55,18 @@ fun ProposalCardSection(
             }
         }
     }
-
-    LazyVerticalGrid(
+    FlowRow(
+        horizontalArrangement = Arrangement.SpaceAround,
+        maxItemsInEachRow = 2,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(MaterialTheme.spacing.small)
+    ) {
+        for (item in listProposal) {
+            ProposalCardItem(item)
+        }
+   /* LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxWidth()
@@ -63,7 +75,7 @@ fun ProposalCardSection(
     ) {
         items(listProposal) { item ->
             ProposalCardItem(item)
-        }
+        }*/
 
     }
 
