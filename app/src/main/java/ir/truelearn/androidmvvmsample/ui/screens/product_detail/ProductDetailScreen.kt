@@ -38,6 +38,7 @@ fun ProductDetail(
                 .verticalScroll(rememberScrollState())
         ) {
 
+            TopAppBarProductDetail(navController)
 
         }
     }
