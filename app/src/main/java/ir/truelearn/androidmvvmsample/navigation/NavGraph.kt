@@ -37,34 +37,24 @@ fun SetupNavGraph(navController: NavHostController) {
             CategoryScreen(navController = navController)
         }
 
-        composable(
-            route = Screen.ProductDetail.route + "/{id}/{amazing}",
-            arguments = listOf(
-                navArgument("id") {
-                type = NavType.StringType
-            },
-                navArgument("amazing") {
-                    type = NavType.BoolType
-                })
-        ) {
-            ProductDetailScreen(
-                navController = navController,
-                id = it.arguments?.getString("id").toString(),
-                isAmazing = it.arguments!!.getBoolean("amazing")
-            )
-        }
-
-        composable(
-            route = Screen.WebView.route + "?url={url}",
-            arguments = listOf(navArgument("url") {
-                type = NavType.StringType
-                defaultValue = ""
-                nullable = true
+        composable(route = Screen.ProductDetail.route+"/{id}",
+            arguments = listOf(navArgument("id"){
+                type= NavType.StringType
             })
         ) {
-            val url = it.arguments?.getString("url")
+            ProductDetailScreen(navController = navController, id = it.arguments?.getString("id").toString())
+        }
+
+        composable(route = Screen.WebView.route+"?url={url}",
+        arguments = listOf(navArgument("url"){
+            type= NavType.StringType
+            defaultValue=""
+            nullable=true
+        })
+        ) {
+            val url=it.arguments?.getString("url")
             url?.let {
-                WebPageScreen(navController = navController, url = url)
+                WebPageScreen(navController = navController, url=url)
             }
         }
 

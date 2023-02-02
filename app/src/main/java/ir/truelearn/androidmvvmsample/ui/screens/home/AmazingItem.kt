@@ -40,7 +40,7 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 
 @Composable
-fun AmazingItem(item: AmazingItem, navHostController: NavController,isAmazing:Boolean) {
+fun AmazingItem(item: AmazingItem, navHostController: NavController) {
     val categoryTitle = "شگفت انگیز اختصاصی اپ"
     val previousPrice = item.price.toString()
     val currentPrice = applyDiscount(item.price, item.discountPercent)
@@ -50,7 +50,7 @@ fun AmazingItem(item: AmazingItem, navHostController: NavController,isAmazing:Bo
             .width(170.dp)
             .padding(vertical = 25.dp, horizontal = 4.dp)
             .clickable {
-                navHostController.navigate(Screen.ProductDetail.withArgs(item._id,isAmazing))
+                navHostController.navigate(Screen.ProductDetail.withArgs(item._id))
             },
         shape = RoundedCornerShape(7.dp),
     ) {
