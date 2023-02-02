@@ -9,5 +9,15 @@ sealed class Screen(val route: String) {
     object Category : Screen("category_screen")
     object Test : Screen("test_screen")
     object WebView : Screen("webView_screen")
+    object ProductDetail : Screen("productDetail_screen")
+
+    fun withArgs(vararg args: String): String {
+        return buildString {
+            append(route)
+            args.forEach {
+                append("/$it")
+            }
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.basket.CartDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
+import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.CartRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +26,7 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
     var cartItemCounter = mutableStateOf(4)
     var nextCartItemCounter = mutableStateOf(3)
-
+    val suggestedList = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
     init {
 
         viewModelScope.launch {
@@ -32,6 +35,13 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     }
 
+    fun getSuggestedList(){
+        viewModelScope.launch {
+            Log.d("level1", "getSuggestedList")
+            suggestedList.emit(repository.getSuggestedItems())
+            Log.d("level1", "return result")
+        }
+    }
     fun addNewItem(cart: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addNewItem(cart)
