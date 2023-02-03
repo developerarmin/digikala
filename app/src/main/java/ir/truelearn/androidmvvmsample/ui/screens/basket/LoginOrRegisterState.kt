@@ -59,7 +59,7 @@ fun LoginOrRegisterState() {
                     painter = painterResource(id = R.drawable.import_96_orenge),
                     contentDescription = "",
                     tint = MaterialTheme.colors.amber,
-                    modifier = Modifier.size(40.dp, 40.dp)
+                    modifier = Modifier.size(32.dp, 32.dp)
                 )
 
             }
@@ -108,7 +108,7 @@ fun LoginOrRegisterState() {
                 verticalArrangement = Arrangement.Top,
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.arrow_forward),
+                    painter = painterResource(id = R.drawable.arrow_back),
                     contentDescription = "",
                     tint = Color.Gray,
                     modifier = Modifier.size(18.dp, 18.dp)

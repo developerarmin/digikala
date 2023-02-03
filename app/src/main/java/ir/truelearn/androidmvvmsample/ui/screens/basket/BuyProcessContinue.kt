@@ -79,7 +79,6 @@ fun BuyProcessContinue(
                 Text(
                     text = stringResource(R.string.total_shopping_cart),
                     fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.subtitle1,
                     color = MaterialTheme.colors.semiDarkText,
                 )
                 Spacer(modifier = Modifier.height(5.dp))
@@ -89,6 +88,7 @@ fun BuyProcessContinue(
                         //" ${stringResource(id = R.string.price_unit)}",
                         style = MaterialTheme.typography.body2,
                         fontWeight = FontWeight.SemiBold,
+
                     )
                     Image(
                         painter = painterResource(id = R.drawable.toman),
