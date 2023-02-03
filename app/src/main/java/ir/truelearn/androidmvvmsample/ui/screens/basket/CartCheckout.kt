@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.screens.home.ProposalCardSection
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
@@ -111,9 +110,11 @@ fun CartCheckout(
 
 
                 }
+            //-----------------------------------------------------------------------------
+// display order post list
+            //------------------------------------------------------------------
 
-            ProposalCardSection()
-            CartInfo(
+            CartInfoBox(
                 msg = "شما می توانید فاکتور خرید خود را پس از تحویل سفارش از بخش جزییات سفارش در حساب کاربری خود دریافت نمایید.",
                 icon = painterResource(id = R.drawable.info)
             )

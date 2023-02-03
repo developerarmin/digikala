@@ -25,7 +25,7 @@ import ir.truelearn.androidmvvmsample.util.Dimension
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
-fun CartInfo(
+fun CartInfoBox(
     msg: String,
     icon:Painter
 ) {
