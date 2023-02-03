@@ -89,6 +89,7 @@
     <string name="products_price">قیمت کالاها</string>
     <string name="products_discount">تخفیف کالاها</string>
     <string name="shipping_cost_alert">هزینه ارسال بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه می‌شود</string>
+    <string name="dot_bullet">•</string>
 
 
 </resources>

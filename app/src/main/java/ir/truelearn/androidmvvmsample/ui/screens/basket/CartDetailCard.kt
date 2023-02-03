@@ -158,28 +158,24 @@ fun CartDetailCard() {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Row() {
-                Text(
-                    text = "•",
-                    fontFamily = FontFamily(Font(R.font.iranyekan)),
-                    style = TextStyle(
-                        textDirection = TextDirection.ContentOrRtl,
-                        color = Color.Gray,
-                        fontSize = 32.sp,
-                    ), modifier = Modifier.padding(end = MaterialTheme.spacing.medium)
-                )
-
-            }
-            Row() {
-                Text(
-                    text = stringResource(R.string.shipping_cost_alert),
-                    fontFamily = FontFamily(Font(R.font.iranyekan)),
-                    style = TextStyle(
-                        textDirection = TextDirection.ContentOrRtl,
-                        color = Color.Gray
-                    )
-                )
-            }
+            Text(
+                text = stringResource(R.string.dot_bullet),
+                fontFamily = FontFamily(Font(R.font.iranyekan)),
+                style = TextStyle(
+                    textDirection = TextDirection.ContentOrRtl,
+                    color = Color.Gray,
+                    fontSize = 32.sp,
+                ),
+                modifier = Modifier.padding(end = MaterialTheme.spacing.extraSmall)/*.weight(0.05f)*/
+            )
+            Text(
+                text = stringResource(R.string.shipping_cost_alert),
+                fontFamily = FontFamily(Font(R.font.iranyekan)),
+                style = TextStyle(
+                    textDirection = TextDirection.ContentOrRtl,
+                    color = Color.Gray
+                ), modifier = Modifier.weight(1f)
+            )
         }
     }
     Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
