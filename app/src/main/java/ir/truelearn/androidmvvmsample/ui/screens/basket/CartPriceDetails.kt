@@ -1,5 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -31,14 +33,21 @@ fun CartPriceDetails(
             .padding(
                 top = MaterialTheme.spacing.medium,
                 bottom = MaterialTheme.spacing.small,
-                start = MaterialTheme.spacing.small,
-                end = MaterialTheme.spacing.small
+                start = MaterialTheme.spacing.medium,
+                end = MaterialTheme.spacing.medium
             ),
 
         ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+
+                .fillMaxWidth()
+                .padding(
+
+                    bottom = MaterialTheme.spacing.mediumTwo
+
+                )
+            ,
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -47,25 +56,23 @@ fun CartPriceDetails(
                     modifier = Modifier,
                     text = "جزئیات قیمت",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    color = Color.Black,
+                    fontFamily = font_medium,
+
                 )
             }
             Row() {
                 Text(
                     modifier = Modifier,
-                    text = "${DigitHelper.digitByLocate(2.toString())} کالا ",
+                    text = "${DigitHelper.digitByLocate(3.toString())} کالا ",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Gray,
+                    fontFamily = font_standard,
+
                 )
             }
         }
@@ -79,7 +86,7 @@ fun CartPriceDetails(
         CartPriceRow(title = "جمع سبد خرید", price = 245000)
 
         Divider(
-            color = Color.Gray,
+            color = infoBox,
             thickness = 1.dp,
             modifier = Modifier
                 .padding(
@@ -96,40 +103,33 @@ fun CartPriceDetails(
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.Top
         ) {
-
-
-            Row(
-                modifier = Modifier,
-                verticalAlignment = Alignment.CenterVertically
-            )
-            {
                 Icon(
                     painter = painterResource(id = R.drawable.circle),
                     contentDescription = "",
                     tint = Color.Gray,
-                    modifier = Modifier.size(8.dp, 8.dp)
+                    modifier = Modifier.size(5.dp, 15.dp)
+                        .padding(top =9.dp)
+
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = "محاسبه شده بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    style = MaterialTheme.typography.caption,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Gray,
+                    fontFamily = font_standard,
                 )
-            }
+
 
 
         }
         CartPriceRow(title = "مبلغ قابل پرداخت", price = 245000)
 
         Divider(
-            color = Color.Gray,
+            color = infoBox,
             thickness = 1.dp,
             modifier = Modifier
                 .padding(
@@ -155,36 +155,30 @@ fun CartPriceDetails(
                 verticalAlignment = Alignment.CenterVertically
             )
             {
-                Icon(
-                    painter = painterResource(id = R.drawable.location),
+                Image(
+                    painter = painterResource(id = R.drawable.digi_score),
                     contentDescription = "",
-                    tint = MaterialTheme.colors.amber,
                     modifier = Modifier.size(18.dp, 18.dp)
                 )
                 Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
                 Text(
-                    text = "امتیاز دیجی کلاب",
+                    text = "امتیاز دیجی‌کلاب",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Gray,
+                    fontFamily = font_standard,
                 )
             }
 
             Row() {
                 Text(
                     modifier = Modifier,
-                    text = "${DigitHelper.digitByLocate(25.toString())}امتیاز",
+                    text = "${DigitHelper.digitByLocate(25.toString())} امتیاز ",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    style = MaterialTheme.typography.body2,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Black
                 )
             }
         }
@@ -207,12 +201,10 @@ fun CartPriceDetails(
                     modifier = Modifier,
                     text = "بعد از پایان مهلت مرجوعی، برای دریافت امتیاز به صفحه ماموریت‌های کلابی سر بزنید.",
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.darkText,
-                    fontFamily = font_bold,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    style = MaterialTheme.typography.caption,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Gray,
+                    fontFamily = font_standard,
                 )
             }
         }

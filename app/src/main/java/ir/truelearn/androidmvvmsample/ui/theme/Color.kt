@@ -8,6 +8,14 @@ val Purple200 = Color(0xFFed1b34)
 val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
+val DarkAmper = Color(0xFFFFA200)
+val infoBox = Color(0xFFEDEEF1)
+val BtnWhite = Color(0xFFFBFBFC)
+
+
+
+
+
 
 
 val Colors.selectedBottomBar: Color
@@ -77,3 +85,6 @@ val Colors.CursorColor : Color
 val Colors.RedColor : Color
     @Composable
     get() = Color(0xFFb03857)
+val Colors.CartCyan: Color
+    @Composable
+    get() = Color(0xFF339AF0)

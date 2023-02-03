@@ -94,7 +94,7 @@ fun ShoppingBasket(
             if (!true) {
                 Box{}
             } else {
-                BuyProcessContinue("21990"){
+                BuyProcessContinue(price="21990"){
                     navController.navigate(Screen.CartCheckout.route)
                 }
             }

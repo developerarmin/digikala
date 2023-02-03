@@ -33,7 +33,7 @@ fun CartCheckout(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
-
+    var determineTime = false
     val isLogin = false
     Box(
         modifier = Modifier
@@ -75,7 +75,7 @@ fun CartCheckout(
                             Icon(
                                 painter = painterResource(id = R.drawable.arrow_back2),
                                 contentDescription = "",
-                                modifier = Modifier.size(32.dp, 32.dp)
+                                modifier = Modifier.size(24.dp, 22.dp)
                             )
 
                         }
@@ -94,7 +94,7 @@ fun CartCheckout(
                                     .fillMaxWidth(),
                                 text = "آدرس و زمان ارسال",
                                 textAlign = TextAlign.Start,
-                                style = MaterialTheme.typography.h5,
+                                style = MaterialTheme.typography.h4,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colors.darkText,
                                 fontFamily = font_bold,
@@ -104,7 +104,7 @@ fun CartCheckout(
 
                     }
                     CartShippingAddressAndTime(
-                        address = "اردبیل - خیابان شهید باکری  - نبش کوچه مالک اشتر ۱ - پلاک ۹",
+                        address = "اردبیل، اردبیل، اردبیل - خیابان شهید باکری - خیابان فردوسی۱ - نبش کوچه فردوسی۱ - پلاک ۹",
                         name = "مهدی ایمانی"
                     )
 
@@ -130,7 +130,11 @@ fun CartCheckout(
             if (false) {
                 Box {}
             } else {
-                BuyProcessContinue("21990") {
+                BuyProcessContinue(
+                    price = "21990",
+                    flag = "",
+                    timeState = determineTime
+                ) {
                     Log.e("3636", "ادامه فرایند خرید")
                 }
             }

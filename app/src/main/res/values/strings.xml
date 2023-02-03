@@ -79,7 +79,9 @@
     <string name="cart">سبد خرید</string>
     <string name="next_cart_list">لیست خرید بعدی</string>
     <string name="purchase_process">ادامه فرآیند خرید</string>
+    <string name="purchase_process_time">زمان ارسال تعیین کنید</string>
     <string name="total_shopping_cart">جمع سبد خرید</string>
+    <string name="amount_payable">مبلغ قابل پرداخت</string>
     <string name="cart_is_empty">سبد خرید شما خالی است!</string>
     <string name="next_cart_list_is_empty">لیست خرید بعدی شما خالی است!</string>
     <string name="next_cart_list_is_empty_msg">شما می‌توانید محصولاتی که به سبد خرید خود افزوده‌اید و فعلا قصد خرید آن‌ها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آن‌ها را به سبد خرید اضافه کرده و خرید آن‌ها را تکمیل کنید.</string>

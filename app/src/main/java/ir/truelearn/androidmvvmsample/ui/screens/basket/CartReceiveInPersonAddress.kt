@@ -2,6 +2,8 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,23 +18,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.DarkCyan
-import ir.truelearn.androidmvvmsample.ui.theme.LightCyan
-import ir.truelearn.androidmvvmsample.ui.theme.font_bold
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Dimension
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 
 @Composable
 fun CartReceiveInPersonAddress(
 
-    action:()->Unit={},
+    action: () -> Unit = {},
 
 
     ) {
@@ -43,10 +39,25 @@ fun CartReceiveInPersonAddress(
             .clickable { Log.e("3636", "chart checkout") },
         shape = RoundedCornerShape(7.dp),
         elevation = 1.dp,
-        border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.DarkCyan),
+        border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.CartCyan),
 
         ) {
-        Column {
+//        Box(
+//            modifier = Modifier.fillMaxSize(),
+//            contentAlignment = Alignment.Center
+//        ) {
+//
+//            Image(
+//                painter = painterResource(id = R.drawable.map_address_bg),
+//                contentDescription = null,
+//                contentScale = ContentScale.None,
+//                modifier = Modifier.matchParentSize()
+//            )
+
+        Column(
+            modifier = Modifier
+                .background(infoBox)
+        ) {
             Row(
                 modifier = Modifier
                     .padding(
@@ -59,33 +70,31 @@ fun CartReceiveInPersonAddress(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(modifier = Modifier
-                    .width(Dimension.width(85f).dp)
-
-                    ,)
+                Row(
+                    modifier = Modifier
+                        .width(Dimension.width(80f).dp),
+                )
                 {
                     Text(
-                        modifier = Modifier
-                        ,
+                        modifier = Modifier,
                         text = "مراکز دریافت حضوری نزدیک این آدرس",
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.h5,
-                        fontWeight = FontWeight.Bold,
                         color = Color.Black,
-                        fontFamily = font_bold,
-                        overflow = TextOverflow.Ellipsis
+                        style = MaterialTheme.typography.h6,
+                        fontFamily = font_medium,
+                        fontWeight = FontWeight.Bold,
                     )
                 }
-                Row(modifier = Modifier
-                    .width(Dimension.width(15f).dp)
-                    , horizontalArrangement = Arrangement.End
+                Row(
+                    modifier = Modifier
+                        .width(Dimension.width(10f).dp), horizontalArrangement = Arrangement.End
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.arrow_back),
                         contentDescription = "",
                         tint = Color.Black,
                         modifier = Modifier
-                            .size(18.dp, 18.dp)
+                            .size(12.dp, 12.dp)
 
 
                     )
@@ -95,7 +104,7 @@ fun CartReceiveInPersonAddress(
             Row(
                 modifier = Modifier
                     .padding(
-                        top = MaterialTheme.spacing.medium,
+                        top = MaterialTheme.spacing.small,
                         bottom = MaterialTheme.spacing.small,
                         start = MaterialTheme.spacing.medium,
                         end = MaterialTheme.spacing.medium
@@ -110,25 +119,22 @@ fun CartReceiveInPersonAddress(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.location),
+                    Image(
+                        painter = painterResource(id = R.drawable.wallet),
                         contentDescription = "",
-                        tint = MaterialTheme.colors.LightCyan,
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
                     Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
                     Text(
-                        modifier = Modifier
-                        ,
+                        modifier = Modifier,
                         text = "هزینه ارسال کمتر",
                         textAlign = TextAlign.Start,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.DarkCyan,
-                        fontSize=12.sp,
+                        color = Color.Gray,
+                        fontSize = 9.sp,
                         fontFamily = font_bold,
+                        fontWeight = FontWeight.Medium,
 
-                        overflow = TextOverflow.Ellipsis
-                    )
+                        )
                 }
 //                            Spacer(modifier = Modifier.width(Dimension.width(10f).dp))
 
@@ -138,10 +144,9 @@ fun CartReceiveInPersonAddress(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.location),
+                    Image(
+                        painter = painterResource(id = R.drawable.signpost),
                         contentDescription = "",
-                        tint = MaterialTheme.colors.LightCyan,
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
                     Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
@@ -149,32 +154,33 @@ fun CartReceiveInPersonAddress(
                         modifier = Modifier,
                         text = "مکان های مختلف",
                         textAlign = TextAlign.Start,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.DarkCyan,
+                        color = Color.Gray,
+                        fontSize = 9.sp,
                         fontFamily = font_bold,
-                        fontSize = 12.sp,
-                        overflow = TextOverflow.Ellipsis
+                        fontWeight = FontWeight.Medium,
                     )
                 }
 //                            Spacer(modifier = Modifier.width(Dimension.width(10f).dp))
 
-                Row( modifier = Modifier,
+                Row(
+                    modifier = Modifier,
                     horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically)
+                    verticalAlignment = Alignment.CenterVertically
+                )
                 {
-                    Icon(
-                        painter = painterResource(id = R.drawable.location),
+                    Image(
+                        painter = painterResource(id = R.drawable.clock),
                         contentDescription = "",
-                        tint = MaterialTheme.colors.LightCyan,
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
                     Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
                     Text(
                         text = "انعطاف زمانی",
                         textAlign = TextAlign.Start,
-                        color = MaterialTheme.colors.DarkCyan,
-                        fontSize = 12.sp,
+                        color = Color.Gray,
+                        fontSize = 9.sp,
                         fontFamily = font_bold,
+                        fontWeight = FontWeight.Medium,
 
 
                         )
@@ -183,5 +189,6 @@ fun CartReceiveInPersonAddress(
 
             }
         }
+//        }
     }
 }

@@ -8,13 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import ir.truelearn.androidmvvmsample.ui.theme.font_bold
+import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
@@ -32,6 +33,7 @@ var color =Color.Black
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = 5.dp, bottom = 5.dp)
         ,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -42,21 +44,20 @@ var color =Color.Black
                 ,
                 text = title,
                 textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colors.darkText,
-                fontFamily = font_bold,
-                maxLines=2,
-                overflow = TextOverflow.Ellipsis
+                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray,
+                fontFamily = font_standard,
             )
         }
         Row() {
             Text(
                 text = _price,
                 style = MaterialTheme.typography.body2,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Medium,
                 color = color
             )
+
             Image(
                 painter = painterResource(id = R.drawable.toman),
                 contentDescription ="",

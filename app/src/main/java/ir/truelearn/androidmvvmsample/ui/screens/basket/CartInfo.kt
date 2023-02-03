@@ -9,18 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import ir.truelearn.androidmvvmsample.ui.theme.font_bold
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Dimension
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
@@ -33,12 +33,12 @@ fun CartInfoBox(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.LightGray)
+            .background(infoBox)
             .padding(
-                top = MaterialTheme.spacing.medium,
-                bottom = MaterialTheme.spacing.small,
+                top = MaterialTheme.spacing.mediumTwo,
+                bottom = MaterialTheme.spacing.mediumTwo,
                 start = MaterialTheme.spacing.small,
-                end = MaterialTheme.spacing.small
+                end = MaterialTheme.spacing.semiLargeTwo
             ),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -46,23 +46,24 @@ fun CartInfoBox(
 
         Column(
             modifier = Modifier
-                .width(Dimension.width(15f).dp),
+                .width(Dimension.width(13f).dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
             Icon(
                 painter =icon,
                 contentDescription = "",
-                modifier = Modifier.size(32.dp, 32.dp)
+                modifier = Modifier.size(26.dp, 26.dp),
+            tint=Color.DarkGray
             )
 
         }
 
-        Spacer(modifier = Modifier.width(Dimension.width(.5f).dp))
+        Spacer(modifier = Modifier.width(Dimension.width(.2f).dp))
 
         Column(
             modifier = Modifier
-                .width(Dimension.width(83f).dp),
+                .width(Dimension.width(85f).dp),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Center,
         ) {
@@ -72,12 +73,12 @@ fun CartInfoBox(
                     ,
                 text = msg,
                 textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colors.darkText,
-                fontFamily = font_bold,
-                maxLines=2,
-                overflow = TextOverflow.Ellipsis
+                color = Color.DarkGray,
+                style = MaterialTheme.typography.caption,
+                fontFamily = font_standard,
+                fontSize=11.sp,
+                overflow = TextOverflow.Ellipsis,
+
             )
         }
 

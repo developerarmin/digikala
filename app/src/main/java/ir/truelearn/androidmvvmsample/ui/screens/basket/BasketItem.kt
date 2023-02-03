@@ -72,25 +72,31 @@ fun BasketItem() {
         )
     }
 
-    Row(modifier = Modifier
-        .padding(
-            horizontal = MaterialTheme.spacing.medium,
-            vertical = MaterialTheme.spacing.superLarge + MaterialTheme.spacing.superLarge
-        )
-        .fillMaxWidth(),
-        horizontalArrangement = Arrangement.End) {
+    Row(
+        modifier = Modifier
+            .padding(
+                horizontal = MaterialTheme.spacing.medium,
+                vertical = MaterialTheme.spacing.superLarge + MaterialTheme.spacing.superLarge
+            )
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.End
+    ) {
 
-        Card(modifier = Modifier
-            .width(90.dp),
+        Card(
+            modifier = Modifier
+                .width(90.dp),
             shape = RoundedCornerShape(6.dp)
         ) {
             Row(modifier = Modifier.padding(MaterialTheme.spacing.small)) {
-                Icon(painter = painterResource(id = R.drawable.digi_trash),
+                Icon(
+                    painter = painterResource(id = R.drawable.digi_trash),
                     contentDescription = "",
-                modifier = Modifier.padding(top = MaterialTheme.spacing.extraSmall),
-                colorResource(id = R.color.red_custom))
+                    modifier = Modifier.padding(top = MaterialTheme.spacing.extraSmall),
+                    colorResource(id = R.color.red_custom)
+                )
 
-                Text(text = stringResource(R.string.count),
+                Text(
+                    text = stringResource(R.string.count),
                     fontFamily = FontFamily(Font(R.font.iranyekanmedium)),
                     fontSize = 16.sp,
                     modifier = Modifier
@@ -99,7 +105,8 @@ fun BasketItem() {
                     color = colorResource(id = R.color.red_custom)
                 )
 
-                Text(text = stringResource(R.string.increase),
+                Text(
+                    text = stringResource(R.string.increase),
                     fontFamily = FontFamily(Font(R.font.iranyekanmedium)),
                     fontSize = 16.sp,
                     modifier = Modifier
@@ -110,17 +117,29 @@ fun BasketItem() {
         }
     }
 
-    Row(modifier = Modifier.fillMaxWidth()
-        .padding(vertical = MaterialTheme.spacing.superLarge +
-        MaterialTheme.spacing.superLarge + MaterialTheme.spacing.small,
-        horizontal = MaterialTheme.spacing.superLarge),
-    horizontalArrangement = Arrangement.End) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                vertical = MaterialTheme.spacing.superLarge +
+                        MaterialTheme.spacing.superLarge + MaterialTheme.spacing.small,
+                horizontal = MaterialTheme.spacing.superLarge
+            ),
+        horizontalArrangement = Arrangement.End
+    ) {
 
-        Icon(painter = painterResource(id = R.drawable.toman), contentDescription = "",
-            modifier = Modifier.size(24.dp)
-                .padding(bottom = MaterialTheme.spacing.extraSmall , end = MaterialTheme.spacing.extraSmall))
-        Text(text = stringResource(R.string.benefit),
-        fontFamily = FontFamily(Font(R.font.iranyekanbold))
+        Icon(
+            painter = painterResource(id = R.drawable.toman), contentDescription = "",
+            modifier = Modifier
+                .size(24.dp)
+                .padding(
+                    bottom = MaterialTheme.spacing.extraSmall,
+                    end = MaterialTheme.spacing.extraSmall
+                )
+        )
+        Text(
+            text = stringResource(R.string.benefit),
+            fontFamily = FontFamily(Font(R.font.iranyekanbold))
         )
     }
 
@@ -153,8 +172,10 @@ fun BasketItem() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(end = MaterialTheme.spacing.extraLarge +
-                MaterialTheme.spacing.small),
+                .padding(
+                    end = MaterialTheme.spacing.extraLarge +
+                            MaterialTheme.spacing.small
+                ),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
@@ -170,9 +191,12 @@ fun BasketItem() {
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth()
-                .padding(start = MaterialTheme.spacing.extraLarge +
-                MaterialTheme.spacing.medium),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = MaterialTheme.spacing.extraLarge +
+                            MaterialTheme.spacing.medium
+                ),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
@@ -204,7 +228,8 @@ fun BasketItem() {
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(end = MaterialTheme.spacing.extraLarge),
             horizontalArrangement = Arrangement.Center
         ) {
@@ -232,18 +257,21 @@ fun BasketItem() {
     ) {
 
         Row {
-            Icon(Icons.Filled.KeyboardArrowLeft, contentDescription = "",
-            modifier = Modifier
-                .padding(top = 2.dp),
-            colorResource(id = R.color.iconColor))
+            Icon(
+                Icons.Filled.KeyboardArrowLeft, contentDescription = "",
+                modifier = Modifier
+                    .padding(top = 2.dp),
+                colorResource(id = R.color.iconColor)
+            )
 
 
-                Text(text = stringResource(R.string.saveToNextList),
-                    fontFamily = FontFamily(Font(R.font.iranyekanmedium)),
-                    modifier = Modifier
-                        .clickable{},
-                    color = colorResource(id = R.color.iconColor)
-                )
+            Text(
+                text = stringResource(R.string.saveToNextList),
+                fontFamily = FontFamily(Font(R.font.iranyekanmedium)),
+                modifier = Modifier
+                    .clickable {},
+                color = colorResource(id = R.color.iconColor)
+            )
         }
     }
 }
