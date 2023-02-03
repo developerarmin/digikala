@@ -38,7 +38,7 @@
     <string name="digi_pay">دیجی پی</string>
     <string name="pindo">پیندو</string>
     <string name="gift_card">کارت هدیه</string>
-    <string name="digi_plus">دیجی پلاس</string>
+    <string name="digi_plus">دیجی‌پلاس</string>
     <string name="more">بیشتر</string>
     <string name="suggestion_for_you">پیشنهاد برای شما</string>
     <string name="loginTxt">برای ورود یا ثبت نام در دیجی کالا شماره موبایل یا پست الکترونیک خود را وارد نمایید</string>
@@ -91,6 +91,13 @@
     <string name="canceled">لغو شده</string>
     <string name="delivered">تحویل شده</string>
     <string name="unpaid">در انتظار پرداخت</string>
+
+
+    <string name="fav_list">لیست مورد علاقه</string>
+    <string name="my_comments">نقد و نظرات</string>
+    <string name="addresses">آدرس‌ها</string>
+    <string name="profile_data">اطلاعات حساب کاربری</string>
+
 
 
 </resources>

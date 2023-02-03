@@ -341,59 +341,46 @@ fun Profile(
 
             CenterBannerItem(painter = painterResource(id = R.drawable.digiclub2))
 
+            ProfileRowItems(
+                text = stringResource(id = R.string.digi_plus),
+                painter = painterResource(id = R.drawable.digi_plus_icon), isHaveDivider = true
+            )
 
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-            ) {
-                Column(
-                    Modifier
-                        .fillMaxHeight()
-                        .weight(0.1f)
-                        .background(Color.Red),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.arrow_back),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(36.dp)
-                            .padding(bottom = MaterialTheme.spacing.small)
-                    )
-                }
-                Column(
-                    Modifier
-                        .fillMaxHeight()
-                        .weight(0.9f)
-                        .background(Color.Cyan),
-                    verticalArrangement = Arrangement.Center,
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(text = "تست")
-                        Image(
-                            painter = painterResource(id = R.drawable.arrow_back),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(30.dp)
-                                .padding(bottom = MaterialTheme.spacing.small)
-                        )
-                    }
-                    Divider(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(1.dp)
-                            .alpha(0.4f),
-                        color = Color.LightGray,
-                    )
-                }
-            }
+            ProfileRowItems(
+                text = stringResource(id = R.string.fav_list),
+                painter = painterResource(id = R.drawable.digi_fav_icon), isHaveDivider = true
+            )
+
+            ProfileRowItems(
+                text = stringResource(id = R.string.my_comments),
+                painter = painterResource(id = R.drawable.digi_comments_icon),
+                isHaveDivider = true
+            )
+            ProfileRowItems(
+                text = stringResource(id = R.string.addresses),
+                painter = painterResource(id = R.drawable.digi_adresses_icon),
+                isHaveDivider = true
+            )
+            ProfileRowItems(
+                text = stringResource(id = R.string.profile_data),
+                painter = painterResource(id = R.drawable.digi_profile_icon),
+                isHaveDivider = false
+            )
+
 
             CenterBannerItem(painter = painterResource(id = R.drawable.digiclub1))
+
+
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(MaterialTheme.spacing.small)
+                    .alpha(0.4f)
+                    .shadow(2.dp),
+                color = Color.LightGray,
+            )
+
+
 
             Button(
                 onClick = {
@@ -419,6 +406,71 @@ fun Profile(
         //TODO dark theme
     }
 
+}
+
+@Composable
+fun ProfileRowItems(text: String, painter: Painter, isHaveDivider: Boolean) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .padding(horizontal = MaterialTheme.spacing.medium)
+    ) {
+        Column(
+            Modifier
+
+                .fillMaxHeight()
+                .weight(0.1f),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painter,
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        }
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .weight(0.9f)
+                .padding(horizontal = MaterialTheme.spacing.small),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.9f),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    text = text
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.arrow_left),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(14.dp)
+
+                )
+            }
+            if (isHaveDivider) {
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                        .alpha(0.4f),
+                    color = Color.LightGray,
+                )
+            }
+        }
+
+    }
 }
 
 @Composable
