@@ -78,7 +78,7 @@ fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.small),
-            text = stringResource(id = R.string.suggestion_for_youSection),
+            text = stringResource(id = R.string.suggestion_for_you),
             textAlign = TextAlign.Right,
             style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.SemiBold,
@@ -105,7 +105,7 @@ fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
             ) {
 
                 items(suggestedList) { item ->
-                    SuggestionForYouCard(item = item) {
+                    SuggestionItemCard(item = item) {
                         viewModel.addNewItem(
                             CartItem(
                                 item.Id,

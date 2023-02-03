@@ -9,10 +9,13 @@ import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import javax.inject.Inject
 
-class CartRepository @Inject constructor(private val api: ApiInterface,
-                                         private val cartDao: CartDao): BaseApiResponse() {
+class CartRepository @Inject constructor(private  val api: ApiInterface,
+                                         private val cartDao: CartDao) : BaseApiResponse() {
+
     val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
+
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
+
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
     }
@@ -29,7 +32,6 @@ class CartRepository @Inject constructor(private val api: ApiInterface,
     suspend fun removeFromItem(cart: CartItem) {
         cartDao.removeFromCart(cart)
     }
-
     suspend fun getSuggestedItems(): NetworkResult<List<MostDiscountedItem>> =
         safeApiCall {
             api.getSuggestedItems()

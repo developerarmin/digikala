@@ -14,6 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.*
 
@@ -59,11 +60,11 @@ fun Home(navController: NavHostController,
 
                     ShowcaseSection(navController)
 
-                    AmazingOfferSection()
+                    AmazingOfferSection(navHostController = navController)
 
                     ProposalCardSection()
 
-                    SuperMarketOfferSection()
+                    SuperMarketOfferSection(navHostController = navController)
 
                     CategoryListSection()
 

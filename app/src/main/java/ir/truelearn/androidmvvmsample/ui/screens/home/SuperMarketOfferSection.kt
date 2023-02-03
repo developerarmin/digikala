@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -26,6 +28,7 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun SuperMarketOfferSection(
+    navHostController: NavController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     var list by remember {
@@ -77,7 +80,7 @@ fun SuperMarketOfferSection(
                     AmazingOfferCard(R.drawable.supermarketamazings, R.drawable.fresh)
                 }
                 items(list) { item ->
-                    AmazingItem(item)
+                    AmazingItem(item, navHostController = navHostController)
                 }
                 item {
                     AmazingShowMoreItem()

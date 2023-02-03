@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,15 +27,22 @@ fun BuyProcessContinue(
 ) {
 
     Card(
-        modifier = Modifier.padding(horizontal = 1.dp),
+        modifier = Modifier.padding(horizontal = 0.dp),
         shape = RoundedCornerShape(3.dp),
-        elevation = 15.dp,
-        border = BorderStroke(width = 2.dp, color = Color.LightGray),
+        elevation = 5.dp,
+        border = BorderStroke(width = 1.dp, color = Color.LightGray),
     )
     {
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(
+                    start = MaterialTheme.spacing.semiLarge,
+                    end = MaterialTheme.spacing.semiLarge,
+                    bottom = MaterialTheme.spacing.medium,
+                    top = MaterialTheme.spacing.medium
+                ),
+
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -42,44 +51,55 @@ fun BuyProcessContinue(
                 onClick = onClick,
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
                 modifier = Modifier
-                    .padding(
-                        start = MaterialTheme.spacing.semiLarge,
-                        end = MaterialTheme.spacing.semiLarge,
-                        bottom = MaterialTheme.spacing.medium,
-                        top = MaterialTheme.spacing.medium
-                    ),
+
+                    ,
                 shape = MaterialTheme.roundedShape.small
             ) {
                 Text(
-                    text = "ادامه فرایند خرید",
+                    text = stringResource(R.string.purchase_process),
                     color = Color.White,
-                    fontFamily = font_standard,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .padding(
+                            start = MaterialTheme.spacing.semiLarge,
+                            end = MaterialTheme.spacing.semiLarge,
+                            bottom = MaterialTheme.spacing.small,
+                            top = MaterialTheme.spacing.small
+                        )
                 )
             }
             Column(
                 modifier = Modifier
-                    .padding(4.dp),
+                ,
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Text(
-                    text = "جمع سبد خرید",
+                    text = stringResource(R.string.total_shopping_cart),
                     fontWeight = FontWeight.SemiBold,
-                    style = SmallFont.body1,
+                    style = MaterialTheme.typography.subtitle1,
                     color = MaterialTheme.colors.semiDarkText,
                 )
-                Text(
-                    text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price))} ${
-                        stringResource(
-                            id = R.string.price_unit
-                        )
-                    }",
-                    style = MaterialTheme.typography.body2,
-                    fontWeight = FontWeight.SemiBold,
-                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Row() {
+                    Text(
+                        text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price))}",
+                        //" ${stringResource(id = R.string.price_unit)}",
+                        style = MaterialTheme.typography.body2,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    Image(
+                        painter = painterResource(id = R.drawable.toman),
+                        contentDescription ="",
+                        modifier = Modifier
+                            .size(MaterialTheme.spacing.semiLarge)
+                            .padding(horizontal = MaterialTheme.spacing.extraSmall)
+                    )
+
+                }
+
             }
         }
     }

@@ -85,7 +85,7 @@ fun BottomNavigationBar(
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             if (selected) {
                                 if(index==2 && cartCounter.value>0 )
-                                    IconWithBadget(cartCounter.value,item.selectedIcon)
+                                    IconWithBadge(cartCounter.value,item.selectedIcon)
                                 else
                                     Icon(
                                         modifier = Modifier
@@ -95,7 +95,7 @@ fun BottomNavigationBar(
                                     )
                             } else {
                                 if(index==2 && cartCounter.value>0 )
-                                    IconWithBadget(cartCounter.value,item.deSelectedIcon)
+                                    IconWithBadge(cartCounter.value,item.deSelectedIcon)
                                 else
                                 Icon(
                                     modifier = Modifier

@@ -1,10 +1,7 @@
 package ir.truelearn.androidmvvmsample.navigation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -22,8 +19,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun IconWithBadget(badget: Int, icon: Painter) {
-    Card(
+fun IconWithBadge(badget: Int, icon: Painter) {
+    Box(
         modifier = Modifier
             .height(24.dp)
 

@@ -1,14 +1,23 @@
-package ir.truelearn.androidmvvmsample.ui.screens.home
+package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -27,33 +36,74 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
+fun SuggestionItemCard(item: MostDiscountedItem, onAddClick: (MostDiscountedItem) -> Unit) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(0.5f)
-//            .width(192.dp)
-            .fillMaxHeight(0.48f)
+            .width(170.dp)
             .padding(bottom = MaterialTheme.spacing.miniDp),
         shape = MaterialTheme.roundedShape.default,
         elevation = 1.dp
     ) {
-
-        //title && image
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-//                .padding(vertical = MaterialTheme.spacing.extraSmall)
         ) {
-            Image(
-                painter = rememberAsyncImagePainter(discountedItem.image),
-                contentDescription = "most discounted item image",
+
+            //title && image
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(130.dp),
-                contentScale = ContentScale.Fit,
-            )
+                    .padding(vertical = MaterialTheme.spacing.extraSmall)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
+                }
+                Box {
+
+                    Image(
+                        painter = rememberAsyncImagePainter(item.image),
+                        contentDescription = "suggested item image",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(130.dp),
+                        contentScale = ContentScale.Fit,
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.BottomStart)
+                            .padding(horizontal = MaterialTheme.spacing.small + MaterialTheme.spacing.extraSmall),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+
+                    ) {
+                        Surface(
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.extraSmall)
+                                .size(32.dp)
+                                .wrapContentWidth(CenterHorizontally)
+                                .wrapContentHeight(CenterVertically)
+                                .clip(CircleShape)
+                                .border(1.dp, MaterialTheme.colors.digikalaRed, CircleShape)
+                                .clickable {
+                                    onAddClick(item)
+                                }
+                        ) {
+                            Icon(
+                                Icons.Default.Add,
+                                contentDescription = "add icon",
+                                tint = MaterialTheme.colors.digikalaRed,
+                            )
+                        }
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+
             //info
             Column(
                 modifier = Modifier
@@ -62,9 +112,10 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
             ) {
                 Text(
                     modifier = Modifier
+                        .fillMaxSize()
                         .height(48.dp)
                         .padding(horizontal = MaterialTheme.spacing.small),
-                    text = discountedItem.name,
+                    text = item.name,
                     style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colors.darkText,
@@ -77,11 +128,8 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = MaterialTheme.spacing.small),
-//                    horizontalArrangement = Arrangement.Center,
-//                    verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    //inStock icon
                     Icon(
                         painter = painterResource(id = R.drawable.in_stock),
                         contentDescription = "in stock",
@@ -93,7 +141,7 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     )
 
                     Text(
-                        text = discountedItem.seller,
+                        text = item.seller,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.h6,
                         color = MaterialTheme.colors.semiDarkText,
@@ -125,7 +173,7 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
 
                         ) {
                         val discountedPercent =
-                            digitByLocate(discountedItem.discountPercent.toString())
+                            digitByLocate(item.discountPercent.toString())
                         Text(
 
                             text = "${discountedPercent}%",
@@ -139,24 +187,16 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     Column {
 
                         val discountedPriceResult =
-                            applyDiscount(discountedItem.price, discountedItem.discountPercent)
+                            applyDiscount(item.price, item.discountPercent)
                         val discountedLocaleResult = digitByLocate(discountedPriceResult.toString())
                         val discountedSeparatedResult = digitBySeparator(discountedLocaleResult)
                         val previousDiscountedItemPrice =
-                            digitBySeparator(digitByLocate(discountedItem.price.toString()))
-                        Row() {
-                            Text(
-                                text = discountedSeparatedResult,
-                                style = MaterialTheme.typography.body2,
-                                fontWeight = FontWeight.SemiBold,
-                            )
-
-                            Image(painter = painterResource(id = R.drawable.toman), contentDescription ="", modifier = Modifier
-                                .size(MaterialTheme.spacing.semiLarge)
-                                .padding(horizontal = MaterialTheme.spacing.extraSmall) )
-                        }
-
-
+                            digitBySeparator(digitByLocate(item.price.toString()))
+                        Text(
+                            text = "$discountedSeparatedResult ${stringResource(id = R.string.price_unit)}",
+                            style = MaterialTheme.typography.body2,
+                            fontWeight = FontWeight.SemiBold,
+                        )
                         Text(
                             text = previousDiscountedItemPrice,
                             color = Color.LightGray,
@@ -171,10 +211,11 @@ fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
                     }
                 }
             }
+
+
         }
-
-
     }
+
 
 }
 

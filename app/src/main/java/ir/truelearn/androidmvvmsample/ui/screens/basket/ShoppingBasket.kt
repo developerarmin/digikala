@@ -14,7 +14,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+import ir.truelearn.androidmvvmsample.ui.screens.home.AmazingOfferSection
+import ir.truelearn.androidmvvmsample.ui.screens.home.ProposalCardSection
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,7 +26,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
     val currentCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
     }
-    //todo is login Check properly
+//todo is login Check properly
     val isLogin = false
     Box(
         modifier = Modifier
@@ -31,7 +34,6 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
         contentAlignment = Alignment.TopCenter
     ) {
         Column {
-
             if (!isLogin)
                 LoginOrRegisterState()
 
@@ -39,7 +41,10 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
             val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
             SwipeRefresh(state = swipeRefreshState, onRefresh = {
                 refreshScope.launch {
-                    Log.e("3636", "call again Api!")
+                    //todo set refresh scope
+
+                    //  viewModel.getAllDataFromServer()
+//Log.e("3636", "call again Api!")
                 }
             }) {
 
@@ -60,7 +65,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
 
                     if (currentCartItems.value.isEmpty()) {
                         EmptyBasketShopping()
-                        SuggestListSection()
+                            SuggestListSection()
                     } else {
                         //cart list
                         Column(
@@ -74,6 +79,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
                 }
             }
         }
+//-------------------------------------------------------------------------------------------
 //        Row(
 //            modifier = Modifier
 //                .fillMaxWidth()
@@ -81,7 +87,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
 //                .align(Alignment.BottomCenter)
 //        ) {
 //            if (true)
-//                BuyProcessContinue("23652") {
+//                BuyProcessContinue("21990") {
 //                    Log.e("3636", "ادامه فرایند خرید")
 //                }
 //        }
