@@ -73,3 +73,7 @@ val Colors.DigikalaInStock : Color
 val Colors.CursorColor : Color
    @Composable
    get() = Color(0xFF018577)
+
+val Colors.RedColor : Color
+    @Composable
+    get() = Color(0xFFb03857)

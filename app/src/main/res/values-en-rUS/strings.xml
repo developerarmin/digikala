@@ -76,6 +76,11 @@
     <string name="benefit">7,990 </string>
 
     <!--basket desc-->
+    <string name="count_product_cart">%1$s Product</string>
+    <string name="basket_summary">Basket summary</string>
+    <string name="products_price">Products price</string>
+    <string name="products_discount">Products discount</string>
+    <string name="shipping_cost_alert">The shipping cost is calculated based on the address, delivery time, weight and volume of your shipment</string>
     <string name="cart">Cart</string>
     <string name="next_cart_list">next cart list</string>
     <string name="purchase_process">Continue purchase process</string>
