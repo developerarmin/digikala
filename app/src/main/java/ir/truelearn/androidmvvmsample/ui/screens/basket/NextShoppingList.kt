@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,15 +14,28 @@ fun NextShoppingList() {
             .fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
-        Column {
-            if(true)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+
+                .align(Alignment.TopCenter)
+        ) {
+                if (true)
                     LoginOrRegisterState()
+            }
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Center)
+        ) {
 
-            Spacer(modifier = Modifier.height(130.dp))
-
-            if(true)
-            EmptyNextShoppingList()
+            if (true)
+                EmptyNextShoppingList()
         }
-    }
+
+
+        }
+
 }

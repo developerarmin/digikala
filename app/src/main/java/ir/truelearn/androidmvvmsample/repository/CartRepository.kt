@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
+import androidx.compose.runtime.mutableStateOf
 import ir.truelearn.androidmvvmsample.data.db.CartDao
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
@@ -11,6 +12,7 @@ import javax.inject.Inject
 
 class CartRepository @Inject constructor(private  val api: ApiInterface,
                                          private val cartDao: CartDao) : BaseApiResponse() {
+
 
     val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
 
