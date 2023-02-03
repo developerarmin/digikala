@@ -8,7 +8,7 @@
     <string name="my_digikala">my Digikala</string>
     <string name="search_in">search in</string>
     <string name="most_discounted_products">most discounted products</string>
-
+    <string name="suggestion_for_you">suggestion for you</string>
     <string name="category_title">Shop by category</string>
 
     <!-- these strings for test -->
@@ -26,20 +26,63 @@
     <string name="digi_plus">Digi Plus </string>
     <string name="more">More</string>
 
+    <string name="best_selling_products">best selling products</string>
+    <string name="most_visited_products">Most visited products</string>
 
+    <string name="commodity">Commodity</string>
+    <string name="see_all">See all</string>
+    <string name="industrial_tools_and_equipment">Industrial tools and equipment</string>
+    <string name="digital_goods">Digital goods</string>
+    <string name="mobile">Mobile</string>
+    <string name="supermarket_product">Supermarket product</string>
+    <string name="fashion_and_clothing">Fashion and Clothing</string>
+    <string name="native_and_local_products">native and local products</string>
+    <string name="toys_children_and_babies">Toys, children and babies</string>
+    <string name="beauty_and_health">Beauty and Health</string>
+    <string name="home_and_kitchen">Home and Kitchen</string>
+    <string name="books_and_stationery">Books and stationery</string>
+    <string name="sports_and_travel">Sports and Travel</string>
 
+    <string name="loginTxt">Enter your mobile number or email to log in or register in Digikala</string>
+    <string name="set_password_text">Please set a password for yourself or enter your password if you have already registered.</string>
+    <string name="terms_and_rules_full">By logging in or registering at DigiKala, you accept the terms and conditions of using DigiKala website services and its privacy rules.</string>
+    <string name="terms_and_rules">Terms and Rules</string>
+    <string name="privacy_and_rules">Privacy Rules</string>
+    <string name="digikala_entry">Login to Digikala</string>
+    <string name="digikala_login">Lets go!</string>
+    <string name="phone_and_email">Mobile number or email</string>
+    <string name="set_password">Enter your password</string>
+    <string name="login_error">The phone number or email format is not correct.</string>
+    <string name="password_error">The information entered is not correct</string>
+    <string name="favoriteProduct">Most popular products</string>
+
+    <string name="digikala_score">Digikala score</string>
+    <string name="digikala_wallet_active">Activate wallet</string>
+    <string name="score"> score</string>
+    <string name="auth">Authentication</string>
+    <string name="club">Digi Club</string>
+    <string name="contact_us">Contact us</string>
+
+    <string name="superMarketArticle">Supermarket Articles</string>
+    <string name="oneArticle">1 item</string>
+    <string name="articleName">Hamburger bun, Avaran bun, one pack</string>
+    <string name="articleWarranty">Warranty of authenticity and physical health of goods</string>
+    <string name="storeName">Digi Kala</string>
+    <string name="availableInDigiKala">Available in DigiKala warehouse</string>
+    <string name="digiKalaSuperMarketSpeedSend">DigiKala Super Market Speed ​​Send</string>
+    <string name="saveToNextList">Save to next shopping list</string>
+    <string name="count">1</string>
+    <string name="increase">+</string>
+    <string name="benefit">7,990 </string>
 
     <!--basket desc-->
-    <string name="cart">سبد خرید</string>
-    <string name="next_cart_list">لیست خرید بعدی</string>
-    <string name="purchase_process">ادامه فرآیند خرید</string>
-    <string name="total_shopping_cart">جمع سبد خرید</string>
-    <string name="cart_is_empty">سبد خرید شما خالی است!</string>
-    <string name="next_cart_list_is_empty">لیست خرید بعدی شما خالی است!</string>
-    <string name="next_cart_list_is_empty_msg">شما می‌توانید محصولاتی که به سبد خرید خود افزوده‌اید و فعلا قصد خرید آن‌ها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آن‌ها را به سبد خرید اضافه کرده و خرید آن‌ها را تکمیل کنید.</string>
-    <string name="login_or_register">ورود یا ثبت نام</string>
-    <string name="login_or_register_msg">برای تجربه بهتر خرید و بررسی روش ارسال کالاها لطفا وارد شوید.</string>
-
-
-
+    <string name="cart">Cart</string>
+    <string name="next_cart_list">next cart list</string>
+    <string name="purchase_process">Continue purchase process</string>
+    <string name="total_shopping_cart">Total shopping cart</string>
+    <string name="cart_is_empty">Your cart is empty!</string>
+    <string name="next_cart_list_is_empty">Your next cart list is empty!</string>
+    <string name="next_cart_list_is_empty_msg">You can put the products you have added to your shopping cart and you do not intend to buy them in the next shopping list and you can add them to the shopping cart and complete the purchase whenever you want. </string>
+    <string name="login_or_register">login or register</string>
+    <string name="login_or_register_msg">Please log in for a better shopping experience and to check the shipping method.</string>
 </resources>
