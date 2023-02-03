@@ -21,11 +21,10 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.RedColor
-import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
@@ -47,7 +46,7 @@ fun CartDetailCard() {
     val productPrice by remember {
         mutableStateOf(18676)
     }
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
             Text(
                 text = stringResource(R.string.basket_summary),
@@ -70,7 +69,7 @@ fun CartDetailCard() {
                 )
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.semiLarge))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = stringResource(R.string.products_price),
@@ -82,7 +81,7 @@ fun CartDetailCard() {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                modifier = Modifier.padding(horizontal = 4.dp),
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
                 text = digitByLocate(digitBySeparator(productPrice.toString())),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
@@ -93,11 +92,11 @@ fun CartDetailCard() {
             Image(
                 painter = painterResource(id = R.drawable.toman),
                 contentDescription = null,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(MaterialTheme.spacing.semiLarge)
             )
 
         }
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = stringResource(R.string.products_discount),
@@ -109,7 +108,7 @@ fun CartDetailCard() {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                modifier = Modifier.padding(horizontal = 4.dp),
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
                 text = "(${digitByLocate(discountPercent.toString())}٪)${digitByLocate(discountPrice.toString())}",
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
@@ -120,13 +119,13 @@ fun CartDetailCard() {
             Image(
                 painter = painterResource(id = R.drawable.toman),
                 contentDescription = null,
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(MaterialTheme.spacing.semiLarge),
                 colorFilter = ColorFilter.tint(
                     MaterialTheme.colors.RedColor
                 )
             )
         }
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = stringResource(id = R.string.total_shopping_cart),
@@ -138,7 +137,7 @@ fun CartDetailCard() {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                modifier = Modifier.padding(horizontal = 4.dp),
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
                 text = digitByLocate(digitBySeparator(totalShoppingCart.toString())),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
@@ -149,10 +148,10 @@ fun CartDetailCard() {
             Image(
                 painter = painterResource(id = R.drawable.toman),
                 contentDescription = null,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(MaterialTheme.spacing.semiLarge)
             )
         }
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -167,7 +166,7 @@ fun CartDetailCard() {
                         textDirection = TextDirection.ContentOrRtl,
                         color = Color.Gray,
                         fontSize = 32.sp,
-                    ), modifier = Modifier.padding(end = 16.dp)
+                    ), modifier = Modifier.padding(end = MaterialTheme.spacing.medium)
                 )
 
             }
@@ -183,7 +182,7 @@ fun CartDetailCard() {
             }
         }
     }
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
     Divider(modifier = Modifier.background(Color.LightGray))
 }
 
