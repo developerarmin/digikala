@@ -39,7 +39,7 @@
     <string name="digi_pay">دیجی پی</string>
     <string name="pindo">پیندو</string>
     <string name="gift_card">کارت هدیه</string>
-    <string name="digi_plus">دیجی پلاس</string>
+    <string name="digi_plus">دیجی‌پلاس</string>
     <string name="more">بیشتر</string>
     <string name="suggestion_for_you">پیشنهاد برای شما</string>
     <string name="loginTxt">برای ورود یا ثبت نام در دیجی کالا شماره موبایل یا پست الکترونیک خود را وارد نمایید</string>
@@ -62,7 +62,7 @@
     <string name="club">دیجی ‌کلاب</string>
     <string name="contact_us">تماس با ما</string>
 
-    <string name="superMarketArticle">کالاهای سوپر مارکتی</string>
+    <string name="superMarketArticles">کالاهای سوپر مارکتی</string>
     <string name="oneArticle">1 کالا</string>
     <string name="articleName">نان همبرگر نان آوران بسته یک عددی</string>
     <string name="articleWarranty">گارانتی اصالت و سلامت فیزیکی کالا</string>
@@ -92,6 +92,21 @@
     <string name="products_discount">تخفیف کالاها</string>
     <string name="shipping_cost_alert">هزینه ارسال بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه می‌شود</string>
     <string name="dot_bullet">•</string>
+
+
+    <string name="my_orders">سفارش‌های من</string>
+    <string name="processing">در حال پردازش</string>
+    <string name="returned">مرجوع شده</string>
+    <string name="canceled">لغو شده</string>
+    <string name="delivered">تحویل شده</string>
+    <string name="unpaid">در انتظار پرداخت</string>
+
+
+    <string name="fav_list">لیست مورد علاقه</string>
+    <string name="my_comments">نقد و نظرات</string>
+    <string name="addresses">آدرس‌ها</string>
+    <string name="profile_data">اطلاعات حساب کاربری</string>
+
 
 
 </resources>

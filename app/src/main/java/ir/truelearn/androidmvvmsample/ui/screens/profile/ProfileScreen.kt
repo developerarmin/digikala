@@ -6,6 +6,8 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.graphics.Paint
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -15,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,6 +30,8 @@ import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_PHONE
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.category.SubCategoryItem
+import ir.truelearn.androidmvvmsample.ui.screens.home.CenterBannerItem
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.selectedBottomBar
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
@@ -114,7 +119,7 @@ fun Profile(
                 }
             }
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.mediumTwo))
 
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -130,7 +135,7 @@ fun Profile(
                 color = MaterialTheme.colors.semiDarkText
             )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.mediumTwo))
 
 
             Row(
@@ -150,7 +155,7 @@ fun Profile(
                         painter = painterResource(id = R.drawable.digi_score),
                         contentDescription = "",
                         modifier = Modifier
-                            .size(48.dp)
+                            .size(42.dp)
                     )
                     Column(
                         modifier = Modifier
@@ -165,7 +170,7 @@ fun Profile(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                style = MaterialTheme.typography.h4,
+                                style = MaterialTheme.typography.h5,
                                 color = MaterialTheme.colors.semiDarkText,
                                 text = "${digitByLocate("975")} "
                             )
@@ -187,9 +192,9 @@ fun Profile(
 
                 Divider(
                     modifier = Modifier
-                        .width(1.dp)
-                        .height(80.dp)
-                        .alpha(0.3f),
+                        .width(2.dp)
+                        .height(60.dp)
+                        .alpha(0.2f),
                     color = Color.LightGray,
                 )
 
@@ -202,7 +207,7 @@ fun Profile(
                         painter = painterResource(id = R.drawable.digi_wallet),
                         contentDescription = "",
                         modifier = Modifier
-                            .size(48.dp)
+                            .size(34.dp)
                     )
 
                     Text(
@@ -229,7 +234,9 @@ fun Profile(
             Row(
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().padding(vertical = MaterialTheme.spacing.medium)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = MaterialTheme.spacing.mediumTwo)
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(
@@ -289,6 +296,92 @@ fun Profile(
                     .shadow(2.dp),
                 color = Color.LightGray,
             )
+
+
+            Text(
+                modifier = Modifier.padding(MaterialTheme.spacing.medium),
+                style = MaterialTheme.typography.h3,
+                fontWeight = FontWeight.Bold,
+                text = stringResource(id = R.string.my_orders),
+            )
+
+            LazyRow(modifier = Modifier.background(Color.White)) {
+                item {
+                    MyOrdersItem(
+                        text = stringResource(id = R.string.unpaid),
+                        painterResource(id = R.drawable.digi_unpaid)
+                    )
+                }
+                item {
+                    MyOrdersItem(
+                        text = stringResource(id = R.string.processing),
+                        painterResource(id = R.drawable.digi_processing)
+                    )
+                }
+                item {
+                    MyOrdersItem(
+                        text = stringResource(id = R.string.my_orders),
+                        painterResource(id = R.drawable.digi_delivered)
+                    )
+                }
+                item {
+                    MyOrdersItem(
+                        text = stringResource(id = R.string.canceled),
+                        painterResource(id = R.drawable.digi_cancel)
+                    )
+                }
+                item {
+                    MyOrdersItem(
+                        text = stringResource(id = R.string.returned),
+                        painterResource(id = R.drawable.digi_returned)
+                    )
+                }
+            }
+
+
+            CenterBannerItem(painter = painterResource(id = R.drawable.digiclub2))
+
+            ProfileRowItems(
+                text = stringResource(id = R.string.digi_plus),
+                painter = painterResource(id = R.drawable.digi_plus_icon), isHaveDivider = true
+            )
+
+            ProfileRowItems(
+                text = stringResource(id = R.string.fav_list),
+                painter = painterResource(id = R.drawable.digi_fav_icon), isHaveDivider = true
+            )
+
+            ProfileRowItems(
+                text = stringResource(id = R.string.my_comments),
+                painter = painterResource(id = R.drawable.digi_comments_icon),
+                isHaveDivider = true
+            )
+            ProfileRowItems(
+                text = stringResource(id = R.string.addresses),
+                painter = painterResource(id = R.drawable.digi_adresses_icon),
+                isHaveDivider = true
+            )
+            ProfileRowItems(
+                text = stringResource(id = R.string.profile_data),
+                painter = painterResource(id = R.drawable.digi_profile_icon),
+                isHaveDivider = false
+            )
+
+
+            CenterBannerItem(painter = painterResource(id = R.drawable.digiclub1))
+
+
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(MaterialTheme.spacing.small)
+                    .alpha(0.4f)
+                    .shadow(2.dp),
+                color = Color.LightGray,
+            )
+
+
+
             Button(
                 onClick = {
                     dataStore.saveUserLanguage("fa")
@@ -311,6 +404,103 @@ fun Profile(
 
     } else {
         //TODO dark theme
+    }
+
+}
+
+@Composable
+fun ProfileRowItems(text: String, painter: Painter, isHaveDivider: Boolean) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .padding(horizontal = MaterialTheme.spacing.medium)
+    ) {
+        Column(
+            Modifier
+
+                .fillMaxHeight()
+                .weight(0.1f),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painter,
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        }
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .weight(0.9f)
+                .padding(horizontal = MaterialTheme.spacing.small),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.9f),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    text = text
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.arrow_left),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(14.dp)
+
+                )
+            }
+            if (isHaveDivider) {
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                        .alpha(0.4f),
+                    color = Color.LightGray,
+                )
+            }
+        }
+
+    }
+}
+
+@Composable
+fun MyOrdersItem(text: String, painter: Painter) {
+    Row(modifier = Modifier.padding(vertical = MaterialTheme.spacing.mediumTwo)) {
+        Column(
+            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painter,
+                contentDescription = "",
+                modifier = Modifier
+                    .size(70.dp)
+                    .padding(bottom = MaterialTheme.spacing.small)
+            )
+            Text(
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.semiDarkText,
+                text = text
+            )
+        }
+        Divider(
+            modifier = Modifier
+                .width(1.dp)
+                .height(90.dp)
+                .alpha(0.4f),
+            color = Color.LightGray,
+        )
+
     }
 
 }
