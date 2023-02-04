@@ -73,4 +73,10 @@
     <string name="login_or_register_msg">برای تجربه بهتر خرید و بررسی روش ارسال کالاها لطفا وارد شوید.</string>
 
 
+
+    <!--Product Detail-->
+    <string name="similar_product">محصولات مشابه</string>
+    <string name="recommended_similar_product">خریداران این محصول،این کالا را هم خریده اند</string>
+
+
 </resources>

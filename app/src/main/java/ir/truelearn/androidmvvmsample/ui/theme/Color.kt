@@ -73,3 +73,15 @@ val Colors.DigikalaInStock : Color
 val Colors.CursorColor : Color
    @Composable
    get() = Color(0xFF018577)
+
+val Colors.TruckDeliveryIcon : Color
+    @Composable
+    get() = Color(0xFF68AF47)
+
+val Colors.PostTextColor : Color
+    @Composable
+    get() = Color(0xFFD8D8D8)
+
+val Colors.RecommendedSimilarProductsTextColor : Color
+    @Composable
+    get() = Color(0xFF303235)

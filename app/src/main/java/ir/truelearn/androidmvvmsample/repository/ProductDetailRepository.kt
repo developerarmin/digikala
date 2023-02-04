@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
+import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
@@ -10,5 +11,16 @@ class ProductDetailRepository @Inject constructor(private val api: ApiInterface)
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getSlider()
+        }
+
+
+    suspend fun getSimilarProducts(): NetworkResult<List<FavoriteProduct>> =
+        safeApiCall {
+            api.getMostFavoriteProducts()
+        }
+
+    suspend fun getRecommendedSimilarProducts(): NetworkResult<List<FavoriteProduct>> =
+        safeApiCall {
+            api.getMostFavoriteProducts()
         }
 }

@@ -36,7 +36,8 @@ fun ProductDetail(
     navController: NavHostController,
     id: String,
     isAmazing:Boolean,
-    viewModel: ProductDetailViewModel = hiltViewModel()
+    viewModel: ProductDetailViewModel = hiltViewModel(),
+
 ) {
     LaunchedEffect(true) {
         viewModel.getAllDataFromServer()
@@ -54,6 +55,8 @@ fun ProductDetail(
             ShowIsAmazing(isAmazing = isAmazing)
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
             TopSliderProduct()
+            SimilarProductSection()
+            RecommendedSimilarProductsSection()
 
         }
     }
