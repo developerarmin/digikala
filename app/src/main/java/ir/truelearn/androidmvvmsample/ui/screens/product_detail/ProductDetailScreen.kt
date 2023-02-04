@@ -39,6 +39,8 @@ fun ProductDetail(
         ) {
 
             TopAppBarProductDetail(navController)
+            SellerInfoDetails()
+
 
         }
     }
