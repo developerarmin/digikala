@@ -54,8 +54,8 @@ fun ProductDetail(
             TopAppBarProductDetail(navController)
             ShowIsAmazing(isAmazing = isAmazing)
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
-            TopSliderProduct(item)
-            ProductDetailHeader(item = item)
+            TopSliderProduct(item.image)
+            ProductDetailHeader(item.name,"در دسته مد و پوشاک")
             SimilarProductSection()
             RecommendedSimilarProductsSection()
 

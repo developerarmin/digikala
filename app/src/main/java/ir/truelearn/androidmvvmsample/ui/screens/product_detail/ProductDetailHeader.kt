@@ -20,16 +20,16 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 
 @Composable
-fun ProductDetailHeader(item:AmazingItem) {
+fun ProductDetailHeader(title: String, category: String) {
     Column {
         Text(
-            text = "عنوان دسته بندی محصول",
+            text = category,
             color = MaterialTheme.colors.DarkCyan,
             style = MaterialTheme.typography.h5,
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium)
         )
         Text(
-            text = item.name,
+            text = title,
             color = Color.Black,
             style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.Bold,
@@ -109,7 +109,8 @@ fun ProductDetailHeader(item:AmazingItem) {
                 text = DigitHelper.digitByLocate("90% (80نفر) از خریداران این کالا را پیشنهاد کرده اند."),
                 color = MaterialTheme.colors.semiDarkText,
                 fontSize = 12.sp,
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small))
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small)
+            )
         }
     }
 }

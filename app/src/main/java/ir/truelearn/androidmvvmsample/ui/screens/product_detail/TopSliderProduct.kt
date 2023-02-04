@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.collectLatest
 @SuppressLint("StateFlowValueCalledInComposition")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TopSliderProduct(item: AmazingItem, viewModel: ProductDetailViewModel = hiltViewModel()){
+fun TopSliderProduct(url: String, viewModel: ProductDetailViewModel = hiltViewModel()){
     var list by remember { mutableStateOf<List<Slider>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
 
@@ -94,7 +94,7 @@ fun TopSliderProduct(item: AmazingItem, viewModel: ProductDetailViewModel = hilt
                             .weight(1f)
                             .fillMaxWidth(),
                     ) { page ->
-                        imageUrl = item.image//viewModel.slider.value.data?.get(page)?.image.toString()
+                        imageUrl = url//viewModel.slider.value.data?.get(page)?.image.toString()
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.BottomCenter
