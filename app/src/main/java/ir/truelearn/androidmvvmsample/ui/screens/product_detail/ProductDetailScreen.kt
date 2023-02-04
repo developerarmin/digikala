@@ -56,6 +56,7 @@ fun ProductDetail(
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
             TopSliderProduct(item.image)
             ProductDetailHeader(item.name,"در دسته مد و پوشاک")
+            SellerInfoDetails()
             SimilarProductSection()
             RecommendedSimilarProductsSection()
 
