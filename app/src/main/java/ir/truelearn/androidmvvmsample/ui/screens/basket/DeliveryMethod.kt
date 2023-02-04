@@ -47,8 +47,9 @@ fun cartDeliveryMethod() {
 //                    Icon(painter = painterResource(id = ), contentDescription = "")
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(text = "4 کالا")
+                    Spacer(modifier = Modifier.width(12.dp))
                 }
-                LazyRow(){
+                LazyRow {
 
                 }
                 Text(text = "آماده ارسال")
@@ -56,9 +57,13 @@ fun cartDeliveryMethod() {
                 Row(modifier = Modifier
                     .fillMaxWidth()) {
                     Text(text = "هزینه ارسال")
-                    Spacer(modifier = Modifier.height(8.dp).width(8.dp))
+                    Spacer(modifier = Modifier
+                        .height(8.dp)
+                        .width(8.dp))
                     Text(text = "29000")
-                    Spacer(modifier = Modifier.height(4.dp).width(8.dp))
+                    Spacer(modifier = Modifier
+                        .height(4.dp)
+                        .width(8.dp))
                     Text(text = "تومان")
 
                 }
