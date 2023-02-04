@@ -27,8 +27,8 @@ import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
 
 @Composable
-fun ProductDetailScreen(navController: NavHostController, id: String,isAmazing:Boolean) {
-    ProductDetail(navController, id,isAmazing)
+fun ProductDetailScreen(navController: NavHostController, id: String,isAmazing:Boolean,item:AmazingItem,) {
+    ProductDetail(navController, id,isAmazing, item = item)
 }
 
 @Composable
@@ -36,6 +36,7 @@ fun ProductDetail(
     navController: NavHostController,
     id: String,
     isAmazing:Boolean,
+    item:AmazingItem,
     viewModel: ProductDetailViewModel = hiltViewModel()
 ) {
     LaunchedEffect(true) {
@@ -53,8 +54,8 @@ fun ProductDetail(
             TopAppBarProductDetail(navController)
             ShowIsAmazing(isAmazing = isAmazing)
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
-            TopSliderProduct()
-
+            TopSliderProduct(item)
+            ProductDetailHeader(item = item)
         }
     }
 }

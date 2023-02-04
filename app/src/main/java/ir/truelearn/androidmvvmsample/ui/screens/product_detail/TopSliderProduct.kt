@@ -22,6 +22,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
+import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
@@ -36,7 +37,7 @@ import kotlinx.coroutines.flow.collectLatest
 @SuppressLint("StateFlowValueCalledInComposition")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TopSliderProduct(viewModel: ProductDetailViewModel = hiltViewModel()){
+fun TopSliderProduct(item: AmazingItem, viewModel: ProductDetailViewModel = hiltViewModel()){
     var list by remember { mutableStateOf<List<Slider>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
 
@@ -62,7 +63,7 @@ fun TopSliderProduct(viewModel: ProductDetailViewModel = hiltViewModel()){
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(280.dp)
+            .height(300.dp)
             //.background(MaterialTheme.colors.DigikalaLightRed)
             .background(Color.White)
     ) {
@@ -93,7 +94,7 @@ fun TopSliderProduct(viewModel: ProductDetailViewModel = hiltViewModel()){
                             .weight(1f)
                             .fillMaxWidth(),
                     ) { page ->
-                        imageUrl = viewModel.slider.value.data?.get(page)?.image.toString()
+                        imageUrl = item.image//viewModel.slider.value.data?.get(page)?.image.toString()
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.BottomCenter

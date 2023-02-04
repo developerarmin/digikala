@@ -57,6 +57,9 @@ val Colors.LightCyan: Color
 val Colors.grayCategory: Color
     @Composable
     get() = Color(0xFFF1F0EE)
+val Colors.grayAlpha: Color
+    @Composable
+    get() = Color(0xFFc1c2c6)
 
 val Colors.DigikalaLightGreen: Color
     @Composable
@@ -73,3 +76,6 @@ val Colors.DigikalaInStock : Color
 val Colors.CursorColor : Color
    @Composable
    get() = Color(0xFF018577)
+val Colors.Gold : Color
+   @Composable
+   get() = Color(0xFFf9bc01)

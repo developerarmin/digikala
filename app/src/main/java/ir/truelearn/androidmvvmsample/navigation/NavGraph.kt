@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BasketScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
@@ -41,8 +42,8 @@ fun SetupNavGraph(navController: NavHostController) {
             route = Screen.ProductDetail.route + "/{id}/{amazing}",
             arguments = listOf(
                 navArgument("id") {
-                type = NavType.StringType
-            },
+                    type = NavType.StringType
+                },
                 navArgument("amazing") {
                     type = NavType.BoolType
                 })
@@ -50,7 +51,15 @@ fun SetupNavGraph(navController: NavHostController) {
             ProductDetailScreen(
                 navController = navController,
                 id = it.arguments?.getString("id").toString(),
-                isAmazing = it.arguments!!.getBoolean("amazing")
+                isAmazing = it.arguments!!.getBoolean("amazing"),
+                item = AmazingItem(
+                    "885200",
+                    30,
+                    "https://dkstatics-public.digikala.com/digikala-products/8ac0af9ed17bfefb8a7f828b9c88cc12e00c4b93_1673936201.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
+                    "ست تی شرت آستین بلند و شلوار دخترانه ناربن مدل 1521439-84",
+                    340000,
+                    ""
+                )
             )
         }
 
