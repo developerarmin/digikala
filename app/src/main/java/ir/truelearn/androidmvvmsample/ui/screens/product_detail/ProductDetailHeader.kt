@@ -30,7 +30,7 @@ fun ProductDetailHeader(title: String, category: String) {
         )
         Text(
             text = title,
-            color = Color.Black,
+            color = MaterialTheme.colors.darkText,
             style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(
@@ -96,7 +96,7 @@ fun ProductDetailHeader(title: String, category: String) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(horizontal = MaterialTheme.spacing.medium, vertical = 8.dp)
+                .padding(start = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium, top = 8.dp)
                 .fillMaxWidth()
         ) {
             Icon(
