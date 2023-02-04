@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,18 +12,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.ui.screens.home.AmazingOfferSection
-import ir.truelearn.androidmvvmsample.ui.screens.home.ProposalCardSection
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
-import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@SuppressLint("RememberReturnType")
 @Composable
-fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
+fun ShoppingBasket(
+    navController: NavController,
+    viewModel: CartViewModel = hiltViewModel()) {
     val currentCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
     }
@@ -65,7 +69,7 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
 
                     if (currentCartItems.value.isEmpty()) {
                         EmptyBasketShopping()
-                            SuggestListSection()
+                        SuggestListSection()
                     } else {
                         //cart list
                         Column(
@@ -80,17 +84,21 @@ fun ShoppingBasket(viewModel: CartViewModel = hiltViewModel()) {
             }
         }
 //-------------------------------------------------------------------------------------------
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 56.dp)
-//                .align(Alignment.BottomCenter)
-//        ) {
-//            if (true)
-//                BuyProcessContinue("21990") {
-//                    Log.e("3636", "ادامه فرایند خرید")
-//                }
-//        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 56.dp)
+                .align(Alignment.BottomCenter)
+        ) {
+//            if (currentCartItems.value.isEmpty()) {
+            if (!true) {
+                Box{}
+            } else {
+                BuyProcessContinue(price="21990"){
+                    navController.navigate(Screen.CartCheckout.route)
+                }
+            }
+        }
     }
 }
 
