@@ -29,7 +29,6 @@ fun TestKotlin() {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .background(Color.Green)
     ) {
         Row(
             modifier = Modifier
