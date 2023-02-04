@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.home
+package ir.truelearn.androidmvvmsample.ui.screens.product_detail
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,38 +20,32 @@ import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.DarkCyan
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 
 @Composable
-fun TheMostFavoriteProductSection(viewModel: HomeViewModel = hiltViewModel()){
-    var list by remember {
-        mutableStateOf<List<FavoriteProduct>>(emptyList())
-    }
-    var loading by remember {
-        mutableStateOf(false)
-    }
+fun SimilarProductSection(viewModel: ProductDetailViewModel = hiltViewModel()){
+    var list by remember { mutableStateOf<List<FavoriteProduct>>(emptyList()) }
+    var loading by remember { mutableStateOf(false) }
     LaunchedEffect(key1 = true) {
-
-        viewModel.favoriteProducts.collectLatest { result ->
+        viewModel.similarProducts.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
                     withContext(Dispatchers.Main) {
-                        list = result.data!!
+                        result.data?.let {
+                            list = it
+                        }
                         loading = false
                     }
                 }
                 is NetworkResult.Error -> {
                     loading = false
-                    Log.d("2121", "Init FavoriteItem error:${result.message} ")
-                    // show error message
+                    Log.e("5555", "MyProduct error:${result.message} ")
                 }
                 is NetworkResult.Loading -> {
-
                     withContext(Dispatchers.Main) {
                         loading = true
                     }
@@ -63,19 +56,11 @@ fun TheMostFavoriteProductSection(viewModel: HomeViewModel = hiltViewModel()){
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(MaterialTheme.spacing.small)) {
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
             Text(
-                modifier = Modifier.padding(bottom = 4.dp),
-                text = stringResource(id = R.string.favoriteProduct),
+                modifier = Modifier.padding(top = 4.dp, start = 4.dp),
+                text = stringResource(id = R.string.similar_product),
                 textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.h3,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colors.darkText,
-            )
-            Text(
-                modifier = Modifier.padding(top = 4.dp),
-                text = "مشاهده همه",
-                textAlign = TextAlign.End,
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colors.DarkCyan,
@@ -92,20 +77,11 @@ fun TheMostFavoriteProductSection(viewModel: HomeViewModel = hiltViewModel()){
                 Loading3Dots(isDark = false)
             }
         }else{
-            LazyRow(){
+            LazyRow{
                 items(list) { item ->
-                    TheMostPopularProductsOffer(item)
-                }
-                item {
-                    TheMostPopularProductsMoreItem()
+                    SimilarProduct(item)
                 }
             }
         }
-
-
-
     }
-
-
-
 }

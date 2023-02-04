@@ -56,6 +56,9 @@ fun ProductDetail(
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
             TopSliderProduct(item)
             ProductDetailHeader(item = item)
+            SimilarProductSection()
+            RecommendedSimilarProductsSection()
+
         }
     }
 }
