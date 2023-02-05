@@ -85,4 +85,7 @@
     <string name="next_cart_list_is_empty_msg">You can put the products you have added to your shopping cart and you do not intend to buy them in the next shopping list and you can add them to the shopping cart and complete the purchase whenever you want. </string>
     <string name="login_or_register">login or register</string>
     <string name="login_or_register_msg">Please log in for a better shopping experience and to check the shipping method.</string>
+
+    <string name="save_product_to_cart">Save %1$d product in the next list</string>
+    <string name="delete_product_from_cart">Remove %1$d product from the shopping cart</string>
 </resources>
