@@ -116,4 +116,6 @@
     <string name="costSend">هزینه ارسال</string>
     <string name="choseTimeSend">انتخاب زمان ارسال</string>
 
+    <string name="save_product_to_cart">ذخیره %1$d  کالا در لیست خرید بعدی</string>
+    <string name="delete_product_from_cart">حذف %1$d  کالا از سبد خرید</string>
 </resources>
