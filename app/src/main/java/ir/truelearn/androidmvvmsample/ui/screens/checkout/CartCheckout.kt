@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.basket
+package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 
 import android.util.Log
@@ -21,6 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
+import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
+import ir.truelearn.androidmvvmsample.ui.screens.basket.CartPriceDetails
+import ir.truelearn.androidmvvmsample.ui.screens.basket.CartShippingAddressAndTime
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
