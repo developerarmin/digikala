@@ -8,11 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
@@ -20,7 +19,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun CartPriceRow(title:String,price:Int,discount:Int=0){
+fun InitPriceRow(title:String, price:Int, discount:Int=0){
 var color =Color.Black
     var _price = "0"
     if (discount>0){
@@ -33,12 +32,11 @@ var color =Color.Black
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 5.dp, bottom = 5.dp)
+            .padding(vertical = 5.dp)
         ,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ){
-        Row(){
             Text(
                 modifier = Modifier
                 ,
@@ -49,10 +47,9 @@ var color =Color.Black
                 color = Color.Gray,
                 fontFamily = font_standard,
             )
-        }
         Row() {
             Text(
-                text = _price,
+                text = price.toString(),
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.Medium,
                 color = color
@@ -68,4 +65,10 @@ var color =Color.Black
 
         }
     }
+}
+
+@Composable
+@Preview
+private fun Te(){
+    InitPriceRow(title = "43", price = 10)
 }

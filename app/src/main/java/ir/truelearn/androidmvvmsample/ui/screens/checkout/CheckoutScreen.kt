@@ -23,7 +23,6 @@ import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
-import ir.truelearn.androidmvvmsample.ui.screens.basket.CartPriceDetails
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartShippingAddressAndTime
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
@@ -33,7 +32,7 @@ import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 
 @Composable
-fun CartCheckout(
+fun CheckoutScreen(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
@@ -60,12 +59,7 @@ fun CartCheckout(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(
-                                top = MaterialTheme.spacing.medium,
-                                bottom = MaterialTheme.spacing.small,
-                                start = MaterialTheme.spacing.small,
-                                end = MaterialTheme.spacing.small
-                            ),
+                            .padding(MaterialTheme.spacing.medium),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.Top
                     ) {
@@ -122,7 +116,7 @@ fun CartCheckout(
                 msg = "شما می توانید فاکتور خرید خود را پس از تحویل سفارش از بخش جزییات سفارش در حساب کاربری خود دریافت نمایید.",
                 icon = painterResource(id = R.drawable.info)
             )
-            CartPriceDetails(msg = "")
+            CheckoutPriceDetails(msg = "")
         }
 //-------------------------------------------------------------------------------------------
         Row(

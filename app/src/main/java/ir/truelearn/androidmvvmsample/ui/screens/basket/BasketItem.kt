@@ -309,9 +309,3 @@ private fun DetailRow(icon: Painter, text: String) {
         )
     }
 }
-
-//@Composable
-//@Preview
-//fun BasketItemPreview() {
-//    BasketItem()
-//}

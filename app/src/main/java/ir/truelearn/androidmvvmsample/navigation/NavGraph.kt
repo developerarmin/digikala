@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BasketScreen
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.CartCheckout
+import ir.truelearn.androidmvvmsample.ui.screens.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
@@ -34,7 +34,7 @@ fun SetupNavGraph(navController: NavHostController) {
             BasketScreen(navController = navController)
         }
         composable(route = Screen.CartCheckout.route) {
-            CartCheckout(navController = navController)
+            CheckoutScreen(navController = navController)
         }
 
         composable(route = Screen.Category.route) {

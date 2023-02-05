@@ -1,7 +1,6 @@
-package ir.truelearn.androidmvvmsample.ui.screens.basket
+package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -14,15 +13,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.basket.InitPriceRow
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.util.Dimension
 
 @Composable
-fun CartPriceDetails(
+fun CheckoutPriceDetails(
     msg: String
 ) {
 
@@ -31,112 +30,95 @@ fun CartPriceDetails(
             .fillMaxWidth()
 //        .background(Color.LightGray)
             .padding(
-                top = MaterialTheme.spacing.medium,
-                bottom = MaterialTheme.spacing.small,
-                start = MaterialTheme.spacing.medium,
-                end = MaterialTheme.spacing.medium
-            ),
-
-        ) {
+                vertical = MaterialTheme.spacing.medium,
+                horizontal = MaterialTheme.spacing.medium,
+            )
+    ) {
         Row(
             modifier = Modifier
-
                 .fillMaxWidth()
-                .padding(
-
-                    bottom = MaterialTheme.spacing.mediumTwo
-
-                )
-            ,
+                .padding(bottom = MaterialTheme.spacing.mediumTwo),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Row() {
-                Text(
-                    modifier = Modifier,
-                    text = "جزئیات قیمت",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                    fontFamily = font_medium,
+            Text(
+                modifier = Modifier,
+                text = "جزئیات قیمت",
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                fontFamily = font_medium,
 
                 )
-            }
-            Row() {
-                Text(
-                    modifier = Modifier,
-                    text = "${DigitHelper.digitByLocate(3.toString())} کالا ",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Gray,
-                    fontFamily = font_standard,
+            Text(
+                modifier = Modifier,
+                text = "${DigitHelper.digitByLocate(3.toString())} کالا ",
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray,
+                fontFamily = font_standard,
 
                 )
-            }
         }
 
         //---------------------------------------------------------------------------------
 
-        CartPriceRow(title = "قیمت کالا ها", price = 470000)
+        InitPriceRow(title = "قیمت کالا ها", price = 470000)
         //---------------------------------------------------------------------------------
-        CartPriceRow(title = "تخفیف کالا ها", price = 225000, discount = 48)
+        InitPriceRow(title = "تخفیف کالا ها", price = 225000, discount = 48)
         //---------------------------------------------------------------------------------
-        CartPriceRow(title = "جمع سبد خرید", price = 245000)
+        InitPriceRow(title = "جمع سبد خرید", price = 245000)
 
         Divider(
             color = infoBox,
             thickness = 1.dp,
             modifier = Modifier
                 .padding(
-                    top = MaterialTheme.spacing.mediumTwo,
-                    bottom = MaterialTheme.spacing.mediumTwo,
-                    start = MaterialTheme.spacing.medium,
-                    end = MaterialTheme.spacing.medium
+                    vertical = MaterialTheme.spacing.mediumTwo,
+                    horizontal = MaterialTheme.spacing.medium
                 )
 
         )
 
-        CartPriceRow(title = "هزینه ارسال", price = 29000)
+        InitPriceRow(title = "هزینه ارسال", price = 29000)
         //---------------------------------------------------------------------------------
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             verticalAlignment = Alignment.Top
         ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.circle),
-                    contentDescription = "",
-                    tint = Color.Gray,
-                    modifier = Modifier.size(5.dp, 15.dp)
-                        .padding(top =9.dp)
+            Icon(
+                painter = painterResource(id = R.drawable.circle),
+                contentDescription = "",
+                tint = Color.Gray,
+                modifier = Modifier
+                    .size(5.dp, 15.dp)
+                    .padding(top = 9.dp)
 
-                )
-                Spacer(modifier = Modifier.width(6.dp))
-                Text(
-                    text = "محاسبه شده بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.caption,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Gray,
-                    fontFamily = font_standard,
-                )
-
+            )
+            Spacer(modifier = Modifier.width(6.dp))
+            Text(
+                text = "محاسبه شده بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما",
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.caption,
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray,
+                fontFamily = font_standard,
+            )
 
 
         }
-        CartPriceRow(title = "مبلغ قابل پرداخت", price = 245000)
+        InitPriceRow(title = "مبلغ قابل پرداخت", price = 245000)
 
         Divider(
             color = infoBox,
             thickness = 1.dp,
             modifier = Modifier
                 .padding(
-                    top = MaterialTheme.spacing.mediumTwo,
-                    bottom = MaterialTheme.spacing.mediumTwo,
-                    start = MaterialTheme.spacing.medium,
-                    end = MaterialTheme.spacing.medium
+                    vertical = MaterialTheme.spacing.mediumTwo,
+                    horizontal = MaterialTheme.spacing.medium
                 )
 
         )
@@ -190,13 +172,13 @@ fun CartPriceDetails(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Row(   modifier = Modifier
-                .padding(
-                    top = MaterialTheme.spacing.medium,
-                    bottom = MaterialTheme.spacing.medium,
-                    start = MaterialTheme.spacing.mediumTwo,
-                    end = MaterialTheme.spacing.mediumTwo
-                )) {
+            Row(
+                modifier = Modifier
+                    .padding(
+                        vertical = MaterialTheme.spacing.medium,
+                        horizontal = MaterialTheme.spacing.mediumTwo
+                    )
+            ) {
                 Text(
                     modifier = Modifier,
                     text = "بعد از پایان مهلت مرجوعی، برای دریافت امتیاز به صفحه ماموریت‌های کلابی سر بزنید.",
@@ -208,11 +190,6 @@ fun CartPriceDetails(
                 )
             }
         }
-        //---------------------------------------------------------------------------------
-        //متن
-        //---------------------------------------------------------------------------------
-
-        //---------------------------------------------------------------------------------
     }
 
 }
