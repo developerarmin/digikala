@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.basket
+package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,30 +16,40 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 
 @Composable
-fun CheckoutItem() {
-    Box(modifier = Modifier
-        .padding(8.dp)
-        .height(75.dp)
-        .width(75.dp)) {
-//        Image(
-////            painter = painterResource(id = R.drawable.nike),null,
-//            contentScale = ContentScale.FillBounds
-//        )
-        Box(modifier = Modifier
-            .height(20.dp)
-            .width(20.dp)
-            .clip(RoundedCornerShape(4.dp))
-            .background(Color(0xFFF7F7F7)),
-            contentAlignment = Alignment.Center) {
-            Text(text = "1",
+fun CheckoutProductCard(item: CartItem?) {
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .height(75.dp)
+            .width(75.dp)
+    ) {
+        Image(
+            painterResource(id = R.drawable.place_holder),
+            contentDescription = "product",
+            contentScale = ContentScale.FillBounds
+        )
+        Box(
+            modifier = Modifier
+                .height(20.dp)
+                .width(20.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(Color(0xFFF7F7F7)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "1",
                 fontWeight = FontWeight.Normal,
-                fontSize = 10.sp,)
+                fontSize = 10.sp,
+            )
         }
 
     }
@@ -51,8 +61,3 @@ fun CheckoutItem() {
     )
 }
 
-@Composable
-@Preview
-private fun Display2(){
-    CheckoutItem()
-}
