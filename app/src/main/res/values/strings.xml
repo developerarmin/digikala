@@ -108,5 +108,12 @@
     <string name="profile_data">اطلاعات حساب کاربری</string>
     <string name="deleteFromList">حذف از لیست</string>
 
+    <string name="deliveryAndTimeMethod">شیوه و زمان ارسال</string>
+    <string name="consignment">مرسوله 1 از 1</string>
+    <string name="normalDelivery">ارسال عادی</string>
+    <string name="commodity2">4 کالا</string>
+    <string name="readyToSend">آماده ارسال</string>
+    <string name="costSend">هزینه ارسال</string>
+    <string name="choseTimeSend">انتخاب زمان ارسال</string>
 
 </resources>
