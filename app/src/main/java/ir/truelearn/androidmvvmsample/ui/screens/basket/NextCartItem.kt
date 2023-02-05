@@ -38,7 +38,10 @@ import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun NextCartItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
+fun NextCartItem(
+    item: CartItem, changeStatus: (id: String, newStatus: CartStatus) -> Unit,
+    removeFromCart: (CartItem) -> Unit
+) {
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Card(
@@ -176,6 +179,8 @@ fun NextCartItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                         Surface(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(6.dp))
+                                .width(120.dp)
+                                .height(40.dp)
                                 .border(1.dp, Color.LightGray, RoundedCornerShape(6.dp)),
                         ) {
 
@@ -185,23 +190,21 @@ fun NextCartItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                                     .padding(
                                         horizontal = MaterialTheme.spacing.small,
                                         vertical = MaterialTheme.spacing.extraSmall
-                                    ),
-                                verticalAlignment = Alignment.CenterVertically
+                                    )
+                                    .clickable {
+                                        changeStatus(item.itemID, CartStatus.CURRENT_CART)
+                                    },
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
                             ) {
 
-                                Card(
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_baseline_shopping_cart_checkout),
+                                    contentDescription = "",
+                                    tint = colorResource(id = R.color.red_custom),
                                     modifier = Modifier
-                                        .width(120.dp)
-                                        .height(40.dp),
-                                    RoundedCornerShape(6.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.ic_baseline_shopping_cart_checkout),
-                                        contentDescription = "",
-                                        modifier = Modifier,
-                                        colorResource(id = R.color.red_custom)
-                                    )
-                                }
+                                        .size(32.dp),
+                                )
                             }
 
                         }
@@ -213,15 +216,13 @@ fun NextCartItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                     Row(
                         modifier = Modifier
                             .clickable {
-                                cartItemCallbacks.onChangeStatusCart(
-                                    item.itemID, CartStatus.NEXT_CART
-                                )
+                                removeFromCart(item)
                             }, verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             Icons.Filled.KeyboardArrowLeft, contentDescription = "",
                             modifier = Modifier,
-                            colorResource(id = R.color.iconColor)
+                            MaterialTheme.colors.digikalaRed
                         )
 
 
@@ -229,7 +230,7 @@ fun NextCartItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                             text = stringResource(R.string.deleteFromList),
                             fontWeight = FontWeight.SemiBold,
                             style = MaterialTheme.typography.h6,
-                            color = colorResource(id = R.color.iconColor)
+                            color = MaterialTheme.colors.digikalaRed
                         )
                     }
                 }

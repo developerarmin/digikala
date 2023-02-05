@@ -76,7 +76,7 @@ fun ShoppingBasket(
                     }
 
                 }
-                item{
+                item {
                     SuggestListSection()
                 }
 
