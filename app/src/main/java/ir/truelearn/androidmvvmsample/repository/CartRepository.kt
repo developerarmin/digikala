@@ -22,11 +22,11 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
         cartDao.insertCartItem(cart)
     }
 
-    suspend fun changeCountCartItem(id: Int, newCount: Int) {
+    suspend fun changeCountCartItem(id: String, newCount: Int) {
         cartDao.changeCountCartItem(id, newCount)
     }
 
-    suspend fun changeStatusCart(itemID: Int, newStatus: CartStatus) {
+    suspend fun changeStatusCart(itemID: String, newStatus: CartStatus) {
         cartDao.changeStatusCart(itemID, newStatus)
     }
 

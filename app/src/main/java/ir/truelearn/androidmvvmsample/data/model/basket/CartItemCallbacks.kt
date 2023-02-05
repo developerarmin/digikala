@@ -5,7 +5,7 @@ import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 
 interface CartItemCallbacks {
     fun onRemoveCartItem(cart: CartItem)
-    fun onIncreaseCartItem(itemID: Int, newCount: Int)
-    fun onDecreaseCartItem(itemID: Int, newCount: Int)
-    fun onChangeStatusCart(itemID: Int, newStatus: CartStatus)
+    fun onIncreaseCartItem(itemID: String, newCount: Int)
+    fun onDecreaseCartItem(itemID: String, newCount: Int)
+    fun onChangeStatusCart(itemID: String, newStatus: CartStatus)
 }

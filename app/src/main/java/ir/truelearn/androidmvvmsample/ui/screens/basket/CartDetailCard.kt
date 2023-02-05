@@ -7,9 +7,6 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,24 +25,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
-@Preview
 @Composable
-fun CartDetailCard() {
-    val countProductCart by remember {
-        mutableStateOf(1)
-    }
-    val discountPercent by remember {
-        mutableStateOf(0)
-    }
-    val discountPrice by remember {
-        mutableStateOf(6)
-    }
-    val totalShoppingCart by remember {
-        mutableStateOf(18670)
-    }
-    val productPrice by remember {
-        mutableStateOf(18676)
-    }
+fun CartDetailCard(totalPrice:String, discount:String, payablePrice:String) {
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
             Text(
@@ -60,7 +41,7 @@ fun CartDetailCard() {
             Text(
                 text = String.format(
                     stringResource(R.string.count_product_cart),
-                    digitByLocate(countProductCart.toString())
+                    digitByLocate("4")
                 ),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
@@ -82,7 +63,7 @@ fun CartDetailCard() {
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = digitByLocate(digitBySeparator(productPrice.toString())),
+                text = digitByLocate(digitBySeparator(totalPrice)),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
                     textDirection = TextDirection.ContentOrRtl,
@@ -109,7 +90,7 @@ fun CartDetailCard() {
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = "(${digitByLocate(discountPercent.toString())}٪)${digitByLocate(discountPrice.toString())}",
+                text = "(${digitByLocate(discount)}٪)${digitByLocate(discount)}",
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
                     textDirection = TextDirection.ContentOrRtl,
@@ -138,7 +119,7 @@ fun CartDetailCard() {
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = digitByLocate(digitBySeparator(totalShoppingCart.toString())),
+                text = digitByLocate(digitBySeparator(payablePrice)),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
                     textDirection = TextDirection.ContentOrRtl,

@@ -55,19 +55,19 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
         }
     }
 
-    fun increaseCartItem(id: Int, newCount: Int) {
+    fun increaseCartItem(id: String, newCount: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.changeCountCartItem(id, newCount)
         }
     }
 
-    fun decreaseCartItem(id: Int, newCount: Int) {
+    fun decreaseCartItem(id: String, newCount: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.changeCountCartItem(id, newCount)
         }
     }
 
-    fun changeStatusCart(itemID: Int, newStatus: CartStatus) {
+    fun changeStatusCart(itemID: String, newStatus: CartStatus) {
         viewModelScope.launch {
             repository.changeStatusCart(itemID, newStatus)
         }

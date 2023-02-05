@@ -15,7 +15,6 @@ import ir.truelearn.androidmvvmsample.navigation.BottomNavigationBar
 import ir.truelearn.androidmvvmsample.navigation.SetupNavGraph
 import ir.truelearn.androidmvvmsample.ui.component.AppConfig
 import ir.truelearn.androidmvvmsample.ui.component.ChangeStatusBarColor
-import ir.truelearn.androidmvvmsample.ui.screens.basket.CartDetailCard
 import ir.truelearn.androidmvvmsample.ui.theme.AndroidMvvmSampleTheme
 import ir.truelearn.androidmvvmsample.util.LocaleUtils
 

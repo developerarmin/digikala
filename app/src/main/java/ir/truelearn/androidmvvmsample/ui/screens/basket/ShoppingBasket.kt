@@ -2,10 +2,14 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,7 +21,10 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+import ir.truelearn.androidmvvmsample.data.model.basket.CartItemCallbacks
+import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.util.Dimension
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -26,10 +33,17 @@ import kotlinx.coroutines.launch
 @Composable
 fun ShoppingBasket(
     navController: NavController,
-    viewModel: CartViewModel = hiltViewModel()) {
+    viewModel: CartViewModel = hiltViewModel()
+) {
     val currentCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
     }
+    LaunchedEffect(true) {
+        viewModel.currentCartItems.collectLatest { list ->
+            currentCartItems.value = list
+        }
+    }
+    val cartDetail = viewModel.cartDetail.collectAsState()
 //todo is login Check properly
     val isLogin = false
     Box(
@@ -37,49 +51,75 @@ fun ShoppingBasket(
             .fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
-        Column {
-            if (!isLogin)
-                LoginOrRegisterState()
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .wrapContentHeight()
+                .padding(bottom = 56.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            item {
+                if (!isLogin)
+                    LoginOrRegisterState()
+            }
 
-            val refreshScope = rememberCoroutineScope()
-            val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
-            SwipeRefresh(state = swipeRefreshState, onRefresh = {
-                refreshScope.launch {
-                    //todo set refresh scope
+            if (currentCartItems.value.isEmpty()) {
+                item {
 
-                    //  viewModel.getAllDataFromServer()
-//Log.e("3636", "call again Api!")
-                }
-            }) {
-
-                Column(
-                    modifier = Modifier
-                        .background(Color.White)
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(bottom = 140.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
-                ) {
-                    LaunchedEffect(true) {
-                        viewModel.currentCartItems.collectLatest { list ->
-                            currentCartItems.value = list
-                        }
-                    }
-
-                    if (currentCartItems.value.isEmpty()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp)
+                    ) {
                         EmptyBasketShopping()
-                        SuggestListSection()
-                    } else {
-                        //cart list
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(.4f)
-                        ) {
-                            //display cart item
-                        }
                     }
+
+                }
+                item{
+                    SuggestListSection()
+                }
+
+            } else {
+
+                //display cart list
+                items(currentCartItems.value) { item ->
+                    BasketItem(item = item, object : CartItemCallbacks {
+                        override fun onRemoveCartItem(cart: CartItem) {
+                            viewModel.removeFromCart(cart)
+                        }
+
+                        override fun onIncreaseCartItem(
+                            itemID: String,
+                            newCount: Int
+                        ) {
+                            viewModel.increaseCartItem(itemID, newCount)
+                        }
+
+                        override fun onDecreaseCartItem(
+                            itemID: String,
+                            newCount: Int
+                        ) {
+                            viewModel.decreaseCartItem(itemID, newCount)
+                        }
+
+                        override fun onChangeStatusCart(
+                            itemID: String,
+                            newStatus: CartStatus
+                        ) {
+                            viewModel.changeStatusCart(itemID, newStatus)
+                        }
+
+                    })
+                }
+//
+                item {
+
+                    CartDetailCard(
+                        cartDetail.value.totalPrice.toString(),
+                        "0",
+                        cartDetail.value.payablePrice.toString()
+                    )
                 }
             }
         }
@@ -87,18 +127,16 @@ fun ShoppingBasket(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 56.dp)
                 .align(Alignment.BottomCenter)
+                .padding(bottom = 56.dp)
         ) {
-//            if (currentCartItems.value.isEmpty()) {
-            if (!true) {
-                Box{}
-            } else {
-                BuyProcessContinue(price="21990"){
+            AnimatedVisibility(visible = currentCartItems.value.isNotEmpty()) {
+                BuyProcessContinue(price = cartDetail.value.payablePrice.toString()) {
                     navController.navigate(Screen.CartCheckout.route)
                 }
             }
         }
+
     }
 }
 

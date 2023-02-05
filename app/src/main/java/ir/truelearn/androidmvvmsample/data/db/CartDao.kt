@@ -19,10 +19,10 @@ interface CartDao {
     suspend fun removeFromCart(cart: CartItem)
 
     @Query("update shopping_cart set count=:newCount where itemID=:id")
-    suspend fun changeCountCartItem(id: Int, newCount: Int): Int
+    suspend fun changeCountCartItem(id: String, newCount: Int): Int
 
     @Query("update shopping_cart set cartStatus=:newStatus where itemID=:itemID")
-    suspend fun changeStatusCart(itemID: Int, newStatus: CartStatus): Int
+    suspend fun changeStatusCart(itemID: String, newStatus: CartStatus): Int
 
     @Query("select *from shopping_cart")
     fun getAllItems(): Flow<List<CartItem>>
