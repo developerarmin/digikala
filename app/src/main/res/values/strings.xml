@@ -106,7 +106,7 @@
     <string name="my_comments">نقد و نظرات</string>
     <string name="addresses">آدرس‌ها</string>
     <string name="profile_data">اطلاعات حساب کاربری</string>
-
+    <string name="deleteFromList">حذف از لیست</string>
 
 
 </resources>
