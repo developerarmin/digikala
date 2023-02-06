@@ -59,6 +59,9 @@ fun ProductDetail(
             SellerInfoDetails()
             SimilarProductSection()
             RecommendedSimilarProductsSection()
+            TopSliderProduct()
+            ProductDetailCard()
+            BootomBarProductDetail(navController)
 
         }
     }
