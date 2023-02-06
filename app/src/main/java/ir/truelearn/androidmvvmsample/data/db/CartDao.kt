@@ -30,7 +30,7 @@ interface CartDao {
     @Query("select *from shopping_cart where cartStatus=:status")
     fun getAllItems(status: CartStatus): Flow<List<CartItem>>
 
-    @Query("select SUM(count) as count from shopping_cart where cartStatus=:status")
+    @Query("select sum(count) as count from shopping_cart where cartStatus=:status")
     fun getCartItemsCount(status: CartStatus = CartStatus.CURRENT_CART): Flow<Int>
 
     @Query("select COUNT(itemID)  from shopping_cart where cartStatus =:status")

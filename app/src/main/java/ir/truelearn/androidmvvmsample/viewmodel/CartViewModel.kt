@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,14 +24,16 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
-
-    var currentCartCount: Flow<Int> = repository.cartItemCounter
+    var currentCartCount = repository.cartItemCounter
+    var nextCartItemCounter = mutableStateOf(3)
+//    var currentCartCount: Flow<Int> = repository.cartItemCounter
     var nextCartCount: Flow<Int> = repository.nextCartItemCounter
 
     val suggestedList =
         MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
 
     init {
+        Log.d("level4", ":${repository.cartItemCounter} ")
         viewModelScope.launch {
             calculateAndDisplayDetailCart()
         }

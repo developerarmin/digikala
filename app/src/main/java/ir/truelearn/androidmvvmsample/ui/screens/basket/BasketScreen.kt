@@ -40,19 +40,12 @@ fun Basket(
     viewModel: CartViewModel = hiltViewModel()
 ) {
     val cartItem = remember {
-        mutableStateOf(0)
+        mutableStateOf(3)
     }
     val nextCartItem = remember {
-        mutableStateOf(0)
+        mutableStateOf(3)
     }
-    LaunchedEffect(key1 = true) {
-        viewModel.currentCartCount.collectLatest {
-            cartItem.value = it
-        }
-        viewModel.nextCartCount.collectLatest {
-            nextCartItem.value = it
-        }
-    }
+
     if (!isSystemInDarkTheme()) {
         var selectedTabIndex by remember { mutableStateOf(0) } // 1.
         val tabTitles =

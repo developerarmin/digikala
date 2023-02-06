@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -17,6 +18,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -27,6 +29,9 @@ fun BottomNavigationBar(
     onItemClick: (BottomNavItem) -> Unit,
     viewModel: CartViewModel = hiltViewModel()
 ) {
+    val cartCounter = remember {
+        mutableStateOf(3)
+    }
     val items = listOf(
         BottomNavItem(
             name = stringResource(R.string.home),
@@ -64,14 +69,7 @@ fun BottomNavigationBar(
             backgroundColor = Color.White,
             elevation = 5.dp
         ) {
-            val cartCounter = remember {
-                mutableStateOf(0)
-            }
-            LaunchedEffect(key1 = true) {
-                viewModel.currentCartCount.collectLatest {
-                    cartCounter.value = it
-                }
-            }
+
             items.forEachIndexed { index, item ->
                 val selected = item.route == backStackEntry.value?.destination?.route
                 BottomNavigationItem(
