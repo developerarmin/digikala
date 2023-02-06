@@ -26,6 +26,7 @@ import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
 fun CheckoutProductCard(item: CartItem) {
@@ -37,12 +38,10 @@ fun CheckoutProductCard(item: CartItem) {
     ) {
 
 
-
         Box(
             modifier = Modifier
                 .height(75.dp)
-                .width(75.dp)
-            ,
+                .width(75.dp),
             contentAlignment = Alignment.BottomEnd
         ) {
             Image(
@@ -50,33 +49,23 @@ fun CheckoutProductCard(item: CartItem) {
                 contentDescription = "cart item Photo",
                 contentScale = ContentScale.FillBounds
             )
-//            Image(
-//                painterResource(id = R.drawable.hamberger),
-//                contentDescription = "product",
-//                contentScale = ContentScale.FillBounds
-//            )
         }
 
         Box(
             modifier = Modifier
                 .height(75.dp)
                 .width(75.dp)
-                .clip(RoundedCornerShape(4.dp))
-            ,
+                .clip(RoundedCornerShape(4.dp)),
             contentAlignment = Alignment.BottomEnd
         ) {
             Text(
-                text = " 1 ",
+                text = DigitHelper.digitByLocate(item.count.toString()),
                 fontWeight = FontWeight.Normal,
                 fontSize = 10.sp,
                 modifier = Modifier
                     .background(Color(0xFFF7F7F7))
-
-
             )
         }
-
-
     }
     Divider(
         color = Color(0xFFF3F3F3),

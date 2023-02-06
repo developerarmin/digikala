@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -11,8 +12,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +25,6 @@ import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
-import ir.truelearn.androidmvvmsample.ui.screens.basket.CartShippingAddressAndTime
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
@@ -39,7 +37,7 @@ fun CheckoutScreen(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
-    var determineTime = false
+    val determineTime = false
     val isLogin = false
 
     Box(
@@ -77,7 +75,10 @@ fun CheckoutScreen(
                             Icon(
                                 painter = painterResource(id = R.drawable.arrow_back2),
                                 contentDescription = "",
-                                modifier = Modifier.size(24.dp, 22.dp)
+                                modifier = Modifier
+                                    .clickable {
+                                        navController.popBackStack()
+                                    }
                             )
 
                         }
@@ -130,19 +131,13 @@ fun CheckoutScreen(
                 .padding(bottom = 1.dp)
                 .align(Alignment.BottomCenter)
         ) {
-            if (false) {
-                Box {}
-            } else {
-                val cartDetail = viewModel.cartDetail.collectAsState()
-                var sendPrice = 29000 // by default
-
-                BuyProcessContinue(
-                    price =(cartDetail.value.payablePrice + sendPrice).toString(),
-                    flag = "",
-                    timeState = determineTime
-                ) {
-                    Log.e("3636", "ادامه فرایند خرید")
-                }
+            val cartDetail = viewModel.cartDetail.collectAsState()
+            BuyProcessContinue(
+                price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost).toString(),
+                flag = "",
+                timeState = determineTime
+            ) {
+                Log.e("3636", "ادامه فرایند خرید")
             }
         }
     }

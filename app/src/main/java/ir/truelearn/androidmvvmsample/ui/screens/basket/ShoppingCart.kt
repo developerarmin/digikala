@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("RememberReturnType")
 @Composable
-fun ShoppingBasket(
+fun ShoppingCart(
     navController: NavController,
     viewModel: CartViewModel = hiltViewModel()
 ) {

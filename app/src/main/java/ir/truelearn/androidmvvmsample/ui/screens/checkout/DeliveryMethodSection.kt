@@ -44,7 +44,7 @@ fun DeliveryMethodSection(
         }
     }
     var marsoleh = ""
-    var x1 = DigitHelper.digitByLocate("2")
+    val x1 = DigitHelper.digitByLocate("2")
     var x2 = DigitHelper.digitByLocate("3")
     marsoleh = "مرسوله ${x1} از ${x2}  "
 

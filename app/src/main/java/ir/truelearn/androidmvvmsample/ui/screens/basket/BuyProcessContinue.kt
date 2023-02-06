@@ -25,10 +25,10 @@ fun BuyProcessContinue(
     onClick: () -> Unit,
 ) {
     var payableText=""
-if(flag.equals("ShoppingBasket"))
-    payableText = stringResource(R.string.total_shopping_cart)
+    payableText = if(flag=="ShoppingBasket")
+        stringResource(R.string.total_shopping_cart)
     else
-    payableText = stringResource(R.string.amount_payable)
+        stringResource(R.string.amount_payable)
 
     Card(
         modifier = Modifier.padding(horizontal = 0.dp),

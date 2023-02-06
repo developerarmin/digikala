@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -28,14 +27,14 @@ import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun BasketScreen(
+fun CartScreen(
     navController: NavHostController,
 ) {
-    Basket(navController = navController)
+    Cart(navController = navController)
 }
 
 @Composable
-fun Basket(
+fun Cart(
     navController: NavController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
@@ -115,7 +114,7 @@ fun Basket(
                 }
             }
             when (selectedTabIndex) {
-                0 -> ShoppingBasket(navController = navController)
+                0 -> ShoppingCart(navController = navController)
                 1 -> NextShoppingList(navController)
             }
         }

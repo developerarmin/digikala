@@ -28,7 +28,6 @@ import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
 
     val cartDetail = viewModel.cartDetail.collectAsState()
-    var sendPrice = 29000
 
     Column(
         modifier = Modifier
@@ -85,7 +84,7 @@ fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
                     horizontal = MaterialTheme.spacing.medium
                 )
         )
-        InitPriceRow(title = "هزینه ارسال", price = sendPrice.toString())
+        InitPriceRow(title = "هزینه ارسال", price = cartDetail.value.shippingCost.toString())
         //---------------------------------------------------------------------------------
         Row(
             modifier = Modifier
@@ -113,7 +112,7 @@ fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
         }
         InitPriceRow(
             title = "مبلغ قابل پرداخت",
-            price = (cartDetail.value.payablePrice + sendPrice).toString()
+            price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost).toString()
         )
         DigiKlabScore(viewModel.digiKlabScore)
 
