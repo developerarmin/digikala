@@ -49,7 +49,7 @@ fun ProductDetail(
     if (!isSystemInDarkTheme()) {
         Scaffold(
             bottomBar = {
-                BootomBarProductDetail(navController)
+                BottomBarProductDetail(navController)
             },
         ){
             Column(
