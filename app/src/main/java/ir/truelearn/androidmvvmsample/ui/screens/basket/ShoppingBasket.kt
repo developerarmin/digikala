@@ -58,7 +58,6 @@ fun ShoppingBasket(
 
             if (currentCartItems.value.isEmpty()) {
                 item {
-
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -66,12 +65,10 @@ fun ShoppingBasket(
                     ) {
                         EmptyBasketShopping()
                     }
-
                 }
                 item {
                     SuggestListSection()
                 }
-
             } else {
 
                 //display cart list
@@ -109,7 +106,8 @@ fun ShoppingBasket(
                     CartPriceDetailSection(
                         cartDetail.value.totalPrice.toString(),
                         cartDetail.value.discount,
-                        cartDetail.value.payablePrice.toString()
+                        cartDetail.value.payablePrice.toString(),
+                        viewModel.digiKlabScore
                     )
                 }
             }

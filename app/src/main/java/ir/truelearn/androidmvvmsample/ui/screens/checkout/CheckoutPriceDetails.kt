@@ -6,6 +6,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.basket.DigiKlabScore
 import ir.truelearn.androidmvvmsample.ui.theme.font_medium
@@ -20,11 +22,14 @@ import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
-fun CheckoutPriceDetails(
-    msg: String
-) {
+fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
+
+    val cartDetail = viewModel.cartDetail.collectAsState()
+    var sendPrice = 29000
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -58,14 +63,18 @@ fun CheckoutPriceDetails(
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray,
                 fontFamily = font_standard,
-                )
+            )
         }
 
-        InitPriceRow(title = "قیمت کالا ها", price = "470000")
+        InitPriceRow(title = "قیمت کالا ها", price = cartDetail.value.totalPrice.toString())
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "تخفیف کالا ها", price = "225000", discount = "48")
+        InitPriceRow(
+            title = "تخفیف کالا ها",
+            price = cartDetail.value.totalPrice.toString(),
+            discount = cartDetail.value.discount.toString()
+        )
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "جمع سبد خرید", price = "245000")
+        InitPriceRow(title = "جمع سبد خرید", price = cartDetail.value.payablePrice.toString())
 
         Divider(
             color = infoBox,
@@ -76,7 +85,7 @@ fun CheckoutPriceDetails(
                     horizontal = MaterialTheme.spacing.medium
                 )
         )
-        InitPriceRow(title = "هزینه ارسال", price = "29000")
+        InitPriceRow(title = "هزینه ارسال", price = sendPrice.toString())
         //---------------------------------------------------------------------------------
         Row(
             modifier = Modifier
@@ -102,8 +111,11 @@ fun CheckoutPriceDetails(
                 fontFamily = font_standard,
             )
         }
-        InitPriceRow(title = "مبلغ قابل پرداخت", price = "245000")
-        DigiKlabScore("150")
+        InitPriceRow(
+            title = "مبلغ قابل پرداخت",
+            price = (cartDetail.value.payablePrice + sendPrice).toString()
+        )
+        DigiKlabScore(viewModel.digiKlabScore)
 
     }
 

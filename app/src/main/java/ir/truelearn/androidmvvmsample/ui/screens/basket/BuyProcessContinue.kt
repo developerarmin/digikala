@@ -29,6 +29,7 @@ if(flag.equals("ShoppingBasket"))
     payableText = stringResource(R.string.total_shopping_cart)
     else
     payableText = stringResource(R.string.amount_payable)
+
     Card(
         modifier = Modifier.padding(horizontal = 0.dp),
         shape = RoundedCornerShape(3.dp),
@@ -132,6 +133,7 @@ if(flag.equals("ShoppingBasket"))
                         fontWeight = FontWeight.SemiBold,
 
                         )
+
                     Image(
                         painter = painterResource(id = R.drawable.toman),
                         contentDescription = "",
@@ -139,9 +141,7 @@ if(flag.equals("ShoppingBasket"))
                             .size(MaterialTheme.spacing.semiLarge)
                             .padding(horizontal = MaterialTheme.spacing.extraSmall)
                     )
-
                 }
-
             }
         }
     }

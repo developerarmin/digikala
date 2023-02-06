@@ -10,6 +10,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +41,7 @@ fun CheckoutScreen(
 ) {
     var determineTime = false
     val isLogin = false
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -117,7 +121,7 @@ fun CheckoutScreen(
                 msg = "شما می توانید فاکتور خرید خود را پس از تحویل سفارش از بخش جزییات سفارش در حساب کاربری خود دریافت نمایید.",
                 icon = painterResource(id = R.drawable.info)
             )
-            CheckoutPriceDetails(msg = "")
+            CheckoutPriceDetails()
         }
 //-------------------------------------------------------------------------------------------
         Row(
@@ -129,8 +133,11 @@ fun CheckoutScreen(
             if (false) {
                 Box {}
             } else {
+                val cartDetail = viewModel.cartDetail.collectAsState()
+                var sendPrice = 29000 // by default
+
                 BuyProcessContinue(
-                    price = "21990",
+                    price =(cartDetail.value.payablePrice + sendPrice).toString(),
                     flag = "",
                     timeState = determineTime
                 ) {

@@ -29,9 +29,7 @@ fun InitPriceRow(title: String, price: String, discount: String = "0") {
     if (discount.toInt() > 0) {
         val discountAmount = price.toInt() - DigitHelper.applyDiscount(price.toInt(), discount.toInt())
         _price = "(${digitBySeparator(digitByLocate(discount))}%)${
-            digitBySeparator(
-                digitByLocate(discountAmount.toString())
-            )
+            digitBySeparator(digitByLocate(discountAmount.toString()))
         }"
         color = MaterialTheme.colors.DigikalaLightRed
     } else {

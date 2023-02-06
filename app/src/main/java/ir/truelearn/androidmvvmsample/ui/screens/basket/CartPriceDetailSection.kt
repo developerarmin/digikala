@@ -5,6 +5,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,7 +24,12 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun CartPriceDetailSection(totalPrice: String, discount: Int, payablePrice: String) {
+fun CartPriceDetailSection(
+    totalPrice: String,
+    discount: Int,
+    payablePrice: String,
+    digiKlabScore:String) {
+
 
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
@@ -50,13 +56,11 @@ fun CartPriceDetailSection(totalPrice: String, discount: Int, payablePrice: Stri
         }
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.semiLarge))
+
         InitPriceRow(title = "قیمت کالا ها", price = totalPrice)
-        //---------------------------------------------------------------------------------
-
-
         InitPriceRow(title = "تخفیف کالا ها", price = totalPrice, discount = discount.toString())
-        //---------------------------------------------------------------------------------
         InitPriceRow(title = "جمع سبد خرید", price = payablePrice)
+
 
 
         Divider(
@@ -94,7 +98,7 @@ fun CartPriceDetailSection(totalPrice: String, discount: Int, payablePrice: Stri
             )
         }
 
-        DigiKlabScore("150")
+        DigiKlabScore(digiKlabScore)
 
 
     }
