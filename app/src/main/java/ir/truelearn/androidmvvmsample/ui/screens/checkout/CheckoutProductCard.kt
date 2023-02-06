@@ -22,12 +22,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 @Composable
-fun CheckoutProductCard(item: CartItem?) {
+fun CheckoutProductCard(item: CartItem) {
     Box(
         modifier = Modifier
             .padding(8.dp)
@@ -45,10 +46,15 @@ fun CheckoutProductCard(item: CartItem?) {
             contentAlignment = Alignment.BottomEnd
         ) {
             Image(
-                painterResource(id = R.drawable.hamberger),
-                contentDescription = "product",
+                painter = rememberAsyncImagePainter(item.image),
+                contentDescription = "cart item Photo",
                 contentScale = ContentScale.FillBounds
             )
+//            Image(
+//                painterResource(id = R.drawable.hamberger),
+//                contentDescription = "product",
+//                contentScale = ContentScale.FillBounds
+//            )
         }
 
         Box(

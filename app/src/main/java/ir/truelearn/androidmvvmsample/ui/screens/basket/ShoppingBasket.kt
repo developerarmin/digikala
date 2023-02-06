@@ -63,7 +63,7 @@ fun ShoppingBasket(
         ) {
             item {
                 if (isLogin.value == "null" || isLogin.value.isEmpty()) {
-                    LoginOrRegisterState(navController)
+                    LoginOrRegisterState()
                 }
             }
 

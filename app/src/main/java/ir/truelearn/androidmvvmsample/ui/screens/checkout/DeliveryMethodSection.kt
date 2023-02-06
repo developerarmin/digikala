@@ -2,12 +2,16 @@ package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
@@ -18,14 +22,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun DeliveryMethodSection(
-    shippingConst: String = "20000"
+    shippingConst: String = "20000",
+    viewModel: CartViewModel = hiltViewModel()
 ) {
+    val currentCartItems = remember {
+        mutableStateOf(emptyList<CartItem>())
+    }
+    LaunchedEffect(true) {
+        viewModel.currentCartItems.collectLatest { list ->
+            currentCartItems.value = list
+        }
+    }
     var marsoleh = ""
     var x1 = DigitHelper.digitByLocate("2")
     var x2 = DigitHelper.digitByLocate("3")
@@ -112,8 +129,8 @@ fun DeliveryMethodSection(
                 }
 
                 LazyRow {
-                    items(5) {
-                        CheckoutProductCard(item = null)
+                    items(currentCartItems.value) {item->
+                        CheckoutProductCard(item = item)
                     }
                 }
                 Text(
