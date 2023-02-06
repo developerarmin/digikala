@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,12 +12,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_TOKEN
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun NextShoppingList(viewModel: CartViewModel = hiltViewModel()) {
+fun NextShoppingList(
+    navController: NavController,
+    viewModel: CartViewModel = hiltViewModel()
+) {
     val nextCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
     }
@@ -25,8 +32,7 @@ fun NextShoppingList(viewModel: CartViewModel = hiltViewModel()) {
             nextCartItems.value = list
         }
     }
-//todo is login Check properly
-    val isLogin = false
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -41,8 +47,9 @@ fun NextShoppingList(viewModel: CartViewModel = hiltViewModel()) {
             verticalArrangement = Arrangement.Top
         ) {
             item {
-                if (!isLogin)
-                    LoginOrRegisterState()
+                if (USER_TOKEN == "null" || USER_TOKEN.isEmpty()) {
+                    LoginOrRegisterState(navController)
+                }
             }
             if (nextCartItems.value.isEmpty()) {
                 item {

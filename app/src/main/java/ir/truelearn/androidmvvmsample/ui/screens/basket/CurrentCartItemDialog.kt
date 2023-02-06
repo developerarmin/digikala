@@ -20,15 +20,13 @@ import ir.truelearn.androidmvvmsample.R
 import kotlinx.coroutines.launch
 
 
-
-
 @OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun ShowBottomSheetDialog(showModalSheet: Boolean) {
-    val showModalSheet = rememberSaveable {
-        mutableStateOf(showModalSheet)
-    }
+//    val showModalSheet = rememberSaveable {
+//        mutableStateOf(showModalSheet)
+//    }
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -37,7 +35,10 @@ fun ShowBottomSheetDialog(showModalSheet: Boolean) {
     )
 
     ModalBottomSheetLayout(sheetState = modalSheetState,
-        sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp), sheetContent = {
+        sheetShape = RoundedCornerShape(
+            topStart = 12.dp,
+            topEnd = 12.dp
+        ), sheetContent = {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -46,7 +47,10 @@ fun ShowBottomSheetDialog(showModalSheet: Boolean) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 8.dp
+                        ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
@@ -91,7 +95,7 @@ fun ShowBottomSheetDialog(showModalSheet: Boolean) {
         })
     {
         coroutineScope.launch {
-            if (showModalSheet.value)
+            if (showModalSheet)
                 modalSheetState.show()
             else
                 modalSheetState.hide()

@@ -105,7 +105,7 @@ fun Basket(
             }
             when (selectedTabIndex) {
                 0 -> ShoppingBasket(navController=navController)
-                1 -> NextShoppingList()
+                1 -> NextShoppingList(navController)
             }
         }
     } else {

@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItemCallbacks
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
@@ -38,14 +39,15 @@ fun ShoppingBasket(
     val currentCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
     }
+    val isLogin = remember {
+        mutableStateOf(MainActivity.USER_TOKEN)
+    }
     LaunchedEffect(true) {
         viewModel.currentCartItems.collectLatest { list ->
             currentCartItems.value = list
         }
     }
     val cartDetail = viewModel.cartDetail.collectAsState()
-//todo is login Check properly
-    val isLogin = false
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -60,8 +62,9 @@ fun ShoppingBasket(
             verticalArrangement = Arrangement.Top
         ) {
             item {
-                if (!isLogin)
-                    LoginOrRegisterState()
+                if (isLogin.value == "null" || isLogin.value.isEmpty()) {
+                    LoginOrRegisterState(navController)
+                }
             }
 
             if (currentCartItems.value.isEmpty()) {
@@ -132,7 +135,11 @@ fun ShoppingBasket(
         ) {
             AnimatedVisibility(visible = currentCartItems.value.isNotEmpty()) {
                 BuyProcessContinue(price = cartDetail.value.payablePrice.toString()) {
-                    navController.navigate(Screen.CartCheckout.route)
+                    if (isLogin.value == "null" || isLogin.value.isEmpty()) {
+                        navController.navigate(Screen.Profile.route)
+                    } else {
+                        navController.navigate(Screen.CartCheckout.route)
+                    }
                 }
             }
         }
