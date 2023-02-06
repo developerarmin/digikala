@@ -11,8 +11,6 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,18 +25,18 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDirection
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.data.model.basket.CartItemCallbacks
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun NextCartItem(
+fun NextCartItemCard(
     item: CartItem, changeStatus: (id: String, newStatus: CartStatus) -> Unit,
     removeFromCart: (CartItem) -> Unit
 ) {
@@ -115,27 +113,62 @@ fun NextCartItem(
                         //Warranty
                         DetailRow(
                             icon = painterResource(id = R.drawable.warranty),
-                            text = stringResource(R.string.articleWarranty)
+                            text = stringResource(R.string.articleWarranty),
+                            color = MaterialTheme.colors.darkText
                         )
 
                         //store
                         DetailRow(
                             icon = painterResource(id = R.drawable.store),
-                            text = stringResource(R.string.storeName)
+                            text = stringResource(R.string.storeName),
+                            color = MaterialTheme.colors.darkText
                         )
 
                         //status
                         DetailRow(
                             icon = painterResource(id = R.drawable.available),
-                            text = stringResource(R.string.availableInDigiKala)
+                            text = stringResource(R.string.availableInDigiKala),
+                            color = MaterialTheme.colors.DarkCyan
                         )
-
                         //send detail
-                        DetailRow(
-                            icon = painterResource(id = R.drawable.available),
-                            text = stringResource(R.string.digiKalaSuperMarketSpeedSend)
-                        )
+                        Row(modifier = Modifier.padding(end = 7.dp)) {
+                            DetailRow(
+                                icon = painterResource(id = R.drawable.truck),
+                                text = stringResource(R.string.digiKalaSend),
+                                color = MaterialTheme.colors.DigikalaDarkRed
+                            )
+                            Spacer(modifier = Modifier.width(15.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.circle),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                                    .width(8.dp)
+                                    .height(8.dp),
+                                tint = MaterialTheme.colors.DarkCyan,
 
+                                )
+                        }
+                        //fast send  detail
+                        // send  detail
+                        Row(modifier = Modifier.padding(end = MaterialTheme.spacing.small)) {
+                            DetailRow(
+                                icon = painterResource(id = R.drawable.truck),
+                                text = stringResource(R.string.digiKalaSuperMarketSpeedSend),
+                                color = Color.Green
+                            )
+                            Spacer(modifier = Modifier.width(15.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.circle),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                                    .width(8.dp)
+                                    .height(8.dp),
+                                tint = MaterialTheme.colors.DarkCyan,
+
+                                )
+                        }
                     }
                     Image(
                         painter = rememberAsyncImagePainter(item.image),
@@ -168,7 +201,9 @@ fun NextCartItem(
                                     )
                             )
                             Text(
-                                text = item.price.toString(),
+                                text = digitBySeparator(
+                                    digitByLocate(item.price.toString())
+                                ),
                                 fontFamily = FontFamily(Font(R.font.iranyekanbold))
                             )
                         }
@@ -243,7 +278,7 @@ fun NextCartItem(
 
 
 @Composable
-private fun DetailRow(icon: Painter, text: String) {
+private fun DetailRow(icon: Painter, text: String, color: Color) {
     Row(
         modifier = Modifier
             .padding(vertical = MaterialTheme.spacing.extraSmall)
@@ -254,11 +289,15 @@ private fun DetailRow(icon: Painter, text: String) {
             style = SmallFont.body1,
             color = MaterialTheme.colors.semiDarkText,
         )
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
         Icon(
             painter = icon,
             contentDescription = "",
-            modifier = Modifier.size(MaterialTheme.spacing.semiLarge),
-            tint = MaterialTheme.colors.darkText
-        )
+            modifier = Modifier
+                .width(18.dp)
+                .height(18.dp),
+            tint = color,
+
+            )
     }
 }

@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -18,12 +17,13 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.checkout.InitPriceRow
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
+fun CartPriceDetailSection(totalPrice: String, discount: Int, payablePrice: String) {
 
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
@@ -54,9 +54,9 @@ fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
         //---------------------------------------------------------------------------------
 
 
-        InitPriceRow(title = "تخفیف کالا ها", price = totalPrice.toString(), discount = discount)
+        InitPriceRow(title = "تخفیف کالا ها", price = totalPrice, discount = discount.toString())
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "جمع سبد خرید", price = payablePrice.toString())
+        InitPriceRow(title = "جمع سبد خرید", price = payablePrice)
 
 
         Divider(

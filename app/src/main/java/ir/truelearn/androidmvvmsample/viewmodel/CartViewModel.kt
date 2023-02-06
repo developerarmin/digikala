@@ -10,6 +10,7 @@ import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.CartRepository
+import ir.truelearn.androidmvvmsample.util.DigitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,15 +20,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(private val repository: CartRepository) : ViewModel() {
-    val cartDetail = MutableStateFlow(CartDetail(0, 0, 0))
+    val cartDetail = MutableStateFlow(CartDetail(0, 0, 0, 0))
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
     var currentCartItemsCount = repository.currentCartItemsCount
     var nextCartItemsCount = repository.nextCartItemsCount
-//    var currentCartCount: Flow<Int> = repository.cartItemCounter
-    var nextCartCount: Flow<Int> = repository.nextCartItemsCount
 
+    //    var currentCartCount: Flow<Int> = repository.cartItemCounter
+    var nextCartCount: Flow<Int> = repository.nextCartItemsCount
 
 
     val suggestedList =
@@ -79,14 +80,15 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     private suspend fun calculateAndDisplayDetailCart() {
         currentCartItems.collectLatest { items ->
             var totalPrice = 0
+            var discount = 0
             var payablePrice = 0
             items.forEach { item ->
                 totalPrice += item.price * item.count
-                //todo This variable is set to true data
-                val discountAmount = 0
-                payablePrice += (item.price - discountAmount) * item.count
+                discount += item.discountPercent
             }
-            cartDetail.value = CartDetail(totalPrice, 0, payablePrice)
+
+            payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
+            cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
         }
 
     }

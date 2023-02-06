@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,7 +15,6 @@ import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_TOKEN
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
-import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -59,7 +57,7 @@ fun NextShoppingList(
                 }
             } else {
                 items(nextCartItems.value) { item ->
-                    NextCartItem(item = item, changeStatus = { id, newStatus ->
+                    NextCartItemCard(item = item, changeStatus = { id, newStatus ->
                         viewModel.changeStatusCart(id, newStatus)
                     }, removeFromCart = {
                         viewModel.removeFromCart(it)

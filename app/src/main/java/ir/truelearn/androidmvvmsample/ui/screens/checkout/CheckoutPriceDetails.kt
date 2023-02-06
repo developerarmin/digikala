@@ -15,7 +15,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.basket.DigiKlabScore
-import ir.truelearn.androidmvvmsample.ui.screens.basket.InitPriceRow
 import ir.truelearn.androidmvvmsample.ui.theme.font_medium
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox

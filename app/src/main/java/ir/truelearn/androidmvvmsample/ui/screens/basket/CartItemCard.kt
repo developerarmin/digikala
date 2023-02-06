@@ -40,7 +40,7 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
+fun CartItemCard(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
     val count = remember {
         mutableStateOf(item.count)
     }
@@ -49,7 +49,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 4.dp)
+                .padding(bottom = MaterialTheme.spacing.extraSmall)
         ) {
             //root
             Column(
@@ -136,7 +136,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                             color = MaterialTheme.colors.DarkCyan
                         )
                         // send  detail
-                        Row (modifier = Modifier.padding(end = 7.dp)){
+                        Row(modifier = Modifier.padding(end = 7.dp)) {
                             DetailRow(
                                 icon = painterResource(id = R.drawable.truck),
                                 text = stringResource(R.string.digiKalaSend),
@@ -156,11 +156,9 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                         }
 
 
-
-
                         //fast send  detail
                         // send  detail
-                        Row (modifier = Modifier.padding(end = 7.dp)){
+                        Row(modifier = Modifier.padding(end = MaterialTheme.spacing.small)) {
                             DetailRow(
                                 icon = painterResource(id = R.drawable.truck),
                                 text = stringResource(R.string.digiKalaSuperMarketSpeedSend),
@@ -264,13 +262,6 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
 
                                     )
                                 }
-//                                AnimatedVisibility(visible = ) {
-
-//                                }
-//                                AnimatedVisibility(!displayTrash.value) {
-
-//                                }
-
                                 Text(
                                     text = digitBySeparator(digitByLocate(item.count.toString())),
                                     style = MaterialTheme.typography.body2,
@@ -341,7 +332,7 @@ private fun DetailRow(icon: Painter, text: String, color: Color) {
             style = SmallFont.body1,
             color = MaterialTheme.colors.semiDarkText,
         )
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
         Icon(
             painter = icon,
             contentDescription = "",
