@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
+import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse

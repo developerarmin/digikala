@@ -54,6 +54,8 @@ fun ProductDetail(
             ShowIsAmazing(isAmazing = isAmazing)
             //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
             TopSliderProduct()
+            ProductDetailCard()
+            BootomBarProductDetail(navController)
 
         }
     }
