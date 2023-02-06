@@ -19,60 +19,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.navigation.Screen
-import ir.truelearn.androidmvvmsample.ui.screens.profile.LoginScreen
-import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Dimension
+import ir.truelearn.androidmvvmsample.ui.theme.amber
+import ir.truelearn.androidmvvmsample.ui.theme.darkText
+import ir.truelearn.androidmvvmsample.ui.theme.font_bold
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 @Composable
-fun LoginOrRegisterState(navController: NavController) {
+fun LoginOrRegisterState() {
 
     Card(
         modifier = Modifier
             .padding(MaterialTheme.spacing.medium)
-            .clickable {
-                navController.navigate(Screen.Profile.route)
-            },
+            .clickable { Log.e("3636", "basketLoginOrRegester") },
         shape = RoundedCornerShape(7.dp),
         elevation = 1.dp,
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
-
-        ) {
-
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(
-                    top = MaterialTheme.spacing.medium,
-                    bottom = MaterialTheme.spacing.small,
-                    start = MaterialTheme.spacing.small,
-                    end = MaterialTheme.spacing.small
-                ),
+                .padding(MaterialTheme.spacing.medium),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top
         ) {
-            Column(
+            Icon(
+                painter = painterResource(id = R.drawable.import_96_orenge),
+                contentDescription = "",
+                tint = MaterialTheme.colors.amber,
                 modifier = Modifier
-                    .width(Dimension.width(15f).dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top,
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.import_96_orenge),
-                    contentDescription = "",
-                    tint = MaterialTheme.colors.amber,
-                    modifier = Modifier.size(32.dp, 32.dp)
-                )
-
-            }
-
-//                Spacer(modifier = Modifier.width(10.dp))
-
+                    .size(32.dp, 32.dp)
+                    .weight(0.1f)
+                    .align(Alignment.Top)
+            )
+            Spacer(modifier = Modifier.weight(0.05f))
             Column(
-                modifier = Modifier
-                    .width(Dimension.width(65f).dp),
+
+                modifier = Modifier.weight(0.8f),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center,
             ) {
@@ -89,7 +72,6 @@ fun LoginOrRegisterState(navController: NavController) {
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -100,27 +82,19 @@ fun LoginOrRegisterState(navController: NavController) {
                     style = MaterialTheme.typography.h6,
                     maxLines = 2
                 )
-
             }
+            Spacer(modifier = Modifier.weight(0.05f))
 
-
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(
+            Icon(
+                painter = painterResource(id = R.drawable.arrow_back),
+                contentDescription = "",
+                tint = Color.Gray,
                 modifier = Modifier
-                    .width(Dimension.width(15f).dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top,
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_back),
-                    contentDescription = "",
-                    tint = Color.Gray,
-                    modifier = Modifier.size(18.dp, 18.dp)
-                )
+                    .size(18.dp, 18.dp)
+                    .weight(0.1f)
+                    .align(Alignment.Top)
 
-            }
-
-
+            )
         }
 
     }

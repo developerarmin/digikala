@@ -1,7 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -10,23 +8,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.*
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDirection
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.theme.RedColor
+import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
-import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun CartDetailCard(totalPrice:String, discount:String, payablePrice:String) {
+fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
             Text(
@@ -51,88 +47,24 @@ fun CartDetailCard(totalPrice:String, discount:String, payablePrice:String) {
             )
         }
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.semiLarge))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = stringResource(R.string.products_price),
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = Color.Gray
+        InitPriceRow(title = "قیمت کالا ها", price = totalPrice.toInt())
+        //---------------------------------------------------------------------------------
+        InitPriceRow(
+            title = "تخفیف کالا ها",
+            price = totalPrice.toInt(),
+            discount = totalPrice.toInt()
+        )
+        //---------------------------------------------------------------------------------
+        InitPriceRow(title = "جمع سبد خرید", price = payablePrice.toInt())
+        Divider(
+            color = infoBox,
+            thickness = 1.dp,
+            modifier = Modifier
+                .padding(
+                    vertical = MaterialTheme.spacing.mediumTwo,
+                    horizontal = MaterialTheme.spacing.medium
                 )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = digitByLocate(digitBySeparator(totalPrice)),
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = Color.Black
-                )
-            )
-            Image(
-                painter = painterResource(id = R.drawable.toman),
-                contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.spacing.semiLarge)
-            )
-
-        }
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = stringResource(R.string.products_discount),
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = Color.Gray
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = "(${digitByLocate(discount)}٪)${digitByLocate(discount)}",
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = MaterialTheme.colors.RedColor
-                )
-            )
-            Image(
-                painter = painterResource(id = R.drawable.toman),
-                contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.spacing.semiLarge),
-                colorFilter = ColorFilter.tint(
-                    MaterialTheme.colors.RedColor
-                )
-            )
-        }
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = stringResource(id = R.string.total_shopping_cart),
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = Color.Gray
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall),
-                text = digitByLocate(digitBySeparator(payablePrice)),
-                fontFamily = FontFamily(Font(R.font.iranyekan)),
-                style = TextStyle(
-                    textDirection = TextDirection.ContentOrRtl,
-                    color = Color.Black
-                )
-            )
-            Image(
-                painter = painterResource(id = R.drawable.toman),
-                contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.spacing.semiLarge)
-            )
-        }
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -158,8 +90,14 @@ fun CartDetailCard(totalPrice:String, discount:String, payablePrice:String) {
                 ), modifier = Modifier.weight(1f)
             )
         }
+
+        DigiKlabScore("150")
+
+
     }
-    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-    Divider(modifier = Modifier.background(Color.LightGray))
+    CartInfoBox(
+        msg = "کالاهای موجود در سبد شما ثبت و رزرو نشده‌اند، برای ثبت سفارش مراحل بعدی را تکمیل نمایید ",
+        icon = painterResource(id = R.drawable.info)
+    )
 }
 
