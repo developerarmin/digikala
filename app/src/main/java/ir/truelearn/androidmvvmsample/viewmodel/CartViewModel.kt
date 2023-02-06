@@ -29,6 +29,8 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 //    var currentCartCount: Flow<Int> = repository.cartItemCounter
     var nextCartCount: Flow<Int> = repository.nextCartItemCounter
 
+
+
     val suggestedList =
         MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
 

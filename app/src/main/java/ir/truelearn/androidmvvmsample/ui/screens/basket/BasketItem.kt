@@ -1,9 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.widget.Space
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -32,18 +28,14 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDirection
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItemCallbacks
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
@@ -82,8 +74,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                         Text(
                             text = stringResource(R.string.superMarketArticles),
                             style = MaterialTheme.typography.h3,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colors.darkText
+                            fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = "${digitBySeparator(digitByLocate("1"))}  کالا",
@@ -122,29 +113,72 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                             modifier = Modifier
                                 .padding(vertical = MaterialTheme.spacing.extraSmall)
                         )
+
+
                         //Warranty
                         DetailRow(
                             icon = painterResource(id = R.drawable.warranty),
-                            text = stringResource(R.string.articleWarranty)
+                            text = stringResource(R.string.articleWarranty),
+                            color = MaterialTheme.colors.darkText
                         )
 
                         //store
                         DetailRow(
                             icon = painterResource(id = R.drawable.store),
-                            text = stringResource(R.string.storeName)
+                            text = stringResource(R.string.storeName),
+                            color = MaterialTheme.colors.darkText
                         )
 
                         //status
                         DetailRow(
                             icon = painterResource(id = R.drawable.available),
-                            text = stringResource(R.string.availableInDigiKala)
+                            text = stringResource(R.string.availableInDigiKala),
+                            color = MaterialTheme.colors.DarkCyan
                         )
+                        // send  detail
+                        Row (modifier = Modifier.padding(end = 7.dp)){
+                            DetailRow(
+                                icon = painterResource(id = R.drawable.truck),
+                                text = stringResource(R.string.digiKalaSend),
+                                color = MaterialTheme.colors.DigikalaDarkRed
+                            )
+                            Spacer(modifier = Modifier.width(15.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.circle),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                                    .width(8.dp)
+                                    .height(8.dp),
+                                tint = MaterialTheme.colors.DarkCyan,
 
-                        //send detail
-                        DetailRow(
-                            icon = painterResource(id = R.drawable.truck),
-                            text = stringResource(R.string.digiKalaSuperMarketSpeedSend)
-                        )
+                                )
+                        }
+
+
+
+
+                        //fast send  detail
+                        // send  detail
+                        Row (modifier = Modifier.padding(end = 7.dp)){
+                            DetailRow(
+                                icon = painterResource(id = R.drawable.truck),
+                                text = stringResource(R.string.digiKalaSuperMarketSpeedSend),
+                                color = Color.Green
+                            )
+                            Spacer(modifier = Modifier.width(15.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.circle),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                                    .width(8.dp)
+                                    .height(8.dp),
+                                tint = MaterialTheme.colors.DarkCyan,
+
+                                )
+                        }
+
 
                     }
                     Image(
@@ -178,7 +212,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                                     )
                             )
                             Text(
-                                text = digitBySeparator(digitByLocate(item.price.toString())) ,
+                                text = digitBySeparator(digitByLocate(item.price.toString())),
                                 fontFamily = FontFamily(Font(R.font.iranyekanbold))
                             )
                         }
@@ -208,8 +242,10 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                                         modifier = Modifier
                                             .padding(top = MaterialTheme.spacing.extraSmall)
                                             .clickable {
-                                                       cartItemCallbacks.onRemoveCartItem(item)
-                                            },
+                                                cartItemCallbacks.onRemoveCartItem(item)
+                                            }
+                                            .width(20.dp)
+                                            .height(22.dp),
                                         colorResource(id = R.color.red_custom)
                                     )
                                 } else {
@@ -263,12 +299,13 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
 
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.mediumTwo))
                     // save to next purchase
-                    Row(modifier = Modifier
-                        .clickable {
-                            cartItemCallbacks.onChangeStatusCart(
-                                item.itemID, CartStatus.NEXT_CART
-                            )
-                        }, verticalAlignment = Alignment.CenterVertically
+                    Row(
+                        modifier = Modifier
+                            .clickable {
+                                cartItemCallbacks.onChangeStatusCart(
+                                    item.itemID, CartStatus.NEXT_CART
+                                )
+                            }, verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             Icons.Filled.KeyboardArrowLeft, contentDescription = "",
@@ -293,7 +330,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
 }
 
 @Composable
-private fun DetailRow(icon: Painter, text: String) {
+private fun DetailRow(icon: Painter, text: String, color: Color) {
     Row(
         modifier = Modifier
             .padding(vertical = MaterialTheme.spacing.extraSmall)
@@ -304,16 +341,15 @@ private fun DetailRow(icon: Painter, text: String) {
             style = SmallFont.body1,
             color = MaterialTheme.colors.semiDarkText,
         )
-        Spacer(modifier = Modifier.width(5.dp))
+        Spacer(modifier = Modifier.width(10.dp))
         Icon(
             painter = icon,
             contentDescription = "",
             modifier = Modifier
-                .width(24.dp)
-                .height(24.dp)
-            ,
-            tint = MaterialTheme.colors.darkText,
+                .width(18.dp)
+                .height(18.dp),
+            tint = color,
 
-        )
+            )
     }
 }
