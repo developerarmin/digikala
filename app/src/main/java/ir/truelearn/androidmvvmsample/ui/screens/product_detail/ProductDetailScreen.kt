@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.product_detail
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -7,6 +8,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,6 +33,7 @@ fun ProductDetailScreen(navController: NavHostController, id: String,isAmazing:B
     ProductDetail(navController, id,isAmazing, item = item)
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ProductDetail(
     navController: NavHostController,
@@ -44,26 +47,32 @@ fun ProductDetail(
     }
 
     if (!isSystemInDarkTheme()) {
-        Column(
-            modifier = Modifier
-                .background(Color.White)
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-        ) {
+        Scaffold(
+            bottomBar = {
+                BootomBarProductDetail(navController)
+            },
+        ){
+            Column(
+                modifier = Modifier
+                    .background(Color.White)
+                    .fillMaxSize()
+                    .padding(bottom = 60.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
 
-            TopAppBarProductDetail(navController)
-            ShowIsAmazing(isAmazing = isAmazing)
-            //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
-            TopSliderProduct(item.image)
-            ProductDetailHeader(item.name,"در دسته مد و پوشاک")
-            SellerInfoDetails()
-            SimilarProductSection()
-            RecommendedSimilarProductsSection()
-            TopSliderProduct()
-            ProductDetailCard()
-            BootomBarProductDetail(navController)
+                TopAppBarProductDetail(navController)
+                ShowIsAmazing(isAmazing = isAmazing)
+                //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
+                TopSliderProduct(item.image)
+                ProductDetailHeader(item.name,"در دسته مد و پوشاک")
+                SellerInfoDetails()
+                ProductDetailCard()
+                SimilarProductSection()
+                RecommendedSimilarProductsSection()
 
+            }
         }
+
     }
 }
 

@@ -27,12 +27,15 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 fun RecommendedSimilarProducts(item: FavoriteProduct) {
     val newPrice = DigitHelper.applyDiscount(item.price, item.discountPercent)
     val prevPrice = item.price.toString()
-    Card(onClick = { }, modifier = Modifier
-        .height(320.dp)
-        .width(160.dp)
-        .background(Color.White)
+    Card(
+        onClick = { }, modifier = Modifier
+            .height(320.dp)
+            .width(160.dp)
+            .background(Color.White),
     ) {
-        Column(modifier = Modifier.fillMaxWidth().padding(top = 0.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 0.dp)) {
             Image(
                 painter = rememberAsyncImagePainter(item.image),
                 contentDescription = "",
@@ -111,7 +114,7 @@ fun RecommendedSimilarProducts(item: FavoriteProduct) {
                         )
                     }
 
-                    Column{
+                    Column {
                         Text(
                             text = "${
                                 DigitHelper.digitBySeparator(

@@ -34,6 +34,7 @@ fun BootomBarProductDetail(navController: NavController){
             .fillMaxWidth()
             .height(55.dp)
             .padding(horizontal = MaterialTheme.spacing.medium)
+            .background(Color.White)
 
         ,
         verticalAlignment = Alignment.CenterVertically
