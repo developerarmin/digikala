@@ -57,7 +57,7 @@ fun ShoppingBasket(
             modifier = Modifier
                 .fillMaxSize()
                 .wrapContentHeight()
-                .padding(bottom = 166.dp),
+                .padding(bottom = 56.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
