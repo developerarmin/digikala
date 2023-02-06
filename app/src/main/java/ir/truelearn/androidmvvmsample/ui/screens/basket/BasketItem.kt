@@ -43,6 +43,9 @@ import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItemCallbacks
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
 fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
@@ -83,7 +86,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                             color = MaterialTheme.colors.darkText
                         )
                         Text(
-                            text = "1 کالا",
+                            text = "${digitBySeparator(digitByLocate("1"))}  کالا",
                             fontFamily = FontFamily(Font(R.font.iranyekan)),
                             style = TextStyle(
                                 textDirection = TextDirection.ContentOrRtl,
@@ -175,7 +178,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
                                     )
                             )
                             Text(
-                                text = item.price.toString(),
+                                text = digitBySeparator(digitByLocate(item.price.toString())) ,
                                 fontFamily = FontFamily(Font(R.font.iranyekanbold))
                             )
                         }
@@ -233,7 +236,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
 //                                }
 
                                 Text(
-                                    text = item.count.toString(),
+                                    text = digitBySeparator(digitByLocate(item.count.toString())),
                                     style = MaterialTheme.typography.body2,
                                     fontWeight = FontWeight.SemiBold,
                                     color = colorResource(id = R.color.red_custom),

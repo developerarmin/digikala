@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -19,10 +20,11 @@ import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
 fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
+
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Row() {
             Text(
@@ -37,7 +39,7 @@ fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
             Text(
                 text = String.format(
                     stringResource(R.string.count_product_cart),
-                    digitByLocate("4")
+                    digitBySeparator("4")
                 ),
                 fontFamily = FontFamily(Font(R.font.iranyekan)),
                 style = TextStyle(
@@ -46,16 +48,17 @@ fun CartDetailCard(totalPrice: String, discount: String, payablePrice: String) {
                 )
             )
         }
+
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.semiLarge))
-        InitPriceRow(title = "قیمت کالا ها", price = totalPrice.toInt())
+        InitPriceRow(title = "قیمت کالا ها", price = totalPrice)
         //---------------------------------------------------------------------------------
-        InitPriceRow(
-            title = "تخفیف کالا ها",
-            price = totalPrice.toInt(),
-            discount = totalPrice.toInt()
-        )
+
+
+        InitPriceRow(title = "تخفیف کالا ها", price = totalPrice.toString(), discount = discount)
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "جمع سبد خرید", price = payablePrice.toInt())
+        InitPriceRow(title = "جمع سبد خرید", price = payablePrice.toString())
+
+
         Divider(
             color = infoBox,
             thickness = 1.dp,

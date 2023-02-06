@@ -19,16 +19,21 @@ import ir.truelearn.androidmvvmsample.ui.theme.RedColor
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun InitPriceRow(title:String, price:Int, discount:Int=0){
+fun InitPriceRow(title:String, price:String, discount:String="0"){
 var color =Color.Black
     var _price = "0"
-    if (discount>0){
-        _price ="(${DigitHelper.digitByLocate(discount.toString())}%)${DigitHelper.digitByLocate(price.toString())}"
+
+    if (discount.toInt()>0){
+
+
+        _price ="(${digitBySeparator(digitByLocate(discount))}%)${ digitBySeparator(digitByLocate(price))}"
         color=MaterialTheme.colors.RedColor
     }else {
-        _price = DigitHelper.digitByLocate(price.toString())
+        _price =digitBySeparator(digitByLocate(price))
         color=Color.Black
     }
     Row(

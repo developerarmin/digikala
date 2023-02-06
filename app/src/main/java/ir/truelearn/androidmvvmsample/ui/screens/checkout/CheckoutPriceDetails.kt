@@ -62,11 +62,11 @@ fun CheckoutPriceDetails(
                 )
         }
 
-        InitPriceRow(title = "قیمت کالا ها", price = 470000)
+        InitPriceRow(title = "قیمت کالا ها", price = "470000")
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "تخفیف کالا ها", price = 225000, discount = 48)
+        InitPriceRow(title = "تخفیف کالا ها", price = "225000", discount = "48")
         //---------------------------------------------------------------------------------
-        InitPriceRow(title = "جمع سبد خرید", price = 245000)
+        InitPriceRow(title = "جمع سبد خرید", price = "245000")
 
         Divider(
             color = infoBox,
@@ -77,7 +77,7 @@ fun CheckoutPriceDetails(
                     horizontal = MaterialTheme.spacing.medium
                 )
         )
-        InitPriceRow(title = "هزینه ارسال", price = 29000)
+        InitPriceRow(title = "هزینه ارسال", price = "29000")
         //---------------------------------------------------------------------------------
         Row(
             modifier = Modifier
@@ -103,7 +103,7 @@ fun CheckoutPriceDetails(
                 fontFamily = font_standard,
             )
         }
-        InitPriceRow(title = "مبلغ قابل پرداخت", price = 245000)
+        InitPriceRow(title = "مبلغ قابل پرداخت", price = "245000")
         DigiKlabScore("150")
 
     }

@@ -119,7 +119,7 @@ fun ShoppingBasket(
                 item {
                     CartDetailCard(
                         cartDetail.value.totalPrice.toString(),
-                        "0",
+                        "2",
                         cartDetail.value.payablePrice.toString()
                     )
                 }

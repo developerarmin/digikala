@@ -18,6 +18,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 import ir.truelearn.androidmvvmsample.util.Dimension
 
 @Composable
@@ -63,7 +65,7 @@ verticalAlignment = Alignment.CenterVertically
 
     Text(
 
-        text = "${DigitHelper.digitByLocate(score)} امتیاز ",
+        text = "${digitBySeparator(digitByLocate(score))} امتیاز ",
         textAlign = TextAlign.End,
         style = MaterialTheme.typography.body2,
         fontWeight = FontWeight.Medium,
