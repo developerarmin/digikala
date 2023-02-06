@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.DigikalaLightRed
 import ir.truelearn.androidmvvmsample.ui.theme.RedColor
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
@@ -31,7 +32,7 @@ var color =Color.Black
 
 
         _price ="(${digitBySeparator(digitByLocate(discount))}%)${ digitBySeparator(digitByLocate(price))}"
-        color=MaterialTheme.colors.RedColor
+        color=MaterialTheme.colors.DigikalaLightRed
     }else {
         _price =digitBySeparator(digitByLocate(price))
         color=Color.Black
