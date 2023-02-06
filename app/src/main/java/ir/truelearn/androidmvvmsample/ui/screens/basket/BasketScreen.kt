@@ -39,11 +39,21 @@ fun Basket(
     navController: NavController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
-    val cartItem = remember {
-        mutableStateOf(3)
+    val currentCartItemsCount = remember {
+        mutableStateOf(0)
     }
-    val nextCartItem = remember {
-        mutableStateOf(3)
+    val nextCartItemsCount = remember {
+        mutableStateOf(0)
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.currentCartItemsCount.collectLatest { count ->
+            currentCartItemsCount.value = count
+        }
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.nextCartItemsCount.collectLatest { count ->
+            nextCartItemsCount.value = count
+        }
     }
 
     if (!isSystemInDarkTheme()) {
@@ -86,12 +96,10 @@ fun Basket(
                                     fontWeight = FontWeight.SemiBold,
                                     overflow = TextOverflow.Ellipsis
                                 )
-                                Log.d("level3", "current:${cartItem.value} ")
-                                Log.d("level3", "next:${nextCartItem.value} ")
                                 counterState = if (index == 0)
-                                    cartItem.value
+                                    currentCartItemsCount.value
                                 else
-                                    nextCartItem.value
+                                    nextCartItemsCount.value
 
                                 if (counterState > 0) {
                                     Spacer(modifier = Modifier.width(10.dp))

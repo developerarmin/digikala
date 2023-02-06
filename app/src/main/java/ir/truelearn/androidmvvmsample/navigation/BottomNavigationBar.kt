@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.navigation
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -18,7 +17,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -30,7 +28,12 @@ fun BottomNavigationBar(
     viewModel: CartViewModel = hiltViewModel()
 ) {
     val cartCounter = remember {
-        mutableStateOf(3)
+        mutableStateOf(0)
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.currentCartItemsCount.collectLatest { count ->
+            cartCounter.value = count
+        }
     }
     val items = listOf(
         BottomNavItem(

@@ -1,7 +1,6 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,10 +23,10 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
-    var currentCartCount = repository.cartItemCounter
-    var nextCartItemCounter = mutableStateOf(3)
+    var currentCartItemsCount = repository.currentCartItemsCount
+    var nextCartItemsCount = repository.nextCartItemsCount
 //    var currentCartCount: Flow<Int> = repository.cartItemCounter
-    var nextCartCount: Flow<Int> = repository.nextCartItemCounter
+    var nextCartCount: Flow<Int> = repository.nextCartItemsCount
 
 
 
@@ -35,7 +34,6 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
         MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
 
     init {
-        Log.d("level4", ":${repository.cartItemCounter} ")
         viewModelScope.launch {
             calculateAndDisplayDetailCart()
         }
@@ -43,9 +41,7 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     fun getSuggestedList() {
         viewModelScope.launch {
-            Log.d("level1", "getSuggestedList")
             suggestedList.emit(repository.getSuggestedItems())
-            Log.d("level1", "return result")
         }
     }
 
