@@ -48,7 +48,7 @@ fun NextShoppingList(
         ) {
             item {
                 if (USER_TOKEN == "null" || USER_TOKEN.isEmpty()) {
-                    LoginOrRegisterState()
+                    LoginOrRegisterState(navController)
                 }
             }
             if (nextCartItems.value.isEmpty()) {

@@ -19,19 +19,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.amber
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 @Composable
-fun LoginOrRegisterState() {
+fun LoginOrRegisterState(
+    navController: NavController
+) {
 
     Card(
         modifier = Modifier
             .padding(MaterialTheme.spacing.medium)
-            .clickable { Log.e("3636", "basketLoginOrRegester") },
+            .clickable {
+                navController.navigate(Screen.Profile.route)
+                Log.e("3636", "basketLoginOrRegester") },
         shape = RoundedCornerShape(7.dp),
         elevation = 1.dp,
         border = BorderStroke(width = 1.dp, color = Color.LightGray),

@@ -18,6 +18,7 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
 
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
 
+
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
     }
@@ -38,4 +39,6 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
         safeApiCall {
             api.getSuggestedItems()
         }
+
+
 }

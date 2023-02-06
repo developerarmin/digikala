@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -73,7 +74,7 @@ fun BottomNavigationBar(
             elevation = 5.dp
         ) {
 //            items.forEach { item ->
-            val cartCounter = viewModel.cartItemCounter
+            val cartCounter = viewModel.cartItemCounter.value
             items.forEachIndexed { index, item ->
                 val selected = item.route == backStackEntry.value?.destination?.route
                 BottomNavigationItem(
@@ -84,8 +85,8 @@ fun BottomNavigationBar(
                     icon = {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             if (selected) {
-                                if(index==2 && cartCounter.value>0 )
-                                    IconWithBadge(cartCounter.value,item.selectedIcon)
+                                if(index==2 && cartCounter>0 )
+                                    IconWithBadge(cartCounter,item.selectedIcon)
                                 else
                                     Icon(
                                         modifier = Modifier
@@ -94,8 +95,8 @@ fun BottomNavigationBar(
                                         contentDescription = item.name
                                     )
                             } else {
-                                if(index==2 && cartCounter.value>0 )
-                                    IconWithBadge(cartCounter.value,item.deSelectedIcon)
+                                if(index==2 && cartCounter>0 )
+                                    IconWithBadge(cartCounter,item.deSelectedIcon)
                                 else
                                 Icon(
                                     modifier = Modifier
