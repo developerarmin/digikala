@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -24,27 +25,34 @@ import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun BasketScreen(
     navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel()
 ) {
-    val cartItem =  viewModel.cartItemCounter
-    val nextCartItem = viewModel.nextCartItemCounter
-    Basket(
-        navController=navController,
-        shopingListCounter = cartItem.value,
-        nextShopingListCounter = nextCartItem.value)
+    Basket(navController = navController)
 }
 
 @Composable
 fun Basket(
     navController: NavController,
-    shopingListCounter: Int,
-    nextShopingListCounter: Int
-)
-{
+    viewModel: CartViewModel = hiltViewModel()
+) {
+    val cartItem = remember {
+        mutableStateOf(0)
+    }
+    val nextCartItem = remember {
+        mutableStateOf(0)
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.currentCartCount.collectLatest {
+            cartItem.value = it
+        }
+        viewModel.nextCartCount.collectLatest {
+            nextCartItem.value = it
+        }
+    }
     if (!isSystemInDarkTheme()) {
         var selectedTabIndex by remember { mutableStateOf(0) } // 1.
         val tabTitles =
@@ -85,10 +93,12 @@ fun Basket(
                                     fontWeight = FontWeight.SemiBold,
                                     overflow = TextOverflow.Ellipsis
                                 )
-                                if (index == 0)
-                                    counterState = shopingListCounter
+                                Log.d("level3", "current:${cartItem.value} ")
+                                Log.d("level3", "next:${nextCartItem.value} ")
+                                counterState = if (index == 0)
+                                    cartItem.value
                                 else
-                                    counterState = nextShopingListCounter
+                                    nextCartItem.value
 
                                 if (counterState > 0) {
                                     Spacer(modifier = Modifier.width(10.dp))
@@ -104,7 +114,7 @@ fun Basket(
                 }
             }
             when (selectedTabIndex) {
-                0 -> ShoppingBasket(navController=navController)
+                0 -> ShoppingBasket(navController = navController)
                 1 -> NextShoppingList(navController)
             }
         }

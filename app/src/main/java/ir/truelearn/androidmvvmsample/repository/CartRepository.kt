@@ -15,9 +15,9 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
 
 
     val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
-
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
-
+    val cartItemCounter=cartDao.getCartItemsCount()
+    val nextCartItemCounter=cartDao.getNextCartItemCounter()
 
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
