@@ -60,8 +60,10 @@ fun DeliveryMethodSection(
     ) {
         Text(
             modifier = Modifier
-                .padding(horizontal =MaterialTheme.spacing.medium,
-                    vertical = MaterialTheme.spacing.small)
+                .padding(
+                    horizontal = MaterialTheme.spacing.medium,
+                    vertical = MaterialTheme.spacing.small
+                )
                 .align(Alignment.Start),
             text = String.format(stringResource(id = R.string.deliveryAndTimeMethod)),
             textAlign = TextAlign.Start,
@@ -127,9 +129,12 @@ fun DeliveryMethodSection(
                         fontFamily = font_bold
                     )
                 }
-
-                LazyRow {
-                    items(currentCartItems.value) {item->
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    items(currentCartItems.value) { item ->
                         CheckoutProductCard(item = item)
                     }
                 }
