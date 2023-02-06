@@ -76,7 +76,7 @@ fun BootomBarProductDetail(navController: NavController){
 
                     ) {
                     Text(
-                        text = "21%",
+                        text = DigitHelper.digitByLocate("21%"),
                         color = Color.White,
                         style = MaterialTheme.typography.h6,
                         fontWeight = FontWeight.Bold,
@@ -85,18 +85,18 @@ fun BootomBarProductDetail(navController: NavController){
                 }
                 Spacer(modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall))
                 Text(
-                    text = "100,000",
+                    text = DigitHelper.digitByLocate("100,000"),
                     color = Color.LightGray,
                     style = MaterialTheme.typography.body1,
                     textDecoration = TextDecoration.LineThrough,
                 )
             }
             Text(
-                text = "100,000 ${
+                text =DigitHelper.digitByLocate( "100,000 ${
                     stringResource(
                         id = R.string.price_unit
                     )
-                }",
+                }"),
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
