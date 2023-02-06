@@ -139,7 +139,7 @@ fun BasketItem(item: CartItem, cartItemCallbacks: CartItemCallbacks) {
 
                         //send detail
                         DetailRow(
-                            icon = painterResource(id = R.drawable.available),
+                            icon = painterResource(id = R.drawable.truck),
                             text = stringResource(R.string.digiKalaSuperMarketSpeedSend)
                         )
 
@@ -301,11 +301,16 @@ private fun DetailRow(icon: Painter, text: String) {
             style = SmallFont.body1,
             color = MaterialTheme.colors.semiDarkText,
         )
+        Spacer(modifier = Modifier.width(5.dp))
         Icon(
             painter = icon,
             contentDescription = "",
-            modifier = Modifier.size(MaterialTheme.spacing.semiLarge),
-            tint = MaterialTheme.colors.darkText
+            modifier = Modifier
+                .width(24.dp)
+                .height(24.dp)
+            ,
+            tint = MaterialTheme.colors.darkText,
+
         )
     }
 }

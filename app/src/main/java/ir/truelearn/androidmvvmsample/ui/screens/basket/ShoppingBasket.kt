@@ -55,7 +55,7 @@ fun ShoppingBasket(
             modifier = Modifier
                 .fillMaxSize()
                 .wrapContentHeight()
-                .padding(bottom = 56.dp),
+                .padding(bottom = 166.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
@@ -114,7 +114,6 @@ fun ShoppingBasket(
                 }
 //
                 item {
-
                     CartDetailCard(
                         cartDetail.value.totalPrice.toString(),
                         "0",

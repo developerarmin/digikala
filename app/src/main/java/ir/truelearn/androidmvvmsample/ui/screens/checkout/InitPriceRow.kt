@@ -8,12 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.theme.RedColor
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
@@ -24,7 +26,7 @@ var color =Color.Black
     var _price = "0"
     if (discount>0){
         _price ="(${DigitHelper.digitByLocate(discount.toString())}%)${DigitHelper.digitByLocate(price.toString())}"
-        color=Color.Red
+        color=MaterialTheme.colors.RedColor
     }else {
         _price = DigitHelper.digitByLocate(price.toString())
         color=Color.Black
@@ -49,7 +51,7 @@ var color =Color.Black
             )
         Row() {
             Text(
-                text = price.toString(),
+                text = _price,
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.Medium,
                 color = color
@@ -58,6 +60,7 @@ var color =Color.Black
             Image(
                 painter = painterResource(id = R.drawable.toman),
                 contentDescription ="",
+                colorFilter= ColorFilter.tint(color),
                 modifier = Modifier
                     .size(MaterialTheme.spacing.semiLarge)
                     .padding(horizontal = MaterialTheme.spacing.extraSmall)
@@ -65,10 +68,4 @@ var color =Color.Black
 
         }
     }
-}
-
-@Composable
-@Preview
-private fun Te(){
-    InitPriceRow(title = "43", price = 10)
 }

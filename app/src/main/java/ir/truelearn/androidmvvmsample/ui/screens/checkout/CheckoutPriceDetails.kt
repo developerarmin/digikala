@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -15,20 +14,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.ui.screens.basket.DigiKlabScore
 import ir.truelearn.androidmvvmsample.ui.screens.basket.InitPriceRow
-import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.ui.theme.font_medium
+import ir.truelearn.androidmvvmsample.ui.theme.font_standard
+import ir.truelearn.androidmvvmsample.ui.theme.infoBox
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
-import ir.truelearn.androidmvvmsample.util.Dimension
 
 @Composable
 fun CheckoutPriceDetails(
     msg: String
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
-//        .background(Color.LightGray)
             .padding(
                 vertical = MaterialTheme.spacing.medium,
                 horizontal = MaterialTheme.spacing.medium,
@@ -59,11 +59,8 @@ fun CheckoutPriceDetails(
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray,
                 fontFamily = font_standard,
-
                 )
         }
-
-        //---------------------------------------------------------------------------------
 
         InitPriceRow(title = "قیمت کالا ها", price = 470000)
         //---------------------------------------------------------------------------------
@@ -79,9 +76,7 @@ fun CheckoutPriceDetails(
                     vertical = MaterialTheme.spacing.mediumTwo,
                     horizontal = MaterialTheme.spacing.medium
                 )
-
         )
-
         InitPriceRow(title = "هزینه ارسال", price = 29000)
         //---------------------------------------------------------------------------------
         Row(
@@ -107,89 +102,10 @@ fun CheckoutPriceDetails(
                 color = Color.Gray,
                 fontFamily = font_standard,
             )
-
-
         }
         InitPriceRow(title = "مبلغ قابل پرداخت", price = 245000)
+        DigiKlabScore("150")
 
-        Divider(
-            color = infoBox,
-            thickness = 1.dp,
-            modifier = Modifier
-                .padding(
-                    vertical = MaterialTheme.spacing.mediumTwo,
-                    horizontal = MaterialTheme.spacing.medium
-                )
-
-        )
-        //---------------------------------------------------------------------------------
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            )
-            {
-                Image(
-                    painter = painterResource(id = R.drawable.digi_score),
-                    contentDescription = "",
-                    modifier = Modifier.size(18.dp, 18.dp)
-                )
-                Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
-                Text(
-                    text = "امتیاز دیجی‌کلاب",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Gray,
-                    fontFamily = font_standard,
-                )
-            }
-
-            Row() {
-                Text(
-                    modifier = Modifier,
-                    text = "${DigitHelper.digitByLocate(25.toString())} امتیاز ",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.body2,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Black
-                )
-            }
-        }
-        //---------------------------------------------------------------------------------
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Row(
-                modifier = Modifier
-                    .padding(
-                        vertical = MaterialTheme.spacing.medium,
-                        horizontal = MaterialTheme.spacing.mediumTwo
-                    )
-            ) {
-                Text(
-                    modifier = Modifier,
-                    text = "بعد از پایان مهلت مرجوعی، برای دریافت امتیاز به صفحه ماموریت‌های کلابی سر بزنید.",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.caption,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Gray,
-                    fontFamily = font_standard,
-                )
-            }
-        }
     }
 
 }

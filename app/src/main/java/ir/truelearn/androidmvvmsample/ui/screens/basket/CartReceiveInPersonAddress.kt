@@ -22,14 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Dimension
 
 
 @Composable
 fun CartReceiveInPersonAddress(
 
     action: () -> Unit = {},
-
 
     ) {
     Card(
@@ -42,73 +40,44 @@ fun CartReceiveInPersonAddress(
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.CartCyan),
 
         ) {
-//        Box(
-//            modifier = Modifier.fillMaxSize(),
-//            contentAlignment = Alignment.Center
-//        ) {
-//
-//            Image(
-//                painter = painterResource(id = R.drawable.map_address_bg),
-//                contentDescription = null,
-//                contentScale = ContentScale.None,
-//                modifier = Modifier.matchParentSize()
-//            )
-
         Column(
             modifier = Modifier
                 .background(infoBox)
         ) {
             Row(
                 modifier = Modifier
-                    .padding(
-                        top = MaterialTheme.spacing.medium,
-                        bottom = MaterialTheme.spacing.small,
-                        start = MaterialTheme.spacing.medium,
-                        end = MaterialTheme.spacing.medium
-                    )
+                    .padding(MaterialTheme.spacing.medium)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
+                Text(
                     modifier = Modifier
-                        .width(Dimension.width(80f).dp),
+                        .weight(0.95f),
+                    text = "مراکز دریافت حضوری نزدیک این آدرس",
+                    textAlign = TextAlign.Start,
+                    color = Color.Black,
+                    style = MaterialTheme.typography.h6,
+                    fontFamily = font_medium,
+                    fontWeight = FontWeight.Bold,
                 )
-                {
-                    Text(
-                        modifier = Modifier,
-                        text = "مراکز دریافت حضوری نزدیک این آدرس",
-                        textAlign = TextAlign.Start,
-                        color = Color.Black,
-                        style = MaterialTheme.typography.h6,
-                        fontFamily = font_medium,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-                Row(
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow_back),
+                    contentDescription = "",
+                    tint = Color.Black,
                     modifier = Modifier
-                        .width(Dimension.width(10f).dp), horizontalArrangement = Arrangement.End
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.arrow_back),
-                        contentDescription = "",
-                        tint = Color.Black,
-                        modifier = Modifier
-                            .size(12.dp, 12.dp)
-
-
-                    )
-                }
-
+                        .size(12.dp, 12.dp)
+                        .weight(0.05f),
+                )
             }
+
+
+
+
+
             Row(
                 modifier = Modifier
-                    .padding(
-                        top = MaterialTheme.spacing.small,
-                        bottom = MaterialTheme.spacing.small,
-                        start = MaterialTheme.spacing.medium,
-                        end = MaterialTheme.spacing.medium
-                    )
+                    .padding(MaterialTheme.spacing.medium)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -124,10 +93,10 @@ fun CartReceiveInPersonAddress(
                         contentDescription = "",
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
-                    Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
+
                     Text(
                         modifier = Modifier,
-                        text = "هزینه ارسال کمتر",
+                        text = " هزینه ارسال کمتر",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
                         fontSize = 9.sp,
@@ -136,7 +105,6 @@ fun CartReceiveInPersonAddress(
 
                         )
                 }
-//                            Spacer(modifier = Modifier.width(Dimension.width(10f).dp))
 
 
                 Row(
@@ -149,10 +117,10 @@ fun CartReceiveInPersonAddress(
                         contentDescription = "",
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
-                    Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
+
                     Text(
                         modifier = Modifier,
-                        text = "مکان های مختلف",
+                        text = " مکان های مختلف",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
                         fontSize = 9.sp,
@@ -160,7 +128,6 @@ fun CartReceiveInPersonAddress(
                         fontWeight = FontWeight.Medium,
                     )
                 }
-//                            Spacer(modifier = Modifier.width(Dimension.width(10f).dp))
 
                 Row(
                     modifier = Modifier,
@@ -173,9 +140,8 @@ fun CartReceiveInPersonAddress(
                         contentDescription = "",
                         modifier = Modifier.size(18.dp, 18.dp)
                     )
-                    Spacer(modifier = Modifier.width(Dimension.width(1f).dp))
                     Text(
-                        text = "انعطاف زمانی",
+                        text = " انعطاف زمانی",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
                         fontSize = 9.sp,
@@ -185,10 +151,7 @@ fun CartReceiveInPersonAddress(
 
                         )
                 }
-
-
             }
         }
-//        }
     }
 }
