@@ -30,7 +30,7 @@ fun BasketScreen(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
-    val cartItem = viewModel.cartItemCounter
+    val cartItem =  viewModel.cartItemCounter
     val nextCartItem = viewModel.nextCartItemCounter
     Basket(
         navController=navController,

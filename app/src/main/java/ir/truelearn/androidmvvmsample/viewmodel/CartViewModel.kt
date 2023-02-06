@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,24 +25,27 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
     val nextCartItems: Flow<List<CartItem>> = repository.nextCartItems
-    var cartItemCounter = mutableStateOf(4)
-    var nextCartItemCounter = mutableStateOf(3)
-    val suggestedList = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
-    init {
 
+     var cartItemCounter = mutableStateOf(3)
+
+    var nextCartItemCounter = mutableStateOf(3)
+    val suggestedList =
+        MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
+
+    init {
         viewModelScope.launch {
             calculateAndDisplayDetailCart()
         }
-
     }
 
-    fun getSuggestedList(){
+    fun getSuggestedList() {
         viewModelScope.launch {
             Log.d("level1", "getSuggestedList")
             suggestedList.emit(repository.getSuggestedItems())
             Log.d("level1", "return result")
         }
     }
+
     fun addNewItem(cart: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addNewItem(cart)
@@ -85,6 +89,7 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
             }
             cartDetail.value = CartDetail(totalPrice, 0, payablePrice)
         }
+
     }
 
 }
