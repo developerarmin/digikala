@@ -18,24 +18,43 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun BasketScreen(
+fun CartScreen(
     navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel()
 ) {
-    val cartItem = viewModel.cartItemCounter
-    val nextCartItem = viewModel.nextCartItemCounter
-    Basket(shopingListCounter = cartItem.value, nextShopingListCounter = nextCartItem.value)
+    Cart(navController = navController)
 }
 
 @Composable
-fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
+fun Cart(
+    navController: NavController,
+    viewModel: CartViewModel = hiltViewModel()
+) {
+    val currentCartItemsCount = remember {
+        mutableStateOf(0)
+    }
+    val nextCartItemsCount = remember {
+        mutableStateOf(0)
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.currentCartItemsCount.collectLatest { count ->
+            currentCartItemsCount.value = count
+        }
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.nextCartItemsCount.collectLatest { count ->
+            nextCartItemsCount.value = count
+        }
+    }
+
     if (!isSystemInDarkTheme()) {
         var selectedTabIndex by remember { mutableStateOf(0) } // 1.
         val tabTitles =
@@ -76,10 +95,10 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
                                     fontWeight = FontWeight.SemiBold,
                                     overflow = TextOverflow.Ellipsis
                                 )
-                                if (index == 0)
-                                    counterState = shopingListCounter
+                                counterState = if (index == 0)
+                                    currentCartItemsCount.value
                                 else
-                                    counterState = nextShopingListCounter
+                                    nextCartItemsCount.value
 
                                 if (counterState > 0) {
                                     Spacer(modifier = Modifier.width(10.dp))
@@ -95,8 +114,8 @@ fun Basket(shopingListCounter: Int, nextShopingListCounter: Int) {
                 }
             }
             when (selectedTabIndex) {
-                0 -> ShoppingBasket()
-                1 -> NextShoppingList()
+                0 -> ShoppingCart(navController = navController)
+                1 -> NextShoppingList(navController)
             }
         }
     } else {

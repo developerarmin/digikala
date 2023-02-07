@@ -63,7 +63,7 @@
     <string name="club">Digi Club</string>
     <string name="contact_us">Contact us</string>
 
-    <string name="superMarketArticle">Supermarket Articles</string>
+    <string name="superMarketArticles">Supermarket Articles</string>
     <string name="oneArticle">1 item</string>
     <string name="articleName">Hamburger bun, Avaran bun, one pack</string>
     <string name="articleWarranty">Warranty of authenticity and physical health of goods</string>
@@ -86,7 +86,6 @@
     <string name="login_or_register">login or register</string>
     <string name="login_or_register_msg">Please log in for a better shopping experience and to check the shipping method.</string>
 
-    <string name="my_orders">my orders</string>
-    <string name="processing">processing</string>
-
+    <string name="save_product_to_cart">Save %1$d product in the next list</string>
+    <string name="delete_product_from_cart">Remove %1$d product from the shopping cart</string>
 </resources>

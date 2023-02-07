@@ -32,7 +32,11 @@ object DigitHelper {
     }
 
     fun applyDiscount(price: Int, discountPercent: Int): Int {
-        val discountAmount = (price * discountPercent) / 100
-        return price - discountAmount
+        return if (discountPercent > 0) {
+            val discountAmount = (price * discountPercent) / 100
+            price - discountAmount
+        } else {
+            price
+        }
     }
 }

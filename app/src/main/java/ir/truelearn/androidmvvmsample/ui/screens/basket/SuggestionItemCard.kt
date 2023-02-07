@@ -173,7 +173,7 @@ fun SuggestionItemCard(item: MostDiscountedItem, onAddClick: (MostDiscountedItem
 
                         ) {
                         val discountedPercent =
-                            digitByLocate(item.discountPercent.toString())
+                            digitBySeparator(digitByLocate(item.discountPercent.toString()))
                         Text(
 
                             text = "${discountedPercent}%",
@@ -186,9 +186,8 @@ fun SuggestionItemCard(item: MostDiscountedItem, onAddClick: (MostDiscountedItem
 
                     Column {
 
-                        val discountedPriceResult =
-                            applyDiscount(item.price, item.discountPercent)
-                        val discountedLocaleResult = digitByLocate(discountedPriceResult.toString())
+                        val discountedPriceResult = applyDiscount(item.price, item.discountPercent)
+                        val discountedLocaleResult = discountedPriceResult.toString()
                         val discountedSeparatedResult = digitBySeparator(discountedLocaleResult)
                         val previousDiscountedItemPrice =
                             digitBySeparator(digitByLocate(item.price.toString()))
