@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.product_detail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -96,7 +97,11 @@ fun ProductDetailHeader(title: String, category: String) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(start = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium, top = 8.dp)
+                .padding(
+                    start = MaterialTheme.spacing.medium,
+                    end = MaterialTheme.spacing.medium,
+                    top = 8.dp
+                )
                 .fillMaxWidth()
         ) {
             Icon(
@@ -109,8 +114,9 @@ fun ProductDetailHeader(title: String, category: String) {
                 text = DigitHelper.digitByLocate("90% (80نفر) از خریداران این کالا را پیشنهاد کرده اند."),
                 color = MaterialTheme.colors.semiDarkText,
                 fontSize = 12.sp,
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small)
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small).padding(bottom = MaterialTheme.spacing.medium)
             )
         }
+        Divider(color = MaterialTheme.colors.grayCategory, thickness = 1.dp, modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium))
     }
 }

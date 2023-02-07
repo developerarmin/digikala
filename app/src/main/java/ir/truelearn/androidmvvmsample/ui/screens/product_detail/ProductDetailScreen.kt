@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.gson.Gson
+import ir.truelearn.androidmvvmsample.data.model.category.CategoryItemColor
+import ir.truelearn.androidmvvmsample.data.model.category.ColorCategory
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.screens.home.Home
@@ -33,6 +35,7 @@ fun ProductDetailScreen(navController: NavHostController, id: String,isAmazing:B
     ProductDetail(navController, id,isAmazing, item = item)
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ProductDetail(
@@ -65,6 +68,7 @@ fun ProductDetail(
                 //فعلا منظر api هستیم برای  همین از یه api دیگه برای اسلایدر استفاده کردم موقتا ....
                 TopSliderProduct(item.image)
                 ProductDetailHeader(item.name,"در دسته مد و پوشاک")
+                ColorCategorySection()
                 SellerInfoDetails()
                 ProductDetailCard()
                 CommentsPreview()
