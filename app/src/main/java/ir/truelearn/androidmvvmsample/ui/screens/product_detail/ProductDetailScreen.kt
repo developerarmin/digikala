@@ -67,6 +67,7 @@ fun ProductDetail(
                 ProductDetailHeader(item.name,"در دسته مد و پوشاک")
                 SellerInfoDetails()
                 ProductDetailCard()
+                CommentsPreview()
                 SimilarProductSection()
                 RecommendedSimilarProductsSection()
 

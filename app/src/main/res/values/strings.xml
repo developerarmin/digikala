@@ -77,6 +77,15 @@
     <!--Product Detail-->
     <string name="similar_product">محصولات مشابه</string>
     <string name="recommended_similar_product">خریداران این محصول،این کالا را هم خریده اند</string>
-
+    
+    <string name="user_comments">دیدگاه کاربران</string>
+    <string name="comment">نظر</string>
+    <string name="write_your_comment">دیدگاه خود را درباره این کالا بنویسید</string>
+    <string name="comment_desc">۵ امتیاز دیجی‌کلاب \n
+پس از تایید نظر، با مراجعه به صفحه‌ی ماموریت‌های کلابی امتیاز خود را دریافت کنید</string>
+    
+    <string name="satisfaction">خرید این محصول را توصیه می‌کنم</string>
+    <string name="dissatisfaction">خرید این محصول را توصیه نمیکنم</string>
+    <string name="neutral">در مورد این محصول مطمئن نیستم</string>
 
 </resources>

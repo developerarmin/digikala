@@ -91,3 +91,19 @@ val Colors.PostTextColor : Color
 val Colors.RecommendedSimilarProductsTextColor : Color
     @Composable
     get() = Color(0xFF303235)
+
+val Colors.Green : Color
+    @Composable
+    get() = Color(0xFF00A049)
+
+val Colors.LightBlue : Color
+    @Composable
+    get() = Color(0xFF17BFD3)
+
+val Colors.Orange : Color
+    @Composable
+    get() = Color(0xFFF57E16)
+
+val Colors.Gray : Color
+    @Composable
+    get() = Color(0xFF9E9FB0)
