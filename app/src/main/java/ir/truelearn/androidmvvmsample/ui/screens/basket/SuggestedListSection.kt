@@ -1,6 +1,6 @@
-package ir.truelearn.androidmvvmsample.ui.screens.home
+package ir.truelearn.androidmvvmsample.ui.screens.basket
 
-import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -10,28 +10,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
+import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.withContext
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
+fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
 
-    var mostDiscountedList by remember {
+    var suggestedList by remember {
         mutableStateOf<List<MostDiscountedItem>>(emptyList())
     }
 
@@ -40,18 +41,18 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
     }
 
     LaunchedEffect(Dispatchers.Main) {
-
-        viewModel.mostDiscountedItems.collectLatest { result ->
+        viewModel.getSuggestedList()
+        viewModel.suggestedList.collectLatest { result ->
             when (result) {
                 is NetworkResult.Success -> {
                     result.data?.let {
-                        mostDiscountedList = it
+                        suggestedList = it
                     }
                     loading = false
                 }
                 is NetworkResult.Error -> {
                     loading = false
-                    Log.e("3494", "init most discounted item error : ${result.message}")
+
                 }
 
                 is NetworkResult.Loading -> {
@@ -60,17 +61,24 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
             }
         }
     }
-
+    Spacer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(MaterialTheme.spacing.small)
+            .background(MaterialTheme.colors.searchBarBg)
+    )
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(680.dp)
+            .wrapContentHeight()
+            .height(680.dp),
+        verticalArrangement = Arrangement.Top
     ) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.small),
-            text = stringResource(id = R.string.most_discounted_products),
+            text = stringResource(id = R.string.suggestion_for_you),
             textAlign = TextAlign.Right,
             style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.SemiBold,
@@ -81,6 +89,7 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(MaterialTheme.colors.searchBarBg)
                     .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -88,32 +97,32 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
                 Loading3Dots(isDark = false)
             }
         } else {
-
-            FlowRow(
-                maxItemsInEachRow = 2,
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
                 modifier = Modifier
-                    .fillMaxWidth()
                     .wrapContentHeight()
-                ,
-                horizontalArrangement = Arrangement.Center
+                    .fillMaxWidth()
             ) {
 
-                for (item in mostDiscountedList){
-                    MostDiscountedCard(discountedItem = item)
+                items(suggestedList) { item ->
+                    SuggestionItemCard(item = item) {
+                        viewModel.addNewItem(
+                            CartItem(
+                                item.Id,
+                                item.discountPercent,
+                                item.image,
+                                item.name,
+                                item.price,
+                                item.seller,
+                                1,
+                                CartStatus.CURRENT_CART
+                            )
+                        )
+                    }
                 }
+
+
             }
-//            LazyVerticalGrid(
-//                columns = GridCells.Fixed(2),
-//                modifier = Modifier
-//                    .wrapContentHeight()
-//                    .fillMaxWidth()
-//            ) {
-//
-//                items(mostDiscountedList) { item ->
-//                    MostDiscountedCard(discountedItem = item)
-//                }
-//
-//            }
 
         }
     }

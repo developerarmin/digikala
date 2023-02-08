@@ -55,27 +55,16 @@ fun ProposalCardSection(
             }
         }
     }
-    FlowRow(
-        horizontalArrangement = Arrangement.SpaceAround,
-        maxItemsInEachRow = 2,
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(MaterialTheme.spacing.small)
-    ) {
-        for (item in listProposal) {
-            ProposalCardItem(item)
-        }
-   /* LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+    FlowRow(maxItemsInEachRow = 2,
         modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
             .padding(MaterialTheme.spacing.small)
-    ) {
-        items(listProposal) { item ->
-            ProposalCardItem(item)
-        }*/
+            ) {
+        for(item in listProposal){
+            ProposalCardItem(imgLink = item)
+        }
+    }
 
     }
 
