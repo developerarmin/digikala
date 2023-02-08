@@ -94,19 +94,7 @@
     <string name="shipping_cost_alert">هزینه ارسال بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه می‌شود</string>
     <string name="dot_bullet">•</string>
 
-    <string name="my_orders">سفارش‌های من</string>
-    <string name="processing">در حال پردازش</string>
-    <string name="returned">مرجوع شده</string>
-    <string name="canceled">لغو شده</string>
-    <string name="delivered">تحویل شده</string>
-    <string name="unpaid">در انتظار پرداخت</string>
 
-
-    <string name="fav_list">لیست مورد علاقه</string>
-    <string name="my_comments">نقد و نظرات</string>
-    <string name="addresses">آدرس‌ها</string>
-    <string name="profile_data">اطلاعات حساب کاربری</string>
-    <string name="deleteFromList">حذف از لیست</string>
 
 
     <!--Product Detail-->
