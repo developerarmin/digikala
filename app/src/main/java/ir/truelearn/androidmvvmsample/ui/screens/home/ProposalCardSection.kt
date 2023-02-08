@@ -67,5 +67,3 @@ fun ProposalCardSection(
     }
 
     }
-
-}
