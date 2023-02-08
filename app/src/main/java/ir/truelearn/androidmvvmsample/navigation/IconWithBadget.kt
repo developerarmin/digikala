@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.digikalaRed
 import ir.truelearn.androidmvvmsample.util.DigitHelper
+import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
 fun IconWithBadge(badget: Int, icon: Painter) {
@@ -45,7 +46,7 @@ fun IconWithBadge(badget: Int, icon: Painter) {
         )
         {
             Text(
-                text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(badget.toString()))} ",
+                text = "${digitBySeparator(DigitHelper.digitByLocate(badget.toString()))} ",
                 modifier = Modifier
                     .background(color = MaterialTheme.colors.digikalaRed)
                     .height(13.dp)

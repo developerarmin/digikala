@@ -12,19 +12,22 @@ import javax.inject.Inject
 class CartRepository @Inject constructor(private  val api: ApiInterface,
                                          private val cartDao: CartDao) : BaseApiResponse() {
 
-    val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
 
+    val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
+
+    val currentCartItemsCount=cartDao.getCartItemsCount()
+    val nextCartItemsCount=cartDao.getNextCartItemCount()
 
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
     }
 
-    suspend fun changeCountCartItem(id: Int, newCount: Int) {
+    suspend fun changeCountCartItem(id: String, newCount: Int) {
         cartDao.changeCountCartItem(id, newCount)
     }
 
-    suspend fun changeStatusCart(itemID: Int, newStatus: CartStatus) {
+    suspend fun changeStatusCart(itemID: String, newStatus: CartStatus) {
         cartDao.changeStatusCart(itemID, newStatus)
     }
 
@@ -36,4 +39,6 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
         safeApiCall {
             api.getSuggestedItems()
         }
+
+
 }

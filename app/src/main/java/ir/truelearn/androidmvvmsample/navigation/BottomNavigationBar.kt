@@ -1,31 +1,23 @@
 package ir.truelearn.androidmvvmsample.navigation
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
-import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 
 @Composable
@@ -35,6 +27,14 @@ fun BottomNavigationBar(
     onItemClick: (BottomNavItem) -> Unit,
     viewModel: CartViewModel = hiltViewModel()
 ) {
+    val cartCounter = remember {
+        mutableStateOf(0)
+    }
+    LaunchedEffect(key1 = true) {
+        viewModel.currentCartItemsCount.collectLatest { count ->
+            cartCounter.value = count
+        }
+    }
     val items = listOf(
         BottomNavItem(
             name = stringResource(R.string.home),
@@ -72,8 +72,7 @@ fun BottomNavigationBar(
             backgroundColor = Color.White,
             elevation = 5.dp
         ) {
-//            items.forEach { item ->
-            val cartCounter = viewModel.cartItemCounter
+
             items.forEachIndexed { index, item ->
                 val selected = item.route == backStackEntry.value?.destination?.route
                 BottomNavigationItem(
@@ -84,8 +83,8 @@ fun BottomNavigationBar(
                     icon = {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             if (selected) {
-                                if(index==2 && cartCounter.value>0 )
-                                    IconWithBadge(cartCounter.value,item.selectedIcon)
+                                if (index == 2 && cartCounter.value > 0)
+                                    IconWithBadge(cartCounter.value, item.selectedIcon)
                                 else
                                     Icon(
                                         modifier = Modifier
@@ -94,15 +93,15 @@ fun BottomNavigationBar(
                                         contentDescription = item.name
                                     )
                             } else {
-                                if(index==2 && cartCounter.value>0 )
-                                    IconWithBadge(cartCounter.value,item.deSelectedIcon)
+                                if (index == 2 && cartCounter.value > 0)
+                                    IconWithBadge(cartCounter.value, item.deSelectedIcon)
                                 else
-                                Icon(
-                                    modifier = Modifier
-                                        .height(24.dp),
-                                    painter = item.deSelectedIcon,
-                                    contentDescription = item.name
-                                )
+                                    Icon(
+                                        modifier = Modifier
+                                            .height(24.dp),
+                                        painter = item.deSelectedIcon,
+                                        contentDescription = item.name
+                                    )
                             }
                             Text(
                                 text = item.name,

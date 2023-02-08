@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,25 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.google.gson.Gson
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.util.Constants
 import ir.truelearn.androidmvvmsample.util.DigitHelper.applyDiscount
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
@@ -116,7 +108,8 @@ fun AmazingItem(item: AmazingItem, navHostController: NavController,isAmazing:Bo
                     Icon(
                         painter = painterResource(id = R.drawable.available),
                         contentDescription = "",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(22.dp)
+                            .padding(2.dp),
                         tint = MaterialTheme.colors.DarkCyan
                     )
                     Text(

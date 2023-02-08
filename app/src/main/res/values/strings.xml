@@ -112,16 +112,30 @@
     <!--Product Detail-->
     <string name="similar_product">محصولات مشابه</string>
     <string name="recommended_similar_product">خریداران این محصول،این کالا را هم خریده اند</string>
-    
+
     <string name="user_comments">دیدگاه کاربران</string>
     <string name="comment">نظر</string>
     <string name="write_your_comment">دیدگاه خود را درباره این کالا بنویسید</string>
     <string name="comment_desc">۵ امتیاز دیجی‌کلاب \n
 پس از تایید نظر، با مراجعه به صفحه‌ی ماموریت‌های کلابی امتیاز خود را دریافت کنید</string>
-    
+
     <string name="satisfaction">خرید این محصول را توصیه می‌کنم</string>
     <string name="dissatisfaction">خرید این محصول را توصیه نمیکنم</string>
     <string name="neutral">در مورد این محصول مطمئن نیستم</string>
+
+    <string name="my_orders">سفارش‌های من</string>
+    <string name="processing">در حال پردازش</string>
+    <string name="returned">مرجوع شده</string>
+    <string name="canceled">لغو شده</string>
+    <string name="delivered">تحویل شده</string>
+    <string name="unpaid">در انتظار پرداخت</string>
+
+
+    <string name="fav_list">لیست مورد علاقه</string>
+    <string name="my_comments">نقد و نظرات</string>
+    <string name="addresses">آدرس‌ها</string>
+    <string name="profile_data">اطلاعات حساب کاربری</string>
+    <string name="deleteFromList">حذف از لیست</string>
 
     <string name="deliveryAndTimeMethod">شیوه و زمان ارسال</string>
     <string name="consignment">مرسوله 1 از 1</string>
@@ -133,5 +147,4 @@
 
     <string name="save_product_to_cart">ذخیره %1$d  کالا در لیست خرید بعدی</string>
     <string name="delete_product_from_cart">حذف %1$d  کالا از سبد خرید</string>
-    <string name="superMarketArticle">کالاهای سوپر مارکتی</string>
 </resources>
