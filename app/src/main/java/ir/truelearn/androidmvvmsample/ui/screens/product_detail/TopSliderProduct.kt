@@ -24,6 +24,7 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.LocalShape
@@ -37,29 +38,9 @@ import kotlinx.coroutines.flow.collectLatest
 @SuppressLint("StateFlowValueCalledInComposition")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TopSliderProduct(url: String, viewModel: ProductDetailViewModel = hiltViewModel()){
-    var list by remember { mutableStateOf<List<Slider>>(emptyList()) }
+fun TopSliderProduct( list:List<ImageSlider>,viewModel: ProductDetailViewModel = hiltViewModel()) {
     var loading by remember { mutableStateOf(false) }
 
-    LaunchedEffect(Dispatchers.Main) {
-        viewModel.slider.collectLatest { result ->
-            when (result) {
-                is NetworkResult.Success -> {
-                    result.data?.let {
-                        list = it
-                    }
-                    loading = false
-                }
-                is NetworkResult.Error -> {
-                    loading = false
-                    Log.d("5555", "TopSlider error:${result.message} ")
-                }
-                is NetworkResult.Loading -> {
-                    loading = true
-                }
-            }
-        }
-    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -86,7 +67,7 @@ fun TopSliderProduct(url: String, viewModel: ProductDetailViewModel = hiltViewMo
                 val pagerState = rememberPagerState()
                 var imageUrl by remember { mutableStateOf("") }
 
-                viewModel.slider.value.data?.size?.let {
+               list.size.let {
                     HorizontalPager(
                         count = it,
                         state = pagerState,
@@ -94,7 +75,7 @@ fun TopSliderProduct(url: String, viewModel: ProductDetailViewModel = hiltViewMo
                             .weight(1f)
                             .fillMaxWidth(),
                     ) { page ->
-                        imageUrl = url//viewModel.slider.value.data?.get(page)?.image.toString()
+                        imageUrl = list[page].image
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.BottomCenter
@@ -128,7 +109,7 @@ fun TopSliderProduct(url: String, viewModel: ProductDetailViewModel = hiltViewMo
                 }
 
                 LaunchedEffect(key1 = pagerState.currentPage) {
-                    viewModel.slider.value.data?.size?.let {
+                    list.size?.let {
                         delay(3000)
                         var newPosition = pagerState.currentPage + 1
                         if (newPosition > it - 1) newPosition = 0

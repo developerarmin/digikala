@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.repository
 
 import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -11,6 +12,10 @@ class ProductDetailRepository @Inject constructor(private val api: ApiInterface)
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getSlider()
+        }
+    suspend fun getProductById(productId:String): NetworkResult<ProductDetailModel> =
+        safeApiCall {
+            api.getProductById(productId)
         }
 
 

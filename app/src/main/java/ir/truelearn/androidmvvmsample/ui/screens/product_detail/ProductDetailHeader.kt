@@ -13,15 +13,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
+import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 
 @Composable
-fun ProductDetailHeader(title: String, category: String) {
+fun ProductDetailHeader(title: String, category: String,star:Double,starCount:Int,commentCount:Int,questionCount:Int,viewModel: HomeViewModel = hiltViewModel()) {
     Column {
         Text(
             text = category,
@@ -54,13 +56,13 @@ fun ProductDetailHeader(title: String, category: String) {
                 tint = MaterialTheme.colors.Gold
             )
             Text(
-                text = digitByLocate("4.3"),
+                text = digitByLocate(star.toString()),
                 color = MaterialTheme.colors.semiDarkText,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.miniDp + 1.dp)
             )
             Text(
-                text = digitByLocate("(173)"),
+                text = digitByLocate("($starCount)"),
                 color = MaterialTheme.colors.grayAlpha,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(end = MaterialTheme.spacing.miniDp + 8.dp)
@@ -74,7 +76,7 @@ fun ProductDetailHeader(title: String, category: String) {
                     .padding(horizontal = MaterialTheme.spacing.miniDp + 9.dp)
             )
             Text(
-                text = DigitHelper.digitByLocate("116 دیدگاه کاربران"),
+                text = DigitHelper.digitByLocate("(${commentCount}) دیدگاه کاربران"),
                 color = MaterialTheme.colors.DarkCyan,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
@@ -88,7 +90,7 @@ fun ProductDetailHeader(title: String, category: String) {
                     .padding(horizontal = MaterialTheme.spacing.miniDp + 9.dp)
             )
             Text(
-                text = DigitHelper.digitByLocate("6 پرسش و پاسخ"),
+                text = DigitHelper.digitByLocate("(${questionCount}) پرسش و پاسخ"),
                 color = MaterialTheme.colors.DarkCyan,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
@@ -100,7 +102,8 @@ fun ProductDetailHeader(title: String, category: String) {
                 .padding(
                     start = MaterialTheme.spacing.medium,
                     end = MaterialTheme.spacing.medium,
-                    top = 8.dp
+                    top = MaterialTheme.spacing.small,
+                    bottom = MaterialTheme.spacing.small
                 )
                 .fillMaxWidth()
         ) {
@@ -114,7 +117,7 @@ fun ProductDetailHeader(title: String, category: String) {
                 text = DigitHelper.digitByLocate("90% (80نفر) از خریداران این کالا را پیشنهاد کرده اند."),
                 color = MaterialTheme.colors.semiDarkText,
                 fontSize = 12.sp,
-                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small).padding(bottom = MaterialTheme.spacing.medium)
+                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small)//.padding(bottom = MaterialTheme.spacing.small)
             )
         }
         Divider(color = MaterialTheme.colors.grayCategory, thickness = 1.dp, modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium))

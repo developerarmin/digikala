@@ -25,7 +25,7 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 
 @Composable
-fun BottomBarProductDetail(navController: NavController,modifier: Modifier = Modifier) {
+fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modifier = Modifier) {
     BottomNavigation(
         modifier = modifier,
         backgroundColor = Color.White,
@@ -94,7 +94,7 @@ fun BottomBarProductDetail(navController: NavController,modifier: Modifier = Mod
                 }
                 Text(
                     text = DigitHelper.digitByLocate(
-                        "100,000 ${
+                        "$price ${
                             stringResource(
                                 id = R.string.price_unit
                             )

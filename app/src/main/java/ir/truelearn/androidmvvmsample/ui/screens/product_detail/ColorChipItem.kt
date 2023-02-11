@@ -23,7 +23,7 @@ fun ColorChipItem(
     name: String ,
     isSelected: Boolean = false,
     onSelectionChanged: (String) -> Unit = {},
-    color: Long
+    color: String
 ) {
         Surface(
             modifier = if (isSelected) Modifier.padding(4.dp).border(width = 1.dp,MaterialTheme.colors.CursorColor,
@@ -46,7 +46,7 @@ fun ColorChipItem(
                             .size(20.dp)
                             .border(1.dp, Color.Gray, CircleShape),
                         onDraw = {
-                            drawCircle(Color(color))
+                            drawCircle(Color(("ff" + color.removePrefix("#").lowercase()).toLong(16)))
                         }
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
