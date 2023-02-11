@@ -11,5 +11,6 @@ object Constants {
     const val USER_PHONE_KEY = "USER_PHONE_KEY"
     const val USER_PASSWORD_KEY = "USER_PASSWORD_KEY"
     const val USER_LANGUAGE_KEY = "USER_LANGUAGE_KEY"
+    const val ZARINPAL_MERCHANT_ID = "ce7101df-cb08-41f8-a20b-b21995173d8f"
 
 }
