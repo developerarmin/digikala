@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -14,7 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartReceiveInPersonAddress
 import ir.truelearn.androidmvvmsample.ui.theme.CartCyan
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
@@ -25,6 +29,7 @@ import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
 fun CartShippingAddressAndTime(
+    navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel(),
     address: String,
     name: String,
@@ -105,6 +110,10 @@ fun CartShippingAddressAndTime(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable {
+                        if (true)
+                        navController.navigate(Screen.SaveUserAddress.route)
+                    }
                     .padding(vertical = MaterialTheme.spacing.medium),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically

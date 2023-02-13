@@ -18,12 +18,29 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(private val repository: CartRepository) : ViewModel() {
+
+
+
+    var dlgProvinceName = mutableStateOf("اردبیل")
+    var dlgCityState = mutableStateOf(false)
+    var dlgCityName = mutableStateOf("اردبیل")
+    var inputPostalAddressState by mutableStateOf("")
+    var inputNumberState by mutableStateOf("")
+    var inputUnitState by mutableStateOf("")
+    var inputZipCodeState by mutableStateOf("")
+    var inputCheckboxState by mutableStateOf(false)
+    var inputRecipientNameState by mutableStateOf("")
+    var inputRecipientPhoneState by mutableStateOf("")
+
+
     val cartDetail = MutableStateFlow(CartDetail(0, 0, 0, 0))
 
     val currentCartItems: Flow<List<CartItem>> = repository.currentCartItems
@@ -96,8 +113,13 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
             payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
             cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
+
+
         }
 
     }
 
+
 }
+
+

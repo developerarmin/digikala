@@ -107,6 +107,7 @@ fun CheckoutScreen(
 
                     }
                     CartShippingAddressAndTime(
+                        navController=navController,
                         address = "اردبیل، اردبیل، اردبیل - خیابان شهید باکری - خیابان فردوسی۱ - نبش کوچه فردوسی۱ - پلاک ۹",
                         name = "مهدی ایمانی"
                     )

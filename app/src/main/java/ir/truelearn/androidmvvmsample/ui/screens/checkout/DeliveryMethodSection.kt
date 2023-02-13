@@ -177,8 +177,3 @@ fun DeliveryMethodSection(
     }
 }
 
-@Composable
-@Preview(showBackground = true)
-fun Display1() {
-    DeliveryMethodSection()
-}
