@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(private val repository: ProductDetailRepository) : ViewModel() {
+
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val similarProducts = MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
     val recommendedSimilarProducts = MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())

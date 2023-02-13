@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">android mvvm sample</string>
 
+
     <string name="basket">سبد خرید</string>
     <string name="home">خانه</string>
     <string name="category">دسته‌بندی‌ها</string>
@@ -56,6 +57,7 @@
     <string name="favoriteProduct">محبوب ترین محصولات</string>
 
     <string name="digikala_score">امتیاز دیجی‌کالا</string>
+    <string name="digiclub_score">امتیاز دیجی‌کلاب دریافت کنید</string>
     <string name="digikala_wallet_active">فعال‌سازی کیف پول</string>
     <string name="score"> امتیاز</string>
     <string name="auth">احراز هویت</string>
@@ -135,4 +137,7 @@
 
     <string name="save_product_to_cart">ذخیره %1$d  کالا در لیست خرید بعدی</string>
     <string name="delete_product_from_cart">حذف %1$d  کالا از سبد خرید</string>
+    <string name="digikala">دیجی کالا</string>
+    <string name="better_price_suggestion">آیا قیمت بهتری سراغ دارید؟</string>
+
 </resources>

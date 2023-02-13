@@ -96,7 +96,7 @@ fun ProductDetailSection(
 
         ColorCategorySection(item.colors)
 
-        SellerInfoDetails()
+        SellerInfoDetails(item)
 
         ProductDetailCard()
 

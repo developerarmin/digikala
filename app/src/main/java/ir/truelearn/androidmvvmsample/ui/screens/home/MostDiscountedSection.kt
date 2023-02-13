@@ -16,6 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -29,7 +31,10 @@ import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
+fun MostDiscountedSection(
+    viewModel: HomeViewModel = hiltViewModel(),
+    navHostController: NavController
+) {
 
     var mostDiscountedList by remember {
         mutableStateOf<List<MostDiscountedItem>>(emptyList())
@@ -99,7 +104,7 @@ fun MostDiscountedSection(viewModel: HomeViewModel = hiltViewModel()) {
             ) {
 
                 for (item in mostDiscountedList){
-                    MostDiscountedCard(discountedItem = item)
+                    MostDiscountedCard(discountedItem = item,navHostController)
                 }
             }
 //            LazyVerticalGrid(

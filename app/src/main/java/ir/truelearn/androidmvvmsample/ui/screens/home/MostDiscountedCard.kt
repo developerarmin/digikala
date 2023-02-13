@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -18,22 +19,26 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper.applyDiscount
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitByLocate
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator
 
 @Composable
-fun MostDiscountedCard(discountedItem: MostDiscountedItem) {
+fun MostDiscountedCard(discountedItem: MostDiscountedItem,navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth(0.5f)
 //            .width(192.dp)
             .fillMaxHeight(0.48f)
-            .padding(bottom = MaterialTheme.spacing.miniDp),
+            .padding(bottom = MaterialTheme.spacing.miniDp)
+            .clickable { navController.navigate(Screen.ProductDetail.withArgs(discountedItem.Id)) }
+        ,
         shape = MaterialTheme.roundedShape.default,
         elevation = 1.dp
     ) {
