@@ -59,4 +59,6 @@ interface ApiInterface {
     suspend fun getProductById(
         @Query("id") id:String
     ): Response<ResponseResult<ProductDetailModel>>
+
+
 }

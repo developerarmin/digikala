@@ -30,7 +30,6 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
 
     var dlgProvinceName = mutableStateOf("اردبیل")
-    var dlgCityState = mutableStateOf(false)
     var dlgCityName = mutableStateOf("اردبیل")
     var inputPostalAddressState by mutableStateOf("")
     var inputNumberState by mutableStateOf("")
@@ -110,16 +109,10 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
                 totalPrice += item.price * item.count
                 discount += item.discountPercent
             }
-
             payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
             cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
-
-
         }
-
     }
-
-
 }
 
 

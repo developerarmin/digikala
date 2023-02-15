@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,65 +32,60 @@ import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidNumber
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
-@OptIn(ExperimentalMaterialApi::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SaveUserAddress(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel()
 ) {
-    Box(
-        modifier = Modifier
-            .background(Color.White)
-            .verticalScroll(rememberScrollState())
-            .fillMaxSize(),
 
-
-        ) {
         val dlgProvinceName = remember { viewModel.dlgProvinceName }
-        val dlgCityState = remember { viewModel.dlgCityState }
         val dlgCityName = remember { viewModel.dlgCityName }
-
-        Column(
+        Scaffold(
+            modifier = Modifier
+                .background(Color.White)
+                .fillMaxSize(),
+            topBar = {TopBarAddress(navController) },
+        ) {
+            Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = MaterialTheme.spacing.medium),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
 
             ) {
 
-            TopBarAddress(navController)
 
-            SetLabel(label = "استان *")// design by navController
-            SelectCity(dlgProvinceName.value) { navController.navigate(Screen.selectCityName.route) }
 
-            SetLabel(label = "شهر *") // design by dialog
-            SelectCity(dlgCityName.value) { dlgCityState.value = true }
-
-            if (viewModel.dlgCityState.value) {
-                selectCityNameByDialog(viewModel = viewModel, flag = 2) { viewModel.dlgCityState.value = false }
+            SetLabel(label = "استان *")
+            SelectCity(dlgProvinceName.value) {
+                navController.navigate(Screen.selectCityName.withArgs("1"))
             }
+
+            SetLabel(label = "شهر *")
+           SelectCity(dlgCityName.value) {
+               navController.navigate(Screen.selectCityName.withArgs("2"))
+           }
+
 
 
             SetLabel(label = "آدرس پستی *")
-            //inputPostalAddressEditText()
             viewModel.inputPostalAddressState =
                 SetTextField(str = viewModel.inputPostalAddressState,maxLines=2)
 
 
             SetLabel(label = "کد پستی *")
-            // zipCodeEditText()
             viewModel.inputZipCodeState =
                 SetTextField(str = viewModel.inputZipCodeState)
 
 
             SetLabel(label = "پلاک *")
-            //inputNumberEditText()
             viewModel.inputNumberState =
                 SetTextField(str = viewModel.inputNumberState)
 
             SetLabel(label = "واحد")
-            // inputUnitEditText()
             viewModel.inputUnitState =
                 SetTextField(str = viewModel.inputUnitState)
 
@@ -110,13 +106,11 @@ fun SaveUserAddress(
                 Column {
 
                     SetLabel("نام و نام خانوادگی گیرنده")
-                    //inputRecipientNameEditText()
                     viewModel.inputRecipientNameState =
                         SetTextField(str = viewModel.inputRecipientNameState)
 
 
                     SetLabel("شماره تلفن همراه گیرنده")
-                    //inputRecipientNameEditText()
                     viewModel.inputRecipientPhoneState =
                         SetTextField(str = viewModel.inputRecipientPhoneState)
 
@@ -148,7 +142,6 @@ fun SaveUserAddress(
                 SetAddressButton("ثبت آدرس", MaterialTheme.colors.unSelectedBottomBar) {
                     Log.e("3636","لطفا فیلد ها را کامل پر کنید")
                 }
-
         }
     }
 }

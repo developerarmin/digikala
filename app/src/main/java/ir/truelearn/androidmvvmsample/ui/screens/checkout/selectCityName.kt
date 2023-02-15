@@ -1,6 +1,8 @@
 package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,33 +31,50 @@ import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import java.util.*
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun selectCityName(
     navController: NavHostController,
     viewModel: CartViewModel = hiltViewModel(),
-    flag: Int = 1
+    flag: String = "1"
 ) {
-    val citiesList = arrayListOf(
+
+    val provinceList = arrayListOf(
         "اردبیل",
         "تبریز",
         "تهران",
         "شیراز",
         "رشت",
         "همدان",
-        "اردبیل",
-        "تبریز",
-        "تهران",
-        "همدان",
+        "قم",
+        "گرگان",
+        "مشهد",
+        "کرمان",
 
         )
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-    ) {
+    val citiesList = arrayListOf(
+        "اردبیل",
+        "نیر",
+        "سرعین",
+        "پارس آباد",
+        "بیله سوار",
+        "مشکین شهر",
+        "نمین",
+        )
+    var selectList: List<String> = if (flag.equals("1")) provinceList
+    else
+        citiesList
+
+    var tabBarTitle: String = if (flag.equals("1")) "استان مورد نظر را انتخاب کنید"
+    else
+        "شهر مورد نظر را انتخاب کنید"
+
         Scaffold(
-            topBar = { TopBar(navController) },
-        ) { padding ->
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            topBar = { TopBar(navController,tabBarTitle) },
+        ) {
             Box(
                 modifier = Modifier
                     .padding(0.dp)
@@ -69,20 +88,19 @@ fun selectCityName(
                         navController = navController,
                         viewModel = viewModel,
                         state = textState,
-                        citiesList = citiesList,
+                        citiesList = selectList,
                         flag = flag
                     )
                 }
             }
         }
-    }
 }
 
 @Composable
-fun TopBar(navController: NavController) {
+fun TopBar(navController: NavController,title:String) {
     TopAppBar(
         elevation = 4.dp,
-        title = { Text(text = "استان مورد نظر را انتخاب کنید", fontSize = 16.sp) },
+        title = { Text(text = title, fontSize = 16.sp) },
         backgroundColor = Color.White,
         contentColor = Color.Black,
         actions = {
@@ -91,7 +109,6 @@ fun TopBar(navController: NavController) {
             }
         }
     )
-
 }
 
 
@@ -141,11 +158,11 @@ fun CityList(
     navController: NavController,
     viewModel: CartViewModel,
     state: MutableState<TextFieldValue>,
-    citiesList: ArrayList<String>,
-    flag: Int
+    citiesList: List<String>,
+    flag: String
 ) {
 
-    var filteredCities: ArrayList<String>
+    var filteredCities: List<String>
     val listState = rememberLazyListState()
 
     LazyColumn(
@@ -153,9 +170,7 @@ fun CityList(
         modifier = Modifier
             .padding(MaterialTheme.spacing.small)
             .fillMaxWidth()
-
     ) {
-
         val searchedText = state.value.text
         filteredCities = if (searchedText.isEmpty()) {
             citiesList
@@ -175,19 +190,16 @@ fun CityList(
             CityListItem(
                 cityText = filteredCity,
                 onItemClick = { selectedCity ->
-                    if (flag == 1) {
+                    if (flag.equals("1"))
                         viewModel.dlgProvinceName.value = selectedCity
-                    } else {
+                    else
                         viewModel.dlgCityName.value = selectedCity
-                        viewModel.dlgCityState.value = false
-                    }
+
                     navController.popBackStack()
                 }
             )
         }
-
     }
-
 }
 
 
