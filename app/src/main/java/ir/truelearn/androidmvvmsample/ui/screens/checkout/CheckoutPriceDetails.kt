@@ -98,7 +98,6 @@ fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
                 modifier = Modifier
                     .size(5.dp, 15.dp)
                     .padding(top = 9.dp)
-
             )
             Spacer(modifier = Modifier.width(6.dp))
             Text(

@@ -25,29 +25,32 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.checkout.CartAddress
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmpty
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidNumber
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidPhoneNumber
+import ir.truelearn.androidmvvmsample.viewmodel.AddressViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SaveUserAddress(
     navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel()
+    viewModel: CartViewModel = hiltViewModel(),
+    addressViewModel: AddressViewModel = hiltViewModel(),
 ) {
 
-        val dlgProvinceName = remember { viewModel.dlgProvinceName }
-        val dlgCityName = remember { viewModel.dlgCityName }
-        Scaffold(
-            modifier = Modifier
-                .background(Color.White)
-                .fillMaxSize(),
-            topBar = {TopBarAddress(navController) },
-        ) {
-            Column(
+    val ProvinceName = remember { viewModel.ProvinceName }
+    val CityName = remember { viewModel.CityName }
+    Scaffold(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxSize(),
+        topBar = { TopBarAddress(navController) },
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
@@ -58,36 +61,35 @@ fun SaveUserAddress(
             ) {
 
 
-
             SetLabel(label = "استان *")
-            SelectCity(dlgProvinceName.value) {
+            SelectCity(ProvinceName.value) {
                 navController.navigate(Screen.selectCityName.withArgs("1"))
             }
 
             SetLabel(label = "شهر *")
-           SelectCity(dlgCityName.value) {
-               navController.navigate(Screen.selectCityName.withArgs("2"))
-           }
+            SelectCity(CityName.value) {
+                navController.navigate(Screen.selectCityName.withArgs("2"))
+            }
 
 
 
             SetLabel(label = "آدرس پستی *")
-            viewModel.inputPostalAddressState =
-                SetTextField(str = viewModel.inputPostalAddressState,maxLines=2)
+            viewModel.inputPostalAddress =
+                SetTextField(str = viewModel.inputPostalAddress, maxLines = 2)
 
 
             SetLabel(label = "کد پستی *")
-            viewModel.inputZipCodeState =
-                SetTextField(str = viewModel.inputZipCodeState)
+            viewModel.inputPostalCode =
+                SetTextField(str = viewModel.inputPostalCode)
 
 
             SetLabel(label = "پلاک *")
-            viewModel.inputNumberState =
-                SetTextField(str = viewModel.inputNumberState)
+            viewModel.inputNumber =
+                SetTextField(str = viewModel.inputNumber)
 
             SetLabel(label = "واحد")
-            viewModel.inputUnitState =
-                SetTextField(str = viewModel.inputUnitState)
+            viewModel.inputUnit =
+                SetTextField(str = viewModel.inputUnit)
 
 
             Divider(
@@ -106,41 +108,60 @@ fun SaveUserAddress(
                 Column {
 
                     SetLabel("نام و نام خانوادگی گیرنده")
-                    viewModel.inputRecipientNameState =
-                        SetTextField(str = viewModel.inputRecipientNameState)
+                    viewModel.inputRecipientName =
+                        SetTextField(str = viewModel.inputRecipientName)
 
 
                     SetLabel("شماره تلفن همراه گیرنده")
-                    viewModel.inputRecipientPhoneState =
-                        SetTextField(str = viewModel.inputRecipientPhoneState)
+                    viewModel.inputRecipientPhone =
+                        SetTextField(str = viewModel.inputRecipientPhone)
 
 
                 }
 
             if (
                 (
-                        isValidEmpty(viewModel.inputPostalAddressState) &&
-                                isValidNumber(viewModel.inputNumberState) &&
-                                isValidNumber(viewModel.inputUnitState) &&
-                                isValidNumber(viewModel.inputZipCodeState) &&
-                                isValidEmpty(viewModel.inputRecipientNameState) &&
-                                isValidPhoneNumber(viewModel.inputRecipientPhoneState)
+                        isValidEmpty(viewModel.inputPostalAddress) &&
+                                isValidNumber(viewModel.inputNumber) &&
+                                isValidNumber(viewModel.inputUnit) &&
+                                isValidNumber(viewModel.inputPostalCode) &&
+                                isValidEmpty(viewModel.inputRecipientName) &&
+                                isValidPhoneNumber(viewModel.inputRecipientPhone)
                         )
                 || (
-                        isValidEmpty(viewModel.inputPostalAddressState) &&
-                                isValidNumber(viewModel.inputNumberState) &&
-                                isValidNumber(viewModel.inputUnitState) &&
-                                isValidNumber(viewModel.inputZipCodeState) &&
+                        isValidEmpty(viewModel.inputPostalAddress) &&
+                                isValidNumber(viewModel.inputNumber) &&
+                                isValidNumber(viewModel.inputUnit) &&
+                                isValidNumber(viewModel.inputPostalCode) &&
                                 viewModel.inputCheckboxState
                         )
             )
 
                 SetAddressButton("ثبت آدرس", MaterialTheme.colors.DigikalaLightRed) {
-                    Log.e("3636","آدرس جدید ثبت شد")
+                    Log.e("3636", "آدرس جدید ثبت شد")
+
+                    addressViewModel.addNewAddress(
+                        CartAddress(
+                            name = "مهدی ایمانی",
+                            phone = "09909290948",
+                            province = viewModel.ProvinceName.value,
+                            city = viewModel.CityName.value,
+                            postalAddress = viewModel.inputPostalAddress,
+                            postalCode = viewModel.inputPostalCode,
+                            number = viewModel.inputNumber,
+                            unit = viewModel.inputUnit,
+                            recipientIsMeState = viewModel.inputRecipientPhone,
+                            nameRecipient = viewModel.inputRecipientName,
+                            phoneRecipient = viewModel.inputRecipientPhone,
+                            status = viewModel.inputCheckboxState
+                        )
+
+                    )
+
                 }
             else
                 SetAddressButton("ثبت آدرس", MaterialTheme.colors.unSelectedBottomBar) {
-                    Log.e("3636","لطفا فیلد ها را کامل پر کنید")
+                    Log.e("3636", "لطفا فیلد ها را کامل پر کنید")
                 }
         }
     }
@@ -167,14 +188,14 @@ fun SetLabel(label: String) {
 
 //********************************************************************************************
 @Composable
-fun TopBarAddress( navController: NavController) {
+fun TopBarAddress(navController: NavController) {
     TopAppBar(
         elevation = 4.dp,
         title = { Text(text = "جزئیات آدرس", fontSize = 16.sp) },
         backgroundColor = Color.White,
         contentColor = Color.Black,
         actions = {
-            IconButton(onClick = { navController.popBackStack()}) {
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(Icons.Filled.Close, null)
             }
         }

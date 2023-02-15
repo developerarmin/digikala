@@ -5,6 +5,7 @@ object Constants {
     const val API_KEY = "EB43556E671B925B9C98E74643BCA"
     const val DATASTORE_NAME = "DIGIKALA_DATA_STORE"
     const val SHOPPING_CART_TABLE = "shopping_cart"
+    const val ADDRESS_TABLE = "address"
     const val DATABASE_NAME="digikala_sample_db"
     const val USER_TOKEN_KEY = "USER_TOKEN_KEY"
     const val USER_ID_KEY = "USER_ID_KEY"

@@ -29,15 +29,15 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
 
 
 
-    var dlgProvinceName = mutableStateOf("اردبیل")
-    var dlgCityName = mutableStateOf("اردبیل")
-    var inputPostalAddressState by mutableStateOf("")
-    var inputNumberState by mutableStateOf("")
-    var inputUnitState by mutableStateOf("")
-    var inputZipCodeState by mutableStateOf("")
+    var ProvinceName = mutableStateOf("اردبیل")
+    var CityName = mutableStateOf("اردبیل")
+    var inputPostalAddress by mutableStateOf("")
+    var inputNumber by mutableStateOf("")
+    var inputUnit by mutableStateOf("")
+    var inputPostalCode by mutableStateOf("")
     var inputCheckboxState by mutableStateOf(false)
-    var inputRecipientNameState by mutableStateOf("")
-    var inputRecipientPhoneState by mutableStateOf("")
+    var inputRecipientName by mutableStateOf("")
+    var inputRecipientPhone by mutableStateOf("")
 
 
     val cartDetail = MutableStateFlow(CartDetail(0, 0, 0, 0))

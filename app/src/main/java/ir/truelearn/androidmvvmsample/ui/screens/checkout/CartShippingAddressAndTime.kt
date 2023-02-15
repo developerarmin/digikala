@@ -112,7 +112,8 @@ fun CartShippingAddressAndTime(
                     .fillMaxWidth()
                     .clickable {
                         if (true)
-                        navController.navigate(Screen.SaveUserAddress.route)
+//                        navController.navigate(Screen.SaveUserAddress.route)
+                        navController.navigate(Screen.selectAddress.route)
                     }
                     .padding(vertical = MaterialTheme.spacing.medium),
                 horizontalArrangement = Arrangement.End,
