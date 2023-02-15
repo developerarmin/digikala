@@ -8,9 +8,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.truelearn.androidmvvmsample.data.model.PersonInfo
 import ir.truelearn.androidmvvmsample.data.model.basket.CartDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
+import ir.truelearn.androidmvvmsample.data.model.basket.TokenBody
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.CartRepository
@@ -26,7 +28,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(private val repository: CartRepository) : ViewModel() {
-
 
 
     var dlgProvinceName = mutableStateOf("اردبیل")
@@ -50,13 +51,15 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     var digiKlabScore by mutableStateOf("150")
 
 
-
     //    var currentCartCount: Flow<Int> = repository.cartItemCounter
     var nextCartCount: Flow<Int> = repository.nextCartItemsCount
 
 
     val suggestedList =
         MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
+
+    val personInfoList =
+        MutableStateFlow<NetworkResult<List<PersonInfo>>>(NetworkResult.Loading())
 
     init {
         viewModelScope.launch {
@@ -67,6 +70,12 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     fun getSuggestedList() {
         viewModelScope.launch {
             suggestedList.emit(repository.getSuggestedItems())
+        }
+    }
+
+    fun getUserAddress(tokenBody: String) {
+        viewModelScope.launch {
+            personInfoList.emit(repository.getUserAddress(tokenBody))
         }
     }
 

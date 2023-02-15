@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
 import ir.truelearn.androidmvvmsample.data.model.*
+import ir.truelearn.androidmvvmsample.data.model.basket.TokenBody
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
@@ -10,6 +11,7 @@ import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailMod
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -55,8 +57,16 @@ interface ApiInterface {
 
     @GET("getAllProducts")
     suspend fun getSuggestedItems(): Response<ResponseResult<List<MostDiscountedItem>>>
+
     @GET("getProductById")
     suspend fun getProductById(
-        @Query("id") id:String
+        @Query("id") id: String
     ): Response<ResponseResult<ProductDetailModel>>
+
+    @GET("getUserAddress")
+    suspend fun getUserAddress(
+        @Query("token") token: String
+    ): Response<ResponseResult<List<PersonInfo>>>
+
+
 }
