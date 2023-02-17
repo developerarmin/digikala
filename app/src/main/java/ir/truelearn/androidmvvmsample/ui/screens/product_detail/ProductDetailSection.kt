@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -80,8 +81,7 @@ fun ProductDetailSection(
     Column(
         modifier = Modifier
             .background(androidx.compose.ui.graphics.Color.White)
-            .fillMaxSize()
-            .padding(bottom = 60.dp)
+            .fillMaxWidth()
     ) {
         TopSliderProduct(imageSliders)
 

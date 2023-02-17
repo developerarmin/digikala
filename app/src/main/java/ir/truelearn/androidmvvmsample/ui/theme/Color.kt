@@ -122,3 +122,6 @@ val Colors.RedColor : Color
 val Colors.CartCyan: Color
     @Composable
     get() = Color(0xFF339AF0)
+val Colors.Purple: Color
+    @Composable
+    get() = Color(0xFF8b3e7a)

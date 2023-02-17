@@ -68,7 +68,7 @@ fun ProductDetail(
 
                 //section
                 ProductDetailSection()
-
+                DigiPlusCard()
                 SimilarProductSection()
 
                 RecommendedSimilarProductsSection()

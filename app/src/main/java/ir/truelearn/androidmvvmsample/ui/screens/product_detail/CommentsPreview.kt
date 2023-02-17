@@ -27,7 +27,7 @@ fun CommentsPreview() {
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
     ) {
 
         Row(
@@ -248,7 +248,6 @@ fun WriteCommentView() {
         Spacer(
             modifier = Modifier
                 .padding(
-                    start = MaterialTheme.spacing.large + MaterialTheme.spacing.small,
                     top = MaterialTheme.spacing.medium,
                 )
                 .fillMaxWidth()
