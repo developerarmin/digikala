@@ -7,24 +7,26 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.SaveUserAddress
+import ir.truelearn.androidmvvmsample.ui.screens.checkout.selectAddress
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
+import ir.truelearn.androidmvvmsample.viewmodel.AddressViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
-fun SetupNavGraph(navController: NavHostController,
-                  cartViewModel: CartViewModel = hiltViewModel()
-                  ) {
+fun SetupNavGraph(
+    navController: NavHostController,
+    cartViewModel: CartViewModel = hiltViewModel()
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route
@@ -45,13 +47,34 @@ fun SetupNavGraph(navController: NavHostController,
             CheckoutScreen(navController = navController)
         }
 
+        composable(route = Screen.selectAddress.route) {
+            selectAddress(navController = navController)
+        }
         composable(route = Screen.SaveUserAddress.route) {
             SaveUserAddress(navController = navController, viewModel = cartViewModel)
         }
 
-        composable(route = Screen.selectCityName.route) {
-            selectCityName(navController = navController, viewModel = cartViewModel )
+        composable(route = Screen.selectCityName.route + "/{flag}",
+            arguments = listOf(
+                navArgument("flag") {
+                    type = NavType.StringType
+                    defaultValue = "1"
+                    nullable = true
+                }
+            )
+        )
+        {
+            val flag = it.arguments?.getString("flag")
+            flag?.let {
+                selectCityName(
+                    navController = navController,
+                    flag = flag,
+                    viewModel = cartViewModel
+                )
+            }
         }
+
+
 
 
         composable(route = Screen.Category.route) {
@@ -83,16 +106,17 @@ fun SetupNavGraph(navController: NavHostController,
             )
         }
 
-        composable(route = Screen.WebView.route+"?url={url}",
-        arguments = listOf(navArgument("url"){
-            type= NavType.StringType
-            defaultValue=""
-            nullable=true
-        })
+        composable(
+            route = Screen.WebView.route + "?url={url}",
+            arguments = listOf(navArgument("url") {
+                type = NavType.StringType
+                defaultValue = ""
+                nullable = true
+            })
         ) {
-            val url=it.arguments?.getString("url")
+            val url = it.arguments?.getString("url")
             url?.let {
-                WebPageScreen(navController = navController, url=url)
+                WebPageScreen(navController = navController, url = url)
             }
         }
 

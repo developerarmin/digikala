@@ -30,6 +30,13 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(private val repository: CartRepository) : ViewModel() {
 
 
+
+    var ProvinceName = mutableStateOf("اردبیل")
+    var CityName = mutableStateOf("اردبیل")
+    var inputPostalAddress by mutableStateOf("")
+    var inputNumber by mutableStateOf("")
+    var inputUnit by mutableStateOf("")
+    var inputPostalCode by mutableStateOf("")
     var dlgProvinceName = mutableStateOf("اردبیل")
     var dlgCityState = mutableStateOf(false)
     var dlgCityName = mutableStateOf("اردبیل")
@@ -38,8 +45,8 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     var inputUnitState by mutableStateOf("")
     var inputZipCodeState by mutableStateOf("")
     var inputCheckboxState by mutableStateOf(false)
-    var inputRecipientNameState by mutableStateOf("")
-    var inputRecipientPhoneState by mutableStateOf("")
+    var inputRecipientName by mutableStateOf("")
+    var inputRecipientPhone by mutableStateOf("")
 
 
     val cartDetail = MutableStateFlow(CartDetail(0, 0, 0, 0))
@@ -49,6 +56,7 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     var currentCartItemsCount = repository.currentCartItemsCount
     var nextCartItemsCount = repository.nextCartItemsCount
     var digiKlabScore by mutableStateOf("150")
+
 
 
     //    var currentCartCount: Flow<Int> = repository.cartItemCounter
@@ -119,16 +127,10 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
                 totalPrice += item.price * item.count
                 discount += item.discountPercent
             }
-
             payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
             cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
-
-
         }
-
     }
-
-
 }
 
 

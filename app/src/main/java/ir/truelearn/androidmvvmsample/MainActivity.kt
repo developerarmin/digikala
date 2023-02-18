@@ -42,9 +42,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            ZarinpalPurchase.purchase(this, 1000, "test") {
-                Log.e("3636", "from lambda $it") //it is transaction id must be save on db
-            }
+//            ZarinpalPurchase.purchase(this, 1000, "test") {
+//                Log.e("3636", "from lambda $it") //it is transaction id must be save on db
+//            }
 
             AndroidMvvmSampleTheme {
                 navController = rememberNavController()
