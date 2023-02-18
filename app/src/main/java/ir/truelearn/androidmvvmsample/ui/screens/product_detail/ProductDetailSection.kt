@@ -54,6 +54,10 @@ fun ProductDetailSection(
         mutableStateOf<List<ColorProductDetail>>(emptyList())
     }
 
+    var comments by remember {
+        mutableStateOf<List<Comment>>(emptyList())
+    }
+
     var loading by remember { mutableStateOf(false) }
 
     LaunchedEffect(Dispatchers.Main) {
@@ -64,6 +68,7 @@ fun ProductDetailSection(
                         item = it
                         imageSliders = it.imageSlider
                         colors = item.colors
+                        comments = item.comments
                     }
                     loading = false
                 }
@@ -83,6 +88,7 @@ fun ProductDetailSection(
             .background(androidx.compose.ui.graphics.Color.White)
             .fillMaxWidth()
     ) {
+
         TopSliderProduct(imageSliders)
 
         ProductDetailHeader(
@@ -100,7 +106,8 @@ fun ProductDetailSection(
 
         ProductDetailCard()
 
-        CommentsPreview()
+        CommentsPreview(comments)
+
 
     }
 
