@@ -2,7 +2,6 @@ package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -27,15 +26,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 import java.util.*
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation")
 @Composable
 fun selectCityName(
     navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel(),
+    viewModel: AddressListViewModel = hiltViewModel(),
     flag: String = "1"
 ) {
 
@@ -156,7 +155,7 @@ fun CityListItem(cityText: String, onItemClick: (String) -> Unit) {
 @Composable
 fun CityList(
     navController: NavController,
-    viewModel: CartViewModel,
+    viewModel: AddressListViewModel,
     state: MutableState<TextFieldValue>,
     citiesList: List<String>,
     flag: String

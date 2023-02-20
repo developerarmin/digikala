@@ -7,7 +7,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ir.truelearn.androidmvvmsample.data.db.AddressDao
 import ir.truelearn.androidmvvmsample.data.db.CartDao
 import ir.truelearn.androidmvvmsample.data.db.DigiKalaDatabase
 import ir.truelearn.androidmvvmsample.util.Constants.DATABASE_NAME
@@ -31,7 +30,4 @@ object DatabaseModule {
     fun provideCartDao(database: DigiKalaDatabase):CartDao = database.CartDao()
 
 
-@Provides
-@Singleton
-fun provideAddressDao(database: DigiKalaDatabase): AddressDao = database.AddressDao()
 }

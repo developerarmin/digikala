@@ -1,5 +1,8 @@
 package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
+import android.annotation.SuppressLint
+import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,31 +13,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartReceiveInPersonAddress
 import ir.truelearn.androidmvvmsample.ui.theme.CartCyan
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun CartShippingAddressAndTime(
-    navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel(),
-    address: String,
-    name: String,
-
-    ) {
+    navController: NavHostController,onClickChangeAddress:()->Unit
+) {
+    val viewModel: AddressListViewModel = viewModel(LocalContext.current as ComponentActivity)
+    Log.d("level3", "shipping:${viewModel.defaultAddress.value?.address} ")
+    var address = "not set"
+    var name = "not set"
+    if (viewModel.defaultAddress.value != null) {
+        viewModel.defaultAddress.value?.let {
+            address = viewModel.defaultAddress.value!!.address
+            name = viewModel.defaultAddress.value!!.name
+        }
+    }
     Card(
         modifier = Modifier.padding(horizontal = 0.dp),
         shape = RoundedCornerShape(3.dp),
@@ -97,23 +106,19 @@ fun CartShippingAddressAndTime(
                 }
                 Spacer(modifier = Modifier.weight(0.025f))
             }
-            if (true) {//use map
-                Divider(
-                    color = infoBox,
-                    thickness = 1.dp,
-                    modifier = Modifier
-                        .padding(MaterialTheme.spacing.medium)
-                )
-                DetermineAddressInMap()
-
-            }
+            //use map
+            Divider(
+                color = infoBox,
+                thickness = 1.dp,
+                modifier = Modifier
+                    .padding(MaterialTheme.spacing.medium)
+            )
+            DetermineAddressInMap()
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        if (true)
-//                        navController.navigate(Screen.SaveUserAddress.route)
-                        navController.navigate(Screen.selectAddress.route)
+                        onClickChangeAddress()
                     }
                     .padding(vertical = MaterialTheme.spacing.medium),
                 horizontalArrangement = Arrangement.End,

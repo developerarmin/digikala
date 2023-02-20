@@ -12,14 +12,13 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.SaveUserAddress
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.selectAddress
+import ir.truelearn.androidmvvmsample.ui.screens.checkout.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.checkout.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
-import ir.truelearn.androidmvvmsample.viewmodel.AddressViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 
 @Composable
@@ -48,10 +47,10 @@ fun SetupNavGraph(
         }
 
         composable(route = Screen.selectAddress.route) {
-            selectAddress(navController = navController)
+            AddressListScreen(navController = navController)
         }
         composable(route = Screen.SaveUserAddress.route) {
-            SaveUserAddress(navController = navController, viewModel = cartViewModel)
+            SaveUserAddress(navController = navController)
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",
@@ -69,7 +68,6 @@ fun SetupNavGraph(
                 selectCityName(
                     navController = navController,
                     flag = flag,
-                    viewModel = cartViewModel
                 )
             }
         }

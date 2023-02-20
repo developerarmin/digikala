@@ -46,6 +46,7 @@ fun AppConfig(
 
 private fun getDataStoreVariables(dataStore: DataStoreViewModel) {
     USER_TOKEN = dataStore.getUserToken().toString()
+    Log.d("level6", "getDataStoreVariables:${USER_TOKEN} ")
     USER_ID = dataStore.getUserId().toString()
     USER_PHONE = dataStore.getUserPhoneNumber().toString()
     USER_PASSWORD = dataStore.getUserPassword().toString()

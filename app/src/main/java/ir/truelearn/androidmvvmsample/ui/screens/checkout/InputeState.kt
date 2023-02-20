@@ -18,7 +18,8 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
 @Composable
 fun SetTextField(
@@ -54,7 +55,7 @@ fun SetTextField(
 
 @Composable
 fun inputCheckbox(
-    viewModel: CartViewModel
+    viewModel: SaveAddressViewModel
 ) {
     Row(
         modifier = Modifier
@@ -85,7 +86,7 @@ fun inputCheckbox(
 fun SetAddressButton(text: String, color:Color,onClick: () -> Unit) {
 
     Button(
-        onClick = onClick,
+        onClick = {onClick()},
         colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
         modifier = Modifier
             .fillMaxWidth()
