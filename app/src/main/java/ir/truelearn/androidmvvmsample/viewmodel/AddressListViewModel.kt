@@ -1,23 +1,19 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
-import ir.truelearn.androidmvvmsample.repository.UserAddressRepository
+import ir.truelearn.androidmvvmsample.repository.AddressRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddressListViewModel @Inject constructor(private val repository: UserAddressRepository) :
+class AddressListViewModel @Inject constructor(private val repository: AddressRepository) :
     ViewModel() {
     val defaultAddress = MutableStateFlow<UserAddressResponse?>(null)
 

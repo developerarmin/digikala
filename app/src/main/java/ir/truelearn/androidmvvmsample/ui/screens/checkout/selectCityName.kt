@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 import java.util.*
 
 
@@ -34,7 +35,7 @@ import java.util.*
 @Composable
 fun selectCityName(
     navController: NavHostController,
-    viewModel: AddressListViewModel = hiltViewModel(),
+    viewModel: SaveAddressViewModel = hiltViewModel(),
     flag: String = "1"
 ) {
 
@@ -155,7 +156,7 @@ fun CityListItem(cityText: String, onItemClick: (String) -> Unit) {
 @Composable
 fun CityList(
     navController: NavController,
-    viewModel: AddressListViewModel,
+    viewModel: SaveAddressViewModel,
     state: MutableState<TextFieldValue>,
     citiesList: List<String>,
     flag: String

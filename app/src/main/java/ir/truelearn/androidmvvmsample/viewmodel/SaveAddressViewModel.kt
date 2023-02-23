@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,16 +8,15 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
-import ir.truelearn.androidmvvmsample.repository.UserAddressRepository
+import ir.truelearn.androidmvvmsample.repository.AddressRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SaveAddressViewModel @Inject constructor(private val repository: UserAddressRepository) :
+class SaveAddressViewModel @Inject constructor(private val repository: AddressRepository) :
     ViewModel() {
     var ProvinceName = mutableStateOf("اردبیل")
     var CityName = mutableStateOf("اردبیل")
@@ -38,13 +36,12 @@ class SaveAddressViewModel @Inject constructor(private val repository: UserAddre
     var inputRecipientPhone by mutableStateOf("")
 
 
-
     val saveAddressResponse =
-        MutableStateFlow<NetworkResult<SaveAddressResponse>>(NetworkResult.Loading())
+        MutableStateFlow<NetworkResult<SaveAddressResponse>?>(null)
 
     fun addNewAddress(userAddress: UserAddressRequest) {
         viewModelScope.launch(Dispatchers.IO) {
-//            saveAddressResponse.emit(repository.saveUserAddress(userAddress))
+            saveAddressResponse.emit(repository.saveUserAddress(userAddress))
             repository.saveUserAddress(userAddress)
         }
     }

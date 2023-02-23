@@ -68,7 +68,7 @@ interface ApiInterface {
 
     @POST("saveUserAddress")
     suspend fun saveUserAddress(
-        @Body addressRequest:UserAddressRequest
-    )
+        @Body addressRequest: UserAddressRequest
+    ): Response<ResponseResult<SaveAddressResponse>>
 
 }

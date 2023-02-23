@@ -2,6 +2,8 @@ package ir.truelearn.androidmvvmsample.ui.screens.checkout
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,19 +24,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-var loadingStatus = false
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -42,10 +48,39 @@ fun SaveUserAddress(
     navController: NavHostController,
     viewModel: SaveAddressViewModel = hiltViewModel(),
 ) {
+
     var loading by remember {
-        mutableStateOf(loadingStatus)
+        mutableStateOf(false)
     }
     val context = LocalContext.current
+    LaunchedEffect(key1 = true) {
+        viewModel.saveAddressResponse.collectLatest { result ->
+            result?.let {
+                when (result) {
+                    is NetworkResult.Success -> {
+                        Log.d("saveAddress", "success:${result.message} ")
+                        Toast.makeText(context, result.message, Toast.LENGTH_SHORT)
+                            .show()
+                        loading = false
+                        navController.previousBackStackEntry
+                            ?.savedStateHandle
+                            ?.set("result",true)
+                        navController.popBackStack()
+                    }
+                    is NetworkResult.Error -> {
+                        loading = false
+                        Log.d("saveAddress", "error:${result.message} ")
+                        Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    is NetworkResult.Loading -> {
+                        loading = true
+                    }
+                }
+            }
+        }
+    }
+    Log.d("level7", "befor scaffold:${loading} ")
     Scaffold(
         modifier = Modifier
             .background(Color.White)
@@ -69,7 +104,11 @@ fun SaveUserAddress(
                     Loading3Dots(isDark = false)
                 }
             } else {
-                InitScreen(navController = navController)
+                InitScreen(navController = navController) {
+                    Log.d("saveAddress", "SaveUserAddress:${it} ")
+                    viewModel.saveAddressResponse.value = NetworkResult.Loading()
+                    viewModel.addNewAddress(it)
+                }
             }
         }
 
@@ -79,7 +118,8 @@ fun SaveUserAddress(
 @Composable
 private fun InitScreen(
     navController: NavHostController,
-    viewModel: SaveAddressViewModel = hiltViewModel()
+    viewModel: SaveAddressViewModel = hiltViewModel(),
+    onSaveAddress: (UserAddressRequest) -> Unit
 ) {
     val ProvinceName = remember { viewModel.ProvinceName }
     val CityName = remember { viewModel.CityName }
@@ -171,7 +211,9 @@ private fun InitScreen(
 //                    )
 
         SetAddressButton("ثبت آدرس", MaterialTheme.colors.DigikalaLightRed) {
-
+            saveAddress(viewModel = viewModel) {
+                onSaveAddress(it)
+            }
         }
 //                    else
 //                        SetAddressButton("ثبت آدرس", MaterialTheme.colors.unSelectedBottomBar) {
@@ -257,7 +299,8 @@ fun SelectCity(title: String, action: () -> Unit) {
     }
 }
 
-private fun saveAddress(viewModel: SaveAddressViewModel) {
+private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRequest) -> Unit) {
+
     val address =
         " ${viewModel.ProvinceName.value} - ${viewModel.CityName.value} - ${viewModel.inputPostalAddress} - ${viewModel.inputNumber} "
     val name =
@@ -265,20 +308,12 @@ private fun saveAddress(viewModel: SaveAddressViewModel) {
     val phone =
         if (viewModel.inputCheckboxState) MainActivity.USER_PHONE else viewModel.inputRecipientPhone
     val newAdress = UserAddressRequest(
-        address = "from app",
+        address = address,
         name = "reza",
         phone = "09195874542",
-        postalCode = "123",
+        postalCode = viewModel.inputPostalCode,
         token = MainActivity.MY_TOKEN
     )
-    Log.d("level5", "SaveUserAddress:${newAdress} ")
-    viewModel.addNewAddress(newAdress)
+    onClick(newAdress)
 
-//    LaunchedEffect(key1 = true) {
-//        viewModel.saveAddressResponse.collectLatest { result ->
-//            result.data?.let {
-//                Toast.makeText(context, result.data.message, Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
 }

@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -80,6 +81,12 @@ fun AddressListScreen(
         floatingActionButtonPosition = FabPosition.End
     ) {
         LaunchedEffect(true) {
+            val addedNewAddress = navController.currentBackStackEntry
+                ?.savedStateHandle
+                ?.getLiveData<Boolean>("result")?.value
+            if (addedNewAddress != null && addedNewAddress) {
+                viewModel.getAddressList(MainActivity.MY_TOKEN)
+            }
             viewModel.userAddressList.collectLatest { result ->
                 when (result) {
                     is NetworkResult.Success -> {
@@ -182,7 +189,6 @@ fun InitSelectableAddressList(
     list: List<UserAddressResponse>,
 ) {
     val viewModel: AddressListViewModel = viewModel(LocalContext.current as ComponentActivity)
-    Log.d("level3", "addressList:${viewModel.defaultAddress.value?.address} ")
     val selectedAddressID = remember {
         if (viewModel.defaultAddress.value != null) {
             mutableStateOf(viewModel.defaultAddress.value!!._id)
@@ -190,6 +196,7 @@ fun InitSelectableAddressList(
             mutableStateOf("")
         }
     }
+
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Card(
             modifier = Modifier
