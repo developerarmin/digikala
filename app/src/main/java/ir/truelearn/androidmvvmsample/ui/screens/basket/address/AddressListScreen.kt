@@ -43,7 +43,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint(
     "UnusedMaterialScaffoldPaddingParameter", "StateFlowValueCalledInComposition",
-    "RememberReturnType"
+    "RememberReturnType", "SuspiciousIndentation"
 )
 @Composable
 fun AddressListScreen(

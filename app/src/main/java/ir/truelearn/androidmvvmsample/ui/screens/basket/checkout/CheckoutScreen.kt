@@ -27,7 +27,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.OrderProduct

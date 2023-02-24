@@ -1,7 +1,7 @@
 package ir.truelearn.androidmvvmsample.repository
 
 import ir.truelearn.androidmvvmsample.data.db.CartDao
-import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
