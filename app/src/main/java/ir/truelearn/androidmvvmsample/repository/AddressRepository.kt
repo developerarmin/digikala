@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.repository
 import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -22,6 +23,4 @@ class AddressRepository @Inject constructor(private val api: ApiInterface) : Bas
         safeApiCall {
             api.saveUserAddress(userAddressRequest)
         }
-
-
 }

@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.data.remote
 
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.*
+import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
@@ -69,6 +70,12 @@ interface ApiInterface {
     @POST("saveUserAddress")
     suspend fun saveUserAddress(
         @Body addressRequest: UserAddressRequest
+    ): Response<ResponseResult<SaveAddressResponse>>
+
+
+    @POST("setNewOrder")
+    suspend fun setNewOrder(
+        @Body orderRequest: CartOrderDetail
     ): Response<ResponseResult<SaveAddressResponse>>
 
 }

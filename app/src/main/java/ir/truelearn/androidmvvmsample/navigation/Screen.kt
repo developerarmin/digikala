@@ -11,7 +11,7 @@ sealed class Screen(val route: String) {
     object WebView : Screen("webView_screen")
     object ProductDetail : Screen("productDetail_screen")
     object SaveUserAddress : Screen("save_user_address")
-    object selectAddress : Screen("select_address")
+    object selectAddress : Screen("select_address")//AddressListScreen
     object selectCityName : Screen("select_city_name")
 
 

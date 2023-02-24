@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
+import ir.truelearn.androidmvvmsample.data.model.basket.OrderProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.AddressRepository
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class AddressListViewModel @Inject constructor(private val repository: AddressRepository) :
     ViewModel() {
     val defaultAddress = MutableStateFlow<UserAddressResponse?>(null)
+    val defaultAddress_Temp = MutableStateFlow<UserAddressResponse?>(null)
 
     val userAddressList =
         MutableStateFlow<NetworkResult<List<UserAddressResponse>>>(NetworkResult.Loading())
@@ -25,6 +28,8 @@ class AddressListViewModel @Inject constructor(private val repository: AddressRe
             userAddressList.emit(repository.getUserAddress(tokenBody))
         }
     }
+
+
 
 
     fun setDefaultAddress(userAddress: UserAddressResponse) {

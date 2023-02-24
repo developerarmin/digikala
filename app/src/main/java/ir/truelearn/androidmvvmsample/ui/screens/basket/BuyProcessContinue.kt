@@ -40,12 +40,7 @@ fun BuyProcessContinue(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(
-                    start = MaterialTheme.spacing.medium,
-                    end = MaterialTheme.spacing.medium,
-                    bottom = MaterialTheme.spacing.medium,
-                    top = MaterialTheme.spacing.medium
-                ),
+                .padding(MaterialTheme.spacing.medium),
 
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -71,44 +66,44 @@ fun BuyProcessContinue(
                     )
                 }
             } else {
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
-                    modifier = Modifier,
-                    shape = MaterialTheme.roundedShape.small
-                ) {
-                    Text(
-                        text = stringResource(R.string.purchase_process_time),
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.h6,
-                        modifier = Modifier
-                            .padding(
-                                horizontal = MaterialTheme.spacing.mediumTwo,
-                            )
-                    )
-                }
 //                Button(
-//                    onClick = onClick,
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
+//                    onClick = {},
+//                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
 //                    modifier = Modifier,
-//                    border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.digikalaRed),
 //                    shape = MaterialTheme.roundedShape.small
 //                ) {
 //                    Text(
 //                        text = stringResource(R.string.purchase_process_time),
-//                        color = MaterialTheme.colors.digikalaRed,
+//                        color = Color.White,
 //                        fontWeight = FontWeight.Bold,
 //                        style = MaterialTheme.typography.h6,
 //                        modifier = Modifier
 //                            .padding(
-//                                start = MaterialTheme.spacing.small,
-//                                end = MaterialTheme.spacing.small,
-//                                bottom = MaterialTheme.spacing.small,
-//                                top = MaterialTheme.spacing.small
+//                                horizontal = MaterialTheme.spacing.mediumTwo,
 //                            )
 //                    )
 //                }
+                Button(
+                    onClick = onClick,
+                    colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
+                    modifier = Modifier,
+                    border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.digikalaRed),
+                    shape = MaterialTheme.roundedShape.small
+                ) {
+                    Text(
+                        text = stringResource(R.string.purchase_process_time),
+                        color = MaterialTheme.colors.digikalaRed,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier
+                            .padding(
+                                start = MaterialTheme.spacing.small,
+                                end = MaterialTheme.spacing.small,
+                                bottom = MaterialTheme.spacing.small,
+                                top = MaterialTheme.spacing.small
+                            )
+                    )
+                }
             }
 
             Column(
