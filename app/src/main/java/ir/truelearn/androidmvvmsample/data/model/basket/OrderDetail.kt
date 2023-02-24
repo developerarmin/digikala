@@ -1,10 +1,7 @@
 package ir.truelearn.androidmvvmsample.data.model.basket
 
-import androidx.compose.runtime.MutableState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 
-data class CartOrderDetail(
+data class OrderDetail(
     val orderAddress: String,
     val orderDate: String,
     val orderProducts: List<OrderProduct>,

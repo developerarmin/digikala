@@ -11,7 +11,7 @@ import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
-import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddress
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddressScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
@@ -19,7 +19,6 @@ import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
 @Composable
@@ -52,7 +51,7 @@ fun SetupNavGraph(
         }
 
         composable(route = Screen.SaveUserAddress.route) {
-            SaveUserAddress(navController = navController, viewModel = saveAddressViewModel)
+            SaveUserAddressScreen(navController = navController, viewModel = saveAddressViewModel)
 
         }
 

@@ -13,9 +13,7 @@ import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.CartRepository
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,8 +30,6 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     var digiKlabScore by mutableStateOf("150")
 
 
-
-
     //    var currentCartCount: Flow<Int> = repository.cartItemCounter
     var nextCartCount: Flow<Int> = repository.nextCartItemsCount
 
@@ -41,12 +37,13 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     val suggestedList =
         MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
 
-    val personInfoList =
-        MutableStateFlow<NetworkResult<List<UserAddressResponse>>>(NetworkResult.Loading())
-
     init {
         viewModelScope.launch {
-            calculateAndDisplayDetailCart()
+            currentCartItems.collectLatest { items ->
+                calculateAndDisplayDetailCart(items)
+                setOrderList(items)
+            }
+
         }
     }
 
@@ -88,21 +85,40 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
         }
     }
 
-    private suspend fun calculateAndDisplayDetailCart() {
-        currentCartItems.collectLatest { items ->
-            var totalPrice = 0
-            var discount = 0
-            var payablePrice = 0
-            items.forEach { item ->
-                totalPrice += item.price * item.count
-                discount += item.discountPercent
-            }
-            payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
-            cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
+    private suspend fun calculateAndDisplayDetailCart(items: List<CartItem>) {
+        var totalPrice = 0
+        var discount = 0
+        var payablePrice = 0
+        items.forEach { item ->
+            totalPrice += item.price * item.count
+            discount += item.discountPercent
+        }
+        payablePrice = DigitHelper.applyDiscount(totalPrice, discount)
+        cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
+    }
+
+    private val orderProducts: ArrayList<OrderProduct> = ArrayList()
+    fun setOrderList(products: List<CartItem>) {
+        products.forEach { item ->
+            orderProducts.add(
+                OrderProduct(
+                    count = item.count,
+                    discountPercent = item.discountPercent,
+                    image = item.image,
+                    name = item.name,
+                    price = item.price,
+                    productId = item.itemID,
+                    seller = item.seller
+                )
+            )
         }
     }
 
-     fun addNewOrder(cartOrderDetail: CartOrderDetail) {
+    fun getOrderList(): List<OrderProduct> {
+        return orderProducts
+    }
+
+    fun addNewOrder(cartOrderDetail: OrderDetail) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.setNewOrder(cartOrderDetail)
         }

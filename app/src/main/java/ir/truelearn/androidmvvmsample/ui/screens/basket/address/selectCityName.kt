@@ -190,9 +190,9 @@ fun CityList(
                 cityText = filteredCity,
                 onItemClick = { selectedCity ->
                     if (flag.equals("1"))
-                        viewModel.ProvinceName.value = selectedCity
+                        viewModel.provinceName.value = selectedCity
                     else
-                        viewModel.CityName.value = selectedCity
+                        viewModel.cityName.value = selectedCity
 
                     navController.popBackStack()
                 }

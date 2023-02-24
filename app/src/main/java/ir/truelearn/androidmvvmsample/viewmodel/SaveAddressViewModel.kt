@@ -18,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SaveAddressViewModel @Inject constructor(private val repository: AddressRepository) :
     ViewModel() {
-    var ProvinceName = mutableStateOf("اردبیل")
-    var CityName = mutableStateOf("اردبیل")
+    var provinceName = mutableStateOf("اردبیل")
+    var cityName = mutableStateOf("اردبیل")
     var inputPostalAddress by mutableStateOf("")
     var inputNumber by mutableStateOf("")
     var inputUnit by mutableStateOf("")

@@ -3,7 +3,7 @@ package ir.truelearn.androidmvvmsample.repository
 import ir.truelearn.androidmvvmsample.data.db.CartDao
 import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
+import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
@@ -42,7 +42,7 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
             api.getSuggestedItems()
         }
 
-    suspend fun setNewOrder(cartOrderDetail: CartOrderDetail):NetworkResult<SaveAddressResponse> =
+    suspend fun setNewOrder(cartOrderDetail: OrderDetail):NetworkResult<SaveAddressResponse> =
         safeApiCall {
             api.setNewOrder(cartOrderDetail)
         }

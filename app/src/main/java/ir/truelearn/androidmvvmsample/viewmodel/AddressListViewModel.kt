@@ -16,7 +16,7 @@ import javax.inject.Inject
 class AddressListViewModel @Inject constructor(private val repository: AddressRepository) :
     ViewModel() {
     val defaultAddress = MutableStateFlow<UserAddressResponse?>(null)
-    val defaultAddress_Temp = MutableStateFlow<UserAddressResponse?>(null)
+    val defaultAddressTemp = MutableStateFlow<UserAddressResponse?>(null)
 
     val userAddressList =
         MutableStateFlow<NetworkResult<List<UserAddressResponse>>>(NetworkResult.Loading())

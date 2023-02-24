@@ -38,7 +38,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SaveUserAddress(
+fun SaveUserAddressScreen(
     navController: NavHostController,
     viewModel: SaveAddressViewModel = hiltViewModel(),
 ) {
@@ -115,8 +115,8 @@ private fun InitScreen(
     viewModel: SaveAddressViewModel = hiltViewModel(),
     onSaveAddress: (UserAddressRequest) -> Unit
 ) {
-    val ProvinceName = remember { viewModel.ProvinceName }
-    val CityName = remember { viewModel.CityName }
+    val ProvinceName = remember { viewModel.provinceName }
+    val CityName = remember { viewModel.cityName }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -296,7 +296,7 @@ fun SelectCity(title: String, action: () -> Unit) {
 private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRequest) -> Unit) {
 
     val address =
-        " ${viewModel.ProvinceName.value} - ${viewModel.CityName.value} - ${viewModel.inputPostalAddress} - ${viewModel.inputNumber} "
+        " ${viewModel.provinceName.value} - ${viewModel.cityName.value} - ${viewModel.inputPostalAddress} - ${viewModel.inputNumber} "
     val name =
         if (viewModel.inputCheckboxState) viewModel.inputRecipientName else "from app"
     val phone =

@@ -29,7 +29,7 @@ import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
+import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.OrderProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
@@ -37,7 +37,6 @@ import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.CartShippingAddressAndTime
-import ir.truelearn.androidmvvmsample.ui.screens.basket.address.InitSelectableAddressList
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
@@ -186,16 +185,15 @@ fun CheckoutScreen(
         ) {
 
 
-            val orderProductsList = getOrderList(cartViewModel)
-
-
             val cartDetail = cartViewModel.cartDetail.collectAsState()
             BuyProcessContinue(
                 price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost).toString(),
                 flag = "",
                 timeState = false
             ) {
-                val newOrder = CartOrderDetail(
+                val orderProductsList = cartViewModel.getOrderList()
+                Log.d("level6", "CheckoutScreen:${orderProductsList.size}")
+                val newOrder = OrderDetail(
                     orderAddress = viewModel.defaultAddress.value!!.address,
                     orderDate = viewModel.defaultAddress.value!!.updatedAt,
                     orderProducts = orderProductsList,
@@ -205,7 +203,8 @@ fun CheckoutScreen(
                     orderUserPhone = viewModel.defaultAddress.value!!.phone,
                     token = MainActivity.MY_TOKEN
                 )
-                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
+                Log.d("level6", "CheckoutScreen:$newOrder")
+//                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
             }
         }
     }
@@ -213,29 +212,4 @@ fun CheckoutScreen(
 }
 
 
-@Composable
-fun getOrderList(viewModel: CartViewModel): List<OrderProduct> {
 
-    val currentCartItems = remember {
-        mutableStateOf(emptyList<CartItem>())
-    }
-    LaunchedEffect(true) {
-        viewModel.currentCartItems.collectLatest { list ->
-            currentCartItems.value = list
-        }
-    }
-            val updatedList = currentCartItems.value.map { item ->
-                OrderProduct(
-                    count = item.count,
-                    discountPercent = item.discountPercent,
-                    image = item.image,
-                    name = item.name,
-                    price = item.price,
-                    productId = item.itemID,
-                    seller = item.seller
-                )
-            }
-
-    return updatedList
-
-}
