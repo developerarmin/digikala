@@ -18,7 +18,7 @@ class AddressRepository @Inject constructor(private val api: ApiInterface) : Bas
         }
 
 
-    suspend fun saveUserAddress(userAddressRequest: UserAddressRequest):NetworkResult<SaveAddressResponse> =
+    suspend fun saveUserAddress(userAddressRequest: UserAddressRequest): NetworkResult<SaveAddressResponse> =
         safeApiCall {
             api.saveUserAddress(userAddressRequest)
         }

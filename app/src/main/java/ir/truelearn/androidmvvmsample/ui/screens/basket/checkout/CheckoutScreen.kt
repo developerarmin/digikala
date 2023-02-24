@@ -37,6 +37,7 @@ import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.CartShippingAddressAndTime
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.InitSelectableAddressList
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
@@ -187,14 +188,13 @@ fun CheckoutScreen(
 
             val orderProductsList = getOrderList(cartViewModel)
 
+
             val cartDetail = cartViewModel.cartDetail.collectAsState()
             BuyProcessContinue(
                 price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost).toString(),
                 flag = "",
                 timeState = false
             ) {
-
-
                 val newOrder = CartOrderDetail(
                     orderAddress = viewModel.defaultAddress.value!!.address,
                     orderDate = viewModel.defaultAddress.value!!.updatedAt,
@@ -206,7 +206,6 @@ fun CheckoutScreen(
                     token = MainActivity.MY_TOKEN
                 )
                 cartViewModel.addNewOrder(cartOrderDetail = newOrder)
-
             }
         }
     }
@@ -215,7 +214,7 @@ fun CheckoutScreen(
 
 
 @Composable
-fun getOrderList(viewModel: CartViewModel): List<Unit> {
+fun getOrderList(viewModel: CartViewModel): List<OrderProduct> {
 
     val currentCartItems = remember {
         mutableStateOf(emptyList<CartItem>())
@@ -225,24 +224,18 @@ fun getOrderList(viewModel: CartViewModel): List<Unit> {
             currentCartItems.value = list
         }
     }
-   // val orderProductsList = getOrderList(list = currentCartItems.value)
+            val updatedList = currentCartItems.value.map { item ->
+                OrderProduct(
+                    count = item.count,
+                    discountPercent = item.discountPercent,
+                    image = item.image,
+                    name = item.name,
+                    price = item.price,
+                    productId = item.itemID,
+                    seller = item.seller
+                )
+            }
 
-    Log.e("3636", "level 1 ")
-    val orderProductsList = listOf(
-       // list.forEach { item ->
-        currentCartItems.value.forEach { item ->
-            OrderProduct(
-                count = item.count,
-                discountPercent = item.discountPercent,
-                image = item.image,
-                name = item.name,
-                price = item.price,
-                productId = item.itemID,
-                seller = item.seller
-            )
-            Log.e("3636", "level 2 "+item.name+" : "+item.price)
-        }
-    )
-    return orderProductsList
+    return updatedList
 
 }

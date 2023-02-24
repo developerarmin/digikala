@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 data class CartOrderDetail(
     val orderAddress: String,
     val orderDate: String,
-//    val orderProducts: List<OrderProduct>,
-    val orderProducts: List<Unit>,
+    val orderProducts: List<OrderProduct>,
+//    val orderProducts: List<Unit>,
     val orderTotalDiscount: Int,
     val orderTotalPrice: Int,
     val orderUserName: String,
