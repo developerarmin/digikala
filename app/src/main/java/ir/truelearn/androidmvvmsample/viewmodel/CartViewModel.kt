@@ -6,10 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
-import ir.truelearn.androidmvvmsample.data.model.basket.CartDetail
-import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
+import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
+import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.basket.*
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.CartRepository
@@ -32,6 +32,10 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
     var currentCartItemsCount = repository.currentCartItemsCount
     var nextCartItemsCount = repository.nextCartItemsCount
     var digiKlabScore by mutableStateOf("150")
+
+
+
+
 
 
 
@@ -102,6 +106,13 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
             cartDetail.value = CartDetail(totalPrice, 0, discount, payablePrice)
         }
     }
+
+     fun addNewOrder(cartOrderDetail: CartOrderDetail) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.setNewOrder(cartOrderDetail)
+        }
+    }
+
 }
 
 

@@ -27,7 +27,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+import ir.truelearn.androidmvvmsample.data.model.basket.CartOrderDetail
+import ir.truelearn.androidmvvmsample.data.model.basket.OrderProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
@@ -39,8 +42,8 @@ import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.Dimension
-import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -77,7 +80,11 @@ fun CheckoutScreen(
                 is NetworkResult.Error -> {
                     loading = false
                     Log.e("level1", "CheckoutScreen: error=${result.message} ")
-                    Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "from CheckoutScreen:\n" + result.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                 }
 
@@ -152,7 +159,7 @@ fun CheckoutScreen(
                         navController = navController
                     ) {
                         Log.d("level3", "go to seelcted addres: ")
-                        navController.navigate(Screen.selectAddress.route)
+                        navController.navigate(Screen.selectAddress.route)//AddressListScreen
                     }
                 }
 
@@ -176,13 +183,30 @@ fun CheckoutScreen(
                 .padding(bottom = 1.dp)
                 .align(Alignment.BottomCenter)
         ) {
+
+
+            val orderProductsList = getOrderList(cartViewModel)
+
             val cartDetail = cartViewModel.cartDetail.collectAsState()
             BuyProcessContinue(
                 price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost).toString(),
                 flag = "",
                 timeState = false
             ) {
-                Log.e("3636", "ادامه فرایند خرید")
+
+
+                val newOrder = CartOrderDetail(
+                    orderAddress = viewModel.defaultAddress.value!!.address,
+                    orderDate = viewModel.defaultAddress.value!!.updatedAt,
+                    orderProducts = orderProductsList,
+                    orderTotalDiscount = cartDetail.value.discount,
+                    orderTotalPrice = cartDetail.value.payablePrice + cartDetail.value.shippingCost,
+                    orderUserName = viewModel.defaultAddress.value!!.name,
+                    orderUserPhone = viewModel.defaultAddress.value!!.phone,
+                    token = MainActivity.MY_TOKEN
+                )
+                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
+
             }
         }
     }
@@ -190,3 +214,35 @@ fun CheckoutScreen(
 }
 
 
+@Composable
+fun getOrderList(viewModel: CartViewModel): List<Unit> {
+
+    val currentCartItems = remember {
+        mutableStateOf(emptyList<CartItem>())
+    }
+    LaunchedEffect(true) {
+        viewModel.currentCartItems.collectLatest { list ->
+            currentCartItems.value = list
+        }
+    }
+   // val orderProductsList = getOrderList(list = currentCartItems.value)
+
+    Log.e("3636", "level 1 ")
+    val orderProductsList = listOf(
+       // list.forEach { item ->
+        currentCartItems.value.forEach { item ->
+            OrderProduct(
+                count = item.count,
+                discountPercent = item.discountPercent,
+                image = item.image,
+                name = item.name,
+                price = item.price,
+                productId = item.itemID,
+                seller = item.seller
+            )
+            Log.e("3636", "level 2 "+item.name+" : "+item.price)
+        }
+    )
+    return orderProductsList
+
+}

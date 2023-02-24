@@ -20,11 +20,12 @@ import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScr
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    cartViewModel: CartViewModel = hiltViewModel()
+    saveAddressViewModel: SaveAddressViewModel = hiltViewModel()
 ) {
     NavHost(
         navController = navController,
@@ -49,8 +50,10 @@ fun SetupNavGraph(
         composable(route = Screen.selectAddress.route) {
             AddressListScreen(navController = navController)
         }
+
         composable(route = Screen.SaveUserAddress.route) {
-            SaveUserAddress(navController = navController)
+            SaveUserAddress(navController = navController, viewModel = saveAddressViewModel)
+
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",
@@ -68,6 +71,7 @@ fun SetupNavGraph(
                 selectCityName(
                     navController = navController,
                     flag = flag,
+                    viewModel = saveAddressViewModel
                 )
             }
         }

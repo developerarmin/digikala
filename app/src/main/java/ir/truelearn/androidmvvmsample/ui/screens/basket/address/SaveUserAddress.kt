@@ -53,8 +53,7 @@ fun SaveUserAddress(
                 when (result) {
                     is NetworkResult.Success -> {
                         Log.d("saveAddress", "success:${result.message} ")
-                        Toast.makeText(context, result.message, Toast.LENGTH_SHORT)
-                            .show()
+                         Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
                         loading = false
                         navController.previousBackStackEntry
                             ?.savedStateHandle
@@ -64,7 +63,8 @@ fun SaveUserAddress(
                     is NetworkResult.Error -> {
                         loading = false
                         Log.d("saveAddress", "error:${result.message} ")
-                        Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
+
                     }
 
                     is NetworkResult.Loading -> {
@@ -98,7 +98,7 @@ fun SaveUserAddress(
                     Loading3Dots(isDark = false)
                 }
             } else {
-                InitScreen(navController = navController) {
+                InitScreen(navController = navController, viewModel = viewModel) {
                     Log.d("saveAddress", "SaveUserAddress:${it} ")
                     viewModel.saveAddressResponse.value = NetworkResult.Loading()
                     viewModel.addNewAddress(it)
@@ -303,8 +303,8 @@ private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRe
         if (viewModel.inputCheckboxState) MainActivity.USER_PHONE else viewModel.inputRecipientPhone
     val newAdress = UserAddressRequest(
         address = address,
-        name = "reza",
-        phone = "09195874542",
+        name = name,
+        phone = phone,
         postalCode = viewModel.inputPostalCode,
         token = MainActivity.MY_TOKEN
     )
