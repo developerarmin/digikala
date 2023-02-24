@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
-import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
+import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.AddressRepository
 import kotlinx.coroutines.Dispatchers

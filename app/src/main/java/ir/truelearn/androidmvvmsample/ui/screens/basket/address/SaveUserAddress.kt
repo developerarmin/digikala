@@ -1,9 +1,8 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,22 +23,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
-import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.*
-import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

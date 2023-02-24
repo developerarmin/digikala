@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
 
 import android.annotation.SuppressLint
@@ -27,12 +27,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.CartShippingAddressAndTime
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg

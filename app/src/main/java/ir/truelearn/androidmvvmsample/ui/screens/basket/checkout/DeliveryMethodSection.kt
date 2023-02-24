@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow

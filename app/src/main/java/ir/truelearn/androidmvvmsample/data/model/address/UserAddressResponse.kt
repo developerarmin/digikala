@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.data.model
+package ir.truelearn.androidmvvmsample.data.model.address
 
 data class UserAddressResponse(
     val __v: Int,

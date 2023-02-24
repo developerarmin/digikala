@@ -1,7 +1,9 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
-import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.*
+import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*

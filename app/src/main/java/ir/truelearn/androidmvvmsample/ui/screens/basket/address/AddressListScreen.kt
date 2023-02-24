@@ -1,7 +1,6 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
@@ -30,7 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots

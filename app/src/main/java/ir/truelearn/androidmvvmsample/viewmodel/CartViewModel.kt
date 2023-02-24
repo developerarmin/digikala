@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus

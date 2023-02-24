@@ -1,8 +1,8 @@
 package ir.truelearn.androidmvvmsample.repository
 
-import ir.truelearn.androidmvvmsample.data.model.SaveAddressResponse
-import ir.truelearn.androidmvvmsample.data.model.UserAddressRequest
-import ir.truelearn.androidmvvmsample.data.model.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult

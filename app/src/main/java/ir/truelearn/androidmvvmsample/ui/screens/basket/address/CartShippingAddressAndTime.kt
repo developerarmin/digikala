@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
 import android.util.Log

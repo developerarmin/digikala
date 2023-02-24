@@ -10,10 +10,10 @@ import androidx.navigation.navArgument
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.CheckoutScreen
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.SaveUserAddress
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.AddressListScreen
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.selectCityName
+import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddress
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
