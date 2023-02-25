@@ -24,11 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
@@ -37,7 +35,6 @@ import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
-import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -66,8 +63,8 @@ fun AddressListScreen(
             if (addressList.value.isNotEmpty()) {
                 FloatingActionButton(
                     onClick = {
-                        if(viewModel.defaultAddress_Temp.value != null)
-                        viewModel.defaultAddress.value = viewModel.defaultAddress_Temp.value
+                        if(viewModel.defaultAddressTemp.value != null)
+                        viewModel.defaultAddress.value = viewModel.defaultAddressTemp.value
                         navController.popBackStack()
                     },
                     backgroundColor = MaterialTheme.colors.DigikalaLightRed,
@@ -222,8 +219,7 @@ fun InitSelectableAddressList(
                                 selected = (addressItem._id == selectedAddressID.value),
                                 onClick = {
                                     selectedAddressID.value = addressItem._id
-//                                    viewModel.defaultAddress.value = addressItem
-                                    viewModel.defaultAddress_Temp.value = addressItem
+                                    viewModel.defaultAddressTemp.value = addressItem
                                 }),
                         verticalAlignment = Alignment.Top
                     ) {
@@ -280,7 +276,7 @@ fun InitSelectableAddressList(
                             onClick = {
                                 selectedAddressID.value = addressItem._id
 //                                viewModel.defaultAddress.value = addressItem
-                                viewModel.defaultAddress_Temp.value = addressItem
+                                viewModel.defaultAddressTemp.value = addressItem
                             }
                         )
                     }
