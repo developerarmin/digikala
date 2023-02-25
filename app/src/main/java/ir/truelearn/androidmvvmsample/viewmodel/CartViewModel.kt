@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -118,9 +119,27 @@ class CartViewModel @Inject constructor(private val repository: CartRepository) 
         return orderProducts
     }
 
+
     fun addNewOrder(cartOrderDetail: OrderDetail) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.setNewOrder(cartOrderDetail)
+        }
+    }
+
+
+    //===========================================================================================
+
+    var GetOrderState  = mutableStateOf(false)
+
+    val orderId = mutableStateOf("")
+    val transactionId=mutableStateOf("")
+
+    val userOrderList =
+        MutableStateFlow<NetworkResult<List<UserOrdersResponse>>>(NetworkResult.Loading())
+
+    fun getUserOrderList(tokenBody: String) {
+        viewModelScope.launch {
+            userOrderList.emit(repository.getUserOrders(tokenBody))
         }
     }
 

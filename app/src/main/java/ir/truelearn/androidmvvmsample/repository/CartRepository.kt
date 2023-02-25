@@ -2,9 +2,11 @@ package ir.truelearn.androidmvvmsample.repository
 
 import ir.truelearn.androidmvvmsample.data.db.CartDao
 import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
+import ir.truelearn.androidmvvmsample.data.model.basket.UserOrdersResponse
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
@@ -18,8 +20,8 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
     val currentCartItems = cartDao.getAllItems(CartStatus.CURRENT_CART)
     val nextCartItems = cartDao.getAllItems(CartStatus.NEXT_CART)
 
-    val currentCartItemsCount=cartDao.getCartItemsCount()
-    val nextCartItemsCount=cartDao.getNextCartItemCount()
+    val currentCartItemsCount = cartDao.getCartItemsCount()
+    val nextCartItemsCount = cartDao.getNextCartItemCount()
 
     suspend fun addNewItem(cart: CartItem) {
         cartDao.insertCartItem(cart)
@@ -37,13 +39,20 @@ class CartRepository @Inject constructor(private  val api: ApiInterface,
     suspend fun removeFromItem(cart: CartItem) {
         cartDao.removeFromCart(cart)
     }
+
     suspend fun getSuggestedItems(): NetworkResult<List<MostDiscountedItem>> =
         safeApiCall {
             api.getSuggestedItems()
         }
 
-    suspend fun setNewOrder(cartOrderDetail: OrderDetail):NetworkResult<SaveAddressResponse> =
+    suspend fun setNewOrder(cartOrderDetail: OrderDetail): NetworkResult<SaveAddressResponse> =
         safeApiCall {
             api.setNewOrder(cartOrderDetail)
+        }
+
+    //=========================================================================================
+    suspend fun getUserOrders(token: String): NetworkResult<List<UserOrdersResponse>> =
+        safeApiCall {
+            api.getUserOrdersList(token)
         }
 }

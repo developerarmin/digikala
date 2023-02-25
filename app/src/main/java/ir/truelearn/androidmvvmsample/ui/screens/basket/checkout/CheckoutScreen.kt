@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -42,6 +43,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.font_bold
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.Dimension
+import ir.truelearn.androidmvvmsample.util.ZarinpalPurchase
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -54,6 +56,7 @@ fun CheckoutScreen(
     cartViewModel: CartViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val activity = LocalContext.current  as Activity
     val viewModel: AddressListViewModel = viewModel(LocalContext.current as ComponentActivity)
     val addressList = remember {
         mutableStateOf<List<UserAddressResponse>>(emptyList())
@@ -177,13 +180,13 @@ fun CheckoutScreen(
             CheckoutPriceDetails()
         }
 //-------------------------------------------------------------------------------------------
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 1.dp)
                 .align(Alignment.BottomCenter)
         ) {
-
 
             val cartDetail = cartViewModel.cartDetail.collectAsState()
             BuyProcessContinue(
@@ -204,9 +207,23 @@ fun CheckoutScreen(
                     token = MainActivity.MY_TOKEN
                 )
                 Log.d("level6", "CheckoutScreen:$newOrder")
-//                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
-            }
+
+               // cartViewModel.addNewOrder(cartOrderDetail = newOrder)
+
+                //==================================================================================
+
+//                val price = (cartDetail.value.payablePrice + cartDetail.value.shippingCost ).toLong()
+//                ZarinpalPurchase.purchase(activity, price, "مبلغ خرید شما") {
+//                    Log.e("3636", "from lambda $it") //it is transaction id must be save on db
+//                }
+                cartViewModel.GetOrderState.value = true
+             }
+
+            if(cartViewModel.GetOrderState.value)
+                GetUserOrderList(cartViewModel)
         }
+
+
     }
 
 }
