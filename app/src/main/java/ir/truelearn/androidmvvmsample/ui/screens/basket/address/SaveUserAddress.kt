@@ -52,7 +52,7 @@ fun SaveUserAddress(
             result?.let {
                 when (result) {
                     is NetworkResult.Success -> {
-                        Log.d("saveAddress", "success:${result.message} ")
+                        Log.d("36361", "success:${result.message} ")
                          Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
                         loading = false
                         navController.previousBackStackEntry
@@ -62,7 +62,7 @@ fun SaveUserAddress(
                     }
                     is NetworkResult.Error -> {
                         loading = false
-                        Log.d("saveAddress", "error:${result.message} ")
+                        Log.d("36362", "error:${result.message} ")
                         Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
 
                     }
@@ -74,7 +74,7 @@ fun SaveUserAddress(
             }
         }
     }
-    Log.d("level7", "befor scaffold:${loading} ")
+    Log.d("36363", "befor scaffold:${loading} ")
     Scaffold(
         modifier = Modifier
             .background(Color.White)
@@ -99,10 +99,12 @@ fun SaveUserAddress(
                 }
             } else {
                 InitScreen(navController = navController, viewModel = viewModel) {
-                    Log.d("saveAddress", "SaveUserAddress:${it} ")
+                    Log.d("36364", "SaveUserAddress:${it} ")
                     viewModel.saveAddressResponse.value = NetworkResult.Loading()
                     viewModel.addNewAddress(it)
+
                 }
+
             }
         }
 
@@ -124,9 +126,7 @@ private fun InitScreen(
             .padding(horizontal = MaterialTheme.spacing.medium),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
-
         ) {
-
 
         SetLabel(label = "استان *")
         SelectCity(ProvinceName.value) {
@@ -186,6 +186,7 @@ private fun InitScreen(
 
             }
 
+
 //                    if (
 //                        (
 //                                isValidEmpty(viewModel.inputPostalAddress) &&
@@ -208,6 +209,7 @@ private fun InitScreen(
             saveAddress(viewModel = viewModel) {
                 onSaveAddress(it)
             }
+
         }
 //                    else
 //                        SetAddressButton("ثبت آدرس", MaterialTheme.colors.unSelectedBottomBar) {
@@ -298,9 +300,10 @@ private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRe
     val address =
         " ${viewModel.ProvinceName.value} - ${viewModel.CityName.value} - ${viewModel.inputPostalAddress} - ${viewModel.inputNumber} "
     val name =
-        if (viewModel.inputCheckboxState) viewModel.inputRecipientName else "from app"
+        if (viewModel.inputCheckboxState) MainActivity.USER_NAME else viewModel.inputRecipientName
     val phone =
         if (viewModel.inputCheckboxState) MainActivity.USER_PHONE else viewModel.inputRecipientPhone
+    Log.e("36365",name + " : " +phone)
     val newAdress = UserAddressRequest(
         address = address,
         name = name,
