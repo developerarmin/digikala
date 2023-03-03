@@ -29,9 +29,10 @@ fun ProductDetailScreen(
     navController: NavHostController,
     id: String,
     isAmazing: Boolean,
-    productDetailItemPrice : Int
+    productDetailItemPrice : Int,
+    productDiscountPercent : Int
 ) {
-    ProductDetail(navController,id,isAmazing,productDetailItemPrice)
+    ProductDetail(navController,id,isAmazing,productDetailItemPrice,productDiscountPercent)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -42,6 +43,7 @@ fun ProductDetail(
     id: String,
     isAmazing: Boolean,
     productDetailItemPrice : Int,
+    productDiscountPercent: Int,
     viewModel: ProductDetailViewModel = hiltViewModel(),
 
 ) {
@@ -59,7 +61,9 @@ fun ProductDetail(
     if (!isSystemInDarkTheme()) {
         Scaffold(
             bottomBar = {
-                BottomBarProductDetail(itemPrice = productDetailItemPrice,navController)
+                BottomBarProductDetail(itemPrice = productDetailItemPrice,
+                    itemDiscount = productDiscountPercent,
+                    navController)
             },
         ) {
 

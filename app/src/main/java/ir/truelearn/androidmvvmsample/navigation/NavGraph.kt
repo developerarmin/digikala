@@ -43,7 +43,7 @@ fun SetupNavGraph(navController: NavHostController) {
         }
 
         composable(
-            route = Screen.ProductDetail.route + "/{id}/{amazing}/{price}",
+            route = Screen.ProductDetail.route + "/{id}/{amazing}/{price}/{discountPercent}",
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.StringType
@@ -53,14 +53,19 @@ fun SetupNavGraph(navController: NavHostController) {
                 },
                 navArgument("price") {
                     type = NavType.IntType
+                },
+                navArgument("discountPercent"){
+                    type = NavType.IntType
                 }
+
             )
         ) {
             ProductDetailScreen(
                 navController = navController,
                 id = "63b9f7ce06661704dc22228d",// it.arguments?.getString("id").toString(),
                 isAmazing = it.arguments!!.getBoolean("amazing"),
-                productDetailItemPrice = it.arguments!!.getInt("price")
+                productDetailItemPrice = it.arguments!!.getInt("price"),
+                productDiscountPercent = it.arguments!!.getInt("discountPercent")
             )
         }
 

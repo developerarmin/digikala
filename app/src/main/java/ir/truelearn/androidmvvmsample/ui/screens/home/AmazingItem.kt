@@ -42,7 +42,7 @@ fun AmazingItem(item: AmazingItem, navHostController: NavController,isAmazing:Bo
             .width(170.dp)
             .padding(vertical = 25.dp, horizontal = 4.dp)
             .clickable {
-                navHostController.navigate(Screen.ProductDetail.withArgs(item._id,isAmazing,item.price))
+                navHostController.navigate(Screen.ProductDetail.withArgs(item._id,isAmazing,item.price,item.discountPercent))
             },
         shape = RoundedCornerShape(7.dp),
     ) {

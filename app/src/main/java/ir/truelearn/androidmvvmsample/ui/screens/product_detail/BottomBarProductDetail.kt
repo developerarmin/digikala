@@ -28,9 +28,11 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 @Composable
 fun BottomBarProductDetail(
     itemPrice : Int,
+    itemDiscount : Int,
     navController: NavController) {
     val itemPriceResult = DigitHelper.digitByLocate(DigitHelper.digitBySeparator(itemPrice.toString()))
-//    val itemDiscountedPrice = DigitHelper.applyDiscount(DigitHelper.digitBySeparator(itemPrice.toString()).toInt(),item.discountPercent)
+    val discountedItem = DigitHelper.applyDiscount(itemPrice,itemDiscount)
+    val discountedItemResult = DigitHelper.digitByLocate(DigitHelper.digitBySeparator(discountedItem.toString()))
 
     BottomNavigation(
         backgroundColor = Color.White,
@@ -69,7 +71,7 @@ fun BottomBarProductDetail(
                 }
             }
             //Spacer(modifier = Modifier.width(140.dp))
-            Column() {
+            Column(horizontalAlignment = Alignment.End) {
                 Row() {
                     Box(
                         modifier = Modifier
@@ -84,8 +86,7 @@ fun BottomBarProductDetail(
 
                         ) {
                         Text(
-                            text = "",
-//                            text = DigitHelper.digitByLocate(item.discountPercent.toString()),
+                            text = "%${DigitHelper.digitByLocate(itemDiscount.toString())}",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -95,16 +96,16 @@ fun BottomBarProductDetail(
                     Spacer(modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall))
 
                     Text(
-                        text = "",
-//                        text = DigitHelper.digitByLocate(itemDiscountedPrice.toString()),
+                        text = "${itemPriceResult}${stringResource(id = R.string.price_unit)}",
                         color = Color.LightGray,
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.body2,
                         textDecoration = TextDecoration.LineThrough,
                     )
                 }
+
                 Text(
-                    text = "${itemPriceResult}${stringResource(id = R.string.price_unit)}",
-                    style = MaterialTheme.typography.body2,
+                    text = "${discountedItemResult}${stringResource(id = R.string.price_unit)}",
+                    style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
                 )

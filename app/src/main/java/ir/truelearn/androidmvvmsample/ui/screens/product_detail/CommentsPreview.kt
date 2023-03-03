@@ -104,19 +104,19 @@ fun CommentsPreview(comments : List<Comment>) {
 
 
 
-        Text(
-            text = stringResource(R.string.comment_desc),
-            Modifier
-                .padding(start = MaterialTheme.spacing.large + MaterialTheme.spacing.small),
-            color = MaterialTheme.colors.Gray,
-            style = MaterialTheme.typography.h4,
-        )
-        Spacer(
-            modifier = Modifier
-                .padding(
-                    top = MaterialTheme.spacing.medium,
-                )
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(MaterialTheme.colors.grayCategory)
+//        Text(
+//            text = stringResource(R.string.comment_desc),
+//            Modifier
+//                .padding(start = MaterialTheme.spacing.large + MaterialTheme.spacing.small),
+//            color = MaterialTheme.colors.Gray,
+//            style = MaterialTheme.typography.h4,
+//        )
+//        Spacer(
+//            modifier = Modifier
+//                .padding(
+//                    top = MaterialTheme.spacing.medium,
+//                )
+//                .fillMaxWidth()
+//                .height(1.dp)
+//                .background(MaterialTheme.colors.grayCategory)
 
