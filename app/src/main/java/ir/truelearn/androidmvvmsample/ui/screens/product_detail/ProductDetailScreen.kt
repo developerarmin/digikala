@@ -23,16 +23,17 @@ import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
 
 @Composable
 fun ProductDetailScreen(
     navController: NavHostController,
     id: String,
     isAmazing: Boolean,
-    productDetailItemPrice : Int,
-    productDiscountPercent : Int
+    productDetailItemPrice: Int,
+    productDiscountPercent: Int
 ) {
-    ProductDetail(navController,id,isAmazing,productDetailItemPrice,productDiscountPercent)
+    ProductDetail(navController, id, isAmazing, productDetailItemPrice, productDiscountPercent)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -42,17 +43,76 @@ fun ProductDetail(
     navController: NavHostController,
     id: String,
     isAmazing: Boolean,
-    productDetailItemPrice : Int,
+    productDetailItemPrice: Int,
     productDiscountPercent: Int,
     viewModel: ProductDetailViewModel = hiltViewModel(),
 
-) {
+    ) {
 
 
-
-    LaunchedEffect(true) {
-        viewModel.getAllDataFromServer(id)
+    var item by remember {
+        mutableStateOf<ProductDetailModel>(
+            ProductDetailModel(
+                "",
+                0,
+                0,
+                listOf(ColorProductDetail("", "", "")),
+                0,
+                listOf(
+                    Comment("", "", "", "", "")
+                ),
+                0,
+                listOf(ImageSlider("", "", "")),
+                "",
+                0,
+                0,
+                "",
+                1.0,
+                0
+            )
+        )
     }
+
+    var imageSliders by remember {
+        mutableStateOf<List<ImageSlider>>(emptyList())
+    }
+
+    var colors by remember {
+        mutableStateOf<List<ColorProductDetail>>(emptyList())
+    }
+
+    var comments by remember {
+        mutableStateOf<List<Comment>>(emptyList())
+    }
+
+    var loading by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Dispatchers.IO) {
+        viewModel.getAllDataFromServer(id)
+        withContext(Dispatchers.Main) {
+            viewModel.productDetail.collectLatest { result ->
+                when (result) {
+                    is NetworkResult.Success -> {
+                        result.data?.let {
+                            item = it
+                            imageSliders = it.imageSlider
+                            colors = item.colors
+                            comments = item.comments
+                        }
+                        loading = false
+                    }
+                    is NetworkResult.Error -> {
+                        loading = false
+                        Log.d("5555", "Data error:${result.message} ")
+                    }
+                    is NetworkResult.Loading -> {
+                        loading = true
+                    }
+                }
+            }
+        }
+    }
+
 
 
 
@@ -61,9 +121,12 @@ fun ProductDetail(
     if (!isSystemInDarkTheme()) {
         Scaffold(
             bottomBar = {
-                BottomBarProductDetail(itemPrice = productDetailItemPrice,
+                BottomBarProductDetail(
+                    itemPrice = productDetailItemPrice,
                     itemDiscount = productDiscountPercent,
-                    navController)
+                    navController,
+                    item
+                )
             },
         ) {
 
@@ -78,9 +141,27 @@ fun ProductDetail(
 
                 ShowIsAmazing(isAmazing = isAmazing)
 
-                //section
-                ProductDetailSection()
+                TopSliderProduct(imageSliders)
+
+                ProductDetailHeader(
+                    item.name,
+                    "در دسته مد و پوشاک",
+                    item.star,
+                    item.starCount,
+                    item.commentCount,
+                    item.questionCount
+                )
+
+                ColorCategorySection(item.colors)
+
+                SellerInfoDetails(item)
+
+                ProductDetailCard()
+
+                CommentsPreview(comments)
+
                 DigiPlusCard()
+
                 SimilarProductSection()
 
                 RecommendedSimilarProductsSection()
