@@ -3,7 +3,6 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,25 +24,25 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.google.gson.Gson
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
-import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
 import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
-import ir.truelearn.androidmvvmsample.data.model.basket.OrderProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.ui.component.displayToast
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
+import ir.truelearn.androidmvvmsample.ui.component.WaitingDialog
 import ir.truelearn.androidmvvmsample.ui.screens.basket.BuyProcessContinue
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartInfoBox
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.CartShippingAddressAndTime
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import ir.truelearn.androidmvvmsample.ui.theme.font_bold
-import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Dimension
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -53,6 +52,8 @@ fun CheckoutScreen(
     navController: NavHostController,
     cartViewModel: CartViewModel = hiltViewModel()
 ) {
+    var waitingDialogState by remember { mutableStateOf(false) }
+
     val context = LocalContext.current
     val viewModel: AddressListViewModel = viewModel(LocalContext.current as ComponentActivity)
     val addressList = remember {
@@ -61,9 +62,10 @@ fun CheckoutScreen(
     var loading by remember {
         mutableStateOf(false)
     }
+// set default Address
     LaunchedEffect(key1 = true) {
         if (viewModel.defaultAddress.value == null) {
-            Log.d("level2", "CheckoutScreen: ")
+            Log.d("level5", "token:${MainActivity.MY_TOKEN} ")
             viewModel.getAddressList(MainActivity.MY_TOKEN)
         }
         viewModel.userAddressList.collectLatest { result ->
@@ -80,12 +82,7 @@ fun CheckoutScreen(
                 is NetworkResult.Error -> {
                     loading = false
                     Log.e("level1", "CheckoutScreen: error=${result.message} ")
-                    Toast.makeText(
-                        context,
-                        "from CheckoutScreen:\n" + result.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    displayToast(context, result.message)
                 }
 
                 is NetworkResult.Loading -> {
@@ -158,7 +155,6 @@ fun CheckoutScreen(
                     CartShippingAddressAndTime(
                         navController = navController
                     ) {
-                        Log.d("level3", "go to seelcted addres: ")
                         navController.navigate(Screen.selectAddress.route)//AddressListScreen
                     }
                 }
@@ -192,7 +188,6 @@ fun CheckoutScreen(
                 timeState = false
             ) {
                 val orderProductsList = cartViewModel.getOrderList()
-                Log.d("level6", "CheckoutScreen:${orderProductsList.size}")
                 val newOrder = OrderDetail(
                     orderAddress = viewModel.defaultAddress.value!!.address,
                     orderDate = viewModel.defaultAddress.value!!.updatedAt,
@@ -203,13 +198,22 @@ fun CheckoutScreen(
                     orderUserPhone = viewModel.defaultAddress.value!!.phone,
                     token = MainActivity.MY_TOKEN
                 )
-                Log.d("level6", "CheckoutScreen:$newOrder")
+                cartViewModel.orderDetail.value = newOrder
+                navController.navigate(Screen.ConfirmPurchase.route)
+//                waitingDialogState = true
 //                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
             }
         }
     }
+    if (waitingDialogState) {
+        WaitingDialog() {
+            waitingDialogState = it
+        }
+    }
 
 }
+
+
 
 
 

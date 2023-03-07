@@ -21,9 +21,9 @@ class AddressListViewModel @Inject constructor(private val repository: AddressRe
     val userAddressList =
         MutableStateFlow<NetworkResult<List<UserAddressResponse>>>(NetworkResult.Loading())
 
-    fun getAddressList(tokenBody: String) {
+    fun getAddressList(token: String) {
         viewModelScope.launch {
-            userAddressList.emit(repository.getUserAddress(tokenBody))
+            userAddressList.emit(repository.getUserAddress(token))
         }
     }
 

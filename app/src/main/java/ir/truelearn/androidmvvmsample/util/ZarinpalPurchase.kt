@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.util
 
+import android.app.Activity
 import android.util.Log
 import com.zarinpal.ZarinPalBillingClient
 import com.zarinpal.billing.purchase.Purchase
@@ -27,7 +28,7 @@ object ZarinpalPurchase {
     }
 
     fun purchase(
-        activity: MainActivity,
+        activity: Activity,
         amount: Long,
         description: String,
         action: (String) -> Unit

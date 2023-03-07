@@ -42,7 +42,6 @@ class SaveAddressViewModel @Inject constructor(private val repository: AddressRe
     fun addNewAddress(userAddress: UserAddressRequest) {
         viewModelScope.launch(Dispatchers.IO) {
             saveAddressResponse.emit(repository.saveUserAddress(userAddress))
-            repository.saveUserAddress(userAddress)
         }
     }
 }

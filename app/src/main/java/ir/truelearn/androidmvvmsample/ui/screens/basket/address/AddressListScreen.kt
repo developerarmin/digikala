@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
@@ -63,8 +64,8 @@ fun AddressListScreen(
             if (addressList.value.isNotEmpty()) {
                 FloatingActionButton(
                     onClick = {
-                        if(viewModel.defaultAddressTemp.value != null)
-                        viewModel.defaultAddress.value = viewModel.defaultAddressTemp.value
+                        if (viewModel.defaultAddressTemp.value != null)
+                            viewModel.defaultAddress.value = viewModel.defaultAddressTemp.value
                         navController.popBackStack()
                     },
                     backgroundColor = MaterialTheme.colors.DigikalaLightRed,
@@ -98,7 +99,7 @@ fun AddressListScreen(
                     }
                     is NetworkResult.Error -> {
                         loading = false
-                        Toast.makeText(context, "From AddressListScreen \n"+result.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
                     }
 
                     is NetworkResult.Loading -> {
@@ -275,7 +276,6 @@ fun InitSelectableAddressList(
                             selected = (addressItem._id == selectedAddressID.value),
                             onClick = {
                                 selectedAddressID.value = addressItem._id
-//                                viewModel.defaultAddress.value = addressItem
                                 viewModel.defaultAddressTemp.value = addressItem
                             }
                         )

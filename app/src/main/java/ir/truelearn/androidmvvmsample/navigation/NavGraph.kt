@@ -14,6 +14,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddressScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
+import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchaseScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
@@ -44,6 +45,11 @@ fun SetupNavGraph(
         }
         composable(route = Screen.CartCheckout.route) {
             CheckoutScreen(navController = navController)
+        }
+        composable(route = Screen.ConfirmPurchase.route) {
+            ConfirmPurchaseScreen(
+                navController = navController
+            )
         }
 
         composable(route = Screen.selectAddress.route) {

@@ -2,7 +2,6 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -30,7 +29,8 @@ import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.navigation.Screen
-import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
+import ir.truelearn.androidmvvmsample.ui.component.displayToast
+import ir.truelearn.androidmvvmsample.ui.component.WaitingDialog
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -43,38 +43,33 @@ fun SaveUserAddressScreen(
     viewModel: SaveAddressViewModel = hiltViewModel(),
 ) {
 
-    var loading by remember {
-        mutableStateOf(false)
-    }
+    var waitingDialogState by remember { mutableStateOf(false) }
     val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.saveAddressResponse.collectLatest { result ->
             result?.let {
                 when (result) {
                     is NetworkResult.Success -> {
-                        Log.d("saveAddress", "success:${result.message} ")
-                         Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
-                        loading = false
+                        displayToast(context, result.message)
+                        waitingDialogState = false
                         navController.previousBackStackEntry
                             ?.savedStateHandle
-                            ?.set("result",true)
+                            ?.set("result", true)
                         navController.popBackStack()
                     }
                     is NetworkResult.Error -> {
-                        loading = false
-                        Log.d("saveAddress", "error:${result.message} ")
-                        Toast.makeText(context, "From SaveUserAddres \n"+result.message, Toast.LENGTH_SHORT).show()
-
+                        waitingDialogState = false
+                        Log.e("saveAddress", "error:${result.message} ")
+                        displayToast(context, result.message)
                     }
 
                     is NetworkResult.Loading -> {
-                        loading = true
+                        waitingDialogState = true
                     }
                 }
             }
         }
     }
-    Log.d("level7", "befor scaffold:${loading} ")
     Scaffold(
         modifier = Modifier
             .background(Color.White)
@@ -85,27 +80,18 @@ fun SaveUserAddressScreen(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            if (loading) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.searchBarBg)
-                        .align(Alignment.Center)
-                        .padding(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Loading3Dots(isDark = false)
-                }
-            } else {
-                InitScreen(navController = navController, viewModel = viewModel) {
-                    Log.d("saveAddress", "SaveUserAddress:${it} ")
-                    viewModel.saveAddressResponse.value = NetworkResult.Loading()
-                    viewModel.addNewAddress(it)
-                }
+            InitScreen(navController = navController, viewModel = viewModel) {
+                Log.d("saveAddress", "SaveUserAddress:${it} ")
+                viewModel.saveAddressResponse.value = NetworkResult.Loading()
+                viewModel.addNewAddress(it)
             }
         }
 
+    }
+    if (waitingDialogState) {
+        WaitingDialog() {
+            waitingDialogState = it
+        }
     }
 }
 
@@ -115,8 +101,8 @@ private fun InitScreen(
     viewModel: SaveAddressViewModel = hiltViewModel(),
     onSaveAddress: (UserAddressRequest) -> Unit
 ) {
-    val ProvinceName = remember { viewModel.provinceName }
-    val CityName = remember { viewModel.cityName }
+    val provinceName = remember { viewModel.provinceName }
+    val cityName = remember { viewModel.cityName }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -129,12 +115,12 @@ private fun InitScreen(
 
 
         SetLabel(label = "استان *")
-        SelectCity(ProvinceName.value) {
+        SelectCity(provinceName.value) {
             navController.navigate(Screen.selectCityName.withArgs("1"))
         }
 
         SetLabel(label = "شهر *")
-        SelectCity(CityName.value) {
+        SelectCity(cityName.value) {
             navController.navigate(Screen.selectCityName.withArgs("2"))
         }
 
@@ -297,8 +283,9 @@ private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRe
 
     val address =
         " ${viewModel.provinceName.value} - ${viewModel.cityName.value} - ${viewModel.inputPostalAddress} - ${viewModel.inputNumber} "
+    // todo init name from datastore
     val name =
-        if (viewModel.inputCheckboxState) viewModel.inputRecipientName else "from app"
+        if (viewModel.inputCheckboxState) "reza" else "from app"
     val phone =
         if (viewModel.inputCheckboxState) MainActivity.USER_PHONE else viewModel.inputRecipientPhone
     val newAdress = UserAddressRequest(
@@ -308,6 +295,7 @@ private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRe
         postalCode = viewModel.inputPostalCode,
         token = MainActivity.MY_TOKEN
     )
+    Log.d("level5", "$newAdress ")
     onClick(newAdress)
 
 }
