@@ -10,6 +10,7 @@ sealed class Screen(val route: String) {
     object Category : Screen("category_screen")
     object WebView : Screen("webView_screen")
     object ProductDetail : Screen("productDetail_screen")
+    object NewComment : Screen("newComment_screen")
 
     fun withArgs(vararg args: Any): String {
         return buildString {
