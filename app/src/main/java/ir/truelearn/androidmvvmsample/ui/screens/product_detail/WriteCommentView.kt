@@ -7,6 +7,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -15,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.Gray
@@ -26,6 +29,9 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 fun WriteCommentView(
     navController: NavController
 ) {
+    val isLogin = remember {
+        mutableStateOf(MainActivity.USER_TOKEN)
+    }
     Column(
         modifier = Modifier
             .padding(
@@ -33,7 +39,11 @@ fun WriteCommentView(
                 vertical = MaterialTheme.spacing.medium
             )
             .clickable {
-                navController.navigate(Screen.NewComment.route)
+                if (isLogin.value == "null" || isLogin.value.isEmpty()) {
+                    navController.navigate(Screen.Login.route)
+                }else{
+                    navController.navigate(Screen.NewComment.route)
+                }
             }
     ) {
 

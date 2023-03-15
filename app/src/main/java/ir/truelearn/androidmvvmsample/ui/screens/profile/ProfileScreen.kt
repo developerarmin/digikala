@@ -57,7 +57,7 @@ fun ProfileScreen(
                 Profile(navController)
             }
             ProfilePageState.LOGIN_STATE -> {
-                LoginScreen()
+                LoginScreen(navController)
             }
             ProfilePageState.SET_PASSWORD_STATE -> {
                 PasswordScreen()

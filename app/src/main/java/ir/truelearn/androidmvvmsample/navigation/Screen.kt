@@ -11,6 +11,7 @@ sealed class Screen(val route: String) {
     object WebView : Screen("webView_screen")
     object ProductDetail : Screen("productDetail_screen")
     object NewComment : Screen("newComment_screen")
+    object Login : Screen("login_screen")
 
     fun withArgs(vararg args: Any): String {
         return buildString {

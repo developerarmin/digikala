@@ -86,7 +86,7 @@ private fun ScoreSeekbar() {
 
 
     Slider(
-        modifier=Modifier
+        modifier = Modifier
             .padding(horizontal = MaterialTheme.spacing.large),
         value = sliderValue,
         onValueChange = { sliderValue_ ->
@@ -155,9 +155,7 @@ fun NewCommentForm() {
         )
         TextField(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(65.dp)
-                .padding(bottom = MaterialTheme.spacing.medium),
+                .fillMaxWidth(),
             value = commentTitle,
             onValueChange = { commentTitle = it },
             maxLines = 1,
@@ -174,16 +172,18 @@ fun NewCommentForm() {
 
         Text(
             modifier = Modifier
-                .padding(MaterialTheme.spacing.extraSmall),
+                .padding(
+                    top = MaterialTheme.spacing.mediumTwo,
+                    start = MaterialTheme.spacing.extraSmall,
+                    bottom = MaterialTheme.spacing.extraSmall,
+                ),
             text = "نقاط قوت",
             style = MaterialTheme.typography.h5,
             color = MaterialTheme.colors.darkText,
         )
         TextField(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(65.dp)
-                .padding(bottom = MaterialTheme.spacing.medium),
+                .fillMaxWidth(),
             value = strengthPointText,
             onValueChange = { strengthPointText = it },
             maxLines = 1,
@@ -253,7 +253,11 @@ fun NewCommentForm() {
 
         Text(
             modifier = Modifier
-                .padding(MaterialTheme.spacing.extraSmall),
+                .padding(
+                    top = MaterialTheme.spacing.mediumTwo,
+                    start = MaterialTheme.spacing.extraSmall,
+                    bottom = MaterialTheme.spacing.extraSmall,
+                ),
             text = "نقاط ضعف",
             style = MaterialTheme.typography.h5,
             color = MaterialTheme.colors.darkText,
@@ -261,9 +265,7 @@ fun NewCommentForm() {
 
         TextField(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(65.dp)
-                .padding(bottom = MaterialTheme.spacing.medium),
+                .fillMaxWidth(),
             value = weakPointText,
             onValueChange = { weakPointText = it },
             maxLines = 1,
@@ -333,7 +335,11 @@ fun NewCommentForm() {
 
         Text(
             modifier = Modifier
-                .padding(MaterialTheme.spacing.extraSmall),
+                .padding(
+                    top = MaterialTheme.spacing.mediumTwo,
+                    start = MaterialTheme.spacing.extraSmall,
+                    bottom = MaterialTheme.spacing.extraSmall,
+                ),
             text = "متن نظر *",
             style = MaterialTheme.typography.h5,
             color = MaterialTheme.colors.darkText,
