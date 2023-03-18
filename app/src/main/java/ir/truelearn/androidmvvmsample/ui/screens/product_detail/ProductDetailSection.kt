@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -53,6 +54,10 @@ fun ProductDetailSection(
         mutableStateOf<List<ColorProductDetail>>(emptyList())
     }
 
+    var comments by remember {
+        mutableStateOf<List<Comment>>(emptyList())
+    }
+
     var loading by remember { mutableStateOf(false) }
 
     LaunchedEffect(Dispatchers.Main) {
@@ -63,6 +68,7 @@ fun ProductDetailSection(
                         item = it
                         imageSliders = it.imageSlider
                         colors = item.colors
+                        comments = item.comments
                     }
                     loading = false
                 }
@@ -80,9 +86,9 @@ fun ProductDetailSection(
     Column(
         modifier = Modifier
             .background(androidx.compose.ui.graphics.Color.White)
-            .fillMaxSize()
-            .padding(bottom = 60.dp)
+            .fillMaxWidth()
     ) {
+
         TopSliderProduct(imageSliders)
 
         ProductDetailHeader(
@@ -96,11 +102,12 @@ fun ProductDetailSection(
 
         ColorCategorySection(item.colors)
 
-        SellerInfoDetails()
+        SellerInfoDetails(item)
 
         ProductDetailCard()
 
-        CommentsPreview()
+        CommentsPreview(comments)
+
 
     }
 

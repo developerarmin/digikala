@@ -89,27 +89,29 @@ fun SetupNavGraph(
         }
 
         composable(
-            route = Screen.ProductDetail.route + "/{id}/{amazing}",
+            route = Screen.ProductDetail.route + "/{id}/{amazing}/{price}/{discountPercent}",
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.StringType
                 },
                 navArgument("amazing") {
                     type = NavType.BoolType
-                })
+                },
+                navArgument("price") {
+                    type = NavType.IntType
+                },
+                navArgument("discountPercent"){
+                    type = NavType.IntType
+                }
+
+            )
         ) {
             ProductDetailScreen(
                 navController = navController,
                 id = "63b9f7ce06661704dc22228d",// it.arguments?.getString("id").toString(),
                 isAmazing = it.arguments!!.getBoolean("amazing"),
-                item = AmazingItem(
-                    "63b9f7ce06661704dc22228d",
-                    30,
-                    "https://dkstatics-public.digikala.com/digikala-products/8ac0af9ed17bfefb8a7f828b9c88cc12e00c4b93_1673936201.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-                    "ست تی شرت آستین بلند و شلوار دخترانه ناربن مدل 1521439-84",
-                    340000,
-                    ""
-                )
+                productDetailItemPrice = it.arguments!!.getInt("price"),
+                productDiscountPercent = it.arguments!!.getInt("discountPercent")
             )
         }
 

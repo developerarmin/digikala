@@ -72,7 +72,7 @@ fun Home(navController: NavHostController,
 
                     MostVisitedOfferSection()
 
-                    MostDiscountedSection()
+                    MostDiscountedSection(navHostController = navController)
 
                     CenterBannerItem(1)
 

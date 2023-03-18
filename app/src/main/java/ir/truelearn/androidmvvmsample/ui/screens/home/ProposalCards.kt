@@ -16,7 +16,9 @@ fun ProposalCardItem(imgLink: Slider) {
     Card(
         shape = RoundedCornerShape(14.dp),
         modifier = Modifier
-            .size(175.dp, 140.dp)
+            .fillMaxWidth(0.5f)
+            .height(140.dp)
+//            .size(175.dp, 140.dp)
             .padding(horizontal = 8.dp, vertical = 8.dp),
     ) {
         Image(

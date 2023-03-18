@@ -15,11 +15,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
 import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -27,9 +29,10 @@ fun ProductDetailScreen(
     navController: NavHostController,
     id: String,
     isAmazing: Boolean,
-    item: AmazingItem,
+    productDetailItemPrice : Int,
+    productDiscountPercent : Int
 ) {
-    ProductDetail(navController, id, isAmazing, item = item)
+    ProductDetail(navController,id,isAmazing,productDetailItemPrice,productDiscountPercent)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -39,19 +42,28 @@ fun ProductDetail(
     navController: NavHostController,
     id: String,
     isAmazing: Boolean,
-    item: AmazingItem,
-    viewModel: ProductDetailViewModel = hiltViewModel()
+    productDetailItemPrice : Int,
+    productDiscountPercent: Int,
+    viewModel: ProductDetailViewModel = hiltViewModel(),
+
 ) {
+
 
 
     LaunchedEffect(true) {
         viewModel.getAllDataFromServer(id)
     }
 
+
+
+
+
     if (!isSystemInDarkTheme()) {
         Scaffold(
             bottomBar = {
-                BottomBarProductDetail(150000,navController)
+                BottomBarProductDetail(itemPrice = productDetailItemPrice,
+                    itemDiscount = productDiscountPercent,
+                    navController)
             },
         ) {
 
@@ -68,7 +80,7 @@ fun ProductDetail(
 
                 //section
                 ProductDetailSection()
-
+                DigiPlusCard()
                 SimilarProductSection()
 
                 RecommendedSimilarProductsSection()

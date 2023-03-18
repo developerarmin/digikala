@@ -19,15 +19,22 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.ui.theme.DigikalaDarkRed
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 
 @Composable
-fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modifier = Modifier) {
+fun BottomBarProductDetail(
+    itemPrice : Int,
+    itemDiscount : Int,
+    navController: NavController) {
+    val itemPriceResult = DigitHelper.digitByLocate(DigitHelper.digitBySeparator(itemPrice.toString()))
+    val discountedItem = DigitHelper.applyDiscount(itemPrice,itemDiscount)
+    val discountedItemResult = DigitHelper.digitByLocate(DigitHelper.digitBySeparator(discountedItem.toString()))
+
     BottomNavigation(
-        modifier = modifier,
         backgroundColor = Color.White,
         elevation = 10.dp
     ) {
@@ -35,7 +42,9 @@ fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modi
             modifier = Modifier
                 .fillMaxWidth()
                 .height(65.dp)
-                .padding(horizontal = MaterialTheme.spacing.medium)
+                .padding(
+                    horizontal = MaterialTheme.spacing.medium
+                )
                 .background(Color.White),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -62,7 +71,7 @@ fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modi
                 }
             }
             //Spacer(modifier = Modifier.width(140.dp))
-            Column() {
+            Column(horizontalAlignment = Alignment.End) {
                 Row() {
                     Box(
                         modifier = Modifier
@@ -77,7 +86,7 @@ fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modi
 
                         ) {
                         Text(
-                            text = DigitHelper.digitByLocate("21%"),
+                            text = "%${DigitHelper.digitByLocate(itemDiscount.toString())}",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -85,22 +94,18 @@ fun BottomBarProductDetail(price:Int,navController: NavController,modifier: Modi
                             )
                     }
                     Spacer(modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall))
+
                     Text(
-                        text = DigitHelper.digitByLocate("100,000"),
+                        text = "${itemPriceResult}${stringResource(id = R.string.price_unit)}",
                         color = Color.LightGray,
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.body2,
                         textDecoration = TextDecoration.LineThrough,
                     )
                 }
+
                 Text(
-                    text = DigitHelper.digitByLocate(
-                        "$price ${
-                            stringResource(
-                                id = R.string.price_unit
-                            )
-                        }"
-                    ),
-                    style = MaterialTheme.typography.body2,
+                    text = "${discountedItemResult}${stringResource(id = R.string.price_unit)}",
+                    style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
                 )

@@ -5,7 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -19,12 +19,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import java.time.format.TextStyle
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.ui.component.RoundedIconBox
 import ir.truelearn.androidmvvmsample.ui.screens.home.onBoxClick
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @Composable
-fun SellerInfoDetails() {
+fun SellerInfoDetails(item: ProductDetailModel) {
+    val calculateSatisfactionPercent = calculateSatisfactionPercentage(item.star)
+
     Surface(
         elevation = 1.dp,
         modifier = Modifier.padding(
@@ -78,7 +82,7 @@ fun SellerInfoDetails() {
 
                 Column {
                     Text(
-                        text = "دیجی کالا",
+                        text = stringResource(id = R.string.digikala),
                         style = MaterialTheme.typography.h5,
                         color = MaterialTheme.colors.darkText,
                         maxLines = 2,
@@ -87,13 +91,19 @@ fun SellerInfoDetails() {
 
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
-                    Text(
-                        text = "81.6 % رضایت خریداران | عملکرد عالی",
-                        style = MaterialTheme.typography.h6,
-                        color = MaterialTheme.colors.semiDarkText,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "${DigitHelper.digitByLocate(calculateSatisfactionPercent.toString())}%" +
+                                    " رضایت خریداران | عملکرد " ,
+                            style = MaterialTheme.typography.h6,
+                            color = MaterialTheme.colors.semiDarkText,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        showSatisfactionGrade(percentage = calculateSatisfactionPercent)
+                    }
+
+
 
                     Spacer(
                         modifier = Modifier
@@ -128,7 +138,7 @@ fun SellerInfoDetails() {
 
                 Column {
                     Text(
-                        text = "گارانتی اصالت و سلامت فیزیکی",
+                        text = stringResource(id = R.string.articleWarranty),
                         style = MaterialTheme.typography.h3,
                         color = MaterialTheme.colors.darkText,
                         maxLines = 2,
@@ -174,7 +184,7 @@ fun SellerInfoDetails() {
                 Column(verticalArrangement = Arrangement.Center) {
 
                     Text(
-                        text = "موجود در انبار دیجی کالا",
+                        text = item.seller,
                         style = MaterialTheme.typography.h5,
                         color = MaterialTheme.colors.darkText,
                         maxLines = 2,
@@ -192,7 +202,7 @@ fun SellerInfoDetails() {
                         )
 
                         Text(
-                            text = "ارسال دیجی کالا",
+                            text = stringResource(id = R.string.digiKalaSend),
                             style = MaterialTheme.typography.h6,
                             color = MaterialTheme.colors.semiDarkText,
                             maxLines = 2,
@@ -233,7 +243,7 @@ fun SellerInfoDetails() {
                 Column {
 
                     Text(
-                        text = "امتیاز دیجی کلاب دریافت کنید",
+                        text = stringResource(id = R.string.digiclub_score),
                         style = MaterialTheme.typography.h3,
                         color = MaterialTheme.colors.semiDarkText,
                         maxLines = 2,
@@ -272,9 +282,12 @@ fun SellerInfoDetails() {
                 Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
 
                 Column() {
+                    val locatedPrice = DigitHelper.digitByLocate(item.price.toString())
+                    val separatedPrice = DigitHelper.digitBySeparator(locatedPrice)
 
                     Text(
-                        text = "قیمت تولید کننده: 26,768 تومان",
+                        text = "قیمت تولید کننده:" +
+                                " $separatedPrice تومان",
                         style = MaterialTheme.typography.h5,
                         color = MaterialTheme.colors.unSelectedBottomBar,
                         maxLines = 2,
@@ -300,7 +313,7 @@ fun SellerInfoDetails() {
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text = "آیا قیمت مناسب تری سراغ دارید؟",
+                    text = stringResource(id = R.string.better_price_suggestion),
                     style = MaterialTheme.typography.h5,
                     color = MaterialTheme.colors.unSelectedBottomBar,
                     maxLines = 2,
@@ -322,14 +335,5 @@ fun SellerInfoDetails() {
 
 }
 
-@Preview
-@Composable
-fun preSellerInfoDetails() {
-    SellerInfoDetails()
-}
 
-@Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-fun preSellerInfoDetailsDark() {
-    SellerInfoDetails()
-}
+
