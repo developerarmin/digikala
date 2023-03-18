@@ -18,6 +18,9 @@ interface CartDao {
     @Delete
     suspend fun removeFromCart(cart: CartItem)
 
+    @Query(" DELETE FROM shopping_cart ")
+    suspend fun clearShoppingCart()
+
     @Query("update shopping_cart set count=:newCount where itemID=:id")
     suspend fun changeCountCartItem(id: String, newCount: Int): Int
 

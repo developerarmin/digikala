@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,6 +32,7 @@ fun ShoppingCart(
     val isLogin = remember {
         mutableStateOf(MainActivity.USER_TOKEN)
     }
+    Log.d("level2", "ShoppingCart:${MainActivity.USER_TOKEN} ")
     LaunchedEffect(true) {
         viewModel.currentCartItems.collectLatest { list ->
             currentCartItems.value = list

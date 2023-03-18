@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.InitPriceRow
+import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.InitPriceRow
 import ir.truelearn.androidmvvmsample.ui.theme.infoBox
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper.digitBySeparator

@@ -9,10 +9,8 @@ import ir.truelearn.androidmvvmsample.util.Constants.USER_LANGUAGE_KEY
 import ir.truelearn.androidmvvmsample.util.Constants.USER_PASSWORD_KEY
 import ir.truelearn.androidmvvmsample.util.Constants.USER_PHONE_KEY
 import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN_KEY
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,6 +48,20 @@ class DataStoreViewModel @Inject constructor(
     fun getUserPhoneNumber(): String? = runBlocking {
         repository.getString(USER_PHONE_KEY)
     }
+
+    val userPhone = MutableStateFlow("")
+    fun getUserPhoneNumber2()
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getString(USER_PHONE_KEY)?.let { value->
+                userPhone.emit(value)
+            }
+        }
+    }
+
+  suspend fun getUserPhoneNumber3(): String? = repository.getString(USER_PHONE_KEY)
+
+
 
     fun saveUserPassword(value: String) {
         viewModelScope.launch {

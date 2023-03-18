@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -8,16 +9,24 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
-import ir.truelearn.androidmvvmsample.ui.screens.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddressScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
+import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchaseScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
+import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
 @Composable
-fun SetupNavGraph(navController: NavHostController) {
+fun SetupNavGraph(
+    navController: NavHostController,
+    saveAddressViewModel: SaveAddressViewModel = hiltViewModel()
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route
@@ -37,6 +46,43 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.CartCheckout.route) {
             CheckoutScreen(navController = navController)
         }
+        composable(route = Screen.ConfirmPurchase.route) {
+            ConfirmPurchaseScreen(
+                navController = navController
+            )
+        }
+
+        composable(route = Screen.selectAddress.route) {
+            AddressListScreen(navController = navController)
+        }
+
+        composable(route = Screen.SaveUserAddress.route) {
+            SaveUserAddressScreen(navController = navController, viewModel = saveAddressViewModel)
+
+        }
+
+        composable(route = Screen.selectCityName.route + "/{flag}",
+            arguments = listOf(
+                navArgument("flag") {
+                    type = NavType.StringType
+                    defaultValue = "1"
+                    nullable = true
+                }
+            )
+        )
+        {
+            val flag = it.arguments?.getString("flag")
+            flag?.let {
+                selectCityName(
+                    navController = navController,
+                    flag = flag,
+                    viewModel = saveAddressViewModel
+                )
+            }
+        }
+
+
+
 
         composable(route = Screen.Category.route) {
             CategoryScreen(navController = navController)
@@ -69,16 +115,17 @@ fun SetupNavGraph(navController: NavHostController) {
             )
         }
 
-        composable(route = Screen.WebView.route+"?url={url}",
-        arguments = listOf(navArgument("url"){
-            type= NavType.StringType
-            defaultValue=""
-            nullable=true
-        })
+        composable(
+            route = Screen.WebView.route + "?url={url}",
+            arguments = listOf(navArgument("url") {
+                type = NavType.StringType
+                defaultValue = ""
+                nullable = true
+            })
         ) {
-            val url=it.arguments?.getString("url")
+            val url = it.arguments?.getString("url")
             url?.let {
-                WebPageScreen(navController = navController, url=url)
+                WebPageScreen(navController = navController, url = url)
             }
         }
 

@@ -28,4 +28,6 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideCartDao(database: DigiKalaDatabase):CartDao = database.CartDao()
+
+
 }

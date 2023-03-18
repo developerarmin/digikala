@@ -11,8 +11,10 @@ val Teal200 = Color(0xFF03DAC5)
 val DarkAmper = Color(0xFFFFA200)
 val infoBox = Color(0xFFEDEEF1)
 val BtnWhite = Color(0xFFFBFBFC)
+val textFieldBG = Color(0xFFCECED2)
 
-
+val cardCollapsedBackgroundColor = Color(0xFFFEFFFD)
+val cardExpandedBackgroundColor = Color(0xFFFFDA6D)
 
 
 

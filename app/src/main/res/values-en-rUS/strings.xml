@@ -9,7 +9,9 @@
     <string name="search_in">search in</string>
     <string name="most_discounted_products">most discounted products</string>
     <string name="suggestion_for_you">suggestion for you</string>
+    <string name="suggestion_for_youSection">suggestion for you</string>
     <string name="category_title">Shop by category</string>
+    <string name="please_wait">please wait…</string>
 
     <!-- these strings for test -->
     <string name="profile_screen">Profile screen</string>
@@ -81,6 +83,7 @@
     <string name="purchase_process">Continue purchase process</string>
     <string name="total_shopping_cart">Total shopping cart</string>
     <string name="cart_is_empty">Your cart is empty!</string>
+    <string name="return_to_home_page">return to home page</string>
     <string name="next_cart_list_is_empty">Your next cart list is empty!</string>
     <string name="next_cart_list_is_empty_msg">You can put the products you have added to your shopping cart and you do not intend to buy them in the next shopping list and you can add them to the shopping cart and complete the purchase whenever you want. </string>
     <string name="login_or_register">login or register</string>
