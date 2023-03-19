@@ -44,13 +44,6 @@ fun SetupNavGraph(navController: NavHostController) {
             CategoryScreen(navController = navController)
         }
 
-        composable(route = Screen.NewComment.route) {
-            NewCommentScreen(navController = navController)
-        }
-
-        composable(route = Screen.Login.route) {
-            LoginScreen(navController = navController)
-        }
 
         composable(
             route = Screen.ProductDetail.route + "/{id}/{amazing}/{price}/{discountPercent}",
@@ -64,7 +57,7 @@ fun SetupNavGraph(navController: NavHostController) {
                 navArgument("price") {
                     type = NavType.IntType
                 },
-                navArgument("discountPercent"){
+                navArgument("discountPercent") {
                     type = NavType.IntType
                 }
 
@@ -79,17 +72,42 @@ fun SetupNavGraph(navController: NavHostController) {
             )
         }
 
-        composable(route = Screen.WebView.route+"?url={url}",
-        arguments = listOf(navArgument("url"){
-            type= NavType.StringType
-            defaultValue=""
-            nullable=true
-        })
+
+        composable(
+            route = Screen.WebView.route + "?url={url}",
+            arguments = listOf(
+                navArgument("url") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                })
         ) {
-            val url=it.arguments?.getString("url")
+            val url = it.arguments?.getString("url")
             url?.let {
-                WebPageScreen(navController = navController, url=url)
+                WebPageScreen(navController = navController, url = url)
             }
+        }
+
+
+        composable(
+            route = Screen.NewComment.route + "/{image}/{title}",
+            arguments = listOf(
+                navArgument("image") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument("title") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+            )
+        ) {
+            NewCommentScreen(
+                navController = navController,
+                productDetailImage = it.arguments?.getString("image").toString(),
+                productDetailTitle = it.arguments?.getString("title").toString(),
+                )
+
         }
 
     }

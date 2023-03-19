@@ -15,10 +15,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
-fun CommentsPreview(comments : List<Comment>,navController: NavController) {
+fun CommentsPreview(
+    comments : List<Comment>,
+    navController: NavController,
+    item:ProductDetailModel
+) {
 
     Column(
         modifier = Modifier
@@ -76,6 +82,9 @@ fun CommentsPreview(comments : List<Comment>,navController: NavController) {
             }
         }
 
-        WriteCommentView(navController)
+        WriteCommentView(
+            navController,
+            item
+        )
     }
 }

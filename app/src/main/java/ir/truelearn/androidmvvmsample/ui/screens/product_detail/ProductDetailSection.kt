@@ -108,7 +108,7 @@ fun ProductDetailSection(
 
         ProductDetailCard()
 
-        CommentsPreview(comments, navController)
+        CommentsPreview(comments, navController,item)
 
 
     }

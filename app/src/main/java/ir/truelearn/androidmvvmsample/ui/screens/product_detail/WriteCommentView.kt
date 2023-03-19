@@ -7,8 +7,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -16,22 +14,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.Gray
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
+
+var FROM_COMMENT_SCREEN = false
 
 @Composable
 fun WriteCommentView(
-    navController: NavController
-) {
-    val isLogin = remember {
-        mutableStateOf(MainActivity.USER_TOKEN)
-    }
+    navController: NavController,
+    item: ProductDetailModel,
+    ) {
+
     Column(
         modifier = Modifier
             .padding(
@@ -39,10 +42,11 @@ fun WriteCommentView(
                 vertical = MaterialTheme.spacing.medium
             )
             .clickable {
-                if (isLogin.value == "null" || isLogin.value.isEmpty()) {
-                    navController.navigate(Screen.Login.route)
+                if (MainActivity.USER_TOKEN == "null" || MainActivity.USER_TOKEN.isEmpty()) {
+                    FROM_COMMENT_SCREEN =true
+                    navController.navigate(Screen.Profile.route)
                 }else{
-                    navController.navigate(Screen.NewComment.route)
+                    navController.navigate(route = Screen.NewComment.withArgs("item.imageSlider[0].image",item.name))
                 }
             }
     ) {

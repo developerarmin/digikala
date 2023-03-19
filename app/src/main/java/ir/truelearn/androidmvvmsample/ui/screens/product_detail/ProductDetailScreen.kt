@@ -158,7 +158,7 @@ fun ProductDetail(
 
                 ProductDetailCard()
 
-                CommentsPreview(comments,navController)
+                CommentsPreview(comments,navController,item)
 
                 DigiPlusCard()
 
