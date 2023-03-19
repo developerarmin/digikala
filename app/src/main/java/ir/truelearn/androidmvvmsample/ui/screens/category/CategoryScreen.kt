@@ -41,7 +41,8 @@ fun CategoryScreen(navController: NavHostController) {
 }
 
 @Composable
-fun Category(viewModel: CategoryViewModel = hiltViewModel()) {
+fun Category(viewModel: CategoryViewModel = hiltViewModel(),
+             homeviewModel: HomeViewModel = hiltViewModel()) {
     if (!isSystemInDarkTheme()) {
         Column(
             modifier = Modifier
