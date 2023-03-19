@@ -30,6 +30,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val centerBannerItems =
         MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
     val favoriteProducts =MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
+    val searching = MutableStateFlow<NetworkResult<List<SearchProductsModel>>>(NetworkResult.Loading())
+
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch() {
@@ -66,6 +68,14 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             }
 
 
+
+        }
+    }
+
+
+    suspend fun searchProduct(q:String) {
+        viewModelScope.launch {
+            searching.emit(repository.searchProduct(q))
         }
     }
 

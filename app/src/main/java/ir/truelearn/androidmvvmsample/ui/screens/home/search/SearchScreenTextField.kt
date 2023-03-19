@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -15,26 +16,22 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 @Composable
-fun SearchScreenTextField(navController: NavHostController) {
+fun SearchScreenTextField(navController: NavHostController,viewModel:HomeViewModel = hiltViewModel()) {
+    var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = "")) }
 
-    var textFieldValueState by remember {
-        mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
-        )
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
+    Column(modifier = Modifier.fillMaxWidth()) {
 
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
@@ -53,6 +50,11 @@ fun SearchScreenTextField(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
+                    .clickable {
+                       CoroutineScope(Dispatchers.IO).launch{
+                           viewModel.searchProduct(textFieldValueState.text)
+                       }
+                    }
                     .padding(
                         start = MaterialTheme.spacing.small,
                         end = MaterialTheme.spacing.small

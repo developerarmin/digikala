@@ -6,7 +6,6 @@ import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
 import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
-import ir.truelearn.androidmvvmsample.data.model.basket.PurchaseResult
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
@@ -86,5 +85,11 @@ interface ApiInterface {
     suspend fun confirmPurchase(
         @Body confirmPurchase: ConfirmPurchase
     ): Response<ResponseResult<String?>>
+
+
+
+    //Temporary
+    @GET("search")
+    suspend fun searchProduct(@Query("q") q:String):Response<ResponseResult<List<SearchProductsModel>>>
 
 }
