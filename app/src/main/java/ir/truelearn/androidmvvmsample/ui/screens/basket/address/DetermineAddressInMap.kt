@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

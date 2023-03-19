@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.checkout
+package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
@@ -98,7 +98,6 @@ fun CheckoutPriceDetails(viewModel: CartViewModel = hiltViewModel()) {
                 modifier = Modifier
                     .size(5.dp, 15.dp)
                     .padding(top = 9.dp)
-
             )
             Spacer(modifier = Modifier.width(6.dp))
             Text(

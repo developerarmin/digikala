@@ -1,6 +1,12 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.model.*
+import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
+import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
+import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
+import ir.truelearn.androidmvvmsample.data.model.basket.PurchaseResult
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
@@ -11,7 +17,6 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiInterface {
@@ -55,8 +60,31 @@ interface ApiInterface {
 
     @GET("getAllProducts")
     suspend fun getSuggestedItems(): Response<ResponseResult<List<MostDiscountedItem>>>
+
     @GET("getProductById")
     suspend fun getProductById(
-        @Query("id") id:String
+        @Query("id") id: String
     ): Response<ResponseResult<ProductDetailModel>>
+
+    @GET("getUserAddress")
+    suspend fun getUserAddressList(
+        @Query("token") token: String
+    ): Response<ResponseResult<List<UserAddressResponse>>>
+
+    @POST("saveUserAddress")
+    suspend fun saveUserAddress(
+        @Body addressRequest: UserAddressRequest
+    ): Response<ResponseResult<SaveAddressResponse>>
+
+
+    @POST("setNewOrder")
+    suspend fun setNewOrder(
+        @Body orderRequest: OrderDetail
+    ): Response<ResponseResult<String>>
+
+    @POST("confirmPurchase")
+    suspend fun confirmPurchase(
+        @Body confirmPurchase: ConfirmPurchase
+    ): Response<ResponseResult<String?>>
+
 }

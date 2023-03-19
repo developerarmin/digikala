@@ -20,15 +20,15 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 @Composable
 fun BuyProcessContinue(
     price: String,
-    timeState:Boolean=false,
-    flag:String = "ShoppingBasket",
+    timeState: Boolean = false,
+    flag: String = "ShoppingBasket",
     onClick: () -> Unit,
 ) {
-    var payableText=""
-    payableText = if(flag=="ShoppingBasket")
+    var payableText = ""
+    payableText = if (flag == "ShoppingBasket")
         stringResource(R.string.total_shopping_cart)
     else
-        stringResource(R.string.amount_payable)
+        stringResource(R.string.payable_price)
 
     Card(
         modifier = Modifier.padding(horizontal = 0.dp),
@@ -40,18 +40,13 @@ fun BuyProcessContinue(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(
-                    start = MaterialTheme.spacing.medium,
-                    end = MaterialTheme.spacing.medium,
-                    bottom = MaterialTheme.spacing.medium,
-                    top = MaterialTheme.spacing.medium
-                ),
+                .padding(MaterialTheme.spacing.medium),
 
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            if ((flag.equals("ShoppingBasket"))|| (timeState)) {
+            if ((flag.equals("ShoppingBasket")) || (timeState)) {
                 Button(
                     onClick = onClick,
                     colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
@@ -71,44 +66,41 @@ fun BuyProcessContinue(
                     )
                 }
             } else {
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
-                    modifier = Modifier,
-                    shape = MaterialTheme.roundedShape.small
-                ) {
-                    Text(
-                        text = stringResource(R.string.purchase_process_time),
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.h6,
-                        modifier = Modifier
-                            .padding(
-                                horizontal = MaterialTheme.spacing.mediumTwo,
-                            )
-                    )
-                }
 //                Button(
-//                    onClick = onClick,
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
+//                    onClick = {},
+//                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.digikalaRed),
 //                    modifier = Modifier,
-//                    border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.digikalaRed),
 //                    shape = MaterialTheme.roundedShape.small
 //                ) {
 //                    Text(
 //                        text = stringResource(R.string.purchase_process_time),
-//                        color = MaterialTheme.colors.digikalaRed,
+//                        color = Color.White,
 //                        fontWeight = FontWeight.Bold,
 //                        style = MaterialTheme.typography.h6,
 //                        modifier = Modifier
 //                            .padding(
-//                                start = MaterialTheme.spacing.small,
-//                                end = MaterialTheme.spacing.small,
-//                                bottom = MaterialTheme.spacing.small,
-//                                top = MaterialTheme.spacing.small
+//                                horizontal = MaterialTheme.spacing.mediumTwo,
 //                            )
 //                    )
 //                }
+                Button(
+                    onClick = onClick,
+                    colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
+                    modifier = Modifier,
+                    border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.digikalaRed),
+                    shape = MaterialTheme.roundedShape.small
+                ) {
+                    Text(
+                        text = stringResource(R.string.purchase_process_time),
+                        color = MaterialTheme.colors.digikalaRed,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier
+                            .padding(
+                                MaterialTheme.spacing.small,
+                            )
+                    )
+                }
             }
 
             Column(
@@ -124,10 +116,10 @@ fun BuyProcessContinue(
                     style = MaterialTheme.typography.h6,
 
                     )
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
                 Row() {
                     Text(
-                        text = "${DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price))}",
+                        text = DigitHelper.digitBySeparator(DigitHelper.digitByLocate(price)),
                         //" ${stringResource(id = R.string.price_unit)}",
                         style = MaterialTheme.typography.body2,
                         fontWeight = FontWeight.SemiBold,

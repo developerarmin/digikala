@@ -34,7 +34,7 @@ fun Home(navController: NavHostController,
                 .fillMaxSize()
         ) {
 
-            SearchBar()
+            SearchBar(navController)
 
             val refreshScope = rememberCoroutineScope()
             val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)

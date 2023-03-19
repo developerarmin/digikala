@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -106,7 +105,7 @@ fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
 
                 items(suggestedList) { item ->
                     SuggestionItemCard(item = item) {
-                        viewModel.addNewItem(
+                        viewModel.addItemToCart(
                             CartItem(
                                 item.Id,
                                 item.discountPercent,
