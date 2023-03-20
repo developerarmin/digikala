@@ -6,6 +6,7 @@ import ir.truelearn.androidmvvmsample.data.model.basket.OrderDetail
 import ir.truelearn.androidmvvmsample.data.model.address.SaveAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
+import ir.truelearn.androidmvvmsample.data.model.category.BrandsCategory
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
@@ -92,6 +93,9 @@ interface ApiInterface {
     @GET("searchProductByName")
     suspend fun searchProduct(@Query("search") q:String):Response<ResponseResult<List<SearchProductsModel>>>
 
+
+    @GET("getBestBrands")
+    suspend fun getBrandsCategory(): Response<ResponseResult<BrandsCategory>>
 
 
 }
