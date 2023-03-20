@@ -109,4 +109,7 @@ After confirming the comment, go to the club missions page and get your points</
 
     <string name="save_product_to_cart">Save %1$d product in the next list</string>
     <string name="delete_product_from_cart">Remove %1$d product from the shopping cart</string>
+    <string name="search_all_products">Search all products</string>
+    <string name="hot_search_products">Hot search products</string>
+    <string name="shopping_advice">Shopping advice</string>
 </resources>

@@ -36,13 +36,12 @@ import kotlinx.coroutines.launch
 @Composable
 fun CategoryScreen(navController: NavHostController) {
 
-    Category()
+    Category(navController)
 
 }
 
 @Composable
-fun Category(viewModel: CategoryViewModel = hiltViewModel(),
-             homeviewModel: HomeViewModel = hiltViewModel()) {
+fun Category(navController : NavHostController,viewModel: CategoryViewModel = hiltViewModel()) {
     if (!isSystemInDarkTheme()) {
         Column(
             modifier = Modifier
@@ -50,7 +49,7 @@ fun Category(viewModel: CategoryViewModel = hiltViewModel(),
                 .fillMaxSize()
         ) {
 
-            SearchBar()
+            SearchBar(navController)
 
             val refreshScope = rememberCoroutineScope()
             val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
@@ -100,14 +99,14 @@ fun Category(viewModel: CategoryViewModel = hiltViewModel(),
 }
 
 
-@Composable
-@Preview
-fun CategoryScreenLightPreview() {
-    Category()
-}
-
-@Composable
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-fun CategoryScreenDarkPreview() {
-    Category()
-}
+//@Preview
+//@Composable
+//fun CategoryScreenLightPreview(navController: NavHostController) {
+//    Category(navController)
+//}
+//
+//@Composable
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//fun CategoryScreenDarkPreview() {
+//    Category()
+//}

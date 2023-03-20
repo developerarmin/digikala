@@ -141,5 +141,8 @@
     <string name="delete_product_from_cart">حذف %1$d  کالا از سبد خرید</string>
     <string name="digikala">دیجی کالا</string>
     <string name="better_price_suggestion">آیا قیمت بهتری سراغ دارید؟</string>
+    <string name="search_all_products">جستجو در همه کالاها</string>
+    <string name="hot_search_products">جستجو های پرطرفدار</string>
+    <string name="shopping_advice">مشاوره خرید آنلاین</string>
 
 </resources>
