@@ -146,4 +146,18 @@
     <string name="shopping_advice">مشاوره خرید آنلاین</string>
     <string name="all_products_search_category">همه کالاهای دسته بندی</string>
 
+    <!--Setting-->
+    <string name="setting">تنظیمات</string>
+    <string name="repetitive_questions">پرسش‌های متداول</string>
+    <string name="privacy">حریم خصوصی</string>
+    <string name="terms_of_use">شرایط استفاده</string>
+    <string name="error_report">گزارش خطا</string>
+    <string name="rating_to_digikal">امتیاز به دیجی‌کالا</string>
+    <string name="send_information_to_improve_user_experience">ارسال اطلاعات برای بهبود تجربه کاربری</string>
+    <string name="report_error_by_shaking_the_phone">گزارش خطا با تکان دادن گوشی</string>
+    <string name="sign_out">خروج از حساب کاربری</string>
+    <string name="changing_lang">تغییر زبان</string>
+    <string name="version_app">App Version: %s</string>
+    <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
+
 </resources>

@@ -20,6 +20,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
+import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
@@ -40,6 +41,9 @@ fun SetupNavGraph(
         }
         composable(route = Screen.Profile.route) {
             ProfileScreen(navController = navController)
+        }
+        composable(route = Screen.Setting.route) {
+            SettingScreen(navController = navController)
         }
         composable(route = Screen.Basket.route) {
             CartScreen(navController = navController)

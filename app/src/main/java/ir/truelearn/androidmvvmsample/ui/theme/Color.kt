@@ -127,3 +127,12 @@ val Colors.CartCyan: Color
 val Colors.Purple: Color
     @Composable
     get() = Color(0xFF8b3e7a)
+
+// setting
+val Colors.settingArrow: Color
+    @Composable
+    get() = if (isLight) Color(0xFF9E9FB1) else Color(0xFFD8D8D8)
+
+val Colors.settingIcon: Color
+    @Composable
+    get() = if (isLight) Color(0xFF333333) else Color(0xFFCCCCCC)

@@ -105,6 +105,9 @@ dependencies {
 
     //zarinpal
     implementation 'com.zarinpal:payment-provider-ktx:0.5.3'
+
+    //icon
+    implementation "androidx.compose.material:material-icons-extended:$compose_material_icon_version"
 }
 
 // Allow references to generated code
