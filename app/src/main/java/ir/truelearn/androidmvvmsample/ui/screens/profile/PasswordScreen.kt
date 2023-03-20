@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.screens.product_detail.FROM_COMMENT_SCREEN
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Constants.USER_TOKEN_KEY
 import ir.truelearn.androidmvvmsample.util.InputValidationUtil.isValidEmail
@@ -138,8 +139,15 @@ fun PasswordScreen(
                                     dataStore.saveUserId(it.id)
                                     dataStore.saveUserPhoneNumber(it.phone)
                                     dataStore.saveUserPassword(viewModel.inputPasswordState)
-                                    viewModel.pageState = ProfilePageState.PROFILE_STATE
+
+                                    if (!FROM_COMMENT_SCREEN){
+                                        viewModel.pageState = ProfilePageState.PROFILE_STATE
+                                    }
+                                    else if (FROM_COMMENT_SCREEN){
+                                        viewModel.pageState = ProfilePageState.SET_COMMENT_STATE
+                                    }
                                 }
+
                             }
 
                             loading = false

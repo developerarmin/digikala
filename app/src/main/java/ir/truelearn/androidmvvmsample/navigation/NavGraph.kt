@@ -18,7 +18,9 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchase
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
+import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
+import ir.truelearn.androidmvvmsample.ui.screens.profile.LoginScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
@@ -94,6 +96,7 @@ fun SetupNavGraph(
             CategoryScreen(navController = navController)
         }
 
+
         composable(
             route = Screen.ProductDetail.route + "/{id}/{amazing}/{price}/{discountPercent}",
             arguments = listOf(
@@ -106,7 +109,7 @@ fun SetupNavGraph(
                 navArgument("price") {
                     type = NavType.IntType
                 },
-                navArgument("discountPercent"){
+                navArgument("discountPercent") {
                     type = NavType.IntType
                 }
 
@@ -123,16 +126,40 @@ fun SetupNavGraph(
 
         composable(
             route = Screen.WebView.route + "?url={url}",
-            arguments = listOf(navArgument("url") {
-                type = NavType.StringType
-                defaultValue = ""
-                nullable = true
-            })
+            arguments = listOf(
+                navArgument("url") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                })
+
         ) {
             val url = it.arguments?.getString("url")
             url?.let {
                 WebPageScreen(navController = navController, url = url)
             }
+        }
+
+
+        composable(
+            route = Screen.NewComment.route + "/{image}/{title}",
+            arguments = listOf(
+                navArgument("image") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument("title") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+            )
+        ) {
+            NewCommentScreen(
+                navController = navController,
+                productDetailImage = it.arguments?.getString("image").toString(),
+                productDetailTitle = it.arguments?.getString("title").toString(),
+                )
+
         }
 
     }

@@ -33,6 +33,7 @@ import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.screens.category.SubCategoryItem
 import ir.truelearn.androidmvvmsample.ui.screens.home.CenterBannerItem
+import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.selectedBottomBar
 import ir.truelearn.androidmvvmsample.ui.theme.semiDarkText
@@ -58,10 +59,13 @@ fun ProfileScreen(
                 Profile(navController)
             }
             ProfilePageState.LOGIN_STATE -> {
-                LoginScreen()
+                LoginScreen(navController)
             }
             ProfilePageState.SET_PASSWORD_STATE -> {
                 PasswordScreen()
+            }
+            ProfilePageState.SET_COMMENT_STATE -> {
+//                NewCommentScreen()
             }
         }
 
