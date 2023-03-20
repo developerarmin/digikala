@@ -32,7 +32,6 @@ fun ShoppingCart(
     val isLogin = remember {
         mutableStateOf(MainActivity.USER_TOKEN)
     }
-    Log.d("level2", "ShoppingCart:${MainActivity.USER_TOKEN} ")
     LaunchedEffect(true) {
         viewModel.currentCartItems.collectLatest { list ->
             currentCartItems.value = list

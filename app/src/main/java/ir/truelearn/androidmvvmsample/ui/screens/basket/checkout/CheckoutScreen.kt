@@ -26,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.google.gson.Gson
 import ir.truelearn.androidmvvmsample.MainActivity
+import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_TOKEN
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressResponse
 import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
@@ -65,8 +66,8 @@ fun CheckoutScreen(
 // set default Address
     LaunchedEffect(key1 = true) {
         if (viewModel.defaultAddress.value == null) {
-            Log.d("level5", "token:${MainActivity.MY_TOKEN} ")
-            viewModel.getAddressList(MainActivity.MY_TOKEN)
+            Log.d("level5", "token:${USER_TOKEN} ")
+            viewModel.getAddressList(USER_TOKEN)
         }
         viewModel.userAddressList.collectLatest { result ->
             when (result) {
@@ -196,7 +197,7 @@ fun CheckoutScreen(
                     orderTotalPrice = cartDetail.value.payablePrice + cartDetail.value.shippingCost,
                     orderUserName = viewModel.defaultAddress.value!!.name,
                     orderUserPhone = viewModel.defaultAddress.value!!.phone,
-                    token = MainActivity.MY_TOKEN
+                    token = USER_TOKEN
                 )
                 cartViewModel.orderDetail.value = newOrder
                 navController.navigate(Screen.ConfirmPurchase.route)

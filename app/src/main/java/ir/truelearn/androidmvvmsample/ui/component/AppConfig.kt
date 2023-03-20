@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
+import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_ID
 import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_LANGUAGE
 import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_PASSWORD
@@ -35,6 +36,7 @@ fun AppConfig(
                             dataStore.saveUserId(it.id)
                             dataStore.saveUserPhoneNumber(it.phone)
                             dataStore.saveUserPassword(USER_PASSWORD)
+                            getDataStoreVariables(dataStore)
                         }
                     }
                 }
@@ -50,5 +52,5 @@ private fun getDataStoreVariables(dataStore: DataStoreViewModel) {
     USER_PHONE = dataStore.getUserPhoneNumber().toString()
     USER_PASSWORD = dataStore.getUserPassword().toString()
     USER_LANGUAGE = dataStore.getUserLanguage()
-
+    Log.d("level12", "token:${USER_TOKEN} ")
 }

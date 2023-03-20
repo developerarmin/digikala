@@ -25,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.MainActivity
+import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_TOKEN
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.address.UserAddressRequest
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -293,7 +294,7 @@ private fun saveAddress(viewModel: SaveAddressViewModel, onClick: (UserAddressRe
         name = name,
         phone = phone,
         postalCode = viewModel.inputPostalCode,
-        token = MainActivity.MY_TOKEN
+        token = USER_TOKEN
     )
     Log.d("level5", "$newAdress ")
     onClick(newAdress)
