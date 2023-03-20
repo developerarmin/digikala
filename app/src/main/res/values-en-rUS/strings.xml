@@ -112,4 +112,5 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="search_all_products">Search all products</string>
     <string name="hot_search_products">Hot search products</string>
     <string name="shopping_advice">Shopping advice</string>
+    <string name="all_products_search_category">All products in this category</string>
 </resources>

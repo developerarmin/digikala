@@ -15,7 +15,7 @@ sealed class Screen(val route: String) {
     object SaveUserAddress : Screen("save_user_address")
     object selectAddress : Screen("select_address")//AddressListScreen
     object selectCityName : Screen("select_city_name")
-
+    object SearchScreen : Screen("search_screen")
 
     fun withArgs(vararg args: Any): String {
         return buildString {
