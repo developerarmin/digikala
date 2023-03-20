@@ -144,5 +144,6 @@
     <string name="search_all_products">جستجو در همه کالاها</string>
     <string name="hot_search_products">جستجو های پرطرفدار</string>
     <string name="shopping_advice">مشاوره خرید آنلاین</string>
+    <string name="all_products_search_category">همه کالاهای دسته بندی</string>
 
 </resources>
