@@ -2,19 +2,23 @@ package ir.truelearn.androidmvvmsample.ui.screens.home
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import ir.truelearn.androidmvvmsample.navigation.Screen
+import com.google.android.material.snackbar.Snackbar
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.*
 
@@ -78,6 +82,8 @@ fun Home(navController: NavHostController,
 
                     TheMostFavoriteProductSection()
 
+                    ExitFromApp()
+
                 }
             }
 
@@ -107,3 +113,40 @@ fun HomeScreenLightPreview() {
 fun HomeScreenDarkPreview() {
 //    Home()
 }
+
+
+
+
+//For Exit From App
+sealed class BackPress {
+    object Idle : BackPress()
+    object InitialTouch : BackPress()
+}
+
+@Composable
+private fun ExitFromApp() {
+    var showToast by remember { mutableStateOf(false) }
+
+    var backPressState by remember { mutableStateOf<BackPress>(BackPress.Idle) }
+    val context = LocalContext.current
+
+    if(showToast){
+        Toast.makeText(context, "برای خروج دوباره کلیک کنید", Toast.LENGTH_SHORT).show()
+        showToast= false
+    }
+
+
+    LaunchedEffect(key1 = backPressState) {
+        if (backPressState == BackPress.InitialTouch) {
+            delay(2000)
+            backPressState = BackPress.Idle
+        }
+    }
+
+    BackHandler(backPressState == BackPress.Idle) {
+        backPressState = BackPress.InitialTouch
+        showToast = true
+    }
+}
+
+

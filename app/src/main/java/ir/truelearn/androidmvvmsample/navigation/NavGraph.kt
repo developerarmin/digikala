@@ -16,6 +16,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScree
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchaseScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
+import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
@@ -47,9 +48,7 @@ fun SetupNavGraph(
             CheckoutScreen(navController = navController)
         }
         composable(route = Screen.ConfirmPurchase.route) {
-            ConfirmPurchaseScreen(
-                navController = navController
-            )
+            ConfirmPurchaseScreen(navController = navController)
         }
 
         composable(route = Screen.selectAddress.route) {
@@ -58,7 +57,10 @@ fun SetupNavGraph(
 
         composable(route = Screen.SaveUserAddress.route) {
             SaveUserAddressScreen(navController = navController, viewModel = saveAddressViewModel)
+        }
 
+        composable(route = Screen.SearchScreen.route) {
+            SearchScreen(navController = navController)
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",

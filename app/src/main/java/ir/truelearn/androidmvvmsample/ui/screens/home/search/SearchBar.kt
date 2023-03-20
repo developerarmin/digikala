@@ -18,24 +18,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
 import ir.truelearn.androidmvvmsample.ui.theme.unSelectedBottomBar
 import java.util.Locale
 
-val showSearchScreen = mutableStateOf(false)
+//val showSearchScreen = mutableStateOf(false)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchBar(navController : NavHostController) {
-    if (showSearchScreen.value){
-        SearchScreen(navController)
-    }
+//    if (showSearchScreen.value){
+//        SearchScreen(navController)
+//    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(65.dp)
             .background(Color.White),
         elevation = 5.dp,
-        onClick = { showSearchScreen.value = true }
+        onClick = {
+            //showSearchScreen.value = true
+            navController.navigate(Screen.SearchScreen.route){
+                popUpTo(Screen.SearchScreen.route){
+                    inclusive = true
+                }
+            }
+        }
     ) {
         Box(
             modifier = Modifier
