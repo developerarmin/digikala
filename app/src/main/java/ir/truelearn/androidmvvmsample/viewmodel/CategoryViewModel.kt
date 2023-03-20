@@ -3,6 +3,7 @@ package ir.truelearn.androidmvvmsample.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.truelearn.androidmvvmsample.data.model.category.BrandsCategory
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
@@ -16,8 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoryViewModel @Inject constructor(private val repository: CategoryRepository) : ViewModel() {
     val subCategory = MutableStateFlow<NetworkResult<SubCategory>>(NetworkResult.Loading())
-    val categories_im = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
-
+    val brandsCategory = MutableStateFlow<NetworkResult<BrandsCategory>>(NetworkResult.Loading())
     suspend fun getAllDataFromServer() {
         viewModelScope.launch() {
 
@@ -25,7 +25,7 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
                 subCategory.emit(repository.getSubCategories())
             }
             launch {
-                categories_im.emit(repository.getCategories_im())
+                brandsCategory.emit(repository.getBrandsCategory())
             }
 
         }
