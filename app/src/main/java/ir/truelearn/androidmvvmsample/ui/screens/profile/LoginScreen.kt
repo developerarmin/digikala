@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.ui.component.MySackBar
 
 import ir.truelearn.androidmvvmsample.ui.theme.*
@@ -31,7 +32,10 @@ import ir.truelearn.androidmvvmsample.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginScreen(
+    navController: NavController,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
 
     val context = LocalContext.current
 
@@ -56,7 +60,8 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                             .padding(
                                 vertical = MaterialTheme.spacing.small,
                                 horizontal = MaterialTheme.spacing.small
-                            ).size(MaterialTheme.spacing.semiLarge),
+                            )
+                            .size(MaterialTheme.spacing.semiLarge),
                         tint = MaterialTheme.colors.selectedBottomBar
                     )
                 }
@@ -143,14 +148,14 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
 }
 
 
-@Preview
-@Composable
-fun LoginPreview() {
-    LoginScreen()
-}
-
-@Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-fun LoginScreenDarkPreview() {
-    LoginScreen()
-}
+//@Preview
+//@Composable
+//fun LoginPreview() {
+//    LoginScreen()
+//}
+//
+//@Composable
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+//fun LoginScreenDarkPreview() {
+//    LoginScreen()
+//}
