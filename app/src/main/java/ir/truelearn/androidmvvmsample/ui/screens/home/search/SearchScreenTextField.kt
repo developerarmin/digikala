@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -27,9 +28,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun SearchScreenTextField(navController: NavHostController,viewModel:HomeViewModel = hiltViewModel()) {
+fun SearchScreenTextField(
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = "")) }
+
+
 
     Column(modifier = Modifier.fillMaxWidth()) {
 
@@ -40,21 +47,27 @@ fun SearchScreenTextField(navController: NavHostController,viewModel:HomeViewMod
                 painter = painterResource(id = R.drawable.arrow_back2),
                 contentDescription = "arrow back",
                 modifier = Modifier.clickable {
-                    showSearchScreen.value = false
+                    //showSearchScreen.value = false
+                    navController.navigate(Screen.Home.route){
+                        popUpTo(Screen.SearchScreen.route){
+                            inclusive = true
+                        }
+                    }
+
                 },
                 tint = Color.DarkGray
             )
             TextField(
                 value = textFieldValueState,
-                onValueChange = { textFieldValueState = it },
+                onValueChange = {
+                    textFieldValueState = it
+                    CoroutineScope(Dispatchers.IO).launch {
+                        viewModel.searchProduct(textFieldValueState.text)
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .clickable {
-                       CoroutineScope(Dispatchers.IO).launch{
-                           viewModel.searchProduct(textFieldValueState.text)
-                       }
-                    }
                     .padding(
                         start = MaterialTheme.spacing.small,
                         end = MaterialTheme.spacing.small
@@ -87,5 +100,5 @@ fun SearchScreenTextField(navController: NavHostController,viewModel:HomeViewMod
 
         }
     }
-
 }
+

@@ -16,19 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
     val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
-    val bestSellerItems =
-        MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
-    val mostVisitedItems =
-        MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
-    val superMarketItems =
-        MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
+    val bestSellerItems = MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
+    val mostVisitedItems = MutableStateFlow<NetworkResult<List<BestItem>>>(NetworkResult.Loading())
+    val superMarketItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
-    val mostDiscountedItems =
-        MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
+    val mostDiscountedItems = MutableStateFlow<NetworkResult<List<MostDiscountedItem>>>(NetworkResult.Loading())
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
-    val centerBannerItems =
-        MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
+    val centerBannerItems = MutableStateFlow<NetworkResult<List<CenterBannerItem>>>(NetworkResult.Loading())
     val favoriteProducts =MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
     val searching = MutableStateFlow<NetworkResult<List<SearchProductsModel>>>(NetworkResult.Loading())
 
@@ -78,5 +73,4 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             searching.emit(repository.searchProduct(q))
         }
     }
-
 }

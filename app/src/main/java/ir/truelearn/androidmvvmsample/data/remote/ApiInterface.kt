@@ -89,7 +89,9 @@ interface ApiInterface {
 
 
     //Temporary
-    @GET("search")
-    suspend fun searchProduct(@Query("q") q:String):Response<ResponseResult<List<SearchProductsModel>>>
+    @GET("searchProductByName")
+    suspend fun searchProduct(@Query("search") q:String):Response<ResponseResult<List<SearchProductsModel>>>
+
+
 
 }

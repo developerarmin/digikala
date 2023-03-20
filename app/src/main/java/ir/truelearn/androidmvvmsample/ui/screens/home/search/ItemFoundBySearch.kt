@@ -4,13 +4,20 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -44,7 +51,9 @@ fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
             }
         }
     }
-    Row(modifier = Modifier.height(100.dp).fillMaxWidth()) {
+    Row(modifier = Modifier
+        .height(100.dp)
+        .fillMaxWidth()) {
         var imgProduct by remember { mutableStateOf("") }
         var nameProduct by remember { mutableStateOf("") }
         if (loading) {
@@ -59,34 +68,73 @@ fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
             }
         } else {
             viewModel.searching.value.data?.size?.let { size ->
-                imgProduct = viewModel.searching.value.data?.get(0)?.img.toString()
-                nameProduct = viewModel.searching.value.data?.get(0)?.name.toString()
+                for (i in viewModel.searching.value.data?.indices!!){
+                    imgProduct = viewModel.searching.value.data?.get(i)?.image.toString()
+                    nameProduct = viewModel.searching.value.data?.get(i)?.name.toString()
+                }
+
+                val painter = rememberAsyncImagePainter(
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(data = imgProduct)
+                        .apply(block = fun ImageRequest.Builder.() { scale(Scale.FILL) })
+                        .build()
+                )
+
 
                 val countFind = if (size <= 5) size else 5
                 for (i in 1..countFind) {
-                    Card(
-                        modifier = Modifier
-                            .height(100.dp)
-                            .fillMaxWidth(0.5f)
-                    ) {
+                    LazyRow(modifier = Modifier
+                        .height(200.dp)
+                        .fillMaxWidth()) {
+                        items(countFind){
+                               Card(
+                                   modifier = Modifier
+                                       .width(150.dp)
+                                       .padding(4.dp),
+                                   shape = RoundedCornerShape(3.dp),
+                                   elevation = 10.dp,
 
-                        val painter = rememberAsyncImagePainter(
-                            ImageRequest.Builder(LocalContext.current)
-                                .data(data = imgProduct)
-                                .apply(block = fun ImageRequest.Builder.() { scale(Scale.FILL) })
-                                .build()
-                        )
 
-                        Row(
-                            modifier = Modifier.padding(16.dp),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Image(painter = painter, contentDescription = "")
-                            Text(text = nameProduct)
-                        }
+                               ) {
+                                   Row(horizontalArrangement = Arrangement.SpaceBetween){
+                                       val lineHeight = MaterialTheme.typography.h2.fontSize * 4/3
+                                       //Spacer(modifier = Modifier.width(2.dp))
+                                       Image(painter = painter, contentDescription = "")
+                                       Text(
+                                           text = nameProduct,
+                                           fontSize = 10.sp,
+                                           lineHeight = lineHeight
+                                       )
+
+                                       Spacer(modifier = Modifier.width(2.dp))
+                                   }
+                               }
+                            }
+
                     }
                 }
             }
         }
     }
 }
+
+
+
+
+/*
+Card(modifier = Modifier.height(100.dp)) {
+
+    val painter = rememberAsyncImagePainter(
+        ImageRequest.Builder(LocalContext.current)
+            .data(data = imgProduct)
+            .apply(block = fun ImageRequest.Builder.() { scale(Scale.FILL) })
+            .build()
+    )
+
+    LazyRow(modifier = Modifier.padding(16.dp), horizontalArrangement = Arrangement.Center) {
+        items(3){
+            Image(painter = painter, contentDescription = "")
+            Text(text = nameProduct)
+        }
+    }
+}*/
