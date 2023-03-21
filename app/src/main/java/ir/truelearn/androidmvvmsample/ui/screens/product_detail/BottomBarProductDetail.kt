@@ -85,7 +85,7 @@ fun BottomBarProductDetail(
                                 1,
                                 CartStatus.CURRENT_CART
                             )
-                            //viewModel.addNewItem(itemCart)
+                            viewModel.addItemToCart(itemCart)
                         }
                         .wrapContentWidth(Alignment.CenterHorizontally)
                         .wrapContentHeight(Alignment.CenterVertically),
@@ -191,7 +191,3 @@ fun BottomBarProductDetail(
         }
     }
 }
-
-
-
-

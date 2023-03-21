@@ -14,4 +14,8 @@ object Constants {
     const val USER_LANGUAGE_KEY = "USER_LANGUAGE_KEY"
     const val ZARINPAL_MERCHANT_ID = "ce7101df-cb08-41f8-a20b-b21995173d8f"
     const val EXPANSTION_TRANSITION_DURATION = 450
+
+    //setting
+    const val FA_LANG = "فارسی"
+    const val EN_LANG = "English"
 }

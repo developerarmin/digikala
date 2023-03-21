@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
 import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
@@ -21,7 +22,8 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun ProductDetailSection(
-    viewModel: ProductDetailViewModel = hiltViewModel()
+    viewModel: ProductDetailViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     var item by remember {
         mutableStateOf<ProductDetailModel>(
@@ -106,7 +108,7 @@ fun ProductDetailSection(
 
         ProductDetailCard()
 
-        CommentsPreview(comments)
+        CommentsPreview(comments, navController,item)
 
 
     }

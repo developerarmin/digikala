@@ -11,10 +11,12 @@ sealed class Screen(val route: String) {
     object Category : Screen("category_screen")
     object WebView : Screen("webView_screen")
     object ProductDetail : Screen("productDetail_screen")
+    object NewComment : Screen("newComment_screen")
     object SaveUserAddress : Screen("save_user_address")
     object selectAddress : Screen("select_address")//AddressListScreen
     object selectCityName : Screen("select_city_name")
     object SearchScreen : Screen("search_screen")
+    object Setting:Screen("setting_screen")
 
     fun withArgs(vararg args: Any): String {
         return buildString {
