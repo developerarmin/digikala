@@ -1,31 +1,21 @@
 package ir.truelearn.androidmvvmsample.ui.screens.category
 
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.category.Sub
-import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
-import ir.truelearn.androidmvvmsample.ui.theme.LightCyan
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.screens.category.popularBrands.TheMostPopularBrands
 import ir.truelearn.androidmvvmsample.viewmodel.CategoryViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.withContext
 
 @Composable
 fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
@@ -66,6 +56,7 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
     var loading by remember {
         mutableStateOf(false)
     }
+
     LaunchedEffect(Dispatchers.Main) {
 
         viewModel.subCategory.collectLatest { result ->
@@ -100,7 +91,8 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        if (loading) {
+        if (loading)
+        {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -110,7 +102,9 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
             ) {
                 Loading3Dots(isDark = true)
             }
-        } else {
+        }
+        else
+        {
 
             CategoryItem(
                 title = stringResource(id = R.string.industrial_tools_and_equipment),
@@ -156,10 +150,8 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
                 title = stringResource(id = R.string.sports_and_travel),
                 subList = sportList
             )
-
-
+                TheMostPopularBrands()
         }
-
     }
 
 

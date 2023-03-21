@@ -112,19 +112,5 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="search_all_products">Search all products</string>
     <string name="hot_search_products">Hot search products</string>
     <string name="shopping_advice">Shopping advice</string>
-    <string name="all_products_search_category">All products in this category</string>
-
-    <!--Setting-->
-    <string name="setting">Setting</string>
-    <string name="repetitive_questions">Repetitive Question</string>
-    <string name="privacy">Privacy</string>
-    <string name="terms_of_use">Terms of use</string>
-    <string name="error_report">Error report</string>
-    <string name="rating_to_digikal">Rating to digikal</string>
-    <string name="send_information_to_improve_user_experience">Send information to improve UX</string>
-    <string name="report_error_by_shaking_the_phone">Report error by shaking the phone</string>
-    <string name="sign_out">Sign out</string>
-    <string name="changing_lang">Change Language</string>
-    <string name="version_app">App Version: %s</string>
-    <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
+    <string name="the_most_popular_brands">the most popular brands</string>
 </resources>

@@ -57,15 +57,13 @@ fun ConfirmPurchaseScreen(
                     is NetworkResult.Success -> {
                         displayToast(context, result.message)
                         waitingDialogState = false
-                        Log.d("level8", "message:${result.message} ")
-                        Log.d("level8", "data:${result.data} ")
                         result.data?.let {
                             //clear shopping cart
                             waitingDialogState = true
                             cartViewModel.confirmPurchase(
                                 ConfirmPurchase(
                                     result.data,
-                                    MainActivity.MY_TOKEN,
+                                    MainActivity.USER_TOKEN,
                                     "342"
                                 )
                             )

@@ -87,7 +87,6 @@ class MainActivity : ComponentActivity() {
         lateinit var USER_PHONE: String
         lateinit var USER_PASSWORD: String
         lateinit var USER_LANGUAGE: String
-        const val  MY_TOKEN: String="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkZjY5YWJkODkwZGUwMDQwNmMzNGIxIiwiaWF0IjoxNjc4MTg3MjM5LCJleHAiOjE2NzgzMDcyMzl9.7W5J5dSgIBwUh8hzD-WpHviYXi49m0nzTlJ__oODUOs"
     }
 
 

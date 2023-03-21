@@ -87,7 +87,7 @@ fun AddressListScreen(
                 ?.savedStateHandle
                 ?.getLiveData<Boolean>("result")?.value
             if (addedNewAddress != null && addedNewAddress) {
-                viewModel.getAddressList(MainActivity.MY_TOKEN)
+                viewModel.getAddressList(MainActivity.USER_TOKEN)
             }
             viewModel.userAddressList.collectLatest { result ->
                 when (result) {
