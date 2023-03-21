@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.category.popularBrands
 
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -11,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.category.BrandsSub
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.screens.category.SpecialSaleCard
 import ir.truelearn.androidmvvmsample.viewmodel.CategoryViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -130,6 +132,13 @@ fun TheMostPopularBrands() {
             getString(id = R.string.home_and_kitchen) -> DisplayBrandImages(homeList)
             getString(id = R.string.books_and_stationery) -> DisplayBrandImages(bookList)
             getString(id = R.string.sports_and_travel) -> DisplayBrandImages(sportList)
+        }
+
+        LazyColumn(modifier=Modifier.fillMaxWidth()
+            .height(600.dp)){
+            items(10){
+                SpecialSaleCard()
+            }
         }
     }
 }
