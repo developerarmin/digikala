@@ -17,8 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,6 +30,7 @@ import ir.truelearn.androidmvvmsample.BuildConfig
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
+import ir.truelearn.androidmvvmsample.ui.component.MenuSectionRowItem
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.Constants
 import ir.truelearn.androidmvvmsample.viewmodel.DataStoreViewModel
@@ -48,7 +47,7 @@ fun SettingScreen(
     ) {
         SettingTop(navController = navController)
 
-        SettingMenu(navController = navController)
+        SettingMenuSection(navController = navController)
         Spacer(modifier = Modifier.height(100.dp))
         SettingBottom()
         Spacer(modifier = Modifier.height(20.dp))
@@ -99,10 +98,10 @@ fun SettingBottom() {
 
 
 @Composable
-fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= hiltViewModel()) {
+fun SettingMenuSection(navController: NavHostController, dataStore: DataStoreViewModel= hiltViewModel()) {
 
 
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -126,7 +125,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
             tint = MaterialTheme.colors.settingArrow
         )
     }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -151,7 +150,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
         )
     }
 
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -175,7 +174,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
             tint = MaterialTheme.colors.settingArrow
         )
     }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -199,7 +198,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
             tint = MaterialTheme.colors.settingArrow
         )
     }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -223,7 +222,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
             tint = MaterialTheme.colors.settingArrow
         )
     }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -247,7 +246,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
             tint = MaterialTheme.colors.settingArrow
         )
     }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -288,7 +287,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
 //            checkedState.value = !checkedState.value
 //        })
 //    }
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -311,7 +310,7 @@ fun SettingMenu(navController: NavHostController,dataStore: DataStoreViewModel= 
         })
     }
     val loginViewModel:LoginViewModel = hiltViewModel()
-    SettingRowItem(
+    MenuSectionRowItem(
         text = {
             Text(
                 style = MaterialTheme.typography.h5,
@@ -388,60 +387,6 @@ fun SettingTop(navController: NavHostController) {
     }
 }
 
-@Composable
-fun SettingRowItem(
-    text: @Composable () -> Unit,
-    icon: @Composable () -> Unit,
-    isHaveDivider: Boolean,
-    modifier: Modifier = Modifier,
-    action: @Composable () -> Unit = { Spacer(Modifier.height(0.dp)) }
-) {
-    Row(
-        modifier
-            .fillMaxWidth()
-            .height(60.dp)
-            .padding(horizontal = MaterialTheme.spacing.medium)
-    ) {
-        Column(
-            Modifier
-
-                .fillMaxHeight()
-                .weight(0.1f),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            icon()
-        }
-        Column(
-            Modifier
-                .fillMaxHeight()
-                .weight(0.9f)
-                .padding(horizontal = MaterialTheme.spacing.small),
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.9f),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                text()
-                action()
-            }
-            if (isHaveDivider) {
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(1.dp)
-                        .alpha(0.4f),
-                    color = Color.LightGray,
-                )
-            }
-        }
-
-    }
-}
 
 
 @Composable
