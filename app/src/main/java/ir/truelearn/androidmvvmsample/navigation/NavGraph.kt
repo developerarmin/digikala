@@ -65,7 +65,7 @@ fun SetupNavGraph(
             SaveUserAddressScreen(navController = navController, viewModel = saveAddressViewModel)
         }
 
-        composable(route = Screen.SearchScreen.route) {
+        composable(route = Screen.SearchScreen.route ) {
             SearchScreen(navController = navController)
         }
 
@@ -105,6 +105,7 @@ fun SetupNavGraph(
                 },
                 navArgument("amazing") {
                     type = NavType.BoolType
+
                 },
                 navArgument("price") {
                     type = NavType.IntType

@@ -93,6 +93,13 @@ interface ApiInterface {
     @GET("searchProductByName")
     suspend fun searchProduct(@Query("search") q:String):Response<ResponseResult<List<SearchProductsModel>>>
 
+    @GET("searchAll")
+    suspend fun searchProductByBrand(
+        @Query("pageSize") q1 : String,
+        @Query("pageNumber") q2: String,
+        @Query("search")q3 : String
+    ) : Response<ResponseResult<List<SearchProductsModel>>>
+
 
     @GET("getBestBrands")
     suspend fun getBrandsCategory(): Response<ResponseResult<BrandsCategory>>

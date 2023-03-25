@@ -2,42 +2,39 @@ package ir.truelearn.androidmvvmsample.ui.screens.home.search
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
-import androidx.compose.material.Text
+
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
+
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import ir.truelearn.androidmvvmsample.data.model.home.SearchProductsModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.screens.home.showSearchResult
 import ir.truelearn.androidmvvmsample.ui.theme.LocalSpacing
-import ir.truelearn.androidmvvmsample.ui.theme.grayAlpha
-import ir.truelearn.androidmvvmsample.ui.theme.roundedShape
+
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
+@OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
+fun ItemFoundBySearch(navController:NavHostController,viewModel: HomeViewModel = hiltViewModel()) {
 
     var listFound by remember { mutableStateOf<List<SearchProductsModel>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
@@ -46,7 +43,9 @@ fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
             viewModel.searching.collectLatest { result ->
                 when (result) {
                     is NetworkResult.Success -> {
-                        result.data?.let { listFound = it }
+                        result.data?.let {
+                            listFound = it
+                        }
                         loading = false
                         showSearchResult.value = true
                     }
@@ -64,6 +63,7 @@ fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
             .fillMaxWidth()) {
             var imgProduct by remember { mutableStateOf("") }
             var nameProduct by remember { mutableStateOf("") }
+
             if (loading) {
                 Column(
                     modifier = Modifier
@@ -95,30 +95,12 @@ fun ItemFoundBySearch(viewModel: HomeViewModel = hiltViewModel()) {
                             .height(200.dp)
                             .fillMaxWidth()) {
                             items(countFind){
-                                Card(
-                                    modifier = Modifier
-                                        .width(200.dp)
-                                        .padding(4.dp)
-                                    ,
-                                    shape = MaterialTheme.roundedShape.extraSmall,
-//                                   elevation = 1.dp,
-//                                   border = BorderStroke(1.dp, MaterialTheme.colors.grayAlpha)
-
-
-                                ) {
-                                    Row(horizontalArrangement = Arrangement.SpaceBetween){
-                                        val lineHeight = MaterialTheme.typography.h2.fontSize * 4/3
-                                        //Spacer(modifier = Modifier.width(2.dp))
-                                        Image(painter = painter, contentDescription = "")
-                                        Text(
-                                            text = nameProduct,
-                                            fontSize = 12.sp,
-                                            lineHeight = lineHeight
-                                        )
-
-                                        Spacer(modifier = Modifier.width(2.dp))
-                                    }
-                                }
+                                SearchItem(
+                                    nameProduct = nameProduct,
+                                    painter = painter,
+                                    navController = navController,
+                                    item = listFound[i-1]
+                                )
                             }
 
                         }

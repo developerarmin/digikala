@@ -1,6 +1,7 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home.search
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -27,6 +28,11 @@ fun AllProductsSearch(productName: String, navController: NavHostController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(MaterialTheme.spacing.small)
+            .clickable {
+
+            }
+        ,
+        horizontalArrangement = Arrangement.Start
     ) {
         Image(
             painter = painterResource(id = R.drawable.all_products_search_icon),
