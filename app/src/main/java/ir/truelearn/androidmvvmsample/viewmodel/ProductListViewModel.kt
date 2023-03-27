@@ -19,24 +19,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductListViewModel @Inject constructor(private val repository : HomeRepository) : ViewModel() {
 
-    val productList: Flow<PagingData<SearchProductsModel>> = Pager(PagingConfig(pageSize = 10)) {
+    val productList = Pager(
+        PagingConfig(pageSize = 4)) {
         ProductDataSource(repository)
     }.flow.cachedIn(viewModelScope)
-
-
-//    val productList = MutableStateFlow<NetworkResult<List<SearchProductsModel>>> (NetworkResult.Loading())
-
-//    suspend fun getAllDataFromServer(
-//        pageSize: String ,
-//        pageNumber : String ,
-//        searchValue : String
-//    ) {
-//        viewModelScope.launch {
-//            launch {
-//                productList.emit(repository.searchProductByBrand(pageSize,pageNumber,searchValue))
-//            }
-//        }
-//    }
-
 
 }

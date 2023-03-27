@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.repository
 
+import ir.truelearn.androidmvvmsample.data.model.ResponseResult
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
@@ -64,19 +65,11 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
             api.searchProduct(q)
         }
 
+
     suspend fun searchProductByBrand(
         pageSize: String,
         pageNumber: String,
         searchValue: String
-    ): NetworkResult<List<SearchProductsModel>> =
-        safeApiCall {
-            api.searchProductByBrand(pageSize, pageNumber, searchValue)
-        }
-
-    suspend fun searchProductByBrand1(
-        pageSize: String,
-        pageNumber: String,
-        searchValue: String
-    ): List<SearchProductsModel> =
-        api.searchProductByBrand1(pageSize, pageNumber, searchValue)
+    ): ResponseResult<List<SearchProductsModel>> =
+        api.searchProductByBrand(pageSize, pageNumber, searchValue)
 }

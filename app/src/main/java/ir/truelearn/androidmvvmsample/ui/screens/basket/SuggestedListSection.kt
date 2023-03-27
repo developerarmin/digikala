@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -15,11 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
 import ir.truelearn.androidmvvmsample.data.model.basket.CartStatus
 import ir.truelearn.androidmvvmsample.data.model.home.MostDiscountedItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
@@ -29,7 +32,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
+fun SuggestListSection(navController: NavController,
+                       viewModel: CartViewModel = hiltViewModel()) {
 
     var suggestedList by remember {
         mutableStateOf<List<MostDiscountedItem>>(emptyList())
@@ -73,6 +77,11 @@ fun SuggestListSection(viewModel: CartViewModel = hiltViewModel()) {
             .height(680.dp),
         verticalArrangement = Arrangement.Top
     ) {
+        Button(onClick = {
+            navController.navigate(Screen.ProductListScreen.route)
+        }) {
+            Text(text = "go to search All")
+        }
         Text(
             modifier = Modifier
                 .fillMaxWidth()

@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.data.model
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ir.truelearn.androidmvvmsample.data.model.home.SearchProductsModel
@@ -9,25 +10,29 @@ class ProductDataSource(
     private val repo: HomeRepository
 ) : PagingSource<Int, SearchProductsModel>() {
     override fun getRefreshKey(state: PagingState<Int, SearchProductsModel>): Int? {
-        //todo check for error handling
-        return state.anchorPosition
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SearchProductsModel> {
-        return try {
-            val page = params.key ?: 1
-            val productResponse = repo.searchProductByBrand1(
-                pageNumber = page.toString(),
+
+            return try {
+            val nextPageNumber = params.key ?: 1
+            val response = repo.searchProductByBrand(
+                pageNumber = nextPageNumber.toString(),
                 pageSize = "4",
                 searchValue = "م"
-            )
+            ).data
+                        Log.d("2121", "load:${response.size} ")
             LoadResult.Page(
-                data = productResponse,
-                prevKey = if (page == 1) null else page - 1,
-                nextKey = page.plus(1)
+                data = response,
+                prevKey = null,
+                nextKey = if (response.isNotEmpty()) nextPageNumber + 1 else null
             )
-
         } catch (e: Exception) {
+            Log.d("2121", "error:$e ")
             LoadResult.Error(e)
         }
     }

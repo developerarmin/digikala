@@ -68,7 +68,7 @@ fun ShoppingCart(
                     }
                 }
                 item {
-                    SuggestListSection()
+                    SuggestListSection(navController)
                 }
             } else {
 
