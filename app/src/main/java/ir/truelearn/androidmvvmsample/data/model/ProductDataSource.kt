@@ -18,8 +18,8 @@ class ProductDataSource(
             val page = params.key ?: 1
             val productResponse = repo.searchProductByBrand1(
                 pageNumber = page.toString(),
-                pageSize = "10",
-                searchValue = "sdf"
+                pageSize = "4",
+                searchValue = "م"
             )
             LoadResult.Page(
                 data = productResponse,
