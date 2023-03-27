@@ -108,6 +108,8 @@ dependencies {
 
     //icon
     implementation "androidx.compose.material:material-icons-extended:$compose_material_icon_version"
+    //Paging 3.0
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha10'
 }
 
 // Allow references to generated code

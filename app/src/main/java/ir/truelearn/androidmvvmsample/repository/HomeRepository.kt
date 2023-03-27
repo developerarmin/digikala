@@ -62,8 +62,8 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
             api.searchProduct(q)
         }
 
-    suspend fun searchProductByBrand(q1:String,q2:String,q3:String) : NetworkResult<List<SearchProductsModel>> =
+    suspend fun searchProductByBrand(pageSize:String, pageNumber:String, searchValue:String) : NetworkResult<List<SearchProductsModel>> =
         safeApiCall {
-            api.searchProductByBrand(q1,q2,q3)
+            api.searchProductByBrand(pageSize,pageNumber,searchValue)
         }
 }
