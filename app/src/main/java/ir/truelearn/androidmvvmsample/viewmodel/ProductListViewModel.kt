@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductListViewModel @Inject constructor(private val repository : HomeRepository) : ViewModel() {
-    private val productList = MutableStateFlow<NetworkResult<List<SearchProductsModel>>> (NetworkResult.Loading())
+    val productList = MutableStateFlow<NetworkResult<List<SearchProductsModel>>> (NetworkResult.Loading())
 
     suspend fun getAllDataFromServer(
         pageSize: String ,
