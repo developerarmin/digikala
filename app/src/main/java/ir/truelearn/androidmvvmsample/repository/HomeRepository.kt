@@ -18,6 +18,7 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         safeApiCall {
             api.getBestSellerItems()
         }
+
     suspend fun getMostVisitedItems(): NetworkResult<List<BestItem>> =
         safeApiCall {
             api.getMostVisitedItems()
@@ -52,18 +53,30 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         safeApiCall {
             api.getCenterBanners()
         }
+
     suspend fun getMostFavoriteProducts(): NetworkResult<List<FavoriteProduct>> =
         safeApiCall {
             api.getMostFavoriteProducts()
         }
 
-    suspend fun searchProduct(q:String) : NetworkResult<List<SearchProductsModel>> =
+    suspend fun searchProduct(q: String): NetworkResult<List<SearchProductsModel>> =
         safeApiCall {
             api.searchProduct(q)
         }
 
-    suspend fun searchProductByBrand(pageSize:String, pageNumber:String, searchValue:String) : NetworkResult<List<SearchProductsModel>> =
+    suspend fun searchProductByBrand(
+        pageSize: String,
+        pageNumber: String,
+        searchValue: String
+    ): NetworkResult<List<SearchProductsModel>> =
         safeApiCall {
-            api.searchProductByBrand(pageSize,pageNumber,searchValue)
+            api.searchProductByBrand(pageSize, pageNumber, searchValue)
         }
+
+    suspend fun searchProductByBrand1(
+        pageSize: String,
+        pageNumber: String,
+        searchValue: String
+    ): List<SearchProductsModel> =
+        api.searchProductByBrand1(pageSize, pageNumber, searchValue)
 }
