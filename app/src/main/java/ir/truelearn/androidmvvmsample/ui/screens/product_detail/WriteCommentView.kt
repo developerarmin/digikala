@@ -46,7 +46,7 @@ fun WriteCommentView(
                     FROM_COMMENT_SCREEN =true
                     navController.navigate(Screen.Profile.route)
                 }else{
-                    navController.navigate(route = Screen.NewComment.withArgs("item.imageSlider[0].image",item.name))
+                    navController.navigate(route = Screen.NewComment.withArgs(item.imageSlider[0].image,item.name))
                 }
             }
     ) {
