@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun ProductListScreen(
-    searchValue: String,
+    searchValue: String="",
     navController: NavHostController,
     viewModel: ProductListViewModel = hiltViewModel()
 ) {
