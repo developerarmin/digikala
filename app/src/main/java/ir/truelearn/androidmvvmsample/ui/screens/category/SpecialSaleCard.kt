@@ -18,21 +18,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.home.SearchProductsModel
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
-@Preview
 @Composable
-fun SpecialSaleCard() {
+fun SpecialSaleCard(item: SearchProductsModel) {
     val title = "فروش ویژه"
     val name =
-        "محافظ صفحه نمایش گلس مات مخصوص گوشی های سامسونگ در  قیمت های بیسار مناسب موجود می باشد برای دیدن به صفحه برید"
-    val seller = "موجود در انبار دیجی کالا"
+        item.name
+    val seller = item.seller
     val rate = 3.6
-    val discount = 23
-    val currentPrice = "234000"
-    val previousPrice = "265000"
+    val discount = item.discountPercent
+    val currentPrice =DigitHelper.applyDiscount(item.price.toInt(), item.discountPercent)
+    val previousPrice =  item.price
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,7 +55,7 @@ fun SpecialSaleCard() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.place_holder),
+                painter = rememberAsyncImagePainter(item.image),
                 contentDescription = "",
                 modifier = Modifier
                     .width(120.dp)
@@ -165,7 +166,7 @@ fun SpecialSaleCard() {
                             Text(
                                 text = DigitHelper.digitBySeparator(
                                     DigitHelper.digitByLocate(
-                                        currentPrice
+                                        currentPrice.toString()
                                     )
                                 ),
                                 style = MaterialTheme.typography.body2,
@@ -182,7 +183,7 @@ fun SpecialSaleCard() {
                         Text(
                             text = DigitHelper.digitBySeparator(
                                 DigitHelper.digitByLocate(
-                                    previousPrice
+                                    previousPrice.toString()
                                 )
                             ),
                             color = Color.LightGray,

@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.ui.screens.ProductListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
@@ -15,12 +15,12 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddressS
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchaseScreen
+import ir.truelearn.androidmvvmsample.ui.screens.category.SpecialSaleCard
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
-import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreen
+import ir.truelearn.androidmvvmsample.ui.screens.home.search.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
-import ir.truelearn.androidmvvmsample.ui.screens.profile.LoginScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
@@ -67,6 +67,10 @@ fun SetupNavGraph(
 
         composable(route = Screen.SearchScreen.route ) {
             SearchScreen(navController = navController)
+        }
+
+        composable(route = Screen.ProductListScreen.route){
+            ProductListScreen(navController = navController)
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",

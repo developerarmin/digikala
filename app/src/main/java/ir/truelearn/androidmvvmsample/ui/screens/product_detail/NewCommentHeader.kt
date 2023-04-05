@@ -33,7 +33,7 @@ fun NewCommentHeader(navController: NavController, image: String, title:String) 
         }) {
             Icon(
                 imageVector = Icons.Filled.ArrowForward,
-                contentDescription = null,
+                contentDescription = "",
             )
         }
 
