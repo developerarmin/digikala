@@ -74,9 +74,5 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             searching.emit(repository.searchProduct(q))
         }
     }
-    suspend fun searchProductByBrand(q1:String,q2:String,q3:String){
-        viewModelScope.launch {
-            searchProductByBrand.emit(repository.searchProductByBrand(q1,q2,q3))
-        }
-    }
+
 }

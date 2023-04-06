@@ -98,7 +98,7 @@ interface ApiInterface {
         @Query("pageSize") q1 : String,
         @Query("pageNumber") q2: String,
         @Query("search")q3 : String
-    ) : Response<ResponseResult<List<SearchProductsModel>>>
+    ) : ResponseResult<List<SearchProductsModel>>
 
 
     @GET("getBestBrands")

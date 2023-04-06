@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.screens.home.showSearchResult
 import ir.truelearn.androidmvvmsample.ui.theme.font_standard
 
@@ -29,9 +30,8 @@ fun AllProductsSearch(productName: String, navController: NavHostController) {
             .fillMaxWidth()
             .padding(MaterialTheme.spacing.small)
             .clickable {
-
-            }
-        ,
+                navController.navigate(Screen.ProductListScreen.route)
+            },
         horizontalArrangement = Arrangement.Start
     ) {
         Image(

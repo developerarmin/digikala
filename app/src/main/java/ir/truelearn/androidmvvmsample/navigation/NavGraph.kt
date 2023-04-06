@@ -18,6 +18,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchase
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
+import ir.truelearn.androidmvvmsample.ui.screens.home.search.ProductListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.LoginScreen
@@ -67,6 +68,10 @@ fun SetupNavGraph(
 
         composable(route = Screen.SearchScreen.route ) {
             SearchScreen(navController = navController)
+        }
+
+        composable(route = Screen.ProductListScreen.route){
+            ProductListScreen(navController = navController)
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",
