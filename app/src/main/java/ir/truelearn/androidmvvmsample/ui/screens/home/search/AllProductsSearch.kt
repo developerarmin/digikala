@@ -30,7 +30,11 @@ fun AllProductsSearch(productName: String, navController: NavHostController) {
             .fillMaxWidth()
             .padding(MaterialTheme.spacing.small)
             .clickable {
-                navController.navigate(Screen.ProductListScreen.route)
+                navController.navigate(Screen.ProductListScreen.route){
+                    popUpTo(Screen.Home.route){
+                        inclusive = true
+                    }
+                }
             },
         horizontalArrangement = Arrangement.Start
     ) {
