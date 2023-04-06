@@ -22,7 +22,8 @@ fun SearchScreen(navController: NavHostController) {
 
         if (showSearchResult.value){
             ItemFoundBySearch(navController)
-            AllProductsSearch(productName = "", navController = navController)
+            //AllProductsSearch(productName ="", navController = navController)
+            ItemNameFoundBySearch(navController=navController)
 
         } else {
             HotProductSearch()

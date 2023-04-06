@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import ir.truelearn.androidmvvmsample.ui.screens.ProductListScreen
+
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen

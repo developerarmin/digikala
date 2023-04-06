@@ -98,7 +98,7 @@ fun SearchScreenTextField(
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
             }
-        }
+    }
 
 
 }
