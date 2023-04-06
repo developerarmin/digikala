@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.home
+package ir.truelearn.androidmvvmsample.ui.screens.home.search
 
 
 import androidx.compose.foundation.layout.*
@@ -6,9 +6,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import ir.truelearn.androidmvvmsample.ui.screens.home.search.AllProductsSearch
-import ir.truelearn.androidmvvmsample.ui.screens.home.search.HotProductSearch
-import ir.truelearn.androidmvvmsample.ui.screens.home.search.ItemFoundBySearch
+import ir.truelearn.androidmvvmsample.ui.screens.home.OnlineShoppingAdviceCard
+import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreenTextField
+import ir.truelearn.androidmvvmsample.ui.screens.home.showSearchResult
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 

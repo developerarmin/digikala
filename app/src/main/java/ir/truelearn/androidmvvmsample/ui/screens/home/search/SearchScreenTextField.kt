@@ -36,7 +36,7 @@ fun SearchScreenTextField(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = "")) }
-    if (!textFieldValueState.text.isNullOrBlank()){
+    if (textFieldValueState.text.isNotBlank()){
         showSearchResult.value = true
     }
     Column(modifier = Modifier.fillMaxWidth()) {
