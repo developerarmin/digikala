@@ -25,15 +25,14 @@ import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 
 @Composable
-fun SpecialSaleCard() {
+fun SpecialSaleCard(item: SearchProductsModel) {
     val title = "فروش ویژه"
-    val name =
-        "محافظ صفحه نمایش گلس مات مخصوص گوشی های سامسونگ در  قیمت های بیسار مناسب موجود می باشد برای دیدن به صفحه برید"
-    val seller = "موجود در انبار دیجی کالا"
+    val name = item.name
+    val seller = item.seller
     val rate = 3.6
-    val discount = 23
-    val currentPrice = "234000"
-    val previousPrice = "265000"
+    val discount = item.discountPercent
+    val previousPrice = item.price
+    val currentPrice = DigitHelper.applyDiscount(previousPrice.toInt(),discount)
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -166,7 +165,7 @@ fun SpecialSaleCard() {
                             Text(
                                 text = DigitHelper.digitBySeparator(
                                     DigitHelper.digitByLocate(
-                                        currentPrice
+                                        currentPrice.toString()
                                     )
                                 ),
                                 style = MaterialTheme.typography.body2,

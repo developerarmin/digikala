@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.home
+package ir.truelearn.androidmvvmsample.ui.screens.home.search
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
@@ -8,14 +8,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDirection
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -26,9 +24,9 @@ import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
 
 var showSearchResult = mutableStateOf(false)
+
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SearchScreenTextField(

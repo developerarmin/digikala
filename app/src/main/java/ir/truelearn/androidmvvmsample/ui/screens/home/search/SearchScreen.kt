@@ -7,8 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.ui.screens.home.OnlineShoppingAdviceCard
-import ir.truelearn.androidmvvmsample.ui.screens.home.SearchScreenTextField
-import ir.truelearn.androidmvvmsample.ui.screens.home.showSearchResult
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 
@@ -22,7 +20,7 @@ fun SearchScreen(navController: NavHostController) {
 
         if (showSearchResult.value){
             ItemFoundBySearch(navController)
-            AllProductsSearch(productName = "", navController = navController)
+            ItemNameFoundBySearch(navController)
 
         } else {
             HotProductSearch()

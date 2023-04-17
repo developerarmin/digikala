@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,16 +28,19 @@ import ir.truelearn.androidmvvmsample.viewmodel.ProductListViewModel
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ProductListScreen(
-    searchValue: String = "",
+    productName: String = "",
     navController: NavHostController,
     viewModel: ProductListViewModel = hiltViewModel()
 ) {
     val productList = viewModel.productList.collectAsLazyPagingItems()
+
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(Modifier.fillMaxSize()) {
 
-            items(productList) {
-                SpecialSaleCard()
+            items(productList) { item ->
+                if (item != null) {
+                    SpecialSaleCard(item)
+                }
             }
 
             productList.apply {
