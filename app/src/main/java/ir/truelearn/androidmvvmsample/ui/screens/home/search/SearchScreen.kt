@@ -47,6 +47,10 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 
@@ -90,7 +94,10 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
                 onValueChange = {
                     textFieldValueState = it
                     CoroutineScope(Dispatchers.IO).launch {
-                        viewModel.searchProduct(textFieldValueState.text)
+                        flowOf(textFieldValueState)
+                            .debounce(300)
+                            .distinctUntilChanged()
+                            .collectLatest { viewModel.searchProduct(textFieldValueState.text)}
                     }
                 },
                 modifier = Modifier
