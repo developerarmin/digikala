@@ -8,6 +8,7 @@ import ir.truelearn.androidmvvmsample.repository.HomeRepository
 
 class ProductDataSource(
     private val repo: HomeRepository,
+    var searchValue : String,
 ) : PagingSource<Int, SearchProductsModel>() {
     override fun getRefreshKey(state: PagingState<Int, SearchProductsModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -23,7 +24,7 @@ class ProductDataSource(
             val response = repo.searchProductByBrand(
                 pageNumber = nextPageNumber.toString(),
                 pageSize = "10",
-                searchValue = " "
+                searchValue = searchValue
             ).data
             Log.d("2121", "load:${response.size} ")
             LoadResult.Page(
@@ -35,5 +36,6 @@ class ProductDataSource(
             Log.d("2121", "error:$e ")
             LoadResult.Error(e)
         }
+
     }
 }

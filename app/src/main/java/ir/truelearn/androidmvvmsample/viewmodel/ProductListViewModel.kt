@@ -1,5 +1,10 @@
 package ir.truelearn.androidmvvmsample.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -16,13 +21,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductListViewModel @Inject constructor(private val repository : HomeRepository) : ViewModel() {
+class ProductListViewModel @Inject constructor(
+    private val repository : HomeRepository,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
+    private val searchValue = checkNotNull(savedStateHandle.get<String?>("searchValue"))
 
     val productList = Pager(
-        PagingConfig(pageSize = 10)
+        PagingConfig(pageSize = 10),
     ) {
-        ProductDataSource(repository)
+        ProductDataSource(repository,searchValue)
     }.flow.cachedIn(viewModelScope)
 
 }

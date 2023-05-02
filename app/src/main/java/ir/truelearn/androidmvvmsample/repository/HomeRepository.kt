@@ -16,6 +16,8 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
             api.getAmazingItems()
         }
 
+
+
     suspend fun getBestSellerItems(): NetworkResult<List<BestItem>> =
         safeApiCall {
             api.getBestSellerItems()
@@ -70,5 +72,16 @@ class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseAp
         searchValue: String
     ): ResponseResult<List<SearchProductsModel>> =
         api.searchProductByBrand(pageSize, pageNumber, searchValue)
+
+    suspend fun searchAllProduct(
+        pageSize: String,
+        pageNumber: String,
+        searchValue: String
+    ): NetworkResult<List<SearchProductsModel>> =
+        safeApiCall {
+            api.searchAllProducts(pageSize,pageNumber,searchValue)
+        }
+
+
 
 }
