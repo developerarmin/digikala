@@ -70,8 +70,17 @@ fun SetupNavGraph(
             SearchScreen(navController = navController)
         }
 
-        composable(route = Screen.ProductListScreen.route){
-            ProductListScreen(navController = navController)
+        composable(route = Screen.ProductListScreen.route + "/{searchValue}",
+            arguments = listOf(
+                navArgument("searchValue"){
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                }
+            )
+        ){
+            it.arguments!!.getString("searchValue")
+                ?.let { searchValue -> ProductListScreen(navController = navController, searchValue = searchValue) }
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",

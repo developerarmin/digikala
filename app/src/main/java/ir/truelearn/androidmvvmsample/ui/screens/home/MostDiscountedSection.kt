@@ -107,18 +107,6 @@ fun MostDiscountedSection(
                     MostDiscountedCard(discountedItem = item,navHostController)
                 }
             }
-//            LazyVerticalGrid(
-//                columns = GridCells.Fixed(2),
-//                modifier = Modifier
-//                    .wrapContentHeight()
-//                    .fillMaxWidth()
-//            ) {
-//
-//                items(mostDiscountedList) { item ->
-//                    MostDiscountedCard(discountedItem = item)
-//                }
-//
-//            }
 
         }
     }

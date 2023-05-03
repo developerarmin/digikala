@@ -33,6 +33,7 @@ fun SearchItem(
         shape = MaterialTheme.roundedShape.extraSmall,
         onClick = {
             navController.navigate(Screen.ProductDetail.withArgs(item._id,isAmazing,item.price,item.discountPercent))
+
         }
 
 

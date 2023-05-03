@@ -28,18 +28,19 @@ import ir.truelearn.androidmvvmsample.viewmodel.ProductListViewModel
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ProductListScreen(
-    productName: String = "",
+    searchValue: String ,
     navController: NavHostController,
     viewModel: ProductListViewModel = hiltViewModel()
 ) {
     val productList = viewModel.productList.collectAsLazyPagingItems()
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(Modifier.fillMaxSize()) {
 
             items(productList) { item ->
                 if (item != null) {
-                    SpecialSaleCard(item)
+                    SpecialSaleCard(item,navController)
                 }
             }
 
@@ -81,6 +82,5 @@ fun ProductListScreen(
             }
         }
     }
-
 
 }

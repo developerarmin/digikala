@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.category
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
@@ -12,32 +13,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.SearchProductsModel
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 
 @Composable
-fun SpecialSaleCard(item: SearchProductsModel) {
+fun SpecialSaleCard(item: SearchProductsModel,navController: NavHostController) {
     val title = "فروش ویژه"
     val name = item.name
     val seller = item.seller
+    val image = item.image
     val rate = 3.6
     val discount = item.discountPercent
     val previousPrice = item.price
+    val isAmazing:Boolean = true
     val currentPrice = DigitHelper.applyDiscount(previousPrice.toInt(),discount)
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(0.3f)
             .padding(10.dp)
+            .clickable { navController.navigate(Screen.ProductDetail.withArgs(item._id,isAmazing,item.price,item.discountPercent)){
+                popUpTo(Screen.SearchScreen.route){
+                    inclusive = true
+                }
+            } }
     ) {
         Text(
             text = title,
@@ -54,7 +67,7 @@ fun SpecialSaleCard(item: SearchProductsModel) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.place_holder),
+                painter = rememberAsyncImagePainter(model = image),
                 contentDescription = "",
                 modifier = Modifier
                     .width(120.dp)
