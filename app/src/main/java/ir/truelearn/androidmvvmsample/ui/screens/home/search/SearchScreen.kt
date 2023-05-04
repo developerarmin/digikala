@@ -1,9 +1,13 @@
 package ir.truelearn.androidmvvmsample.ui.screens.home.search
 
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,10 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -42,6 +46,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -54,15 +59,19 @@ fun SearchScreen(navController: NavHostController) {
     SearchScreenUi(navController = navController)
 }
 
+@OptIn(FlowPreview::class)
 @Composable
-fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hiltViewModel()) {
+fun SearchScreenUi(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
     var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = "")) }
     var searchList by remember { mutableStateOf<List<SearchProductsModel>?>(null) }
     val searchResult by viewModel.searching.collectAsState()
-
-    when(searchResult){
-        is NetworkResult.Success -> {searchList = searchResult.data ?: emptyList() }
-        is NetworkResult.Error -> {}
+    when (searchResult) {
+        is NetworkResult.Success -> {
+            searchList = searchResult.data ?: emptyList()
+        }
+        is NetworkResult.Error -> {
+            Log.i("5555", "SearchScreenUi: ${searchResult.message}")
+        }
         is NetworkResult.Loading -> {}
 
     }
@@ -70,14 +79,12 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
     Column(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
-
             Icon(
                 painter = painterResource(id = R.drawable.arrow_back2),
                 contentDescription = "arrow back",
                 modifier = Modifier.clickable {
-                    //showSearchScreen.value = false
-                    navController.navigate(Screen.Home.route){
-                        popUpTo(Screen.SearchScreen.route){
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.SearchScreen.route) {
                             inclusive = true
                         }
                     }
@@ -93,7 +100,7 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
                         flowOf(textFieldValueState)
                             .debounce(300)
                             .distinctUntilChanged()
-                            .collectLatest { viewModel.searchProduct(textFieldValueState.text)}
+                            .collectLatest { viewModel.searchProduct(textFieldValueState.text) }
                     }
                 },
                 modifier = Modifier
@@ -101,8 +108,7 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
                     .wrapContentHeight()
                     .padding(
                         start = MaterialTheme.spacing.small,
-                        end = MaterialTheme.spacing.small,
-                        bottom = MaterialTheme.spacing.small
+                        end = MaterialTheme.spacing.small
                     ),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.White,
@@ -118,6 +124,7 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
                         fontSize = 16.sp,
                         color = Color.Gray
                     )
+
                 },
                 textStyle = TextStyle(
                     textDirection = TextDirection.ContentOrRtl
@@ -125,72 +132,69 @@ fun SearchScreenUi(navController: NavHostController,viewModel:HomeViewModel = hi
             )
 
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-
-
-
-
-
-
         }
-        if (searchList?.isNotEmpty() == true){
-            if (textFieldValueState.text.isNotEmpty()){
-                Column() {
+
+        if (searchList?.isNotEmpty() == true) {
+            if (!textFieldValueState.text.isNullOrBlank()) {
+
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(horizontal = 4.dp)
+                ) {
                     searchList?.forEachIndexed { _, searchProductsModel ->
-                        ItemFound(
-                            item = searchProductsModel,
-                            navController = navController
-                        )
-
+                        item {
+                            ItemFound(
+                                item = searchProductsModel,
+                                navController = navController
+                            )
+                        }
                     }
-
-                    Row(horizontalArrangement = Arrangement.Start,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .padding(MaterialTheme.spacing.small)
-                            .clickable { navController.navigate(Screen.ProductListScreen.withArgs(searchList!![0].name)){
-                            popUpTo(Screen.SearchScreen.route){
-                                inclusive = true
-                            }
-                        } }
-                    ) {
-                        Image(painter = painterResource(id = R.drawable.search_all_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(45.dp)
-                                .weight(0.1f)
-                        )
-                        Text(text = " ${stringResource(id = R.string.all_products_search_category) + " " + searchList!![0].name }",
-                            fontFamily = font_standard,
-                            fontWeight = FontWeight.Medium,
-                            fontSize = 15.sp,
-                            color = Color.DarkGray,
-                            modifier = Modifier.weight(0.9f)
-                        )
-                    }
-
-
-
                 }
 
-            }
+                Row(horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(MaterialTheme.spacing.small)
+                        .clickable {
+                            navController.navigate(Screen.ProductListScreen.withArgs(searchList!![0].name)) {
+                                popUpTo(Screen.SearchScreen.route) {
+                                    inclusive = true
+                                }
+                            }
+                        }
+                ) {
 
-            else {
+                    Image(
+                        painter = painterResource(id = R.drawable.search_all_icon),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(45.dp)
+                            .weight(0.1f)
+                    )
+                    Text(
+                        text = " ${stringResource(id = R.string.all_products_search_category) + " " + searchList!![0].name}",
+                        fontFamily = font_standard,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 15.sp,
+                        color = Color.DarkGray,
+                        modifier = Modifier.weight(0.9f)
+                    )
+                }
+            } else {
                 searchList = emptyList()
+            }
+        } else {
+            Column {
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
                 HotProductSearch()
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
                 OnlineShoppingAdviceCard()
             }
+
         }
-        else {
-            HotProductSearch()
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-            OnlineShoppingAdviceCard()
-        }
+
     }
-
-
-
-
 }
-
 
