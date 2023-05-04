@@ -184,6 +184,10 @@ fun SearchScreenUi(navController: NavHostController, viewModel: HomeViewModel = 
                 }
             } else {
                 searchList = emptyList()
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+                HotProductSearch()
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+                OnlineShoppingAdviceCard()
             }
         } else {
             Column {
