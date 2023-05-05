@@ -14,6 +14,7 @@ sealed class Screen(val route: String) {
     object NewComment : Screen("newComment_screen")
     object SaveUserAddress : Screen("save_user_address")
     object selectAddress : Screen("select_address")//AddressListScreen
+    object Addresses : Screen("addresses")//AddressListScreen
     object selectCityName : Screen("select_city_name")
     object SearchScreen : Screen("search_screen")
     object ProductListScreen :Screen("product_search_screen")

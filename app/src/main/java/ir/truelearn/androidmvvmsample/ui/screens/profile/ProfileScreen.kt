@@ -505,7 +505,9 @@ fun ProfileMenuSection(navController: NavHostController) {
             )
         },
         isHaveDivider = true,
-        modifier = Modifier.clickable { }
+        modifier = Modifier.clickable {
+            navController.navigate(Screen.Addresses.route)//AddressListScreen
+        }
     ) {
         Icon(
             Icons.Outlined.ChevronLeft, contentDescription = "Go to",
