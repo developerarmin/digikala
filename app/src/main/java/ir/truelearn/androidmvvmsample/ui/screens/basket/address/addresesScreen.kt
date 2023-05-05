@@ -1,13 +1,13 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket.address
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -59,7 +59,11 @@ fun AddressListScreen(
         modifier = Modifier
             .background(Color.White)
             .fillMaxSize(),
-        topBar = { TopBarAddress1(navController) },
+        topBar = {
+            ir.truelearn.androidmvvmsample.ui.screens.profile.address.TopBarAddress1(
+                navController
+            )
+        },
         floatingActionButton = {
             if (addressList.value.isNotEmpty()) {
                 FloatingActionButton(
@@ -126,20 +130,18 @@ fun AddressListScreen(
                     Loading3Dots(isDark = false)
                 }
             } else {
-                LazyColumn(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .wrapContentHeight(),
+                        .height(400.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
                 ) {
-                    item {
                         if (addressList.value.isNotEmpty()) {
-                            InitSelectableAddressList(addressList.value)
+                            ir.truelearn.androidmvvmsample.ui.screens.profile.address.InitSelectableAddressList(
+                                addressList.value
+                            )
                         }
-                    }
 
-                    item {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -177,7 +179,7 @@ fun AddressListScreen(
                                     .size(18.dp)
                             )
                         }
-                    }
+
                 }
             }
         }
@@ -200,19 +202,8 @@ fun InitSelectableAddressList(
     }
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = MaterialTheme.spacing.extraSmall)
-        ) {
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(MaterialTheme.spacing.medium)
-            ) {
-
-                list.forEach { addressItem ->
+            LazyColumn(modifier = Modifier.fillMaxWidth().height((list.size * 150).dp)){
+                items(list){addressItem->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -291,11 +282,8 @@ fun InitSelectableAddressList(
                             )
                     )
                 }
-
-
             }
         }
-    }
 }
 
 

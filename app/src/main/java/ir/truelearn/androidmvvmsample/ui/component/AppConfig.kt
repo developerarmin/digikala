@@ -33,6 +33,7 @@ fun AppConfig(
                     result.data?.let {
                         if (it.role == "user" && it.token.isNotEmpty()) {
                             dataStore.saveUserToken(it.token)
+                            Log.e("363636", "AppConfig: ${it.token}", )
                             dataStore.saveUserId(it.id)
                             dataStore.saveUserPhoneNumber(it.phone)
                             dataStore.saveUserPassword(USER_PASSWORD)

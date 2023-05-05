@@ -9,13 +9,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartScreen
+import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.category.CategoryScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.CheckoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.SaveUserAddressScreen
-import ir.truelearn.androidmvvmsample.ui.screens.basket.address.AddressListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.basket.address.selectCityName
 import ir.truelearn.androidmvvmsample.ui.screens.basket.checkout.ConfirmPurchaseScreen
-import ir.truelearn.androidmvvmsample.ui.screens.category.SpecialSaleCard
 import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.search.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
@@ -24,6 +23,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
+import ir.truelearn.androidmvvmsample.ui.screens.profile.address.AddressesScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
@@ -60,6 +60,9 @@ fun SetupNavGraph(
 
         composable(route = Screen.selectAddress.route) {
             AddressListScreen(navController = navController)
+        }
+        composable(route = Screen.Addresses.route) {
+            AddressesScreen(navController = navController)
         }
 
         composable(route = Screen.SaveUserAddress.route) {
