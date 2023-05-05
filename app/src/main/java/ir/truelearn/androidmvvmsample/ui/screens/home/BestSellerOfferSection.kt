@@ -57,6 +57,8 @@ fun BestSellerOfferSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

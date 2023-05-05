@@ -57,6 +57,8 @@ fun TheMostFavoriteProductSection(viewModel: HomeViewModel = hiltViewModel()){
                         loading = true
                     }
                 }
+
+                else -> {}
             }
         }
     }

@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.product_detail
+package ir.truelearn.androidmvvmsample.ui.screens.comment
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,26 +14,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.MainActivity
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
-import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.Gray
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayCategory
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
-import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
 
 var FROM_COMMENT_SCREEN = false
 
 @Composable
 fun WriteCommentView(
+    image: String,
+    name: String,
+    id:String,
     navController: NavController,
-    item: ProductDetailModel,
-    ) {
+) {
 
     Column(
         modifier = Modifier
@@ -43,10 +41,12 @@ fun WriteCommentView(
             )
             .clickable {
                 if (MainActivity.USER_TOKEN == "null" || MainActivity.USER_TOKEN.isEmpty()) {
-                    FROM_COMMENT_SCREEN =true
+                    FROM_COMMENT_SCREEN = true
                     navController.navigate(Screen.Profile.route)
-                }else{
-                    navController.navigate(route = Screen.NewComment.withArgs(item.imageSlider[0].image,item.name))
+                } else {
+                    navController.navigate(
+                        route = Screen.NewComment.route + "?imageUrl=$image?productName=$name?productId=$id"
+                    )
                 }
             }
     ) {

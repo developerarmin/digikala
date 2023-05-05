@@ -55,6 +55,8 @@ fun SuperMarketOfferSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

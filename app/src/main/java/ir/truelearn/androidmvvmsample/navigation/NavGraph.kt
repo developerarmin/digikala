@@ -19,7 +19,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.home.HomeScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.search.SearchScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.WebPageScreen
 import ir.truelearn.androidmvvmsample.ui.screens.home.search.ProductListScreen
-import ir.truelearn.androidmvvmsample.ui.screens.product_detail.NewCommentScreen
+import ir.truelearn.androidmvvmsample.ui.screens.comment.NewCommentScreen
 import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
@@ -69,21 +69,26 @@ fun SetupNavGraph(
             SaveUserAddressScreen(navController = navController, viewModel = saveAddressViewModel)
         }
 
-        composable(route = Screen.SearchScreen.route ) {
+        composable(route = Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
         }
 
         composable(route = Screen.ProductListScreen.route + "/{searchValue}",
             arguments = listOf(
-                navArgument("searchValue"){
+                navArgument("searchValue") {
                     type = NavType.StringType
                     defaultValue = " "
                     nullable = true
                 }
             )
-        ){
+        ) {
             it.arguments!!.getString("searchValue")
-                ?.let { searchValue -> ProductListScreen(navController = navController, searchValue = searchValue) }
+                ?.let { searchValue ->
+                    ProductListScreen(
+                        navController = navController,
+                        searchValue = searchValue
+                    )
+                }
         }
 
         composable(route = Screen.selectCityName.route + "/{flag}",
@@ -160,25 +165,55 @@ fun SetupNavGraph(
 
 
         composable(
-            route = Screen.NewComment.route + "/{image}/{title}",
+            route = Screen.NewComment.route + "?imageUrl={imageUrl}?productName={productName}?productId={productId}",
             arguments = listOf(
-                navArgument("image") {
+                navArgument("imageUrl") {
                     type = NavType.StringType
                     defaultValue = ""
+                    nullable = true
                 },
-                navArgument("title") {
+                navArgument("productName") {
                     type = NavType.StringType
                     defaultValue = ""
+                    nullable = true
                 },
+                navArgument("productId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
             )
+
         ) {
+
             NewCommentScreen(
                 navController = navController,
-                productDetailImage = it.arguments?.getString("image").toString(),
-                productDetailTitle = it.arguments?.getString("title").toString(),
+                imageUrl = it.arguments?.getString("imageUrl").toString(),
+                productName = it.arguments?.getString("productName").toString(),
+                productId = it.arguments?.getString("productId").toString(),
                 )
 
         }
+//        composable(
+//            route = Screen.NewComment.route + "/{image}/{title}",
+//            arguments = listOf(
+//                navArgument("image") {
+//                    type = NavType.StringType
+//                    defaultValue = ""
+//                },
+//                navArgument("title") {
+//                    type = NavType.StringType
+//                    defaultValue = ""
+//                },
+//            )
+//        ) {
+//            NewCommentScreen(
+//                navController = navController,
+//                productDetailImage = it.arguments?.getString("image").toString(),
+//                productDetailTitle = it.arguments?.getString("title").toString(),
+//                )
+//
+//        }
 
     }
 }

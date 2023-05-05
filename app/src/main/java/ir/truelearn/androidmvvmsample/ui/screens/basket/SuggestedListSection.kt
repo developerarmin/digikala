@@ -61,6 +61,8 @@ fun SuggestListSection(navController: NavController,
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

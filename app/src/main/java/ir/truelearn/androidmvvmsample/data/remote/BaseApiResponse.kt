@@ -1,6 +1,5 @@
 package ir.truelearn.androidmvvmsample.data.remote
 
-import android.util.Log
 import ir.truelearn.androidmvvmsample.data.model.ResponseResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

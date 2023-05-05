@@ -45,6 +45,8 @@ fun CenterBannerItem(
                         loading = true
                     }
                 }
+
+                else -> {}
             }
         }
     }

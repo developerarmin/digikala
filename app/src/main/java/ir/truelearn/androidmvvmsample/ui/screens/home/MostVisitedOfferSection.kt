@@ -57,6 +57,8 @@ fun MostVisitedOfferSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

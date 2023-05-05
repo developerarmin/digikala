@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.product_detail
+package ir.truelearn.androidmvvmsample.ui.screens.comment
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
