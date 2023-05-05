@@ -97,3 +97,21 @@ val SmallFont = Typography(
         lineHeight = 26.sp
     )
 )
+
+//MostPopularBrands Title Style
+val Typography.MostPopularBrandsTitle: TextStyle
+    @Composable
+    get() = TextStyle(
+        fontFamily = font_bold,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 17.sp
+    )
+
+//BrandList Item Style
+val Typography.BrandListItem: TextStyle
+    @Composable
+    get() = TextStyle(
+        fontFamily = font_medium,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+    )

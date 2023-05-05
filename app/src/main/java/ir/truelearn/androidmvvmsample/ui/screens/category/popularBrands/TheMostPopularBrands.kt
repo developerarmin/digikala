@@ -1,16 +1,22 @@
 package ir.truelearn.androidmvvmsample.ui.screens.category.popularBrands
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.category.BrandsSub
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.theme.MostPopularBrandsTitle
+import ir.truelearn.androidmvvmsample.ui.theme.searchBarBg
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.viewmodel.CategoryViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -105,15 +111,20 @@ fun TheMostPopularBrands() {
         mutableStateOf(brandsList[0])
     }
 
+    Spacer(modifier = Modifier
+        .fillMaxWidth()
+        .height(MaterialTheme.spacing.medium)
+        .background(MaterialTheme.colors.searchBarBg))
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 60.dp),
+            .padding(vertical = MaterialTheme.spacing.medium)
     ) {
         Text(
-            text = stringResource(id = R.string.the_most_popular_brands)
+            text = stringResource(id = R.string.the_most_popular_brands),
+            style = MaterialTheme.typography.MostPopularBrandsTitle
         )
-
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
         DisplayBrandsList(brandsList) { brand ->
             selectedBrand = brand
@@ -133,6 +144,12 @@ fun TheMostPopularBrands() {
         }
 
     }
+    Spacer(modifier = Modifier
+        .fillMaxWidth()
+        .height(MaterialTheme.spacing.medium)
+        .background(MaterialTheme.colors.searchBarBg))
+    Spacer(modifier = Modifier.height(60.dp))
+
 }
 @Composable
 private fun getString(id: Int): String =

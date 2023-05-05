@@ -7,12 +7,14 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import ir.truelearn.androidmvvmsample.ui.theme.BrandListItem
 
 @Composable
 fun DisplayBrandsList(list: List<String>, action: (String) -> Unit) {
@@ -33,7 +35,8 @@ fun DisplayBrandsList(list: List<String>, action: (String) -> Unit) {
                 Text(
                     text = item,
                     color = if (selectedItem == item) Color.Red
-                    else Color.Black
+                    else Color.Black,
+                    style = MaterialTheme.typography.BrandListItem
                 )
             }
             Spacer(modifier = Modifier.width(16.dp))
