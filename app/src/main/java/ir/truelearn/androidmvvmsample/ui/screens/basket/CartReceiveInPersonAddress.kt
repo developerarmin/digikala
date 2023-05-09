@@ -37,7 +37,7 @@ fun CartReceiveInPersonAddress(
             .clickable { Log.e("3636", "chart checkout") },
         shape = RoundedCornerShape(7.dp),
         elevation = 1.dp,
-        border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.CartCyan),
+        border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.LightBlue),
 
         ) {
         Column(
@@ -57,16 +57,16 @@ fun CartReceiveInPersonAddress(
                     text = "مراکز دریافت حضوری نزدیک این آدرس",
                     textAlign = TextAlign.Start,
                     color = Color.Black,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.h4,
                     fontFamily = font_medium,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.SemiBold,
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.arrow_back),
                     contentDescription = "",
                     tint = Color.Black,
                     modifier = Modifier
-                        .size(12.dp, 12.dp)
+                        .size(10.dp, 10.dp)
                         .weight(0.05f),
                 )
             }
@@ -88,10 +88,11 @@ fun CartReceiveInPersonAddress(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
+                    Icon(
                         painter = painterResource(id = R.drawable.wallet),
                         contentDescription = "",
-                        modifier = Modifier.size(18.dp, 18.dp)
+                        modifier = Modifier.size(18.dp, 18.dp),
+                        tint = MaterialTheme.colors.LightBlue
                     )
 
                     Text(
@@ -99,9 +100,7 @@ fun CartReceiveInPersonAddress(
                         text = " هزینه ارسال کمتر",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
-                        fontSize = 9.sp,
-                        fontFamily = font_bold,
-                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.CartReceive
 
                         )
                 }
@@ -112,10 +111,11 @@ fun CartReceiveInPersonAddress(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
+                    Icon(
                         painter = painterResource(id = R.drawable.signpost),
                         contentDescription = "",
-                        modifier = Modifier.size(18.dp, 18.dp)
+                        modifier = Modifier.size(18.dp, 18.dp),
+                        tint = MaterialTheme.colors.LightBlue
                     )
 
                     Text(
@@ -123,9 +123,8 @@ fun CartReceiveInPersonAddress(
                         text = " مکان های مختلف",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
-                        fontSize = 9.sp,
-                        fontFamily = font_bold,
-                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.CartReceive
+
                     )
                 }
 
@@ -135,18 +134,17 @@ fun CartReceiveInPersonAddress(
                     verticalAlignment = Alignment.CenterVertically
                 )
                 {
-                    Image(
+                    Icon(
                         painter = painterResource(id = R.drawable.clock),
                         contentDescription = "",
-                        modifier = Modifier.size(18.dp, 18.dp)
+                        modifier = Modifier.size(18.dp, 18.dp),
+                        tint = MaterialTheme.colors.LightBlue
                     )
                     Text(
                         text = " انعطاف زمانی",
                         textAlign = TextAlign.Start,
                         color = Color.Gray,
-                        fontSize = 9.sp,
-                        fontFamily = font_bold,
-                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.CartReceive
 
 
                         )

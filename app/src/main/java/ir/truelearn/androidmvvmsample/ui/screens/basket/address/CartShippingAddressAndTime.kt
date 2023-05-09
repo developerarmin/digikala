@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -22,22 +23,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.ui.screens.basket.CartReceiveInPersonAddress
-import ir.truelearn.androidmvvmsample.ui.theme.CartCyan
-import ir.truelearn.androidmvvmsample.ui.theme.font_standard
-import ir.truelearn.androidmvvmsample.ui.theme.infoBox
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.viewmodel.AddressListViewModel
 
 
-@SuppressLint("StateFlowValueCalledInComposition")
+@SuppressLint("StateFlowValueCalledInComposition", "ResourceType")
 @Composable
 fun CartShippingAddressAndTime(
     navController: NavHostController,onClickChangeAddress:()->Unit
 ) {
     val viewModel: AddressListViewModel = viewModel(LocalContext.current as ComponentActivity)
     Log.d("level3", "shipping:${viewModel.defaultAddress.value?.address} ")
-    var address = "not set"
-    var name = "not set"
+    var address = stringResource(id = R.string.no_address)
+    var name = " "
     if (viewModel.defaultAddress.value != null) {
         viewModel.defaultAddress.value?.let {
             address = viewModel.defaultAddress.value!!.address
@@ -46,9 +44,6 @@ fun CartShippingAddressAndTime(
     }
     Card(
         modifier = Modifier.padding(horizontal = 0.dp),
-        shape = RoundedCornerShape(3.dp),
-        elevation = 5.dp,
-        border = BorderStroke(width = 2.dp, color = Color.LightGray),
     ) {
         Column(
             modifier = Modifier
@@ -80,9 +75,9 @@ fun CartShippingAddressAndTime(
 
 
                     Text(
-                        text = "ارسال به",
+                        text = stringResource(id = R.string.send_to),
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.subtitle2,
+                        style = MaterialTheme.typography.body2,
                         color = Color.Gray,
                         fontFamily = font_standard,
                     )
@@ -91,17 +86,21 @@ fun CartShippingAddressAndTime(
                     Text(
                         text = address,
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.Black,
                         fontFamily = font_standard,
+                        maxLines = 3
                     )
 
                     Text(
                         text = name,
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.Black,
                         fontFamily = font_standard,
+                        maxLines = 1
                     )
                 }
                 Spacer(modifier = Modifier.weight(0.025f))
@@ -128,17 +127,17 @@ fun CartShippingAddressAndTime(
                 Text(
                     modifier = Modifier
                         .weight(0.925f),
-                    text = " تغییر یا ویرایش آدرس",
+                    text = stringResource(id = R.string.add_address),
                     textAlign = TextAlign.End,
                     style = MaterialTheme.typography.caption,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.CartCyan,
+                    color = MaterialTheme.colors.LightBlue,
                     fontFamily = font_standard,
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.arrow_back),
                     contentDescription = "",
-                    tint = MaterialTheme.colors.CartCyan,
+                    tint = MaterialTheme.colors.LightBlue,
                     modifier = Modifier
                         .size(12.dp, 12.dp)
                         .weight(0.05f)

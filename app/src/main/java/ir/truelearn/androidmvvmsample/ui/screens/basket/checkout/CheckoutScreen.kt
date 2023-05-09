@@ -135,12 +135,19 @@ fun CheckoutScreen(
                             .width(Dimension.width(85f).dp),
                         text = "آدرس و زمان ارسال",
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.h4,
+                        style = MaterialTheme.typography.h2,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colors.darkText,
-                        fontFamily = font_bold,
+                        //fontFamily = font_bold,
                     )
                 }
+
+                Spacer(
+                    modifier = Modifier.fillMaxWidth()
+                        .height(MaterialTheme.spacing.extraSmall)
+                        .background(MaterialTheme.colors.searchBarBg)
+                )
+
                 if (loading) {
                     Column(
                         modifier = Modifier
@@ -162,6 +169,13 @@ fun CheckoutScreen(
 
 
             }
+
+            Spacer(
+                modifier = Modifier.fillMaxWidth()
+                    .height(MaterialTheme.spacing.small)
+                    .background(MaterialTheme.colors.searchBarBg)
+            )
+
             //-----------------------------------------------------------------------------
 // display order post list here
             DeliveryMethodSection()

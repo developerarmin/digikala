@@ -1,5 +1,6 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -44,12 +45,12 @@ fun DeliveryMethodSection(
         }
     }
     var marsoleh = ""
-    val x1 = DigitHelper.digitByLocate("2")
-    var x2 = DigitHelper.digitByLocate("3")
+    val x1 = DigitHelper.digitByLocate("1")
+    var x2 = DigitHelper.digitByLocate("1")
     marsoleh = "مرسوله ${x1} از ${x2}  "
 
     val sendingType = "ارسال عادی"
-    val objectCoun = DigitHelper.digitByLocate("4")
+    val objectCoun = DigitHelper.digitByLocate("1")
     val readyToSend = "اماده ارسال"
 
     Column(
@@ -79,8 +80,8 @@ fun DeliveryMethodSection(
                     vertical = MaterialTheme.spacing.medium,
                     horizontal = MaterialTheme.spacing.small,
                 ),
-            shape = RoundedCornerShape(3.dp),
-            elevation = 5.dp,
+            shape = RoundedCornerShape(7.dp),
+            elevation = 3.dp,
         ) {
             Column(
                 modifier = Modifier
@@ -160,16 +161,19 @@ fun DeliveryMethodSection(
                         textAlign = TextAlign.End,
                         style = MaterialTheme.typography.caption,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.CartCyan,
+                        color = MaterialTheme.colors.LightBlue,
                         fontFamily = font_standard,
                     )
                     Icon(
                         painter = painterResource(id = R.drawable.arrow_back),
                         contentDescription = "",
-                        tint = MaterialTheme.colors.CartCyan,
+                        tint = MaterialTheme.colors.LightBlue,
                         modifier = Modifier
                             .size(12.dp, 12.dp)
                             .align(Alignment.CenterVertically)
+                            .clickable {
+
+                            }
                     )
                 }
             }

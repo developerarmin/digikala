@@ -31,7 +31,7 @@ fun BuyProcessContinue(
         stringResource(R.string.payable_price)
 
     Card(
-        modifier = Modifier.padding(horizontal = 0.dp),
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(3.dp),
         elevation = 5.dp,
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
@@ -83,6 +83,7 @@ fun BuyProcessContinue(
 //                            )
 //                    )
 //                }
+
                 Button(
                     onClick = onClick,
                     colors = ButtonDefaults.buttonColors(backgroundColor = BtnWhite),
@@ -91,13 +92,14 @@ fun BuyProcessContinue(
                     shape = MaterialTheme.roundedShape.small
                 ) {
                     Text(
-                        text = stringResource(R.string.purchase_process_time),
+                        text = stringResource(R.string.send_time),
                         color = MaterialTheme.colors.digikalaRed,
                         fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.h6,
+                        style = MaterialTheme.typography.h4,
                         modifier = Modifier
                             .padding(
-                                MaterialTheme.spacing.small,
+                                horizontal = MaterialTheme.spacing.extraSmall,
+                                vertical = MaterialTheme.spacing.extraSmall,
                             )
                     )
                 }

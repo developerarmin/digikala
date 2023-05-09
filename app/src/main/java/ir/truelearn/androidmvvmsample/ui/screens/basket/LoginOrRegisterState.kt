@@ -2,6 +2,7 @@ package ir.truelearn.androidmvvmsample.ui.screens.basket
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,10 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.navigation.Screen
-import ir.truelearn.androidmvvmsample.ui.theme.amber
-import ir.truelearn.androidmvvmsample.ui.theme.darkText
-import ir.truelearn.androidmvvmsample.ui.theme.font_bold
-import ir.truelearn.androidmvvmsample.ui.theme.spacing
+import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
 fun LoginOrRegisterState(
@@ -54,7 +52,7 @@ fun LoginOrRegisterState(
                 contentDescription = "",
                 tint = MaterialTheme.colors.amber,
                 modifier = Modifier
-                    .size(32.dp, 32.dp)
+                    .size(25.dp, 25.dp)
                     .weight(0.1f)
                     .align(Alignment.Top)
             )
@@ -71,8 +69,7 @@ fun LoginOrRegisterState(
                         .fillMaxWidth(),
                     text = stringResource(R.string.login_or_register),
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.h3,
                     color = MaterialTheme.colors.darkText,
                     fontFamily = font_bold,
                     overflow = TextOverflow.Ellipsis
@@ -84,8 +81,8 @@ fun LoginOrRegisterState(
                     text = stringResource(R.string.login_or_register_msg),
                     textAlign = TextAlign.Start,
                     color = Color.Gray,
-                    fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.h6,
+                    //fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.h4,
                     maxLines = 2
                 )
             }
@@ -96,7 +93,7 @@ fun LoginOrRegisterState(
                 contentDescription = "",
                 tint = Color.Gray,
                 modifier = Modifier
-                    .size(18.dp, 18.dp)
+                    .size(13.dp, 13.dp)
                     .weight(0.1f)
                     .align(Alignment.Top)
 
@@ -104,4 +101,9 @@ fun LoginOrRegisterState(
         }
 
     }
+    Spacer(
+        modifier = Modifier.fillMaxWidth()
+            .height(MaterialTheme.spacing.extraSmall)
+            .background(MaterialTheme.colors.searchBarBg)
+    )
 }

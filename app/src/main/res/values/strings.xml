@@ -84,6 +84,12 @@
     <string name="next_cart_list">لیست خرید بعدی</string>
     <string name="purchase_process">ادامه فرآیند خرید</string>
     <string name="purchase_process_time">پرداخت</string>
+    <string name="send_time">زمان ارسال تعیین کنید</string>
+    <string name="add_address">افزودن آدرس</string>
+    <string name="send_to">ارسال به</string>
+    <string name="no_address">آدرسی برای نمایش وجود ندارد</string>
+
+
     <string name="total_shopping_cart">جمع سبد خرید</string>
     <string name="payable_price">مبلغ قابل پرداخت</string>
     <string name="cart_is_empty">سبد خرید شما خالی است!</string>

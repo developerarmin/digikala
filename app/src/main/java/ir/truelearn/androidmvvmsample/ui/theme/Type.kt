@@ -115,3 +115,12 @@ val Typography.BrandListItem: TextStyle
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
     )
+
+//CartReceiveInPersonAddress
+val Typography.CartReceive: TextStyle
+    @Composable
+    get() = TextStyle(
+        fontFamily = font_standard,
+        fontWeight = FontWeight.Light,
+        fontSize = 13.sp,
+    )
