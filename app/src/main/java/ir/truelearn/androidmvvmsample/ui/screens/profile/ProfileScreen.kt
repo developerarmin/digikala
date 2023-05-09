@@ -371,7 +371,10 @@ fun ProfileMyOrders(navController: NavHostController) {
         text = stringResource(id = R.string.my_orders),
     )
 
-    LazyRow(modifier = Modifier.background(Color.White)) {
+    LazyRow(modifier = Modifier
+        .background(Color.White)
+        .clickable { navController.navigate(Screen.TabLayoutScreen.route) }
+    ) {
         item {
             MyOrdersItem(
                 text = stringResource(id = R.string.unpaid),

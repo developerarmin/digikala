@@ -20,6 +20,9 @@ sealed class Screen(val route: String) {
     object ProductListScreen :Screen("product_search_screen")
     object Setting:Screen("setting_screen")
 
+    object TabLayoutScreen: Screen("tab_layout_screen")
+
+
     fun withArgs(vararg args: Any): String {
         return buildString {
             append(route)

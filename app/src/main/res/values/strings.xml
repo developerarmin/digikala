@@ -153,7 +153,7 @@
     <string name="the_most_popular_brands">محبوب‌ترین‌ برندها</string>
     <string name="all_products_search_category">همه کالاهای دسته بندی</string>
 
-    <!--Setting-->
+    <!--My Orders-->
     <string name="setting">تنظیمات</string>
     <string name="repetitive_questions">پرسش‌های متداول</string>
     <string name="privacy">حریم خصوصی</string>
@@ -166,6 +166,13 @@
     <string name="changing_lang">تغییر زبان</string>
     <string name="version_app">App Version: %s</string>
     <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
+
+    <!--My Orders-->
+    <string name="waiting_for_purchase">در انتظار پرداخت</string>
+    <string name="processing_orders">در حال پردازش</string>
+    <string name="delivered_orders">تحویل شده</string>
+    <string name="canceled_orders">لغو شده</string>
+    <string name="returned_orders">مرجوع شده</string>
 
 
 
