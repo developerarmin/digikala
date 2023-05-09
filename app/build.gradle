@@ -111,6 +111,7 @@ dependencies {
 
     //paging
     implementation 'androidx.paging:paging-compose:1.0.0-alpha10'
+
 }
 
 // Allow references to generated code

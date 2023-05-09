@@ -129,5 +129,13 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="version_app">App Version: %s</string>
     <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
 
+    <!--My Orders-->
+    <string name="waiting_for_purchase">Waiting for purchase</string>
+    <string name="processing_orders">Processing Orders</string>
+    <string name="delivered_orders">Delivered Orders</string>
+    <string name="canceled_orders">Canceled orders</string>
+    <string name="returned_orders">Returned orders</string>
+    <string name="my_orders">My Orders</string>
+
 
 </resources>
