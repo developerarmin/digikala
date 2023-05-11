@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.product_detail
+package ir.truelearn.androidmvvmsample.ui.screens.comment
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
 import ir.truelearn.androidmvvmsample.ui.theme.Gray
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.grayAlpha
@@ -23,12 +22,13 @@ import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 @Composable
 fun TextCommentCard(
+    title:String,
+    description:String,
+    userName:String,
     colorSuggestion: Color,
     iconSuggestion: Int,
     textSuggestion: String,
-    commentItem : Comment
 ) {
-
 
     Card(
         modifier = Modifier
@@ -49,7 +49,7 @@ fun TextCommentCard(
         ) {
 
             Text(
-                text = commentItem.title,
+                text = title,
                 color = MaterialTheme.colors.darkText,
                 fontWeight = FontWeight.Bold,
                 overflow = TextOverflow.Ellipsis,
@@ -78,7 +78,7 @@ fun TextCommentCard(
                 )
             }
             Text(
-                text = commentItem.description,
+                text = description,
                 Modifier.weight(1f),
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
@@ -106,7 +106,7 @@ fun TextCommentCard(
                     tint = MaterialTheme.colors.grayAlpha
                 )
                 Text(
-                    text = commentItem.userName,
+                    text = userName,
                     color = MaterialTheme.colors.Gray,
                     style = MaterialTheme.typography.h6,
 

@@ -60,6 +60,8 @@ fun CategoryListSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

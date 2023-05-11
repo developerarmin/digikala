@@ -1,8 +1,5 @@
 package ir.truelearn.androidmvvmsample.repository
 
-import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
-import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
-import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.model.login.LoginRequest
 import ir.truelearn.androidmvvmsample.data.model.login.LoginResponse
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface

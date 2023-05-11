@@ -84,6 +84,8 @@ fun SubCategorySection(viewModel: CategoryViewModel = hiltViewModel()) {
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

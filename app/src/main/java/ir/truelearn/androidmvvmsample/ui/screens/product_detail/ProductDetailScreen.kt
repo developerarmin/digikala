@@ -14,12 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import ir.truelearn.androidmvvmsample.data.model.home.AmazingItem
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
-import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
+import ir.truelearn.androidmvvmsample.ui.screens.comment.CommentsPreview
+import ir.truelearn.androidmvvmsample.ui.screens.comment.WriteCommentView
 import ir.truelearn.androidmvvmsample.viewmodel.ProductDetailViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -59,7 +60,7 @@ fun ProductDetail(
                 listOf(ColorProductDetail("", "", "")),
                 0,
                 listOf(
-                    Comment("", "", "", "", "")
+                    CommentResponse("", "", "", "", "","","","")
                 ),
                 0,
                 listOf(ImageSlider("", "", "")),
@@ -82,7 +83,7 @@ fun ProductDetail(
     }
 
     var comments by remember {
-        mutableStateOf<List<Comment>>(emptyList())
+        mutableStateOf<List<CommentResponse>>(emptyList())
     }
 
     var loading by remember { mutableStateOf(false) }
@@ -158,7 +159,13 @@ fun ProductDetail(
 
                 ProductDetailCard()
 
-                CommentsPreview(comments,navController,item)
+                CommentsPreview(comments)
+
+                WriteCommentView(
+                    image = item.imageSlider[0].image,
+                    name = item.name ,
+                    navController = navController,
+                    id = item._id)
 
                 DigiPlusCard()
 

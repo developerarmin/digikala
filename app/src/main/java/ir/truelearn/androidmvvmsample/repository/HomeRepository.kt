@@ -6,7 +6,6 @@ import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.remote.ApiInterface
 import ir.truelearn.androidmvvmsample.data.remote.BaseApiResponse
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
-import retrofit2.Response
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(private val api: ApiInterface) : BaseApiResponse() {

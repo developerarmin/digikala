@@ -1,7 +1,6 @@
-package ir.truelearn.androidmvvmsample.ui.screens.product_detail
+package ir.truelearn.androidmvvmsample.ui.screens.comment
 
 
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -11,19 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import ir.truelearn.androidmvvmsample.R
-import ir.truelearn.androidmvvmsample.data.model.product_detail.Comment
-import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
-import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 import ir.truelearn.androidmvvmsample.ui.theme.*
 
 @Composable
 fun CommentsPreview(
-    comments : List<Comment>,
-    navController: NavController,
-    item:ProductDetailModel
+    comments: List<CommentResponse>,
 ) {
 
     Column(
@@ -68,13 +61,14 @@ fun CommentsPreview(
                 .padding(start = MaterialTheme.spacing.medium),
 
             ) {
-            itemsIndexed(comments){
-                index, item ->
+            itemsIndexed(comments) { index, item ->
                 TextCommentCard(
+                    title = item.title,
+                    description = item.description,
+                    userName = item.userName,
                     colorSuggestion = MaterialTheme.colors.Green,
                     iconSuggestion = R.drawable.like,
                     textSuggestion = stringResource(id = R.string.satisfaction),
-                    commentItem = item
                 )
             }
             item {
@@ -82,9 +76,5 @@ fun CommentsPreview(
             }
         }
 
-        WriteCommentView(
-            navController,
-            item
-        )
     }
 }

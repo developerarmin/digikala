@@ -89,6 +89,8 @@ fun TheMostPopularBrands() {
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

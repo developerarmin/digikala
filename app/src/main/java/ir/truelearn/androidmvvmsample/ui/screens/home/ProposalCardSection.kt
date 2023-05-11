@@ -52,6 +52,8 @@ fun ProposalCardSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

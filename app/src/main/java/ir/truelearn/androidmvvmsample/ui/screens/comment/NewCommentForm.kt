@@ -1,4 +1,4 @@
-package ir.truelearn.androidmvvmsample.ui.screens.product_detail
+package ir.truelearn.androidmvvmsample.ui.screens.comment
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,13 +14,28 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import ir.truelearn.androidmvvmsample.MainActivity.Companion.USER_TOKEN
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentRequest
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
+import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.navigation.Screen
 import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.viewmodel.CommentViewModel
 
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun NewCommentForm() {
+fun NewCommentForm(
+    navController:NavController,
+    productId: String,
+    commentViewModel: CommentViewModel = hiltViewModel()
+) {
+
     var commentTitle by remember { mutableStateOf(TextFieldValue("")) }
     var commentBody by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -31,6 +46,15 @@ fun NewCommentForm() {
     }
     val weakPointList = remember {
         mutableStateListOf<String>()
+    }
+
+
+    var form by remember {
+        mutableStateOf(
+            CommentRequest(
+                "", "", "", "", ""
+            )
+        )
     }
 
     Column(
@@ -305,7 +329,14 @@ fun NewCommentForm() {
                 vertical = MaterialTheme.spacing.medium,
                 horizontal = MaterialTheme.spacing.large
             ),
-        onClick = { /*TODO*/ }
+        onClick = {
+            form = CommentRequest(
+                USER_TOKEN, commentTitle.text, commentBody.text, productId, "samira"
+            )
+            commentViewModel.addNewComment(form)
+            navController.popBackStack()
+
+        }
     ) {
         Text(
             modifier = Modifier

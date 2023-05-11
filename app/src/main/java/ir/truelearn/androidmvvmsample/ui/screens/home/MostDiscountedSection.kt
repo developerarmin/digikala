@@ -62,6 +62,8 @@ fun MostDiscountedSection(
                 is NetworkResult.Loading -> {
                     loading = true
                 }
+
+                else -> {}
             }
         }
     }

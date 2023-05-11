@@ -9,6 +9,8 @@ import ir.truelearn.androidmvvmsample.data.model.basket.ConfirmPurchase
 import ir.truelearn.androidmvvmsample.data.model.category.BrandsCategory
 import ir.truelearn.androidmvvmsample.data.model.category.MainCategory
 import ir.truelearn.androidmvvmsample.data.model.category.SubCategory
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentRequest
+import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.model.login.LoginRequest
 import ir.truelearn.androidmvvmsample.data.model.login.LoginResponse
@@ -111,5 +113,10 @@ interface ApiInterface {
     @GET("getBestBrands")
     suspend fun getBrandsCategory(): Response<ResponseResult<BrandsCategory>>
 
+
+    @POST("setNewComment")
+    suspend fun setNewComment(
+        @Body commentRequest: CommentRequest
+    ): Response<ResponseResult<String>>
 
 }
