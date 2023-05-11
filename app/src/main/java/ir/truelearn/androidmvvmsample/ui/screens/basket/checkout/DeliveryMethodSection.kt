@@ -159,7 +159,7 @@ fun DeliveryMethodSection(
                 )
                 Row(
                     modifier = Modifier
-                        .clickable { showBottomSheet.value = true  }
+                        .clickable { showBottomSheet.value = true }
                         .fillMaxWidth()
                         .padding(bottom = MaterialTheme.spacing.medium),
                     horizontalArrangement = Arrangement.Start,
@@ -199,13 +199,23 @@ fun DeliveryMethodSection(
 @Composable
 fun MyBottomSheet() {
     showBottomSheet.value = true
-    val radioOptions = listOf("ساعت 9 تا 15", "ساعت 16 تا 21")
+
+    val persian9 = DigitHelper.digitByLocate("9")
+    val persian15 = DigitHelper.digitByLocate("15")
+    val persian16 = DigitHelper.digitByLocate("16")
+    val persian21 = DigitHelper.digitByLocate("21")
+    //Temporary.Its Come From Server
+    val postPrice = DigitHelper.digitByLocate("27000")
+
+    val radioOptions = listOf("ساعت $persian9 تا $persian15 ", "ساعت $persian16 تا $persian21 ")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(400.dp)
             .background(Color.White)
+            .clip(RoundedCornerShape(4.dp))
+            .border(1.dp, Color.LightGray)
             .clickable { showBottomSheet.value = !showBottomSheet.value },
         contentAlignment = Alignment.TopCenter
     ) {
@@ -233,14 +243,14 @@ fun MyBottomSheet() {
                         )
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "پست پیشتاز سراسر کشور", maxLines = 1)
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(text = stringResource(id = R.string.leading_post_all_over_the_country), maxLines = 1)
+                        Spacer(modifier = Modifier.height(10.dp))
                         Text(text = "زمان تقریبی : یک هفته", maxLines = 1)
                     }
-                    Column(horizontalAlignment = Alignment.Start) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(text = "هزینه:", maxLines = 1)
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = " تومان 27000", maxLines = 1)
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(text = "$postPrice تومان ", maxLines = 1)
                     }
                 }
             }
@@ -253,34 +263,29 @@ fun MyBottomSheet() {
                         .height(80.dp)
                         .padding(horizontal = 16.dp, vertical = 2.dp),
                     shape = RoundedCornerShape(8.dp),
+                    elevation = 10.dp
                 ) {
                     Row(
                         modifier = Modifier.fillMaxSize(),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceAround
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-
-
-
-
-
                         RadioButton(
                             selected = (text == selectedOption),
                             onClick = { onOptionSelected(text) }
                         )
-
                         Text(text = text)
-
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.digi_plus_icon),
-                            contentDescription = "",
-                            modifier = Modifier.size(18.dp)
-                        )
-
-                        //Spacer(modifier = Modifier.width(16.dp))
-
-                        Text(text = "اختصاصی دیجی پلاس", color = Color(0xFFFF5722))
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Column(verticalArrangement = Arrangement.SpaceAround) {
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.digi_plus_icon),
+                                contentDescription = "",
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                        Text(text = stringResource(id = R.string.exclusive_to_digi_plus), color = Color(0xFFFF5722))
+                        Spacer(modifier = Modifier.width(8.dp))
 
                     }
                 }
@@ -288,14 +293,14 @@ fun MyBottomSheet() {
             Spacer(modifier = Modifier.height(20.dp))
             Row(modifier = Modifier
                 .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
+                .padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.digi_plus_icon),
                     contentDescription = "",
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                Text(text = "بازه های دارای ظرفیت اختصاصی")
+                Text(text = stringResource(id = R.string.ranges_with_special_facilities))
             }
         }
 

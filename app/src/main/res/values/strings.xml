@@ -175,5 +175,12 @@
     <string name="returned_orders">مرجوع شده</string>
 
 
+    <!--Basket-->
+    <string name="ranges_with_special_facilities">بازه های دارای ظرفیت اختصاصی</string>
+    <string name="exclusive_to_digi_plus">اختصاصی دیجی پلاس</string>
+    <string name="leading_post_all_over_the_country">پست پیشتاز سراسر کشور</string>
+
+
+
 
 </resources>
