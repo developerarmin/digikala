@@ -219,6 +219,11 @@ fun CheckoutScreen(
 //                cartViewModel.addNewOrder(cartOrderDetail = newOrder)
             }
         }
+
+
+
+        if (showBottomSheet.value) Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier.fillMaxSize()) { MyBottomSheet() }
+
     }
     if (waitingDialogState) {
         WaitingDialog() {
