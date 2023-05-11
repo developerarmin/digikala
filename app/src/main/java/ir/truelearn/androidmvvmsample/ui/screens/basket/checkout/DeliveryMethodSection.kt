@@ -1,35 +1,57 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
-import ir.truelearn.androidmvvmsample.ui.theme.*
+import ir.truelearn.androidmvvmsample.ui.theme.LightBlue
+import ir.truelearn.androidmvvmsample.ui.theme.RedColor
+import ir.truelearn.androidmvvmsample.ui.theme.font_bold
+import ir.truelearn.androidmvvmsample.ui.theme.font_standard
+import ir.truelearn.androidmvvmsample.ui.theme.spacing
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
+
+var showBottomSheet = mutableStateOf(false)
 
 @Composable
 fun DeliveryMethodSection(
@@ -150,6 +172,7 @@ fun DeliveryMethodSection(
                 )
                 Row(
                     modifier = Modifier
+                        .clickable { showBottomSheet.value = true }
                         .fillMaxWidth()
                         .padding(bottom = MaterialTheme.spacing.medium),
                     horizontalArrangement = Arrangement.Start,
@@ -171,13 +194,129 @@ fun DeliveryMethodSection(
                         modifier = Modifier
                             .size(12.dp, 12.dp)
                             .align(Alignment.CenterVertically)
-                            .clickable {
 
-                            }
                     )
                 }
             }
         }
+
+
+
+       // if (showBottomSheet.value) Box(contentAlignment = BottomCenter, modifier = Modifier.fillMaxSize()) { MyBottomSheet() }
     }
 }
 
+@Composable
+fun MyBottomSheet() {
+    showBottomSheet.value = true
+
+    val persian9 = DigitHelper.digitByLocate("9")
+    val persian15 = DigitHelper.digitByLocate("15")
+    val persian16 = DigitHelper.digitByLocate("16")
+    val persian21 = DigitHelper.digitByLocate("21")
+    //Temporary.Its Come From Server
+    val postPrice = DigitHelper.digitByLocate("27000")
+
+    val radioOptions = listOf("ساعت $persian9 تا $persian15 ", "ساعت $persian16 تا $persian21 ")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = BottomCenter) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp)
+                .background(Color.White)
+                .clip(RoundedCornerShape(4.dp))
+                .border(1.dp, Color.LightGray)
+                .clickable { showBottomSheet.value = !showBottomSheet.value },
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp)
+                        .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .border(1.dp, Color.Unspecified, RectangleShape),
+                    shape = RoundedCornerShape(10.dp)
+                ) {
+                    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceAround) {
+
+                        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = End) {
+                            Image(
+                                painter = painterResource(id = R.drawable.truck),
+                                contentDescription = "",
+                                modifier = Modifier.weight(0.15f)
+                            )
+                        }
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(text = stringResource(id = R.string.leading_post_all_over_the_country), maxLines = 1)
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Text(text = "زمان تقریبی : یک هفته", maxLines = 1)
+                        }
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(text = "هزینه:", maxLines = 1)
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Text(text = "$postPrice تومان ", maxLines = 1)
+                        }
+                    }
+                }
+
+
+                radioOptions.forEachIndexed { _, text ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(80.dp)
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        elevation = 10.dp
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            RadioButton(
+                                selected = (text == selectedOption),
+                                onClick = { onOptionSelected(text) }
+                            )
+                            Text(text = text)
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Column(verticalArrangement = Arrangement.SpaceAround) {
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Image(
+                                    painter = painterResource(id = R.drawable.digi_plus_icon),
+                                    contentDescription = "",
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                            Text(text = stringResource(id = R.string.exclusive_to_digi_plus), color = Color(0xFFFF5722))
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(id = R.drawable.digi_plus_icon),
+                        contentDescription = "",
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(text = stringResource(id = R.string.ranges_with_special_facilities))
+                }
+            }
+
+        }
+    }
+
+}

@@ -88,6 +88,9 @@
     <string name="next_cart_list_is_empty_msg">You can put the products you have added to your shopping cart and you do not intend to buy them in the next shopping list and you can add them to the shopping cart and complete the purchase whenever you want. </string>
     <string name="login_or_register">login or register</string>
     <string name="login_or_register_msg">Please log in for a better shopping experience and to check the shipping method.</string>
+    <string name="ranges_with_special_facilities">Ranges with special facilities</string>
+    <string name="exclusive_to_digi_plus">Exclusive to Digi Plus</string>
+    <string name="leading_post_all_over_the_country">Leading post all over the country</string>
 
 
 
@@ -136,6 +139,46 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="canceled_orders">Canceled orders</string>
     <string name="returned_orders">Returned orders</string>
     <string name="my_orders">My Orders</string>
+
+
+    <!--All Not Translate-->
+    <string name="digiclub_score">Get DigiClub Points</string>
+    <string name="count_product_cart">Commodity %1$s</string>
+    <string name="purchase_process_time">The Payment</string>
+    <string name="send_time">Set a Delivery Time</string>
+    <string name="add_address">Add Address</string>
+    <string name="send_to">Send to</string>
+    <string name="no_address">There are no Addresses to Display</string>
+    <string name="payable_price">The Amount Payable</string>
+    <string name="basket_summary">Basket Summary</string>
+    <string name="products_price">Commodity Prices</string>
+    <string name="products_discount">Discount on Goods</string>
+    <string name="shipping_cost_alert">The Shipping Cost is Calculated Based on the Address,Delivery Time,Weight and Volume of Your Shipment</string>
+    <string name="dot_bullet">•</string>
+    <string name="processing">Processing</string>
+    <string name="returned">Returned</string>
+    <string name="canceled">Canceled</string>
+    <string name="delivered">Delivered</string>
+    <string name="unpaid">Awaiting Payment</string>
+    <string name="fav_list">Favorite List</string>
+    <string name="my_comments">Criticism and Comments</string>
+    <string name="addresses">Addresses</string>
+    <string name="profile_data">User Account Information</string>
+    <string name="deleteFromList">Delete From List</string>
+    <string name="deliveryAndTimeMethod">Delivery Method and Time</string>
+    <string name="consignment">Shipment 1 of 1</string>
+    <string name="normalDelivery">Normal Delivery</string>
+    <string name="commodity2">4 Goods</string>
+    <string name="readyToSend">Ready to Send</string>
+    <string name="costSend">Shipping Cost</string>
+    <string name="choseTimeSend">Choose a Time to Send</string>
+    <string name="digikala">DigiKala</string>
+    <string name="better_price_suggestion">Do You Know a Better Price?</string>
+    <string name="digiKalaSend">DigiKala Sending</string>
+
+
+
+
 
 
 </resources>

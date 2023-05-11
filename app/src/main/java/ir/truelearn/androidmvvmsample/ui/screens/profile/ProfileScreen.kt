@@ -326,7 +326,9 @@ fun ProfileMiddleSection(
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.clickable { clubOnClick() }) {
+            modifier = Modifier.clickable {
+                clubOnClick()
+            }) {
             Image(
                 painter = painterResource(id = R.drawable.digi_club),
                 contentDescription = "",
