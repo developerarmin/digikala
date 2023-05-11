@@ -1,5 +1,8 @@
 package ir.truelearn.androidmvvmsample.ui.screens.basket.checkout
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -8,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,7 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,10 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.basket.CartItem
+
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 import ir.truelearn.androidmvvmsample.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
+
+var showBottomSheet = mutableStateOf(false)
 
 @Composable
 fun DeliveryMethodSection(
@@ -150,6 +159,7 @@ fun DeliveryMethodSection(
                 )
                 Row(
                     modifier = Modifier
+                        .clickable { showBottomSheet.value = true  }
                         .fillMaxWidth()
                         .padding(bottom = MaterialTheme.spacing.medium),
                     horizontalArrangement = Arrangement.Start,
@@ -171,13 +181,123 @@ fun DeliveryMethodSection(
                         modifier = Modifier
                             .size(12.dp, 12.dp)
                             .align(Alignment.CenterVertically)
-                            .clickable {
 
-                            }
                     )
+
+
+
                 }
             }
         }
+
+
+
+        if (showBottomSheet.value) Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier.fillMaxSize()) { MyBottomSheet() }
     }
 }
 
+@Composable
+fun MyBottomSheet() {
+    showBottomSheet.value = true
+    val radioOptions = listOf("ساعت 9 تا 15", "ساعت 16 تا 21")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(400.dp)
+            .background(Color.White)
+            .clickable { showBottomSheet.value = !showBottomSheet.value },
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(1.dp, Color.Unspecified, RectangleShape),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceAround) {
+
+                    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = End) {
+                        Image(
+                            painter = painterResource(id = R.drawable.truck),
+                            contentDescription = "",
+                            modifier = Modifier.weight(0.15f)
+                        )
+                    }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(text = "پست پیشتاز سراسر کشور", maxLines = 1)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(text = "زمان تقریبی : یک هفته", maxLines = 1)
+                    }
+                    Column(horizontalAlignment = Alignment.Start) {
+                        Text(text = "هزینه:", maxLines = 1)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(text = " تومان 27000", maxLines = 1)
+                    }
+                }
+            }
+
+
+            radioOptions.forEachIndexed { _, text ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                        .padding(horizontal = 16.dp, vertical = 2.dp),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceAround
+                    ) {
+
+
+
+
+
+                        RadioButton(
+                            selected = (text == selectedOption),
+                            onClick = { onOptionSelected(text) }
+                        )
+
+                        Text(text = text)
+
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.digi_plus_icon),
+                            contentDescription = "",
+                            modifier = Modifier.size(18.dp)
+                        )
+
+                        //Spacer(modifier = Modifier.width(16.dp))
+
+                        Text(text = "اختصاصی دیجی پلاس", color = Color(0xFFFF5722))
+
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.digi_plus_icon),
+                    contentDescription = "",
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "بازه های دارای ظرفیت اختصاصی")
+            }
+        }
+
+    }
+}
