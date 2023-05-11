@@ -59,7 +59,7 @@ fun AddressesScreen(
         mutableStateOf<List<UserAddressResponse>>(emptyList())
     }
     var loading by remember {
-        mutableStateOf(false)
+        mutableStateOf(true)
     }
     Scaffold(
         modifier = Modifier
@@ -117,6 +117,7 @@ fun AddressesScreen(
                 Log.d("level5", "token:${MainActivity.USER_TOKEN} ")
                 viewModel.getAddressList(MainActivity.USER_TOKEN)
             }
+
             viewModel.userAddressList.collectLatest { result ->
                 when (result) {
                     is NetworkResult.Success -> {
@@ -137,95 +138,107 @@ fun AddressesScreen(
                 }
             }
         }
-        if (addressList.value.isNotEmpty()){
-
-            Box(
+        if (loading){
+            Column(
                 modifier = Modifier
                     .fillMaxSize(),
-                contentAlignment = Alignment.TopCenter
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                if (loading) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colors.searchBarBg)
-                            .align(Alignment.Center)
-                            .padding(20.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Loading3Dots(isDark = false)
-                    }
-                } else {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .height(400.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        if (addressList.value.isNotEmpty()) {
-                            InitSelectableAddressList(addressList.value)
-                        }
-                    }
-
-                }
+                Loading3Dots(isDark = true)
             }
         }else{
+            if (addressList.value.isNotEmpty()){
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
-            ) {
-
-                Spacer(modifier = Modifier.height(150.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.address_not_found),
-                    contentDescription = "",
-                    modifier = Modifier.size(250.dp)
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "با ثبت آدرس های خود ، روند خرید خود را سریعتر کنید",
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = font_bold,
-                    color = MaterialTheme.colors.darkText
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Row(
+                Box(
                     modifier = Modifier
-                        .width(180.dp)
-                        .height(50.dp)
-                        .border(1.dp, MaterialTheme.colors.DigikalaDarkRed,RoundedCornerShape(10.dp))
-                        .background(Color.White)
-                        .clickable {
-                            navController.navigate(Screen.SaveUserAddress.route)
-                        },
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.TopCenter
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.location),
+                    if (loading) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colors.searchBarBg)
+                                .align(Alignment.Center)
+                                .padding(20.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Loading3Dots(isDark = false)
+                        }
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .height(400.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            if (addressList.value.isNotEmpty()) {
+                                InitSelectableAddressList(addressList.value)
+                            }
+                        }
+
+                    }
+                }
+            }else{
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+
+                    Spacer(modifier = Modifier.height(150.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.address_not_found),
                         contentDescription = "",
-                        modifier = Modifier
-                            .size(20.dp),
-                        tint = MaterialTheme.colors.DigikalaDarkRed
+                        modifier = Modifier.size(250.dp)
                     )
+                    Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = "  افزودن آدرس جدید  ",
+                        text = "با ثبت آدرس های خود ، روند خرید خود را سریعتر کنید",
                         textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.h5,
-                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h6,
+                        fontWeight = FontWeight.Medium,
                         fontFamily = font_bold,
-                        color = MaterialTheme.colors.DigikalaDarkRed
+                        color = MaterialTheme.colors.darkText
                     )
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .width(180.dp)
+                            .height(50.dp)
+                            .border(1.dp, MaterialTheme.colors.DigikalaDarkRed,RoundedCornerShape(10.dp))
+                            .background(Color.White)
+                            .clickable {
+                                navController.navigate(Screen.SaveUserAddress.route)
+                            },
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.location),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(20.dp),
+                            tint = MaterialTheme.colors.DigikalaDarkRed
+                        )
+                        Text(
+                            text = "  افزودن آدرس جدید  ",
+                            textAlign = TextAlign.Start,
+                            style = MaterialTheme.typography.h5,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = font_bold,
+                            color = MaterialTheme.colors.DigikalaDarkRed
+                        )
+
+                    }
 
                 }
-
             }
         }
+
 
 
     }
