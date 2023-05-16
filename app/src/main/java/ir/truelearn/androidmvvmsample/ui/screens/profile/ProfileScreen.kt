@@ -457,7 +457,9 @@ fun ProfileMenuSection(navController: NavHostController) {
             )
         },
         isHaveDivider = true,
-        modifier = Modifier.clickable { }
+        modifier = Modifier.clickable {
+            navController.navigate(Screen.FavoriteListScreen.route)
+        }
     ) {
         Icon(
             Icons.Outlined.ChevronLeft, contentDescription = "Go to",

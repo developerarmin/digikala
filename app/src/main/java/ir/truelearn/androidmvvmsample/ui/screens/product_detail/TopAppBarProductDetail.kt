@@ -13,11 +13,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.truelearn.androidmvvmsample.R
+import ir.truelearn.androidmvvmsample.data.model.profile.FavItem
 import ir.truelearn.androidmvvmsample.ui.theme.darkText
 import ir.truelearn.androidmvvmsample.ui.theme.spacing
 
 @Composable
-fun TopAppBarProductDetail(navController: NavController) {
+fun TopAppBarProductDetail(item: FavItem, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,14 +47,8 @@ fun TopAppBarProductDetail(navController: NavController) {
                     tint = MaterialTheme.colors.darkText
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.faverate),
-                    contentDescription = "",
-                    modifier = Modifier.size(27.dp),
-                    tint = MaterialTheme.colors.darkText
-                )
-            }
+            DisplayFavoriteToggleButton(item)
+
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     painter = painterResource(id = R.drawable.menu_dots),

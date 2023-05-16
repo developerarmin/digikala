@@ -18,6 +18,7 @@ import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.data.model.profile.FavItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.screens.comment.CommentsPreview
 import ir.truelearn.androidmvvmsample.ui.screens.comment.WriteCommentView
@@ -138,7 +139,19 @@ fun ProductDetail(
                     .padding(bottom = 60.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                TopAppBarProductDetail(navController)
+
+                TopAppBarProductDetail(
+                    FavItem(
+                        id,
+                        item.discountPercent,
+                        item.imageSlider[0].image,
+                        item.name,
+                        item.price,
+                        item.seller,
+                        item.star
+                    ), navController
+                )
+
 
                 ShowIsAmazing(isAmazing = isAmazing)
 

@@ -13,6 +13,7 @@ data class RoundedShape(
     val default : RoundedCornerShape = RoundedCornerShape(0.dp),
     val extraSmall : RoundedCornerShape = RoundedCornerShape(4.dp),
     val small : RoundedCornerShape = RoundedCornerShape(8. dp),
+    val semiSmall : RoundedCornerShape = RoundedCornerShape(10.dp),
     val large : RoundedCornerShape = RoundedCornerShape(16. dp),
     val medium : RoundedCornerShape = RoundedCornerShape(16. dp),
     val extraLarge : RoundedCornerShape = RoundedCornerShape(24. dp)

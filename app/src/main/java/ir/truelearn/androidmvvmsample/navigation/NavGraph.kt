@@ -24,6 +24,7 @@ import ir.truelearn.androidmvvmsample.ui.screens.product_detail.ProductDetailScr
 import ir.truelearn.androidmvvmsample.ui.screens.profile.ProfileScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.address.AddressesScreen
+import ir.truelearn.androidmvvmsample.ui.screens.profile.favorite_list.FavoriteListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.my_orders.TabLayoutScreen
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
@@ -72,6 +73,9 @@ fun SetupNavGraph(
 
         composable(route = Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
+        }
+        composable(route=Screen.FavoriteListScreen.route){
+            FavoriteListScreen(navController)
         }
 
         composable(route = Screen.ProductListScreen.route + "/{searchValue}",

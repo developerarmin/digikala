@@ -176,6 +176,16 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="better_price_suggestion">Do You Know a Better Price?</string>
     <string name="digiKalaSend">DigiKala Sending</string>
 
+    <!-- Favorite List -->
+    <string name="my_fav_list">Favorite List</string>
+    <string name="remove_from_list">Remove from list</string>
+    <string name="watch_and_buy_product">Watch and buy product</string>
+    <string name="fav_products">Favorite Products</string>
+    <string name="product">Product</string>
+    <string name="sure_to_remove_fav_item">Are you sure you want to remove this item?</string>
+    <string name="remove_fav_item">Remove Product</string>
+    <string name="cancel">Cancel</string>
+
 
 
 

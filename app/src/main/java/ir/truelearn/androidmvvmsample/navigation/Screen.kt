@@ -21,6 +21,7 @@ sealed class Screen(val route: String) {
     object Setting:Screen("setting_screen")
 
     object TabLayoutScreen: Screen("tab_layout_screen")
+    object FavoriteListScreen : Screen("favorite_list_screen")
 
 
     fun withArgs(vararg args: Any): String {
