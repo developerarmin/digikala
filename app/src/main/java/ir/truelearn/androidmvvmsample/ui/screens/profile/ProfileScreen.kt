@@ -88,6 +88,7 @@ fun Profile(
                     navController = navController,
                     url = "https://www.mydigipay.com/"
                 )
+                ,navController
             )
 
             Divider(
@@ -98,10 +99,16 @@ fun Profile(
                     .shadow(2.dp),
                 color = Color.LightGray,
             )
-            ProfileMiddleSection(authOnClick = {}, clubOnClick = {}, contactUsOnClick = onBoxClick(
+            ProfileMiddleSection(
+                authOnClick = {},
+                clubOnClick = onBoxClick(
+                    navController = navController
+                    , url = "https://www.digikala.com/digiclub/"
+                ),
+                contactUsOnClick = onBoxClick(
                 navController = navController,
                 url = "https://truelearn.ir/contact/"
-            )
+                )
             )
 
             Divider(
@@ -163,7 +170,7 @@ fun ProfileTopBar(navController: NavHostController, modifier: Modifier = Modifie
         }
 
         IconButton(onClick = {
-            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
         }) {
             Icon(
                 Icons.Filled.Close, contentDescription = "Close",
@@ -180,14 +187,17 @@ fun goToUrl(navController: NavController, url: String) {
 @Composable
 fun ProfileHeaderSection(
     digikalaMissionOnClick: () -> Unit,
-    digitWalletOnClick: () -> Unit
+    digitWalletOnClick: () -> Unit,
+    navController: NavController
 ) {
     Spacer(modifier = Modifier.height(MaterialTheme.spacing.mediumTwo))
-
     Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = "",
-        textAlign = TextAlign.Center
+        modifier = Modifier.fillMaxWidth()
+            .clickable { navController.navigate(Screen.UserAccountScreen.route) },
+        text = stringResource(id = R.string.Completion_of_user_information),
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colors.DarkCyan,
+        style = MaterialTheme.typography.h6
     )
 
     Text(
@@ -540,7 +550,9 @@ fun ProfileMenuSection(navController: NavHostController) {
             )
         },
         isHaveDivider = true,
-        modifier = Modifier.clickable { }
+        modifier = Modifier.clickable {
+           navController.navigate(Screen.UserAccountScreen.route)
+        }
     ) {
         Icon(
             Icons.Outlined.ChevronLeft, contentDescription = "Go to",

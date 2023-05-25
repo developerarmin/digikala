@@ -188,6 +188,43 @@ After confirming the comment, go to the club missions page and get your points</
 
 
 
+    <!-- User Account Information-->
+    <string name="user_information">User Account Information</string>
+    <string name="person_information">Person Information </string>
+    <string name="name_lastname">Name and Lastname</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="national_Code">National Code </string>
+    <string name="refund_Method">Refund Method</string>
+    <string name="landline_Phone">Landline Phone</string>
+    <string name="post_Address">E-mail</string>
+    <string name="password">Password</string>
+    <string name="add_Legal_Information">Add Legal Information</string>
+    <string name="enter_name_lastname">Enter Your Name and LastName</string>
+    <string name="name">Name</string>
+    <string name="lastname"> LastName</string>
+    <string name="confirm_information"> Confirm Information </string>
+    <string name="Completion_of_user_information"> Completion of user information </string>
+    <string name="enter_phone_number">Enter Your Phone Number</string>
+    <string name="get_code">Get Code</string>
+    <string name="enter_your_post_address">Enter Your Post Address</string>
+    <string name="enter_your_national_code">Enter Your National Code</string>
+    <string name="choise_refund_method">Refund method</string>
+    <string name="considerations_for_returning_money_fromDigikala">Considerations for returning money from Digikala</string>
+    <string name="deposit_to_bank_account">Deposit to bank account </string>
+    <string name="deposit_to_DigiPy_wallet">Deposit to DigiPy wallet </string>
+    <string name="confirmation"> confirmation</string>
+    <string name="add_password"> Add password</string>
+    <string name="least8_characters_long"> Your password must be at least 8 characters long</string>
+    <string name="new_password">New password*</string>
+    <string name="at_least_8_characters"> At least 8 characters</string>
+    <string name="upper_and_lower_case_letters"> Includes upper and lower case letters</string>
+    <string name="including_the_sign">Includes sign (#%$!*@)</string>
+    <string name="including_number"> including the number</string>
+    <string name="repeat_the_new_password"> Repeat the new password*</string>
+    <string name="weak">weak</string>
+    <string name="normal">Normal</string>
+    <string name="perfect">Perfect !</string>
+
 
 
 

@@ -23,6 +23,14 @@ sealed class Screen(val route: String) {
     object TabLayoutScreen: Screen("tab_layout_screen")
     object FavoriteListScreen : Screen("favorite_list_screen")
 
+    object UserAccountScreen : Screen("User_Account_Screen")
+    object AddNameandLastname : Screen("Add_Name_LastName")
+    object PhoneNumber : Screen("Phone_Number")
+    object PostAddress : Screen("Post_Address")
+    object NationalCode : Screen("National_Code")
+    object AddRefundMethode : Screen("Refund_Methode")
+    object AddPassword : Screen("Add_Password")
+
 
     fun withArgs(vararg args: Any): String {
         return buildString {

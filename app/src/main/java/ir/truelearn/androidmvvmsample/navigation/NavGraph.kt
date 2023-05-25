@@ -26,6 +26,13 @@ import ir.truelearn.androidmvvmsample.ui.screens.profile.SettingScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.address.AddressesScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.favorite_list.FavoriteListScreen
 import ir.truelearn.androidmvvmsample.ui.screens.profile.my_orders.TabLayoutScreen
+import ir.truelearn.androidmvvmsample.ui.screens.profile.my_orders.UserAccount
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddNameAndLastname
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddNationalCode
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddPassword
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddPhoneNumber
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddPostAddress
+import ir.truelearn.androidmvvmsample.ui.screens.profile.userAccountInformation.itemScreens.AddRefundMethode
 import ir.truelearn.androidmvvmsample.ui.screens.splash.SplashScreen
 import ir.truelearn.androidmvvmsample.viewmodel.SaveAddressViewModel
 
@@ -77,7 +84,29 @@ fun SetupNavGraph(
         composable(route=Screen.FavoriteListScreen.route){
             FavoriteListScreen(navController)
         }
+        composable(route = Screen.UserAccountScreen.route){
+            UserAccount(navController = navController)
+        }
+        composable(route = Screen.AddNameandLastname.route){
+            AddNameAndLastname(navController = navController)
+        }
+        composable(route = Screen.PhoneNumber.route){
+            AddPhoneNumber(navController = navController)
+        }
+        composable(route = Screen.PostAddress.route){
+            AddPostAddress(navController = navController)
+        }
+        composable(route = Screen.NationalCode.route){
+            AddNationalCode(navController = navController)
+        }
+        composable(route = Screen.AddRefundMethode.route){
+            AddRefundMethode(navController = navController)
+        }
+        composable(route = Screen.AddPassword.route){
+            AddPassword(navController = navController)
+        }
 
+        
         composable(route = Screen.ProductListScreen.route + "/{searchValue}",
             arguments = listOf(
                 navArgument("searchValue") {

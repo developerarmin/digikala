@@ -78,6 +78,8 @@
     <string name="increase">+</string>
     <string name="benefit">7,990   </string>
 
+
+
     <!--basket desc-->
     <string name="count_product_cart">%1$s کالا</string>
     <string name="cart">سبد خرید</string>
@@ -189,6 +191,49 @@
     <string name="sure_to_remove_fav_item">آیا از حذف کالا از لیست علاقه مندی ها اطمینان دارید؟</string>
     <string name="remove_fav_item">حذف کالا</string>
     <string name="cancel">انصراف</string>
+
+
+    <!-- User Account Information-->
+    <string name="user_information">اطلاعات حساب کاربری </string>
+    <string name="person_information">اطلاعات شخصی </string>
+    <string name="name_lastname">نام و نام خانوادگی </string>
+    <string name="phone_number">شماره تلفن همراه </string>
+    <string name="national_Code">کد ملی </string>
+    <string name="refund_Method">روش بازگرداندن وجه</string>
+    <string name="landline_Phone">شماره تلفن ثابت </string>
+    <string name="post_Address">پست الکترونیک</string>
+    <string name="password">رمز عبور </string>
+    <string name="add_Legal_Information">افزودن اطلاعات حقوقی</string>
+    <string name="enter_name_lastname">نام و نام خانوادگی خود را وارد نمایید</string>
+    <string name="name">نام</string>
+    <string name="lastname"> نام خانوادگی </string>
+    <string name="confirm_information"> تایید اطلاعات </string>
+    <string name="Completion_of_user_information"> تکمیل اطلاعات کاربری </string>
+    <string name="enter_phone_number">شماره موبایل خود را وارد کنید</string>
+    <string name="get_code">دریافت کد تایید</string>
+    <string name="enter_your_post_address">پست الکترونیکی خود را وارد کنید</string>
+    <string name="enter_your_national_code">کد ملی خود را وارد کنید</string>
+    <string name="choise_refund_method">روش بازگرداندن وجه مرجوعی</string>
+    <string name="considerations_for_returning_money_fromDigikala">ملاحظات بازگشت وجه از دیجیکالا</string>
+    <string name="deposit_to_bank_account">واریز به حساب بانکی </string>
+    <string name="deposit_to_DigiPy_wallet">واریز به کیف پول دیجی پی </string>
+    <string name="confirmation"> تایید</string>
+    <string name="add_password"> افزودن رمز عبور</string>
+    <string name="least8_characters_long"> رمز عبور شما باید حداقل 8 حرف باشد</string>
+    <string name="new_password">رمز عبور جدید*</string>
+    <string name="at_least_8_characters"> حداقل 8 حرفی</string>
+    <string name="upper_and_lower_case_letters"> شامل حروف بزرگ و کوچک</string>
+    <string name="including_the_sign">شامل علامت (#%$!*@)</string>
+    <string name="including_number"> شامل عدد</string>
+    <string name="repeat_the_new_password"> تکرار رمز عبور جدید*</string>
+    <string name="weak"> ضعیف</string>
+    <string name="normal"> معمولی</string>
+    <string name="perfect"> عالی شد !</string>
+
+
+
+
+
 
 
 
