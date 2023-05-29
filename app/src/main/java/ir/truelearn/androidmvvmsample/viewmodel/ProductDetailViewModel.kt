@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
 import ir.truelearn.androidmvvmsample.data.model.home.Slider
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.data.model.product_detail.SimilarProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.repository.ProductDetailRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,10 +16,10 @@ import javax.inject.Inject
 class ProductDetailViewModel @Inject constructor(private val repository: ProductDetailRepository) : ViewModel() {
 
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
-    val similarProducts = MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
+    val similarProducts = MutableStateFlow<NetworkResult<List<SimilarProduct>>>(NetworkResult.Loading())
     val recommendedSimilarProducts = MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
     val productDetail = MutableStateFlow<NetworkResult<ProductDetailModel>>(NetworkResult.Loading())
-    suspend fun getAllDataFromServer(productId:String) {
+    suspend fun getAllDataFromServer(productId:String, categoryId:String) {
         viewModelScope.launch() {
             launch {
                 slider.emit(repository.getSlider())
@@ -28,7 +29,7 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
             }
 
             launch {
-                similarProducts.emit(repository.getSimilarProducts())
+                similarProducts.emit(repository.getSimilarProducts(categoryId))
             }
 
             launch {

@@ -4,17 +4,22 @@ import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 
 data class ProductDetailModel(
     val _id: String,
+    val name: String,
+    val seller: String,
+    val category: String,
+    val categoryId: String,
+    val price: Int,
+    val description:String,
+    val discountPercent: Int,
+    val star: Double,
+    val starCount: Int,
+    val viewCount: Int,
+    val commentCount: Int,
+    val questionCount: Int,
     val agreeCount: Int,
     val agreePercent: Int,
     val colors: List<ColorProductDetail>,
-    val commentCount: Int,
     val comments: List<CommentResponse>,
-    val discountPercent: Int,
     val imageSlider: List<ImageSlider>,
-    val name: String,
-    val price: Int,
-    val questionCount: Int,
-    val seller: String,
-    val star: Double,
-    val starCount: Int
+
 )

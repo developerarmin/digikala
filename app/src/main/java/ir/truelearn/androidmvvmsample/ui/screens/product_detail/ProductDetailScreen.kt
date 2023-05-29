@@ -31,11 +31,12 @@ import kotlinx.coroutines.withContext
 fun ProductDetailScreen(
     navController: NavHostController,
     id: String,
+    categoryId: String,
     isAmazing: Boolean,
     productDetailItemPrice: Int,
     productDiscountPercent: Int
 ) {
-    ProductDetail(navController, id, isAmazing, productDetailItemPrice, productDiscountPercent)
+    ProductDetail(navController, id, categoryId ,isAmazing, productDetailItemPrice, productDiscountPercent)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -44,6 +45,7 @@ fun ProductDetailScreen(
 fun ProductDetail(
     navController: NavHostController,
     id: String,
+    categoryId:String,
     isAmazing: Boolean,
     productDetailItemPrice: Int,
     productDiscountPercent: Int,
@@ -56,21 +58,26 @@ fun ProductDetail(
         mutableStateOf<ProductDetailModel>(
             ProductDetailModel(
                 "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "",
+                0,
+                1.0,
+                0,
+                0,
+                0,
+                0,
                 0,
                 0,
                 listOf(ColorProductDetail("", "", "")),
-                0,
                 listOf(
                     CommentResponse("", "", "", "", "","","","")
                 ),
-                0,
                 listOf(ImageSlider("", "", "")),
-                "",
-                0,
-                0,
-                "",
-                1.0,
-                0
+
             )
         )
     }
@@ -90,7 +97,7 @@ fun ProductDetail(
     var loading by remember { mutableStateOf(false) }
 
     LaunchedEffect(Dispatchers.IO) {
-        viewModel.getAllDataFromServer(id)
+        viewModel.getAllDataFromServer(id,categoryId)
         withContext(Dispatchers.Main) {
             viewModel.productDetail.collectLatest { result ->
                 when (result) {
@@ -157,14 +164,7 @@ fun ProductDetail(
 
                 TopSliderProduct(imageSliders)
 
-                ProductDetailHeader(
-                    item.name,
-                    "در دسته مد و پوشاک",
-                    item.star,
-                    item.starCount,
-                    item.commentCount,
-                    item.questionCount
-                )
+                ProductDetailHeader(item)
 
                 ColorCategorySection(item.colors)
 
@@ -172,7 +172,7 @@ fun ProductDetail(
 
                 ProductDetailCard()
 
-                CommentsPreview(comments)
+                CommentsPreview(comments, item.commentCount)
 
                 WriteCommentView(
                     image = item.imageSlider[0].image,
