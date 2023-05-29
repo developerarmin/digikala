@@ -19,7 +19,7 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
     val similarProducts = MutableStateFlow<NetworkResult<List<SimilarProduct>>>(NetworkResult.Loading())
     val recommendedSimilarProducts = MutableStateFlow<NetworkResult<List<FavoriteProduct>>>(NetworkResult.Loading())
     val productDetail = MutableStateFlow<NetworkResult<ProductDetailModel>>(NetworkResult.Loading())
-    suspend fun getAllDataFromServer(productId:String, categoryId:String) {
+    suspend fun getAllDataFromServer(productId:String) {
         viewModelScope.launch() {
             launch {
                 slider.emit(repository.getSlider())
@@ -29,11 +29,15 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
             }
 
             launch {
-                similarProducts.emit(repository.getSimilarProducts(categoryId))
-            }
-
-            launch {
                 recommendedSimilarProducts.emit(repository.getRecommendedSimilarProducts())
+            }
+        }
+    }
+
+    suspend fun getSimilarProducts(categoryId:String){
+        viewModelScope.launch() {
+            launch {
+                similarProducts.emit(repository.getSimilarProducts(categoryId))
             }
         }
     }

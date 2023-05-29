@@ -18,6 +18,7 @@ import ir.truelearn.androidmvvmsample.data.model.comment.CommentResponse
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ColorProductDetail
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ImageSlider
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.data.model.product_detail.SimilarProduct
 import ir.truelearn.androidmvvmsample.data.model.profile.FavItem
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.screens.comment.CommentsPreview
@@ -31,12 +32,11 @@ import kotlinx.coroutines.withContext
 fun ProductDetailScreen(
     navController: NavHostController,
     id: String,
-    categoryId: String,
     isAmazing: Boolean,
     productDetailItemPrice: Int,
     productDiscountPercent: Int
 ) {
-    ProductDetail(navController, id, categoryId ,isAmazing, productDetailItemPrice, productDiscountPercent)
+    ProductDetail(navController, id ,isAmazing, productDetailItemPrice, productDiscountPercent)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -45,7 +45,6 @@ fun ProductDetailScreen(
 fun ProductDetail(
     navController: NavHostController,
     id: String,
-    categoryId:String,
     isAmazing: Boolean,
     productDetailItemPrice: Int,
     productDiscountPercent: Int,
@@ -94,10 +93,14 @@ fun ProductDetail(
         mutableStateOf<List<CommentResponse>>(emptyList())
     }
 
+    var similarProduct by remember {
+        mutableStateOf<List<SimilarProduct>>(emptyList())
+    }
+
     var loading by remember { mutableStateOf(false) }
 
     LaunchedEffect(Dispatchers.IO) {
-        viewModel.getAllDataFromServer(id,categoryId)
+        viewModel.getAllDataFromServer(id)
         withContext(Dispatchers.Main) {
             viewModel.productDetail.collectLatest { result ->
                 when (result) {
@@ -122,8 +125,31 @@ fun ProductDetail(
         }
     }
 
+if (item.categoryId.isNotEmpty()){
+    LaunchedEffect(Dispatchers.IO) {
+        viewModel.getSimilarProducts(item.categoryId)
+        withContext(Dispatchers.Main) {
+            viewModel.similarProducts.collectLatest { result ->
+                when (result) {
+                    is NetworkResult.Success -> {
+                        result.data?.let {
+                            similarProduct = it
+                        }
+                        loading = false
+                    }
+                    is NetworkResult.Error -> {
+                        loading = false
+                        Log.d("5555", "Data error:${result.message} ")
+                    }
+                    is NetworkResult.Loading -> {
+                        loading = true
+                    }
+                }
+            }
+        }
+    }
 
-
+}
 
 
 

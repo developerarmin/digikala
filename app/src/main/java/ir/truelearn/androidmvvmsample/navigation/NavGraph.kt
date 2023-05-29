@@ -179,7 +179,6 @@ fun SetupNavGraph(
             ProductDetailScreen(
                 navController = navController,
                 id = it.arguments?.getString("id").toString(),
-                categoryId= it.arguments?.getString("categoryId").toString(),
                 isAmazing = it.arguments!!.getBoolean("amazing"),
                 productDetailItemPrice = it.arguments!!.getInt("price"),
                 productDiscountPercent = it.arguments!!.getInt("discountPercent")
