@@ -17,6 +17,7 @@ import ir.truelearn.androidmvvmsample.ui.theme.*
 @Composable
 fun CommentsPreview(
     comments: List<CommentResponse>,
+    commentCount: Int
 ) {
 
     Column(
@@ -38,7 +39,7 @@ fun CommentsPreview(
                 style = MaterialTheme.typography.h3,
             )
             Text(
-                text = "${comments.size} " + stringResource(R.string.comment),
+                text = "$commentCount " + stringResource(R.string.comment),
                 color = MaterialTheme.colors.LightBlue,
                 style = MaterialTheme.typography.h4,
             )

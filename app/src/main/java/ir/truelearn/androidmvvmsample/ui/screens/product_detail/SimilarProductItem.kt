@@ -19,12 +19,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
+import ir.truelearn.androidmvvmsample.data.model.product_detail.SimilarProduct
 import ir.truelearn.androidmvvmsample.ui.theme.*
 import ir.truelearn.androidmvvmsample.util.DigitHelper
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SimilarProduct(item: FavoriteProduct) {
+fun SimilarProductItem(item: SimilarProduct) {
     val newPrice = DigitHelper.applyDiscount(item.price, item.discountPercent)
     val prevPrice = item.price.toString()
     Card(onClick = { }, modifier = Modifier

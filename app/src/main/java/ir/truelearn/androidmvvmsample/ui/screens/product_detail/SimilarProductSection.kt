@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ir.truelearn.androidmvvmsample.R
 import ir.truelearn.androidmvvmsample.data.model.home.FavoriteProduct
+import ir.truelearn.androidmvvmsample.data.model.product_detail.SimilarProduct
 import ir.truelearn.androidmvvmsample.data.remote.NetworkResult
 import ir.truelearn.androidmvvmsample.ui.component.Loading3Dots
 import ir.truelearn.androidmvvmsample.ui.theme.DarkCyan
@@ -28,7 +29,7 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun SimilarProductSection(viewModel: ProductDetailViewModel = hiltViewModel()){
-    var list by remember { mutableStateOf<List<FavoriteProduct>>(emptyList()) }
+    var list by remember { mutableStateOf<List<SimilarProduct>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
     LaunchedEffect(key1 = true) {
         viewModel.similarProducts.collectLatest { result ->
@@ -79,7 +80,7 @@ fun SimilarProductSection(viewModel: ProductDetailViewModel = hiltViewModel()){
         }else{
             LazyRow{
                 items(list) { item ->
-                    SimilarProduct(item)
+                    SimilarProductItem(item)
                 }
             }
         }

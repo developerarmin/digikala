@@ -15,6 +15,7 @@ import ir.truelearn.androidmvvmsample.data.model.home.*
 import ir.truelearn.androidmvvmsample.data.model.login.LoginRequest
 import ir.truelearn.androidmvvmsample.data.model.login.LoginResponse
 import ir.truelearn.androidmvvmsample.data.model.product_detail.ProductDetailModel
+import ir.truelearn.androidmvvmsample.data.model.product_detail.SimilarProduct
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -118,5 +119,11 @@ interface ApiInterface {
     suspend fun setNewComment(
         @Body commentRequest: CommentRequest
     ): Response<ResponseResult<String>>
+
+
+    @GET("getSimilarProducts")
+    suspend fun getSimilarProducts(
+        @Query("categoryId") categoryId: String
+    ): Response<ResponseResult<List<SimilarProduct>>>
 
 }
