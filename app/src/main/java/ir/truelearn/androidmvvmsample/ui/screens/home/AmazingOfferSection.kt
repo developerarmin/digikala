@@ -45,6 +45,7 @@ fun AmazingOfferSection(
                     result.data?.let {
                         list = it
                     }
+
                     loading = false
                 }
                 is NetworkResult.Error -> {
